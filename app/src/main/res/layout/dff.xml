@@ -1,0 +1,235 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:foo="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#CC253038"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <Space style="@style/bottom_menu_horizontal_space" />
+
+        <LinearLayout style="@style/bottom_menu_tile_row">
+
+            <Space style="@style/bottom_menu_vertical_space" />
+
+            <LinearLayout
+                android:id="@+id/bottom_menu_game_manual_button"
+                style="@style/bottom_menu_tile">
+
+                <FrameLayout
+                    style="@style/bottom_submenu_item_bg_level_1"
+                    android:padding="10dp">
+
+                    <ImageView
+                        style="@style/bottom_submenu_item_bg_level_1_image"
+                        android:src="@drawable/stat_centre_back" />
+                </FrameLayout>
+
+                <rsr.info.basic.viswaLab.views.TextViewPlus
+                    style="@style/bottom_submenu_item_bg_level_2"
+                    android:text="NEWS" />
+
+            </LinearLayout>
+
+            <Space style="@style/bottom_menu_vertical_space" />
+
+            <LinearLayout
+                android:id="@+id/bottom_menu_search_button"
+                style="@style/bottom_menu_tile">
+
+                <FrameLayout
+                    style="@style/bottom_submenu_item_bg_level_1"
+                    android:padding="12dp">
+
+                    <ImageView
+                        style="@style/bottom_submenu_item_bg_level_1_image"
+                        android:src="@drawable/stat_centre_back" />
+                </FrameLayout>
+
+
+                <rsr.info.basic.viswaLab.views.TextViewPlus
+                    style="@style/bottom_submenu_item_bg_level_2"
+                    foo:customFont="@string/font_freedoka"
+                    android:padding="5dp"
+                    android:text="Analysis Report" />
+
+            </LinearLayout>
+
+            <Space style="@style/bottom_menu_vertical_space" />
+
+            <LinearLayout
+                android:id="@+id/bottom_menu_statistics_center_button"
+                style="@style/bottom_menu_tile">
+
+                <FrameLayout
+                    style="@style/bottom_submenu_item_bg_level_1"
+                    android:padding="13dp">
+
+                    <ImageView
+                        style="@style/bottom_submenu_item_bg_level_1_image"
+                        android:src="@drawable/stat_centre_back" />
+                </FrameLayout>
+
+                <rsr.info.basic.viswaLab.views.HwHeadingTextView
+                    style="@style/bottom_submenu_item_bg_level_2"
+                    android:text="STATISTICS" />
+
+            </LinearLayout>
+
+            <Space style="@style/bottom_menu_vertical_space" />
+
+        </LinearLayout>
+
+        <Space style="@style/bottom_menu_horizontal_space" />
+
+        <LinearLayout style="@style/bottom_menu_tile_row">
+
+            <Space style="@style/bottom_menu_vertical_space" />
+
+            <LinearLayout
+                android:id="@+id/bottom_menu_feedback_button"
+                style="@style/bottom_menu_tile">
+
+                <FrameLayout
+                    style="@style/bottom_submenu_item_bg_level_1"
+                    android:padding="10dp">
+
+                    <ImageView
+                        style="@style/bottom_submenu_item_bg_level_1_image"
+                        android:src="@drawable/stat_centre_back" />
+                </FrameLayout>
+
+                <rsr.info.basic.viswaLab.views.HwHeadingTextView
+                    style="@style/bottom_submenu_item_bg_level_2"
+                    android:text="Sample Status" />
+
+            </LinearLayout>
+
+            <Space style="@style/bottom_menu_vertical_space" />
+
+            <LinearLayout
+                android:id="@+id/bottom_menu_more_earn_credits_button"
+                style="@style/bottom_menu_tile">
+
+                <FrameLayout
+                    style="@style/bottom_submenu_item_bg_level_1"
+                    android:padding="9dp">
+
+                    <ImageView
+                        style="@style/bottom_submenu_item_bg_level_1_image"
+                        android:src="@drawable/stat_centre_back" />
+                </FrameLayout>
+
+                <rsr.info.basic.viswaLab.views.HwHeadingTextView
+                    style="@style/bottom_submenu_item_bg_level_2"
+                    android:text="Sample Alert" />
+
+            </LinearLayout>
+
+            <Space style="@style/bottom_menu_vertical_space" />
+
+            <LinearLayout
+                android:id="@+id/bottom_menu_settings_button"
+                style="@style/bottom_menu_tile">
+
+                <FrameLayout
+                    style="@style/bottom_submenu_item_bg_level_1"
+                    android:padding="11dp">
+
+                    <ImageView
+                        style="@style/bottom_submenu_item_bg_level_1_image"
+                        android:src="@drawable/stat_centre_back" />
+                </FrameLayout>
+
+                <rsr.info.basic.viswaLab.views.HwHeadingTextView
+                    style="@style/bottom_submenu_item_bg_level_2"
+                    android:text="Schedule Alert" />
+
+            </LinearLayout>
+
+            <Space style="@style/bottom_menu_vertical_space" />
+
+        </LinearLayout>
+
+        <Space style="@style/bottom_menu_horizontal_space" />
+
+        <LinearLayout style="@style/bottom_menu_tile_row">
+
+            <Space style="@style/bottom_menu_vertical_space" />
+
+            <LinearLayout style="@style/bottom_menu_tile">
+
+                <FrameLayout
+                    style="@style/bottom_submenu_item_bg_level_1"
+                    android:padding="12dp">
+
+                    <ImageView
+                        style="@style/bottom_submenu_item_bg_level_1_image"
+                        android:src="@drawable/stat_centre_back" />
+                </FrameLayout>
+
+                <rsr.info.basic.viswaLab.views.HwHeadingTextView
+                    style="@style/bottom_submenu_item_bg_level_2"
+                    android:text="Adhoc Report" />
+
+            </LinearLayout>
+
+            <Space style="@style/bottom_menu_vertical_space" />
+
+            <LinearLayout style="@style/bottom_menu_tile">
+
+                <FrameLayout
+                    style="@style/bottom_submenu_item_bg_level_1"
+                    android:padding="12dp"
+                    android:visibility="invisible">
+
+                    <ImageView
+                        style="@style/bottom_submenu_item_bg_level_1_image"
+                        android:src="@drawable/petrol_can" />
+                </FrameLayout>
+
+                <rsr.info.basic.viswaLab.views.HwHeadingTextView
+                    style="@style/bottom_submenu_item_bg_level_2"
+                    android:text="COMING SOON"
+                    android:visibility="invisible" />
+
+            </LinearLayout>
+
+            <Space style="@style/bottom_menu_vertical_space" />
+
+            <LinearLayout
+                android:id="@+id/bottom_menu_exit_button"
+                style="@style/bottom_menu_tile">
+
+                <FrameLayout
+                    style="@style/bottom_submenu_item_bg_level_1"
+                    android:padding="13dp"
+                    android:visibility="invisible">
+
+                    <ImageView
+                        style="@style/bottom_submenu_item_bg_level_1_image"
+                        android:src="@drawable/fire" />
+                </FrameLayout>
+
+                <rsr.info.basic.viswaLab.views.HwHeadingTextView
+                    style="@style/bottom_submenu_item_bg_level_2"
+                    android:text="EXIT"
+                    android:visibility="invisible" />
+
+            </LinearLayout>
+
+            <Space style="@style/bottom_menu_vertical_space" />
+
+        </LinearLayout>
+
+        <Space style="@style/bottom_menu_horizontal_space" />
+
+    </LinearLayout>
+
+</LinearLayout>

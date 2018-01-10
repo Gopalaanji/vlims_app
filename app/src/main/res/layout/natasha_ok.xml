@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/natasha_message_container_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="30dp"
+    android:background="#90000000"
+    android:clickable="true"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/natasha_message_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_margin="10dp"
+        android:background="@drawable/natasha_auction_bg">
+
+        <ImageView
+            android:id="@+id/natasha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="18dp"
+            android:src="@drawable/natasha_blonde_mail"
+            android:textColor="#eeeeee" />
+
+        <TextView
+            android:id="@+id/tutorial_full_screen_help_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/natasha"
+            android:paddingLeft="7dp"
+            android:textColor="#fff"
+            android:padding="5dp"
+            android:text="@string/welcome_priced_property"
+            android:paddingRight="10dp" />
+
+        <Button
+            android:id="@+id/tutorial_full_screen_close_button"
+            style="@style/btn_sm.btn_warning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/tutorial_full_screen_help_message"
+            android:layout_centerHorizontal="true"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="30dp"
+            android:text="Okay" />
+    </RelativeLayout>
+
+</LinearLayout>

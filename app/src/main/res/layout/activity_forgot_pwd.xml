@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:foo="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/splash_bg"
+        android:orientation="vertical">
+
+
+        <rsr.info.basic.viswaLab.views.TextViewPlus
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:gravity="center"
+            android:text="@string/forgot_pwd_msg"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/white"
+            foo:customFont="@string/font_sans" />
+
+        <EditText
+            android:id="@+id/email"
+            style="@style/AppTheme.EditText"
+            android:hint="@string/phone"
+            android:inputType="numberDecimal|phone" />
+
+        <Button
+            android:id="@+id/pwd_reset"
+            style="@style/AppTheme.Button"
+            android:text="@string/reset_now" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
