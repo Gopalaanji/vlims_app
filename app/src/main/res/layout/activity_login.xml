@@ -141,18 +141,20 @@
             </LinearLayout>
 
             <CheckBox
-                android:id="@+id/forgot_pwd"
+                android:id="@+id/rememberPassword"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
+                android:buttonTint="#fff"
+                android:checked="false"
                 android:clickable="true"
                 android:gravity="center"
-                android:text="Remember Password"
+                android:shadowColor="#fff"
+                android:text="Remember Password ?"
                 android:textColor="@color/white"
-                android:textSize="@dimen/login_editText_text_size"
-                foo:customFont="@string/font_sans" />
+                android:textSize="@dimen/login_editText_text_size" />
         </LinearLayout>
     </LinearLayout>
 

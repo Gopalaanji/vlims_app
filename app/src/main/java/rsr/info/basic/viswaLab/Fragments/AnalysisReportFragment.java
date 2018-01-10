@@ -26,7 +26,7 @@ public class AnalysisReportFragment extends BaseFragment {
         fragmentActivity = (LoginFragmentActivity) getActivity();
         fragmentActivity.displayActionBar();
         fragmentActivity.showActionBar();
-        fragmentActivity.setActionBarTitle("Lube Oil Analysis Report");
+        fragmentActivity.setActionBarTitle("Viswa Lab");
         Button luboilReportsBtn = (Button) rootView.findViewById(R.id.luboilReportsBtn);
         luboilReportsBtn.setOnClickListener(new View.OnClickListener() {
             @Override

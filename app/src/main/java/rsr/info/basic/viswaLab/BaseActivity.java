@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -49,9 +48,9 @@ public abstract class BaseActivity extends AppCompatActivity {
                         .setMessage("Would you like to logout?")
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                editor.putString("userid", "");
+                               /* editor.putString("userid", "");
                                 editor.putString("Username", "");
-                                editor.commit();
+                                editor.commit();*/
                                 Intent intent = new Intent(BaseActivity.this, LoginFragmentActivity.class);
                                 startActivity(intent);
                                 finish();
@@ -90,10 +89,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (clearStack)
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
-    }
-
-    public void hyperLinkView(TextView textView) {
-        textView.setPaintFlags(textView.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
     }
 
     public void setActionBarIcon(int iconRes) {

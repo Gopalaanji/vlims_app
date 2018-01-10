@@ -76,7 +76,7 @@ public class LubeOilReportsFragment extends BaseFragment implements View.OnClick
         fragmentActivity = (LoginFragmentActivity) getActivity();
         common = new Common();
         fragmentActivity.displayActionBar();
-        fragmentActivity.setActionBarTitle("Viswa Lab");
+        fragmentActivity.setActionBarTitle("Lube Oil Analysis");
         fragmentActivity.showActionBar();
         prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         editor = prefs.edit();
@@ -220,7 +220,7 @@ public class LubeOilReportsFragment extends BaseFragment implements View.OnClick
                     }.getType());
                     final String[] equipmentLisst = new String[EquipmentsMOdelList.size() + 1];
                     int m = 1;
-                    equipmentLisst[0] = "All Equipmenents*";
+                    equipmentLisst[0] = "All Equipments*";
                     for (int i = 0; i < EquipmentsMOdelList.size(); i++) {
                         equipmentLisst[m] = EquipmentsMOdelList.get(i).getLOEquipmentDescription();
                         m++;

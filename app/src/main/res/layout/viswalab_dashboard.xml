@@ -58,7 +58,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="-10dp"
+                    android:layout_marginTop="-20dp"
                     android:text="Technical Updates"
                     android:textColor="@color/colorPrimary"
                     foo:customFont="@string/font_sans" />
@@ -80,7 +80,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="-10dp"
+                    android:layout_marginTop="-20dp"
                     android:text="Analysis Report"
                     android:textColor="@color/colorPrimary"
                     foo:customFont="@string/font_sans" />
@@ -101,7 +101,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="-10dp"
+                    android:layout_marginTop="-20dp"
                     android:text="Statistics"
                     android:textColor="@color/colorPrimary"
                     foo:customFont="@string/font_sans" />
@@ -130,7 +130,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="-10dp"
+                    android:layout_marginTop="-20dp"
                     android:text="Sample Status"
                     android:textColor="@color/colorPrimary"
                     foo:customFont="@string/font_sans" />
@@ -152,7 +152,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="-10dp"
+                    android:layout_marginTop="-20dp"
                     android:text="Sample Alert"
                     android:textColor="@color/colorPrimary"
                     foo:customFont="@string/font_sans" />
@@ -173,7 +173,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="-10dp"
+                    android:layout_marginTop="-20dp"
                     android:text="Schedule Alert"
                     android:textColor="@color/colorPrimary"
                     foo:customFont="@string/font_sans" />
@@ -202,7 +202,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="-10dp"
+                    android:layout_marginTop="-20dp"
                     android:text="Adhoc report"
                     android:textColor="@color/colorPrimary"
                     foo:customFont="@string/font_sans" />
@@ -222,7 +222,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="-10dp"
+                    android:layout_marginTop="-20dp"
                     android:text="Additional Reports"
                     android:textColor="@color/colorPrimary"
                     foo:customFont="@string/font_sans" />

@@ -10,6 +10,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -37,10 +39,12 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
     private Common common;
     private LoginFragmentActivity fragmentActivity;
     private int checksavedInstanceState = 0;
-    Button btnLogin, btnRegister;
+    Button btnLogin;
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
     public RelativeLayout main_loader;
+    CheckBox rememberPassword;
+    boolean is_checked = false;
 
     @Nullable
     @Override
@@ -48,9 +52,8 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
         rootView = inflater.inflate(R.layout.activity_login, container, false);
         userNameEditText = (EditText) rootView.findViewById(R.id.login_user_name);
         userPasswordEditText = (EditText) rootView.findViewById(R.id.login_user_pwd);
-        forgotView = (TextView) rootView.findViewById(R.id.forgot_pwd);
         btnLogin = (Button) rootView.findViewById(R.id.btn_login);
-        btnRegister = (Button) rootView.findViewById(R.id.btnRegister);
+        rememberPassword = (CheckBox) rootView.findViewById(R.id.rememberPassword);
         main_loader = (RelativeLayout) rootView.findViewById(R.id.initial_loader);
         setHasOptionsMenu(true);
         prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
@@ -61,13 +64,25 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
         userNameEditText.setTypeface(common.regularTypeface(getActivity()));
         userPasswordEditText.setTypeface(common.regularTypeface(getActivity()));
         fragmentActivity.displayActionBar();
-        fragmentActivity.hyperLinkView(forgotView);
-        forgotView.setOnClickListener(this);
         btnLogin.setOnClickListener(this);
-        btnRegister.setOnClickListener(this);
-//        if (prefs.getString("UserId", "") != null) {
-//            fragmentActivity.replaceFragment(new AnalysisReportFragment(), "from_agent_login", null);
-//        }
+        rememberPassword.setChecked(false);
+
+        if (prefs.getString("is_checkbox_rem", "") != null) {
+            userNameEditText.setText(prefs.getString("pet", ""));
+            userPasswordEditText.setText(prefs.getString("pwd", ""));
+        }
+
+        rememberPassword.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    is_checked = isChecked;
+                } else {
+                    editor.putString("is_checkbox_rem", "");
+                    editor.commit();
+                }
+            }
+        });
         return rootView;
     }
 
@@ -88,7 +103,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
             common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.network_error));
     }
 
-    private void UserLogin(final String userName, String userPassword) {
+    private void UserLogin(final String userName, final String userPassword) {
         main_loader.setVisibility(View.VISIBLE);
         RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
         final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
@@ -98,8 +113,16 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
             public void success(JsonObject jsonObject, Response response) {
                 Log.v("RESPONSE==>", jsonObject.toString());
                 if (jsonObject.get("Result").getAsString().equals("Success")) {
+                    editor.putString("pet", userName);
                     editor.putString("userid", jsonObject.get("userid").getAsString());
                     editor.putString("Username", jsonObject.get("Username").getAsString());
+                    editor.putString("pwd", userPassword);
+                    if (is_checked) {
+                        editor.putString("is_checkbox_rem", "yes");
+                    } else {
+                        editor.putString("pet", "");
+                        editor.putString("pwd", "");
+                    }
                     editor.commit();
                     Log.v("UserId==>", "USER ID" + prefs.getString("userid", "") + "User Name" + prefs.getString("Username", ""));
                     fragmentActivity.replaceFragment(new ViswaLabDashboard(), "from_login_to_reraSignup", null);
@@ -174,19 +197,9 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
 //                fragmentActivity.screenNavigation(HomeActivity.class, true);
 //                fragmentActivity.replaceFragment(new AnalysisReportFragment(), "from_agent_login", null);
                 break;
-            case R.id.forgot_pwd:
-                break;
         }
 
     }
 
-    void SendTheDetails() {
-//        WE HAVE TO SEND THE DETAILS ON  USER ID AND NOTIDFICATION ID WHICH IS MANDATORY FOR GETTING THE RESPONSE
-//        THIS THINGS ARE NEED TO SAVE THE IN THE LOCAL DATABASE WHICH IS USEFUL
-        String cableActivitys = "Model Class for Kotlin Things Which Are useful for the remaining work";
-        String CommonClasses = "Thses models are useful for the parsing the data from kotlin";
-        String CotlinMethods = "Coltin methods are common for the every class which are need to serialaization";
-        String CotlinSerialaization = "Coltin methods are common for the every class which are need to serialaization";
-        String ColtlinDeserialaization = "Cotlin methods are the ";
-    }
+
 }
