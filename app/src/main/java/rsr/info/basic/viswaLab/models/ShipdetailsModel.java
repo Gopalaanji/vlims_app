@@ -9,15 +9,15 @@ import com.google.gson.annotations.SerializedName;
 public class ShipdetailsModel {
 
     @SerializedName("ShipId")
-    private String ShipId;
+    private int ShipId;
     @SerializedName("ShipName")
     private String ShipName;
 
-    public String getShipId() {
+    public int getShipId() {
         return ShipId;
     }
 
-    public void setShipId(String shipId) {
+    public void setShipId(int shipId) {
         ShipId = shipId;
     }
 

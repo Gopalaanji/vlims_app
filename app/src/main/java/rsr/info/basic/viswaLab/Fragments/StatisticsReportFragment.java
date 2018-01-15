@@ -11,8 +11,11 @@ import android.widget.Button;
 import rsr.info.basic.viswaLab.Activitys.LoginFragmentActivity;
 import rsr.info.basic.viswaLab.R;
 
+/**
+ * Created by ${GIRI} on 12-01-2018.
+ */
 
-public class AnalysisReportFragment extends BaseFragment {
+public class StatisticsReportFragment extends BaseFragment {
     private View rootView;
     private LoginFragmentActivity fragmentActivity;
 
@@ -20,7 +23,7 @@ public class AnalysisReportFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_analysis_report, container, false);
+        rootView = inflater.inflate(R.layout.fragment_statistics_analysis_report, container, false);
 
         setHasOptionsMenu(true);
         fragmentActivity = (LoginFragmentActivity) getActivity();
@@ -32,7 +35,7 @@ public class AnalysisReportFragment extends BaseFragment {
         luboilReportsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fragmentActivity.replaceFragment(new LubeOilReportsFragment(), "agent_signup", null);
+                fragmentActivity.replaceFragment(new StatisticsLubeOilReportsFragment(), "agent_signup", null);
             }
         });
         return rootView;

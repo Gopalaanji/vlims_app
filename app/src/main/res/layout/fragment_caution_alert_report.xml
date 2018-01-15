@@ -83,7 +83,7 @@
                                     android:layout_width="280dp"
                                     android:layout_height="45dp"
                                     android:layout_gravity="center"
-                                    android:layout_margin="20dp"
+                                    android:layout_margin="10dp"
                                     android:layout_weight="1"
                                     android:background="@drawable/border_all"
                                     android:gravity="left|center"
@@ -330,28 +330,38 @@
                                         android:weightSum="3">
 
                                         <rsr.info.basic.viswaLab.views.TextViewPlus
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
+                                            android:layout_width="130dp"
+                                            android:layout_height="match_parent"
                                             android:layout_weight="1"
                                             android:gravity="center"
-                                            android:text="Serial Number"
+                                            android:lines="2"
+                                            android:text="Ship Name"
                                             android:textColor="#fff" />
 
                                         <rsr.info.basic.viswaLab.views.TextViewPlus
-                                            android:layout_width="wrap_content"
+                                            android:id="@+id/textViewPlus4"
+                                            android:layout_width="150dp"
                                             android:layout_height="wrap_content"
                                             android:layout_weight="1"
-                                            android:gravity="right"
+                                            android:gravity="right|center"
+                                            android:lines="2"
                                             android:text="Equipment"
                                             android:textColor="#fff" />
 
                                         <rsr.info.basic.viswaLab.views.TextViewPlus
-                                            android:layout_width="wrap_content"
+                                            android:layout_width="100dp"
                                             android:layout_height="wrap_content"
-                                            android:layout_marginRight="12dp"
-                                            android:layout_weight="1"
                                             android:gravity="right|center"
-                                            android:text="Oil Condition"
+                                            android:text="Report Date"
+                                            android:textColor="#fff"/>
+
+                                        <rsr.info.basic.viswaLab.views.TextViewPlus
+                                            android:layout_width="100dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_margin="5dp"
+                                            android:layout_weight="1"
+                                            android:gravity="center"
+                                            android:text="Report"
                                             android:textColor="#fff" />
                                     </LinearLayout>
                                 </LinearLayout>

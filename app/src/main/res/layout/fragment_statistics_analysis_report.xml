@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-
-
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/Layout">
-
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar" />
 
     <FrameLayout
         android:id="@+id/frag_container"
@@ -25,7 +18,6 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -37,8 +29,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/amount_input_border_button"
-                    android:text="Fuel Oil Alerts"
+                    android:background="@color/colorPrimary"
+                    android:text="Fuel Oil Samples"
                     android:textColor="#fff"></Button>
 
                 <Button
@@ -46,32 +38,33 @@
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/amount_input_border_button"
-                    android:text="Lube Oil Alerts"
+                    android:background="@color/colorPrimary"
+                    android:text="Lube Oil Samples"
                     android:textColor="#fff"></Button>
 
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/amount_input_border_button"
-                    android:text="Cylinder Drain Oil Alerts"
+                    android:background="@color/colorPrimary"
+                    android:text="Cylinder Drain Oil Samples"
+                    android:textColor="#fff"></Button>
+
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_margin="5dp"
+                    android:background="@color/colorPrimary"
+                    android:text="Sweep Test Samples"
                     android:textColor="#fff"></Button>
 
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/amount_input_border_button"
-                    android:text="Sweet Test Alerts"
-                    android:textColor="#fff"></Button>
-
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/amount_input_border_button"
-                    android:text="Additional Test Alerts"
+                    android:background="@color/colorPrimary"
+                    android:text="Additional Test Samples"
                     android:textColor="#fff"></Button>
 
 
@@ -79,42 +72,44 @@
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/amount_input_border_button"
-                    android:text="Pomp Alerts"
+                    android:background="@color/colorPrimary"
+                    android:text="Pomp Samples"
+                    android:textColor="#fff"></Button>
+
+                <Button
+                    android:id="@+id/button3"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_margin="5dp"
+                    android:background="@color/colorPrimary"
+                    android:text="Purifier Efficiency Samples"
                     android:textColor="#fff"></Button>
 
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/amount_input_border_button"
-                    android:text="Purifier Efficiency Alerts"
+                    android:background="@color/colorPrimary"
+                    android:text="BUNKER QUALITY SURVEY Samples"
                     android:textColor="#fff"></Button>
 
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/amount_input_border_button"
-                    android:text="BUNKER QUALITY SURVEY"
-                    android:textColor="#fff"></Button>
+                    android:background="@color/colorPrimary"
+                    android:text="DENSITY DIFFERENTIAL DATA Samples"
+                    android:textColor="#fff"
+                    android:visibility="gone"></Button>
 
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/amount_input_border_button"
-                    android:text="DENSITY DIFFERENTIAL DATA"
-                    android:textColor="#fff"></Button>
-
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/amount_input_border_button"
-                    android:text="PORT GRADE SUPPLIER QUERY"
-                    android:textColor="#fff"></Button>
-
+                    android:background="@color/colorPrimary"
+                    android:text="PORT GRADE SUPPLIER QUERY Samples"
+                    android:textColor="#fff"
+                    android:visibility="gone"></Button>
 
             </LinearLayout>
         </LinearLayout>

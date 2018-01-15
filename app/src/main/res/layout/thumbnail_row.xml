@@ -39,7 +39,7 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:padding="@dimen/thumbnail_img_padding"
-            android:src="@drawable/project_map" />
+            />
 
         <ImageView
             android:id="@+id/image_two"
@@ -49,7 +49,7 @@
             android:layout_margin="3dp"
             android:layout_weight="1"
             android:padding="@dimen/thumbnail_img_padding"
-            android:src="@drawable/picture" />
+          />
 
         <ImageView
             android:id="@+id/image_three"
@@ -59,7 +59,7 @@
             android:layout_margin="3dp"
             android:layout_weight="1"
             android:padding="@dimen/thumbnail_img_padding"
-            android:src="@drawable/map" />
+            />
     </LinearLayout>
 
     <LinearLayout

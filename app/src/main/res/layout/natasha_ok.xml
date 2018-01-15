@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:layout_margin="10dp"
-        android:background="@drawable/natasha_auction_bg">
+      >
 
         <ImageView
             android:id="@+id/natasha"
@@ -25,7 +25,7 @@
             android:layout_marginBottom="2dp"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="18dp"
-            android:src="@drawable/natasha_blonde_mail"
+
             android:textColor="#eeeeee" />
 
         <TextView

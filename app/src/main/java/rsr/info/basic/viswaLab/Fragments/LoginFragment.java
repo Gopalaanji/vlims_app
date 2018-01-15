@@ -6,7 +6,6 @@ import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -176,7 +175,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
     }
 */
 
-    @Override
+ /*   @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
@@ -185,7 +184,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
         }
         return super.onOptionsItemSelected(item);
     }
-
+*/
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

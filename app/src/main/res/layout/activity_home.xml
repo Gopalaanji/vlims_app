@@ -38,7 +38,7 @@
                     android:layout_height="55dp"
                     android:layout_margin="5dp"
                     android:background="@drawable/amount_input_border_button"
-                    android:text="Fuel Oil Reports"
+                    android:text="Fuel Oil Alerts"
                     android:textColor="#fff"></Button>
 
                 <Button
@@ -47,7 +47,7 @@
                     android:layout_height="55dp"
                     android:layout_margin="5dp"
                     android:background="@drawable/amount_input_border_button"
-                    android:text="Lube Oil Reports"
+                    android:text="Lube Oil Alerts"
                     android:textColor="#fff"></Button>
 
                 <Button
@@ -55,7 +55,7 @@
                     android:layout_height="55dp"
                     android:layout_margin="5dp"
                     android:background="@drawable/amount_input_border_button"
-                    android:text="Cylinder Drain Oil Reports"
+                    android:text="Cylinder Drain Oil Alerts"
                     android:textColor="#fff"></Button>
 
                 <Button
@@ -63,7 +63,7 @@
                     android:layout_height="55dp"
                     android:layout_margin="5dp"
                     android:background="@drawable/amount_input_border_button"
-                    android:text="Sweet Test Reports"
+                    android:text="Sweet Test Alerts"
                     android:textColor="#fff"></Button>
 
                 <Button
@@ -71,7 +71,7 @@
                     android:layout_height="55dp"
                     android:layout_margin="5dp"
                     android:background="@drawable/amount_input_border_button"
-                    android:text="Additional Test Reports"
+                    android:text="Additional Test Alerts"
                     android:textColor="#fff"></Button>
 
 
@@ -80,7 +80,7 @@
                     android:layout_height="55dp"
                     android:layout_margin="5dp"
                     android:background="@drawable/amount_input_border_button"
-                    android:text="Pomp Reports"
+                    android:text="Pomp Alerts"
                     android:textColor="#fff"></Button>
 
                 <Button
@@ -88,7 +88,7 @@
                     android:layout_height="55dp"
                     android:layout_margin="5dp"
                     android:background="@drawable/amount_input_border_button"
-                    android:text="Purifier Efficiency Reports"
+                    android:text="Purifier Efficiency Alerts"
                     android:textColor="#fff"></Button>
 
                 <Button

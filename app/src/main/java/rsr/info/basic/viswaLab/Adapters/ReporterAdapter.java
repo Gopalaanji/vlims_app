@@ -10,7 +10,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import rsr.info.basic.viswaLab.R;
@@ -25,9 +27,11 @@ public class ReporterAdapter extends RecyclerView.Adapter<ReporterAdapter.viewHo
     private Context context;
     CalculationsListAdapter.clickListener mClickListener;
     List<ReportDataModel> mReportDataModelList = new ArrayList<>();
+    boolean from_alert = false;
 
-    public ReporterAdapter(Context context, List<ReportDataModel> mReportDataModelList) {
+    public ReporterAdapter(Context context, boolean from_alert, List<ReportDataModel> mReportDataModelList) {
         this.context = context;
+        this.from_alert = from_alert;
         this.mReportDataModelList = mReportDataModelList;
     }
 
@@ -42,7 +46,22 @@ public class ReporterAdapter extends RecyclerView.Adapter<ReporterAdapter.viewHo
     public void onBindViewHolder(viewHolder holder, int position) {
         final ReportDataModel reportDataModel = mReportDataModelList.get(position);
 
-        holder.tvSerialNo.setText(reportDataModel.getSerial());
+        if (from_alert) {
+            holder.tvSerialNo.setText(reportDataModel.getShipName());
+            holder.tvDate.setVisibility(View.VISIBLE);
+            String ackwardDate = reportDataModel.getTestDate();
+            holder.tvDate.setText(ConvertJsonDate(reportDataModel.getTestDate()));
+
+//Dirty convertion
+          /*  Calendar calendar = Calendar.getInstance();
+            String ackwardRipOff = ackwardDate.replace("/Date(", "").replace(")/", "");
+            Long timeInMillis = Long.valueOf(ackwardRipOff);
+            calendar.setTimeInMillis(timeInMillis);*/
+//            holder.tvDate.setText(calendar.getD);
+        } else {
+            holder.tvDate.setVisibility(View.GONE);
+            holder.tvSerialNo.setText(reportDataModel.getSerial());
+        }
 
         holder.tvEqname.setText(reportDataModel.getEquipment());
 
@@ -79,13 +98,14 @@ public class ReporterAdapter extends RecyclerView.Adapter<ReporterAdapter.viewHo
     }
 
     public class viewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private TextView tvSerialNo, tvEqname;
+        private TextView tvSerialNo, tvEqname, tvDate;
         private ImageView tvReult;
 
         public viewHolder(View itemView) {
             super(itemView);
             tvSerialNo = (TextView) itemView.findViewById(R.id.tvSerialNo);
             tvEqname = (TextView) itemView.findViewById(R.id.tvEqname);
+            tvDate = (TextView) itemView.findViewById(R.id.tvDate);
             tvReult = (ImageView) itemView.findViewById(R.id.tvReult);
         }
 
@@ -96,6 +116,14 @@ public class ReporterAdapter extends RecyclerView.Adapter<ReporterAdapter.viewHo
             else*/
 //            mClickListener.itemClicked(mList.get(getAdapterPosition()).getCalcId());
         }
+    }
+
+    public static String ConvertJsonDate(String jsondate) {
+
+        jsondate = jsondate.replace("/Date(", "").replace(")/", "");
+        long time = Long.parseLong(jsondate);
+        Date d = new Date(time);
+        return new SimpleDateFormat("dd/MM/yyyy").format(d).toString();
     }
 
     public interface clickListener {

@@ -57,10 +57,6 @@ public class PagerScreenActivity extends BaseActivity {
         start_layout = (LinearLayout) findViewById(R.id.start_layout);
         fragments = new ArrayList<>();
         fragments.clear();
-        fragments.add(getBundle(R.drawable.mobile_map_plots, 0, getString(R.string.app_name), getString(R.string.pager_1_desc)));
-        fragments.add(getBundle(R.drawable.geo_reffered, 0, getString(R.string.pager_2_title), getString(R.string.pager_2_desc)));
-        fragments.add(getBundle(R.drawable.advance_search, 0, getString(R.string.pager_3_title), getString(R.string.pager_3_desc)));
-        fragments.add(getBundle(R.drawable.ic_pager_clock, 0, getString(R.string.pager_4_title), getString(R.string.pager_4_desc)));
         viewPager.setAdapter(new PagerAdapter(getSupportFragmentManager(), fragments));
         circleIndicator.setViewPager(viewPager);
         broadCastReciver();

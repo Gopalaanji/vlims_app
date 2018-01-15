@@ -16,6 +16,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -60,12 +62,13 @@ public class LubeOilReportsFragment extends BaseFragment implements View.OnClick
     ArrayList<LoBrandGradesModel> LoBrandGradesModelList;
     ArrayList<LOEquipmentDetailsModel> EquipmentsMOdelList;
     ArrayList<ReportDataModel> mReportDataModelList;
-    private String shipId;
+    private int shipId = 0;
     private String eqId;
-    Button btnSubmit;
+    ImageView btnSubmit;
     private String bandId;
     RecyclerView mRecyclerView;
     ReporterAdapter mReporterAdapter;
+    EditText imo_number;
 
 
     @Nullable
@@ -78,10 +81,12 @@ public class LubeOilReportsFragment extends BaseFragment implements View.OnClick
         fragmentActivity.displayActionBar();
         fragmentActivity.setActionBarTitle("Lube Oil Analysis");
         fragmentActivity.showActionBar();
+        fragmentActivity.hideBackActionBar();
         prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         editor = prefs.edit();
 
         main_loader = (RelativeLayout) rootView.findViewById(R.id.initial_loader);
+        imo_number = (EditText) rootView.findViewById(R.id.imo_number);
         ShipdetailsList = new ArrayList<>();
         LoBrandGradesModelList = new ArrayList<>();
         EquipmentsMOdelList = new ArrayList<>();
@@ -107,13 +112,14 @@ public class LubeOilReportsFragment extends BaseFragment implements View.OnClick
         spnBrandandGrades = (Spinner) rootView.findViewById(R.id.spnBrandandGrads);
         spnEquipment = (Spinner) rootView.findViewById(R.id.spnEquipment);
 
-        btnSubmit = (Button) rootView.findViewById(R.id.btnSubmit);
+        btnSubmit = (ImageView) rootView.findViewById(R.id.btnSubmit);
         btnSubmit.setOnClickListener(this);
 
         sampling_date_from.setOnClickListener(this);
         sampling_date_to.setOnClickListener(this);
         test_date_from.setOnClickListener(this);
         test_date_to.setOnClickListener(this);
+        imo_number.setEnabled(true);
         fetchLubeOilReports(prefs.getString("userid", ""));
         return rootView;
     }
@@ -163,7 +169,6 @@ public class LubeOilReportsFragment extends BaseFragment implements View.OnClick
                         main_loader.setVisibility(View.GONE);
                         common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Something went wrong!");
                     }
-//
                 }
 
                 @Override
@@ -188,14 +193,19 @@ public class LubeOilReportsFragment extends BaseFragment implements View.OnClick
         spnVesselShips.setAdapter(shipdetailsListAdapter);
 //        spnBrandandGrades.setAdapter(loBrandGradesModelListAdapter);
         spnEquipment.setAdapter(equipmentModelListAdapter);
-
+//        if (imo_number.getText().toString().isEmpty() && imo_number.getText().toString().equals("")) {
         spnVesselShips.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 int shipPosition = spnVesselShips.getSelectedItemPosition();
                 if (shipPosition > 0) {
                     shipId = ShipdetailsList.get(shipPosition - 1).getShipId();
-                    getEquipmentDataByShipId(shipId);
+//                        getEquipmentDataByShipId(shipId);
+                    imo_number.setText("");
+                    imo_number.setEnabled(false);
+                } else if (shipPosition == 0) {
+                    shipId = 0;
+                    imo_number.setEnabled(true);
                 }
             }
 
@@ -203,13 +213,16 @@ public class LubeOilReportsFragment extends BaseFragment implements View.OnClick
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
+        /*} else {
+            Toast.makeText(getActivity(), "Please Clear The IMO number To Select the Ship!", Toast.LENGTH_SHORT).show();
+        }*/
     }
 
-    private void getEquipmentDataByShipId(String shipId) {
+    private void getEquipmentDataByShipId(int shipId) {
         main_loader.setVisibility(View.VISIBLE);
         RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
         final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
-        apiInterface.GetEquipementDataByShipDetails(shipId, new Callback<JsonObject>() {
+        apiInterface.GetEquipementDataByShipDetails(shipId + "", new Callback<JsonObject>() {
             @Override
             public void success(JsonObject response_data_obj, Response response) {
                 Log.v("RESPONSE==>", response_data_obj.toString());
@@ -264,7 +277,7 @@ public class LubeOilReportsFragment extends BaseFragment implements View.OnClick
         RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
         final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
         Log.v("Ship&Eqi", "" + shipId + "eq==>" + equipmentId);
-        apiInterface.GetSupplierBrandDataByEquipmentDetails(shipId, equipmentId, new Callback<JsonObject>() {
+        apiInterface.GetSupplierBrandDataByEquipmentDetails(shipId + "", equipmentId, new Callback<JsonObject>() {
             @Override
             public void success(JsonObject response_data_obj, Response response) {
                 Log.v("RESPONSE==>", response_data_obj.toString());
@@ -342,37 +355,60 @@ public class LubeOilReportsFragment extends BaseFragment implements View.OnClick
                 selectDate(tvtest_date_to);
                 break;
             case R.id.btnSubmit:
-                submitReport();
+                if (shipId == 0 && imo_number.getText().toString().isEmpty()) {
+                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Please enter the value!");
+                } else {
+                    submitReport();
+                }
                 break;
         }
     }
 
     private void submitReport() {
-
+        if (!imo_number.getText().toString().isEmpty() && imo_number.getText().toString().length() > 0) {
+            shipId = 0;
+        }
+        Log.v("FUCK", "SHIPID" + shipId + "EDIT" + imo_number.getText().toString());
         main_loader.setVisibility(View.VISIBLE);
         RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
         final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
-        apiInterface.GetDataForReport(shipId, eqId, new Callback<JsonObject>() {
+        apiInterface.GetDataForReport(shipId, imo_number.getText().toString(), new Callback<JsonObject>() {
             @Override
             public void success(JsonObject response_data_obj, Response response) {
                 Log.v("RESPONSE==>", response_data_obj.toString());
-                if (response_data_obj != null) {
-                    main_loader.setVisibility(View.GONE);
-                    mReportDataModelList = new ArrayList<ReportDataModel>();
-                    mReportDataModelList = new Gson().fromJson(response_data_obj.getAsJsonArray("ReportData"), new TypeToken<List<ReportDataModel>>() {
-                    }.getType());
+                try {
+                    if (response_data_obj != null) {
+                        main_loader.setVisibility(View.GONE);
+                        mReportDataModelList = new ArrayList<ReportDataModel>();
+                        mReportDataModelList = new Gson().fromJson(response_data_obj.getAsJsonArray("ReportData"), new TypeToken<List<ReportDataModel>>() {
+                        }.getType());
+                        if (mReportDataModelList != null) {
+                            renderTheResponse();
+                        } else {
+                            imo_number.setText("");
+                            main_loader.setVisibility(View.GONE);
+                            common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                        }
+                    } else {
 
-                    renderTheResponse();
-                } else {
+                        main_loader.setVisibility(View.GONE);
+                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                    }
+
+                } catch (Exception e) {
+
                     main_loader.setVisibility(View.GONE);
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Something went wrong!");
+                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+
                 }
+
             }
 
             @Override
             public void failure(RetrofitError error) {
                 main_loader.setVisibility(View.GONE);
                 common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
+                imo_number.setText("");
             }
         });
 
@@ -389,8 +425,12 @@ public class LubeOilReportsFragment extends BaseFragment implements View.OnClick
         };
 
         mRecyclerView.setLayoutManager(layoutManager);
-        mReporterAdapter = new ReporterAdapter(getActivity(), mReportDataModelList);
-        mRecyclerView.setAdapter(mReporterAdapter);
+        if (mReportDataModelList != null) {
+            mReporterAdapter = new ReporterAdapter(getActivity(), false, mReportDataModelList);
+            mRecyclerView.setAdapter(mReporterAdapter);
+        } else {
+            mRecyclerView.removeAllViews();
+        }
     }
 
     private void selectDate(final TextView dfrom) {

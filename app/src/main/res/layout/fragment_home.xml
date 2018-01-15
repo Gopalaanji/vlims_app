@@ -67,6 +67,5 @@
         android:layout_alignParentRight="true"
         android:layout_marginBottom="20dp"
         android:layout_marginRight="40dp"
-        android:src="@drawable/tutorial_arrow_down"
         android:visibility="gone" />
 </RelativeLayout>

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -29,12 +28,15 @@ public class ViswaLabDashboard extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.viswalab_dashboard, container, false);
-        setHasOptionsMenu(true);
+        setHasOptionsMenu(false);
         fragmentActivity = (LoginFragmentActivity) getActivity();
         common = new Common();
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         editor = prefs.edit();
         ImageView luboil = (ImageView) rootView.findViewById(R.id.luboil);
+        ImageView imgStats = (ImageView) rootView.findViewById(R.id.imgStats);
+        ImageView btncautionAlerts = (ImageView) rootView.findViewById(R.id.btncautionAlerts);
+        ImageView btnSampleStatus = (ImageView) rootView.findViewById(R.id.btnSampleStatus);
         TextView tvuserName = (TextView) rootView.findViewById(R.id.tvuserName);
         tvuserName.setText(prefs.getString("Username", ""));
         luboil.setOnClickListener(new View.OnClickListener() {
@@ -43,20 +45,40 @@ public class ViswaLabDashboard extends BaseFragment {
                 fragmentActivity.replaceFragment(new AnalysisReportFragment(), "agent_signup", null);
             }
         });
-        fragmentActivity.displayActionBar();
+        imgStats.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fragmentActivity.replaceFragment(new StatisticsReportFragment(), "agent_signup", null);
+            }
+        });
+        btncautionAlerts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fragmentActivity.replaceFragment(new CautionAlertAnalysisReport(), "agent_signup", null);
+            }
+        });
+        btnSampleStatus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fragmentActivity.replaceFragment(new SampleStatusFragment(), "agent_signup", null);
+            }
+        });
+//        fragmentActivity.displayActionBar();
         fragmentActivity.setActionBarTitle("Viswa Lab");
         fragmentActivity.showActionBar();
+        fragmentActivity.hideBackActionBar();
         return rootView;
     }
 
-    @Override
+    /*@Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        item.setVisible(false);
         switch (item.getItemId()) {
             case android.R.id.home:
                 fragmentActivity.loadPopBackStack();
                 break;
         }
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
 }

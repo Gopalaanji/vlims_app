@@ -19,28 +19,40 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:weightSum="3">
 
                 <rsr.info.basic.viswaLab.views.TextViewPlus
                     android:id="@+id/tvSerialNo"
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
+                    android:lines="2"
                     android:text="Serial Number"
-                    android:textSize="13sp" />
+                    android:textSize="10sp" />
 
                 <rsr.info.basic.viswaLab.views.TextViewPlus
                     android:id="@+id/tvEqname"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:lines="2"
+                    android:text="Equipment"
+                    android:textSize="10sp" />
+
+                <rsr.info.basic.viswaLab.views.TextViewPlus
+                    android:id="@+id/tvDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Equipment"
-                    android:textSize="13sp" />
+                    android:text="Date"
+                    android:textSize="10sp"
+                    android:visibility="gone" />
 
                 <ImageView
                     android:id="@+id/tvReult"

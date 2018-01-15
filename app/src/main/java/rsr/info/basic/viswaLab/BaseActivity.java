@@ -48,9 +48,9 @@ public abstract class BaseActivity extends AppCompatActivity {
                         .setMessage("Would you like to logout?")
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                               /* editor.putString("userid", "");
+                                editor.putString("userid", "");
                                 editor.putString("Username", "");
-                                editor.commit();*/
+                                editor.commit();
                                 Intent intent = new Intent(BaseActivity.this, LoginFragmentActivity.class);
                                 startActivity(intent);
                                 finish();
