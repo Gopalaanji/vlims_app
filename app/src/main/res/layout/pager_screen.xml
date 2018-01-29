@@ -23,7 +23,7 @@
         android:paddingLeft="10dp"
         android:paddingRight="10dp">
 
-        <rsr.info.basic.viswaLab.views.TextViewPlus
+        <dev.info.basic.viswaLab.views.TextViewPlus
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -47,7 +47,7 @@
             android:layout_margin="5dp"
             android:orientation="horizontal">
 
-            <rsr.info.basic.viswaLab.views.TextViewPlus
+            <dev.info.basic.viswaLab.views.TextViewPlus
                 android:id="@+id/splash"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
                 android:textColor="@color/login_btn_click_color"
                 app:customFont="@string/font_freedoka" />
 
-            <rsr.info.basic.viswaLab.views.TextViewPlus
+            <dev.info.basic.viswaLab.views.TextViewPlus
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"

@@ -10,10 +10,11 @@
         android:id="@+id/initial_loader"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
         android:gravity="center"
         android:visibility="gone">
 
-        <rsr.info.basic.viswaLab.utils.ProgressWheel
+        <dev.info.basic.viswaLab.utils.ProgressWheel
             android:id="@+id/initial_loader_progress"
             android:layout_width="@dimen/custom_progressbar_width_height"
             android:layout_height="@dimen/custom_progressbar_width_height"
@@ -61,7 +62,7 @@
             android:background="@color/colorPrimary"
             android:orientation="horizontal">
 
-            <rsr.info.basic.viswaLab.views.TextViewPlus
+            <dev.info.basic.viswaLab.views.TextViewPlus
                 android:id="@+id/name"
                 android:layout_width="138dp"
                 android:layout_height="match_parent"
@@ -72,54 +73,64 @@
                 android:textStyle="bold"
                 foo:customFont="@string/font_sans" />
 
-            <rsr.info.basic.viswaLab.views.TextViewPlus
+            <dev.info.basic.viswaLab.views.TextViewPlus
                 android:id="@+id/curmnt"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/border_all"
                 android:gravity="center"
-                android:text="Cur Mnt"
-                android:textColor="#fff"
-                android:textStyle="bold"
-                foo:customFont="@string/font_sans" />
+                android:text="@string/crtMonth"
+                android:textColor="#fff" />
 
-            <rsr.info.basic.viswaLab.views.TextViewPlus
+            <dev.info.basic.viswaLab.views.TextViewPlus
                 android:id="@+id/premnt"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/border_all"
                 android:gravity="center"
-                android:text="Pre Mnt"
+                android:text="@string/preMonth"
                 android:textColor="#fff" />
 
-            <rsr.info.basic.viswaLab.views.TextViewPlus
+            <dev.info.basic.viswaLab.views.TextViewPlus
                 android:id="@+id/curyear"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/border_all"
                 android:gravity="center"
-                android:text="Cur Year"
-                android:textColor="#fff"
-                android:textStyle="bold"
-                foo:customFont="@string/font_sans" />
-
+                android:text="@string/crtYear"
+                android:textColor="#fff" />
         </LinearLayout>
-
     </LinearLayout>
 
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/mRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp">
+        android:layout_marginRight="10dp"></android.support.v7.widget.RecyclerView>
 
-    </android.support.v7.widget.RecyclerView>
+    <Spinner
+        android:id="@+id/spnr"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:background="@drawable/spinner_background" />
+
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/mPieChart"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:textAlignment="center">
+
+    </com.github.mikephil.charting.charts.PieChart>
 
 
 </LinearLayout>

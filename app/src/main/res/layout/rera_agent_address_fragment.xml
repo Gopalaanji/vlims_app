@@ -106,7 +106,7 @@
         android:gravity="center"
         android:visibility="gone">
 
-        <rsr.info.basic.viswaLab.utils.ProgressWheel
+        <dev.info.basic.viswaLab.utils.ProgressWheel
             android:id="@+id/initial_loader_progress"
             android:layout_width="@dimen/custom_progressbar_width_height"
             android:layout_height="@dimen/custom_progressbar_width_height"

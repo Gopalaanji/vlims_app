@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/login_btn_click_color">
 
-    <rsr.info.basic.viswaLab.views.TextViewPlus
+    <dev.info.basic.viswaLab.views.TextViewPlus
         android:id="@+id/pager_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
         android:textStyle="bold"
         foo:customFont="@string/font_sans" />
 
-    <rsr.info.basic.viswaLab.views.TextViewPlus
+    <dev.info.basic.viswaLab.views.TextViewPlus
         android:id="@+id/pager_desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -49,7 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <rsr.info.basic.viswaLab.views.TextViewPlus
+        <dev.info.basic.viswaLab.views.TextViewPlus
             android:id="@+id/pager_or"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

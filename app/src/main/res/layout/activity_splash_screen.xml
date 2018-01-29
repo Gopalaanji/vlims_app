@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/world_map_background"
-    tools:context="rsr.info.basic.viswaLab.Activitys.SplashScreen">
+    tools:context="dev.info.basic.viswaLab.Activitys.SplashScreen">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:ProgressWheel="http://schemas.android.com/apk/res-auto"
@@ -15,7 +15,7 @@
         android:layout_height="match_parent"
         android:gravity="center">
 
-        <rsr.info.basic.viswaLab.utils.ProgressWheel
+        <dev.info.basic.viswaLab.utils.ProgressWheel
             android:id="@+id/initial_loader_progress"
             android:layout_width="@dimen/custom_progressbar_width_height"
             android:layout_height="@dimen/custom_progressbar_width_height"
@@ -40,7 +40,7 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <rsr.info.basic.viswaLab.views.TextViewPlus
+        <dev.info.basic.viswaLab.views.TextViewPlus
             android:id="@+id/splash"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -50,7 +50,7 @@
             android:textSize="30sp"
             foo:customFont="@string/font_freedoka" />
 
-        <rsr.info.basic.viswaLab.views.TextViewPlus
+        <dev.info.basic.viswaLab.views.TextViewPlus
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"

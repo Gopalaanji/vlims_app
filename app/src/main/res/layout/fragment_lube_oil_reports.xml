@@ -20,7 +20,7 @@
             android:gravity="center"
             android:visibility="gone">
 
-            <rsr.info.basic.viswaLab.utils.ProgressWheel
+            <dev.info.basic.viswaLab.utils.ProgressWheel
                 android:id="@+id/initial_loader_progress"
                 android:layout_width="@dimen/custom_progressbar_width_height"
                 android:layout_height="@dimen/custom_progressbar_width_height"
@@ -126,7 +126,7 @@
                             android:layout_margin="0dp"
                             android:visibility="gone">
 
-                            <rsr.info.basic.viswaLab.views.TextViewPlus
+                            <dev.info.basic.viswaLab.views.TextViewPlus
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -148,7 +148,7 @@
                             </RelativeLayout>
                         </android.support.design.widget.TextInputLayout>
 
-                        <rsr.info.basic.viswaLab.views.TextViewPlus
+                        <dev.info.basic.viswaLab.views.TextViewPlus
                             android:layout_width="match_parent"
                             android:layout_height="37dp"
                             android:layout_margin="5dp"
@@ -179,7 +179,7 @@
                                     android:background="@drawable/amount_input_border_button"
                                     android:gravity="center">
 
-                                    <rsr.info.basic.viswaLab.views.TextViewPlus
+                                    <dev.info.basic.viswaLab.views.TextViewPlus
                                         android:id="@+id/tvsampling_date_from"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
@@ -218,7 +218,7 @@
                             </android.support.design.widget.TextInputLayout>
                         </LinearLayout>
 
-                        <rsr.info.basic.viswaLab.views.TextViewPlus
+                        <dev.info.basic.viswaLab.views.TextViewPlus
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
@@ -296,7 +296,7 @@
                             android:orientation="horizontal"
                             android:visibility="gone">
 
-                            <rsr.info.basic.viswaLab.utils.ButtonPlus
+                            <dev.info.basic.viswaLab.utils.ButtonPlus
                                 android:id="@+id/btnSubmitx"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -329,7 +329,7 @@
                                         android:orientation="horizontal"
                                         android:weightSum="3">
 
-                                        <rsr.info.basic.viswaLab.views.TextViewPlus
+                                        <dev.info.basic.viswaLab.views.TextViewPlus
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_weight="1"
@@ -337,7 +337,7 @@
                                             android:text="Serial Number"
                                             android:textColor="#fff" />
 
-                                        <rsr.info.basic.viswaLab.views.TextViewPlus
+                                        <dev.info.basic.viswaLab.views.TextViewPlus
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_weight="1"
@@ -345,7 +345,7 @@
                                             android:text="Equipment"
                                             android:textColor="#fff" />
 
-                                        <rsr.info.basic.viswaLab.views.TextViewPlus
+                                        <dev.info.basic.viswaLab.views.TextViewPlus
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_marginRight="12dp"

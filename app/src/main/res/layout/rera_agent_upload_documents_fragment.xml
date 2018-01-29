@@ -33,7 +33,7 @@
                     android:layout_height="18dp"
                     android:layout_gravity="top" />
 
-                <rsr.info.basic.viswaLab.views.TextViewPlus
+                <dev.info.basic.viswaLab.views.TextViewPlus
                     android:id="@+id/text_uploading_percentagePanel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -51,7 +51,7 @@
                 android:background="@drawable/border_button_orange"
                 android:orientation="vertical">
 
-                <rsr.info.basic.viswaLab.views.TextViewPlus
+                <dev.info.basic.viswaLab.views.TextViewPlus
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:gravity="center"
@@ -65,7 +65,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <rsr.info.basic.viswaLab.utils.ButtonPlus
+                    <dev.info.basic.viswaLab.utils.ButtonPlus
                         android:id="@+id/btnPancard"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -73,7 +73,7 @@
                         android:text="Choose File"
                         android:textAllCaps="false" />
 
-                    <rsr.info.basic.viswaLab.views.TextViewPlus
+                    <dev.info.basic.viswaLab.views.TextViewPlus
                         android:id="@+id/txtPancard"
                         android:layout_width="wrap_content"
                         android:layout_height="45dp"
@@ -94,7 +94,7 @@
                 android:background="@drawable/border_button_orange"
                 android:orientation="vertical">
 
-                <rsr.info.basic.viswaLab.views.TextViewPlus
+                <dev.info.basic.viswaLab.views.TextViewPlus
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:gravity="center"
@@ -108,7 +108,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <rsr.info.basic.viswaLab.utils.ButtonPlus
+                    <dev.info.basic.viswaLab.utils.ButtonPlus
                         android:id="@+id/btnletterHead"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -116,7 +116,7 @@
                         android:text="Choose File"
                         android:textAllCaps="false" />
 
-                    <rsr.info.basic.viswaLab.views.TextViewPlus
+                    <dev.info.basic.viswaLab.views.TextViewPlus
                         android:id="@+id/txtletterHead"
                         android:layout_width="wrap_content"
                         android:layout_height="45dp"
@@ -137,7 +137,7 @@
                 android:background="@drawable/border_button_orange"
                 android:orientation="vertical">
 
-                <rsr.info.basic.viswaLab.views.TextViewPlus
+                <dev.info.basic.viswaLab.views.TextViewPlus
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:gravity="center"
@@ -151,7 +151,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <rsr.info.basic.viswaLab.utils.ButtonPlus
+                    <dev.info.basic.viswaLab.utils.ButtonPlus
                         android:id="@+id/btmrubber"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -159,7 +159,7 @@
                         android:text="Choose File"
                         android:textAllCaps="false" />
 
-                    <rsr.info.basic.viswaLab.views.TextViewPlus
+                    <dev.info.basic.viswaLab.views.TextViewPlus
                         android:id="@+id/txtrubber"
                         android:layout_width="wrap_content"
                         android:layout_height="45dp"
@@ -180,7 +180,7 @@
                 android:background="@drawable/border_button_orange"
                 android:orientation="vertical">
 
-                <rsr.info.basic.viswaLab.views.TextViewPlus
+                <dev.info.basic.viswaLab.views.TextViewPlus
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:gravity="center"
@@ -194,7 +194,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <rsr.info.basic.viswaLab.utils.ButtonPlus
+                    <dev.info.basic.viswaLab.utils.ButtonPlus
                         android:id="@+id/btnstate"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -202,7 +202,7 @@
                         android:text="Choose File"
                         android:textAllCaps="false" />
 
-                    <rsr.info.basic.viswaLab.views.TextViewPlus
+                    <dev.info.basic.viswaLab.views.TextViewPlus
                         android:id="@+id/txtstate"
                         android:layout_width="wrap_content"
                         android:layout_height="45dp"
@@ -223,7 +223,7 @@
                 android:background="@drawable/border_button_orange"
                 android:orientation="vertical">
 
-                <rsr.info.basic.viswaLab.views.TextViewPlus
+                <dev.info.basic.viswaLab.views.TextViewPlus
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:gravity="center"
@@ -237,7 +237,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <rsr.info.basic.viswaLab.utils.ButtonPlus
+                    <dev.info.basic.viswaLab.utils.ButtonPlus
                         android:id="@+id/btnTax"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -245,7 +245,7 @@
                         android:text="Choose File"
                         android:textAllCaps="false" />
 
-                    <rsr.info.basic.viswaLab.views.TextViewPlus
+                    <dev.info.basic.viswaLab.views.TextViewPlus
                         android:id="@+id/txtTax"
                         android:layout_width="wrap_content"
                         android:layout_height="45dp"
@@ -266,7 +266,7 @@
                 android:background="@drawable/border_button_orange"
                 android:orientation="vertical">
 
-                <rsr.info.basic.viswaLab.views.TextViewPlus
+                <dev.info.basic.viswaLab.views.TextViewPlus
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:gravity="center"
@@ -280,7 +280,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <rsr.info.basic.viswaLab.utils.ButtonPlus
+                    <dev.info.basic.viswaLab.utils.ButtonPlus
                         android:id="@+id/btnCriminal"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -288,7 +288,7 @@
                         android:text="Choose File"
                         android:textAllCaps="false" />
 
-                    <rsr.info.basic.viswaLab.views.TextViewPlus
+                    <dev.info.basic.viswaLab.views.TextViewPlus
                         android:id="@+id/txtCriminal"
                         android:layout_width="wrap_content"
                         android:layout_height="45dp"
@@ -308,7 +308,7 @@
                 android:background="@drawable/border_button_orange"
                 android:orientation="vertical">
 
-                <rsr.info.basic.viswaLab.views.TextViewPlus
+                <dev.info.basic.viswaLab.views.TextViewPlus
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:gravity="center"
@@ -322,7 +322,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <rsr.info.basic.viswaLab.utils.ButtonPlus
+                    <dev.info.basic.viswaLab.utils.ButtonPlus
                         android:id="@+id/btnOther"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -330,7 +330,7 @@
                         android:text="Choose File"
                         android:textAllCaps="false" />
 
-                    <rsr.info.basic.viswaLab.views.TextViewPlus
+                    <dev.info.basic.viswaLab.views.TextViewPlus
                         android:id="@+id/txtOther"
                         android:layout_width="wrap_content"
                         android:layout_height="45dp"
@@ -357,7 +357,7 @@
         android:gravity="center"
         android:visibility="gone">
 
-        <rsr.info.basic.viswaLab.utils.ProgressWheel
+        <dev.info.basic.viswaLab.utils.ProgressWheel
             android:id="@+id/initial_loader_progress"
             android:layout_width="@dimen/custom_progressbar_width_height"
             android:layout_height="@dimen/custom_progressbar_width_height"

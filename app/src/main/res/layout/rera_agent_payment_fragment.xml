@@ -49,7 +49,7 @@
                 android:hint="BankName"
                 android:inputType="text" />
 
-            <rsr.info.basic.viswaLab.utils.ButtonPlus
+            <dev.info.basic.viswaLab.utils.ButtonPlus
                 android:layout_marginTop="10dp"
                 android:layout_gravity="center"
                 android:id="@+id/btnnextPayment"
@@ -68,7 +68,7 @@
         android:gravity="center"
         android:visibility="gone">
 
-        <rsr.info.basic.viswaLab.utils.ProgressWheel
+        <dev.info.basic.viswaLab.utils.ProgressWheel
             android:id="@+id/initial_loader_progress"
             android:layout_width="@dimen/custom_progressbar_width_height"
             android:layout_height="@dimen/custom_progressbar_width_height"

@@ -11,7 +11,7 @@
         android:background="@color/colorPrimary"
         android:orientation="horizontal">
 
-        <rsr.info.basic.viswaLab.views.TextViewPlus
+        <dev.info.basic.viswaLab.views.TextViewPlus
             android:id="@+id/name"
             android:layout_width="138dp"
             android:layout_height="match_parent"
@@ -20,7 +20,7 @@
             android:textColor="#000"
             foo:customFont="@string/font_sans" />
 
-        <rsr.info.basic.viswaLab.views.TextViewPlus
+        <dev.info.basic.viswaLab.views.TextViewPlus
             android:id="@+id/curmnt"
             android:layout_width="100dp"
             android:layout_height="match_parent"
@@ -31,7 +31,7 @@
             android:textColor="#000"
             foo:customFont="@string/font_sans" />
 
-        <rsr.info.basic.viswaLab.views.TextViewPlus
+        <dev.info.basic.viswaLab.views.TextViewPlus
             android:id="@+id/premnt"
             android:layout_width="100dp"
             android:layout_height="match_parent"
@@ -42,7 +42,7 @@
             android:textColor="#000"
             foo:customFont="@string/font_sans" />
 
-        <rsr.info.basic.viswaLab.views.TextViewPlus
+        <dev.info.basic.viswaLab.views.TextViewPlus
             android:id="@+id/curyear"
             android:layout_width="100dp"
             android:layout_height="match_parent"

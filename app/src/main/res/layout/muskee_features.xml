@@ -5,7 +5,7 @@
     android:layout_margin="5dp"
     android:orientation="vertical">
 
-    <rsr.info.basic.viswaLab.utils.LeagueGothicTextView
+    <dev.info.basic.viswaLab.utils.LeagueGothicTextView
         android:id="@+id/muskee_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

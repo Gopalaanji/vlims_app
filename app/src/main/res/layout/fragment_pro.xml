@@ -22,7 +22,7 @@
                 android:layout_marginTop="-35dp"
                />
 
-            <rsr.info.basic.viswaLab.utils.LeagueGothicTextView
+            <dev.info.basic.viswaLab.utils.LeagueGothicTextView
                 android:id="@+id/muskeeter_head"
                 style="@style/white_colour"
                 android:layout_width="match_parent"

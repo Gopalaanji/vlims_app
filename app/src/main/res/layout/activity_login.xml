@@ -26,7 +26,7 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-            <rsr.info.basic.viswaLab.views.TextViewPlus
+            <dev.info.basic.viswaLab.views.TextViewPlus
                 android:id="@+id/splash"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -36,7 +36,7 @@
                 android:textSize="30sp"
                 foo:customFont="@string/font_freedoka" />
 
-            <rsr.info.basic.viswaLab.views.TextViewPlus
+            <dev.info.basic.viswaLab.views.TextViewPlus
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -54,7 +54,7 @@
             android:gravity="center"
             android:visibility="gone">
 
-            <rsr.info.basic.viswaLab.utils.ProgressWheel
+            <dev.info.basic.viswaLab.utils.ProgressWheel
                 android:id="@+id/initial_loader_progress"
                 android:layout_width="@dimen/custom_progressbar_width_height"
                 android:layout_height="@dimen/custom_progressbar_width_height"
@@ -96,7 +96,7 @@
                 android:maxLength="@integer/email_max" />
 
 
-            <rsr.info.basic.viswaLab.utils.ButtonPlus
+            <dev.info.basic.viswaLab.utils.ButtonPlus
                 android:id="@+id/btn_login"
                 style="@style/btn_lg.btn_info"
                 android:layout_gravity="center"
@@ -112,7 +112,7 @@
                 android:orientation="horizontal"
                 android:visibility="gone">
 
-                <rsr.info.basic.viswaLab.utils.ButtonPlus
+                <dev.info.basic.viswaLab.utils.ButtonPlus
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -128,7 +128,7 @@
                     android:layout_gravity="center_vertical"
                     android:background="@color/login_btn_click_color" />
 
-                <rsr.info.basic.viswaLab.utils.ButtonPlus
+                <dev.info.basic.viswaLab.utils.ButtonPlus
                     android:id="@+id/btnRegister"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
