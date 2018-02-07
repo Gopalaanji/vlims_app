@@ -115,6 +115,7 @@
         android:layout_marginRight="10dp"></android.support.v7.widget.RecyclerView>
 
     <Spinner
+        android:visibility="gone"
         android:id="@+id/spnr"
         android:layout_width="match_parent"
         android:layout_height="55dp"
@@ -123,6 +124,7 @@
         android:background="@drawable/spinner_background" />
 
     <com.github.mikephil.charting.charts.PieChart
+        android:visibility="gone"
         android:id="@+id/mPieChart"
         android:layout_width="match_parent"
         android:layout_height="230dp"

@@ -43,7 +43,7 @@ public interface ApiInterface {
     @POST("/GetSampleReportForUserByShipIdAndImoId")
     void GetSampleReportForUserByShipIdAndImoId(@Field("userId") String userid, @Field("shipId") int shipId, @Field("ImoNumber") String ImoNumber, Callback<JsonObject> callback);
   @FormUrlEncoded
-    @POST("/GetScheduleAlertsData")
-    void GetScheduleAlertsData( @Field("shipId") int shipId, @Field("ImoNumber") String ImoNumber, Callback<JsonObject> callback);
+    @POST("/LO_Shedule")
+    void GetScheduleAlertsDataByShipIdAndImoId(@Field("userId") String userid,@Field("shipId") int shipId, @Field("ImoNumber") String ImoNumber, Callback<JsonObject> callback);
 
 }

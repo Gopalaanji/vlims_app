@@ -30,7 +30,6 @@ import dev.info.basic.viswaLab.Activitys.LoginFragmentActivity;
 import dev.info.basic.viswaLab.Adapters.ScheduleAlertsAdapter;
 import dev.info.basic.viswaLab.ApiInterfaces.ApiInterface;
 import dev.info.basic.viswaLab.R;
-import dev.info.basic.viswaLab.models.ReportDataModel;
 import dev.info.basic.viswaLab.models.ScheduleAlertModel;
 import dev.info.basic.viswaLab.models.ShipdetailsModel;
 import dev.info.basic.viswaLab.utils.Common;
@@ -122,7 +121,6 @@ public class ScheduleAlertsFragment extends BaseFragment implements View.OnClick
 
     private void renderDetails(String[] shipList) {
         final ArrayAdapter<String> shipdetailsListAdapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_item, shipList);
-
         shipdetailsListAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnVesselShips.setAdapter(shipdetailsListAdapter);
         spnVesselShips.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -149,7 +147,7 @@ public class ScheduleAlertsFragment extends BaseFragment implements View.OnClick
         main_loader.setVisibility(View.VISIBLE);
         RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
         final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
-        apiInterface.GetSampleReportForUserByShipIdAndImoId(prefs.getString("userid", ""), 0, "", new Callback<JsonObject>() {
+        apiInterface.GetScheduleAlertsDataByShipIdAndImoId(prefs.getString("userid", ""), 0, "", new Callback<JsonObject>() {
             @Override
             public void success(JsonObject response_data_obj, Response response) {
                 Log.v("RESPONSE==>", response_data_obj.toString());
@@ -157,7 +155,7 @@ public class ScheduleAlertsFragment extends BaseFragment implements View.OnClick
                     if (response_data_obj != null) {
                         main_loader.setVisibility(View.GONE);
                         scheduleAlertModelArrayList = new ArrayList<ScheduleAlertModel>();
-                        scheduleAlertModelArrayList = new Gson().fromJson(response_data_obj.getAsJsonArray("UserReportdata"), new TypeToken<List<ReportDataModel>>() {
+                        scheduleAlertModelArrayList = new Gson().fromJson(response_data_obj.getAsJsonArray("ReportData"), new TypeToken<List<ScheduleAlertModel>>() {
                         }.getType());
                         if (scheduleAlertModelArrayList != null) {
                             renderTheResponse();
@@ -234,7 +232,7 @@ public class ScheduleAlertsFragment extends BaseFragment implements View.OnClick
             main_loader.setVisibility(View.VISIBLE);
             RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
             final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
-            apiInterface.GetScheduleAlertsData(shipId, imo_number.getText().toString(), new Callback<JsonObject>() {
+            apiInterface.GetScheduleAlertsDataByShipIdAndImoId(prefs.getString("userid", ""),shipId, imo_number.getText().toString(), new Callback<JsonObject>() {
                 @Override
                 public void success(JsonObject response_data_obj, Response response) {
                     Log.v("RESPONSE==>", response_data_obj.toString());
@@ -242,7 +240,7 @@ public class ScheduleAlertsFragment extends BaseFragment implements View.OnClick
                         if (response_data_obj != null) {
                             main_loader.setVisibility(View.GONE);
                             scheduleAlertModelArrayList = new ArrayList<ScheduleAlertModel>();
-                            scheduleAlertModelArrayList = new Gson().fromJson(response_data_obj.getAsJsonArray("ScheduleAlertsData"), new TypeToken<List<ScheduleAlertModel>>() {
+                            scheduleAlertModelArrayList = new Gson().fromJson(response_data_obj.getAsJsonArray("ReportData"), new TypeToken<List<ScheduleAlertModel>>() {
                             }.getType());
                             if (scheduleAlertModelArrayList != null) {
                                 renderTheResponse();
@@ -252,16 +250,12 @@ public class ScheduleAlertsFragment extends BaseFragment implements View.OnClick
                                 common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                             }
                         } else {
-
                             main_loader.setVisibility(View.GONE);
                             common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                         }
-
                     } catch (Exception e) {
-
                         main_loader.setVisibility(View.GONE);
                         common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
-
                     }
 
                 }

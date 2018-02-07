@@ -80,7 +80,6 @@ public class CautionAlertsFragment extends BaseFragment implements View.OnClickL
         imo_number = (EditText) rootView.findViewById(R.id.imo_number);
         btnSubmit.setOnClickListener(this);
         imo_number.setEnabled(true);
-        fetchIntialData();
         fetchLubeOilReports(prefs.getString("userid", ""));
         return rootView;
     }
@@ -106,6 +105,7 @@ public class CautionAlertsFragment extends BaseFragment implements View.OnClickL
                         j++;
                     }
                     renderDetails(shipList);
+                    fetchIntialData();
                 } else {
                     main_loader.setVisibility(View.GONE);
                     common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Something went wrong!");
@@ -226,7 +226,7 @@ public class CautionAlertsFragment extends BaseFragment implements View.OnClickL
     }
 
     private void submitReport() {
-        {
+
             if (!imo_number.getText().toString().isEmpty() && imo_number.getText().toString().length() > 0) {
                 shipId = 0;
             }
@@ -234,7 +234,7 @@ public class CautionAlertsFragment extends BaseFragment implements View.OnClickL
             main_loader.setVisibility(View.VISIBLE);
             RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
             final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
-            apiInterface.GetDataForReport(shipId, imo_number.getText().toString(), new Callback<JsonObject>() {
+            apiInterface.GetSampleReportForUserByShipIdAndImoId(prefs.getString("userid", ""),shipId, imo_number.getText().toString(), new Callback<JsonObject>() {
                 @Override
                 public void success(JsonObject response_data_obj, Response response) {
                     Log.v("RESPONSE==>", response_data_obj.toString());
@@ -242,7 +242,7 @@ public class CautionAlertsFragment extends BaseFragment implements View.OnClickL
                         if (response_data_obj != null) {
                             main_loader.setVisibility(View.GONE);
                             mReportDataModelList = new ArrayList<ReportDataModel>();
-                            mReportDataModelList = new Gson().fromJson(response_data_obj.getAsJsonArray("ReportData"), new TypeToken<List<ReportDataModel>>() {
+                            mReportDataModelList = new Gson().fromJson(response_data_obj.getAsJsonArray("UserReportdata"), new TypeToken<List<ReportDataModel>>() {
                             }.getType());
                             if (mReportDataModelList != null) {
                                 renderTheResponse();
@@ -271,6 +271,6 @@ public class CautionAlertsFragment extends BaseFragment implements View.OnClickL
                     imo_number.setText("");
                 }
             });
-        }
+
     }
 }

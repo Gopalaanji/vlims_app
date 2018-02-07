@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
@@ -28,7 +29,11 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
@@ -38,6 +43,7 @@ import dev.info.basic.viswaLab.ApiInterfaces.ApiInterface;
 import dev.info.basic.viswaLab.R;
 import dev.info.basic.viswaLab.models.SampleStatsModel;
 import dev.info.basic.viswaLab.utils.Common;
+import dev.info.basic.viswaLab.views.TextViewPlus;
 import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;
@@ -63,6 +69,10 @@ public class StatisticsLubeOilReportsFragment extends BaseFragment {
     StatisticsluboilAdapter mStatisticsluboilAdapter;
     RecyclerView mRecyclerView;
 
+    /*Dates*/
+
+    TextView curmnt, premnt, curyear;
+
 
     @Nullable
     @Override
@@ -81,13 +91,19 @@ public class StatisticsLubeOilReportsFragment extends BaseFragment {
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.mRecyclerView);
         spnrChart = (Spinner) rootView.findViewById(R.id.spnr);
         mPieChart = (PieChart) rootView.findViewById(R.id.mPieChart);
+        curmnt = (TextViewPlus) rootView.findViewById(R.id.curmnt);
+        premnt = (TextViewPlus) rootView.findViewById(R.id.premnt);
+        curyear = (TextViewPlus) rootView.findViewById(R.id.curyear);
+
+        displayDates();
+
         fetchDetails();
         final ArrayAdapter<String> chartOptionsAdapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_item, getResources().getStringArray(R.array.pie_array));
         spnrChart.setAdapter(chartOptionsAdapter);
         spnrChart.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                fillUpThePieChart(position);
+//                fillUpThePieChart(position);
             }
 
             @Override
@@ -96,6 +112,43 @@ public class StatisticsLubeOilReportsFragment extends BaseFragment {
             }
         });
         return rootView;
+    }
+
+    private void displayDates() {
+        DateFormat dateFormat = new SimpleDateFormat("MMM");
+
+        Date date = new Date();
+        String xx = Calendar.getInstance().get(Calendar.YEAR) + "";
+        String month = Calendar.getInstance().get(Calendar.MONTH) - 1 + "";
+        String prevMonth = null;
+        if (month.equals("0")) {
+            prevMonth = "Jan";
+        } else if (month.equals("1")) {
+            prevMonth = "Feb";
+        } else if (month.equals("2")) {
+            prevMonth = "Mar";
+        } else if (month.equals("3")) {
+            prevMonth = "Apr";
+        } else if (month.equals("4")) {
+            prevMonth = "May";
+        } else if (month.equals("5")) {
+            prevMonth = "Jun";
+        } else if (month.equals("6")) {
+            prevMonth = "Jul";
+        } else if (month.equals("7")) {
+            prevMonth = "Aug";
+        } else if (month.equals("8")) {
+            prevMonth = "Sep";
+        } else if (month.equals("9")) {
+            prevMonth = "Oct";
+        } else if (month.equals("10")) {
+            prevMonth = "Nov";
+        } else if (month.equals("11")) {
+            prevMonth = "Dec";
+        }
+        curmnt.setText(getString(R.string.crtMonth) + "(" + dateFormat.format(date) + "'" + xx.substring(xx.length() - 2) + ")");
+        premnt.setText(getString(R.string.preMonth) + "(" + prevMonth + "'" + xx.substring(xx.length() - 2) + ")");
+        curyear.setText(getString(R.string.crtYear) + "(" + Calendar.getInstance().get(Calendar.YEAR) + ")");
     }
 
     private void fillUpThePieChart(int pos) {

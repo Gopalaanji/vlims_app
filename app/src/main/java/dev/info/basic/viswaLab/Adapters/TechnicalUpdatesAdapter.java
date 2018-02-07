@@ -16,10 +16,10 @@ import dev.info.basic.viswaLab.R;
 import dev.info.basic.viswaLab.models.ScheduleAlertModel;
 
 /**
- * Created by ${GIRI} on 28-01-2018.
+ * Created by ${GIRI} on 07-02-2018.
  */
 
-public class ScheduleAlertsAdapter extends RecyclerView.Adapter<ScheduleAlertsAdapter.viewHolder> {
+public class TechnicalUpdatesAdapter  extends RecyclerView.Adapter<TechnicalUpdatesAdapter.viewHolder> {
 
     private Context context;
     CalculationsListAdapter.clickListener mClickListener;
@@ -28,7 +28,7 @@ public class ScheduleAlertsAdapter extends RecyclerView.Adapter<ScheduleAlertsAd
     String userId;
 
 
-    public ScheduleAlertsAdapter(Context context, boolean from_alert, List<ScheduleAlertModel> mReportDataModelList, String userId) {
+    public TechnicalUpdatesAdapter(Context context, boolean from_alert, List<ScheduleAlertModel> mReportDataModelList, String userId) {
         this.context = context;
         this.from_alert = from_alert;
         this.mReportDataModelList = mReportDataModelList;
@@ -36,18 +36,17 @@ public class ScheduleAlertsAdapter extends RecyclerView.Adapter<ScheduleAlertsAd
     }
 
     @Override
-    public viewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.schedule_alert_item, null);
-        viewHolder viewHolder = new viewHolder(view);
+    public TechnicalUpdatesAdapter.viewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.technical_updates_item, null);
+        TechnicalUpdatesAdapter.viewHolder viewHolder = new TechnicalUpdatesAdapter.viewHolder(view);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(viewHolder holder, int position) {
+    public void onBindViewHolder(TechnicalUpdatesAdapter.viewHolder holder, int position) {
         final ScheduleAlertModel reportDataModel = mReportDataModelList.get(position);
         holder.tvDate.setText(ConvertJsonDate(reportDataModel.getSheduleDate()));
-        holder.tvShipName.setText(reportDataModel.getShipName());
-        holder.tvEqname.setText(reportDataModel.getEquipment());
+        holder.tvDesc.setText(reportDataModel.getEquipment());
     }
 
     @Override
@@ -67,13 +66,12 @@ public class ScheduleAlertsAdapter extends RecyclerView.Adapter<ScheduleAlertsAd
     }
 
     public class viewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private TextView tvShipName, tvEqname, tvDate;
+        private TextView tvDate, tvDesc;
 
         public viewHolder(View itemView) {
             super(itemView);
-            tvShipName = (TextView) itemView.findViewById(R.id.tvShipName);
-            tvEqname = (TextView) itemView.findViewById(R.id.tvEqname);
             tvDate = (TextView) itemView.findViewById(R.id.tvDate);
+            tvDesc = (TextView) itemView.findViewById(R.id.tvDesc);
         }
 
         @Override
