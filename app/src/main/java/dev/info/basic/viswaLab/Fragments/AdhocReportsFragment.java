@@ -21,61 +21,61 @@ import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import dev.info.basic.viswaLab.Activitys.LoginFragmentActivity;
-import dev.info.basic.viswaLab.Adapters.TechnicalUpdatesAdapter;
+import dev.info.basic.viswaLab.Adapters.AdhocReportsAdapter;
 import dev.info.basic.viswaLab.ApiInterfaces.ApiInterface;
 import dev.info.basic.viswaLab.R;
-import dev.info.basic.viswaLab.models.TechnicalUpdatesModel;
+import dev.info.basic.viswaLab.models.AdhocReportsModel;
 import dev.info.basic.viswaLab.utils.Common;
 import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class TechnicalUpdatesFragment extends BaseFragment implements View.OnClickListener {
-
+public class AdhocReportsFragment extends BaseFragment {
 
     private LoginFragmentActivity fragmentActivity;
     private View rootView;
     private Common common;
-    private RelativeLayout main_loader;
-    RecyclerView technicalUpdatesRecyclerView;
-    TechnicalUpdatesAdapter mTechnicalUpdatesAdapter;
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
-    ArrayList<TechnicalUpdatesModel> mTechnicalUpdatesList;
+    private RelativeLayout main_loader;
+    ArrayList<AdhocReportsModel> mAdhocReportsModelsList;
+    RecyclerView adhocReportsRecyclerView;
+    AdhocReportsAdapter mAdhocReportsAdapter;
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_technical_updates, container, false);
+        rootView = inflater.inflate(R.layout.fragment_adhoc_reports, container, false);
         setHasOptionsMenu(true);
-        common = new Common();
         fragmentActivity = (LoginFragmentActivity) getActivity();
+        common = new Common();
         fragmentActivity.displayActionBar();
+        fragmentActivity.setActionBarTitle("Adhoc Reports");
         fragmentActivity.showActionBar();
         fragmentActivity.hideBackActionBar();
         prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         editor = prefs.edit();
-        fragmentActivity.setActionBarTitle("Technical Updates");
         main_loader = (RelativeLayout) rootView.findViewById(R.id.initial_loader);
-        technicalUpdatesRecyclerView = (RecyclerView) rootView.findViewById(R.id.technicalUpdatesRecyclerView);
-        fetchTechnicalUpdateReports();
+        adhocReportsRecyclerView = (RecyclerView) rootView.findViewById(R.id.adhocReportsRecyclerView);
+        fetchAdHocReports();
         return rootView;
     }
 
-    private void fetchTechnicalUpdateReports() {
+    private void fetchAdHocReports() {
         main_loader.setVisibility(View.VISIBLE);
         RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
         final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
-        apiInterface.GetTechnicalUpdates(new Callback<JsonObject>() {
+        apiInterface.GetAdhocReports(prefs.getString("userid", ""),new Callback<JsonObject>() {
             @Override
             public void success(JsonObject response_data_obj, Response response) {
                 Log.v("RESPONSE==>", response_data_obj.toString());
                 if (response_data_obj != null) {
                     main_loader.setVisibility(View.GONE);
-                    mTechnicalUpdatesList = new Gson().fromJson(response_data_obj.getAsJsonArray("UserReportdata"), new TypeToken<List<TechnicalUpdatesModel>>() {
+                    mAdhocReportsModelsList = new Gson().fromJson(response_data_obj.getAsJsonArray("adhocreports"), new TypeToken<List<AdhocReportsModel>>() {
                     }.getType());
-                    if (mTechnicalUpdatesList != null) {
+                    if (mAdhocReportsModelsList != null) {
                         renderTheResponse();
                     } else {
                         main_loader.setVisibility(View.GONE);
@@ -103,16 +103,11 @@ public class TechnicalUpdatesFragment extends BaseFragment implements View.OnCli
                         ViewGroup.LayoutParams.WRAP_CONTENT);
             }
         };
-        technicalUpdatesRecyclerView.setLayoutManager(layoutManager);
-        if (mTechnicalUpdatesList != null) {
-            mTechnicalUpdatesAdapter = new TechnicalUpdatesAdapter(getActivity(), mTechnicalUpdatesList);
-            technicalUpdatesRecyclerView.setAdapter(mTechnicalUpdatesAdapter);
+        adhocReportsRecyclerView.setLayoutManager(layoutManager);
+        if (mAdhocReportsModelsList != null) {
+            mAdhocReportsAdapter = new AdhocReportsAdapter(getActivity(), mAdhocReportsModelsList);
+            adhocReportsRecyclerView.setAdapter(mAdhocReportsAdapter);
         }
     }
 
-
-    @Override
-    public void onClick(View v) {
-
-    }
 }

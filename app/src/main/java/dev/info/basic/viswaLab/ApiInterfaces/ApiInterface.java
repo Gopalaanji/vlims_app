@@ -5,6 +5,7 @@ import com.google.gson.JsonObject;
 import retrofit.Callback;
 import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
+import retrofit.http.GET;
 import retrofit.http.POST;
 
 /**
@@ -42,8 +43,15 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("/GetSampleReportForUserByShipIdAndImoId")
     void GetSampleReportForUserByShipIdAndImoId(@Field("userId") String userid, @Field("shipId") int shipId, @Field("ImoNumber") String ImoNumber, Callback<JsonObject> callback);
-  @FormUrlEncoded
+
+    @FormUrlEncoded
     @POST("/LO_Shedule")
-    void GetScheduleAlertsDataByShipIdAndImoId(@Field("userId") String userid,@Field("shipId") int shipId, @Field("ImoNumber") String ImoNumber, Callback<JsonObject> callback);
+    void GetScheduleAlertsDataByShipIdAndImoId(@Field("userId") String userid, @Field("shipId") int shipId, @Field("ImoNumber") String ImoNumber, Callback<JsonObject> callback);
+
+    @GET("/VL_TechnicalUpdates")
+    void GetTechnicalUpdates(Callback<JsonObject> callback);
+
+    @GET("/VL_AdhocReports")
+    void GetAdhocReports(@Field("userID") String userid,Callback<JsonObject> callback);
 
 }

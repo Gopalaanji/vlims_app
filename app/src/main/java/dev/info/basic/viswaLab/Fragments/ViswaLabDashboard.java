@@ -39,6 +39,7 @@ public class ViswaLabDashboard extends BaseFragment {
         ImageView btnSampleStatus = (ImageView) rootView.findViewById(R.id.btnSampleStatus);
         ImageView btnShceduleAlerts = (ImageView) rootView.findViewById(R.id.btnShceduleAlerts);
         ImageView btnTechnicalUpdates = (ImageView) rootView.findViewById(R.id.btnTechnicalUpdates);
+        ImageView btnAdhocreports = (ImageView) rootView.findViewById(R.id.btnAdhocreports);
         TextView tvuserName = (TextView) rootView.findViewById(R.id.tvuserName);
         tvuserName.setText(prefs.getString("Username", ""));
         luboil.setOnClickListener(new View.OnClickListener() {
@@ -76,6 +77,12 @@ public class ViswaLabDashboard extends BaseFragment {
             @Override
             public void onClick(View v) {
                 fragmentActivity.replaceFragment(new TechnicalUpdatesFragment(), "agent_signup", null);
+            }
+        });
+        btnAdhocreports.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fragmentActivity.replaceFragment(new AdhocReportsFragment(), "agent_signup", null);
             }
         });
         fragmentActivity.setActionBarTitle("Viswa Lab");
