@@ -14,13 +14,10 @@ import android.widget.Button;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.majiajie.pagerbottomtabstrip.Controller;
 import dev.info.basic.viswaLab.BaseActivity;
-import dev.info.basic.viswaLab.Fragments.HomeFragment;
-import dev.info.basic.viswaLab.Fragments.NotificationsFragment;
-import dev.info.basic.viswaLab.Fragments.ProFragment;
 import dev.info.basic.viswaLab.R;
 import dev.info.basic.viswaLab.utils.Common;
+import me.majiajie.pagerbottomtabstrip.Controller;
 
 public class HomeActivity extends BaseActivity {
     int[] testColors = {0xFF83A72E};
@@ -55,9 +52,9 @@ public class HomeActivity extends BaseActivity {
 
     private void initFragment() {
         mFragments = new ArrayList<>();
-        mFragments.add(createFragment("0", new NotificationsFragment(), null));
-        mFragments.add(createFragment("1", new HomeFragment(), null));
-        mFragments.add(createFragment("2", new ProFragment(), null));
+//        mFragments.add(createFragment("0", new NotificationsFragment(), null));
+//        mFragments.add(createFragment("1", new HomeFragment(), null));
+//        mFragments.add(createFragment("2", new ProFragment(), null));
 
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.commit();
