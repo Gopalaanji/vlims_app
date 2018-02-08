@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class TechnicalUpdatesModel {
 
-    @SerializedName("date")
+    @SerializedName("articledate")
     String date;
     @SerializedName("heading")
     String heading;

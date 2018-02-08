@@ -7,17 +7,17 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class AdhocReportsModel {
-    @SerializedName("serial_no")
+    @SerializedName("serialno")
     String SERIAL_NO;
-    @SerializedName("test_status")
+    @SerializedName("teststatus")
     String TEST_STATUS;
-    @SerializedName("test_date")
+    @SerializedName("testdate")
     String TEST_DATE;
-    @SerializedName("test_name")
+    @SerializedName("testname")
     String TEST_NAME;
-    @SerializedName("ship_name")
+    @SerializedName("shipname")
     String SHIP_NAME;
-    @SerializedName("ship_imo_number")
+    @SerializedName("imonumber")
     String SHIP_IMO_NUMBER;
     @SerializedName("link")
     String LINK;

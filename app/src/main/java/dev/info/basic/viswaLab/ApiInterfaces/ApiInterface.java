@@ -51,7 +51,8 @@ public interface ApiInterface {
     @GET("/VL_TechnicalUpdates")
     void GetTechnicalUpdates(Callback<JsonObject> callback);
 
-    @GET("/VL_AdhocReports")
+    @FormUrlEncoded
+    @POST("/VL_AdhocReports")
     void GetAdhocReports(@Field("userID") String userid,Callback<JsonObject> callback);
 
 }

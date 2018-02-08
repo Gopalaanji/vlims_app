@@ -14,9 +14,7 @@ import dev.info.basic.viswaLab.Activitys.LoginFragmentActivity;
 import dev.info.basic.viswaLab.R;
 import dev.info.basic.viswaLab.utils.Common;
 
-/**
- * Created by E5000096 on 02-10-2016.
- */
+
 public class SplashFragment extends BaseFragment implements View.OnClickListener {
     private View rootView;
     private int checksavedInstanceState = 0;
@@ -92,7 +90,6 @@ public class SplashFragment extends BaseFragment implements View.OnClickListener
     }
 
     private void CompanySignUpScreen() {
-        fragmentActivity.replaceFragment(new ReraCompanySignupPage(), "rera_signup", null);
     }
 
     private void agentSignUpScreen() {

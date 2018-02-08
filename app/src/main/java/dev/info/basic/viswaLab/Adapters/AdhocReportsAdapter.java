@@ -42,10 +42,10 @@ public class AdhocReportsAdapter extends RecyclerView.Adapter<AdhocReportsAdapte
     @Override
     public void onBindViewHolder(AdhocReportsAdapter.viewHolder holder, int position) {
         final AdhocReportsModel reportDataModel = mReportDataModelList.get(position);
-        holder.tvDate.setText("Test Date :" + reportDataModel.getTEST_DATE());
+        holder.tvDate.setText("Test Date   : " + reportDataModel.getTEST_DATE());
         holder.tvShipNameTitle.setText(reportDataModel.getSHIP_NAME());
-        holder.tvTestName.setText("Test Name :" + reportDataModel.getTEST_NAME());
-        holder.tvSerialNo.setText("Serial No :" + reportDataModel.getSERIAL_NO());
+        holder.tvTestName.setText("Test Name : " + reportDataModel.getTEST_NAME());
+        holder.tvSerialNo.setText("Serial No    : " + reportDataModel.getSERIAL_NO());
 
 
         if (mReportDataModelList.get(position).getTEST_STATUS().equals("1")) {
