@@ -1,373 +1,183 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:foo="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/new_default_color">
 
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:scrollbars="vertical">
 
-        <ScrollView
+        <LinearLayout
+            android:id="@+id/userArea"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scrollbars="vertical">
+            android:layout_height="match_parent"
+            android:background="@color/new_default_color"
+            android:orientation="vertical">
+
+            <Spinner
+                android:id="@+id/spnVesselShips"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="20dp" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/bar_color"></View>
 
             <LinearLayout
-                android:id="@+id/userArea"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/new_default_color"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:orientation="horizontal">
 
+                    <EditText
+                        android:id="@+id/imo_number"
+                        android:layout_width="110dp"
+                        android:layout_height="55dp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:hint="ENTER IMO NO."
+                        android:inputType="numberDecimal"
+                        android:maxLength="100"
+                        android:padding="5dp"
+                        android:textAllCaps="true"
+                        android:textSize="14sp" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/new_default_color"
-                        android:orientation="vertical">
+                    <ImageView
+                        android:id="@+id/btnSubmit"
+                        android:layout_width="20dp"
+                        android:layout_height="45dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/search" />
 
-                        <android.support.design.widget.TextInputLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                </LinearLayout>
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="5dp"
-                                android:background="@color/new_default_color"
-                                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:gravity="right"
+                    android:orientation="horizontal">
 
-                                <Spinner
-                                    android:id="@+id/spnVesselShips"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="45dp"
-                                    android:layout_gravity="center" />
+                    <EditText
+                        android:id="@+id/sr_number"
+                        android:layout_width="110dp"
+                        android:layout_height="55dp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:hint="ENTER SR NO."
+                        android:inputType="numberDecimal"
+                        android:maxLength="100"
+                        android:padding="5dp"
+                        android:textAllCaps="true"
+                        android:textSize="14sp" />
 
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
+                    <ImageView
+                        android:id="@+id/btnsrSubmit"
+                        android:layout_width="20dp"
+                        android:layout_height="45dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/search" />
 
-                                    <EditText
-                                        android:id="@+id/imo_number"
-                                        android:layout_width="280dp"
-                                        android:layout_height="45dp"
-                                        android:layout_gravity="center"
-                                        android:layout_margin="10dp"
-                                        android:layout_weight="1"
-                                        android:gravity="left|center"
-                                        android:hint="Enter IMO No"
-                                        android:inputType="numberDecimal"
-                                        android:maxLength="100"
-                                        android:padding="5dp"
-                                        android:textSize="12sp" />
-
-                                    <ImageView
-                                        android:id="@+id/btnSubmit"
-                                        android:layout_width="25dp"
-                                        android:layout_height="45dp"
-                                        android:layout_gravity="center"
-                                        android:layout_weight="1"
-                                        android:src="@drawable/search" />
-
-                                </LinearLayout>
-
-                            </LinearLayout>
-                        </android.support.design.widget.TextInputLayout>
-
-                        <android.support.design.widget.TextInputLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:visibility="gone">
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="70dp"
-                                android:background="@drawable/bg_spinner">
-
-                                <Spinner
-                                    android:id="@+id/spnEquipment"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="70dp" />
-                            </RelativeLayout>
-                        </android.support.design.widget.TextInputLayout>
-
-                        <android.support.design.widget.TextInputLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="0dp"
-                            android:visibility="gone">
-
-                            <dev.info.basic.viswaLab.views.TextViewPlus
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:gravity="center"
-                                android:hint="BRAND AND GRADE"
-                                android:textSize="20sp"
-                                foo:customFont="@string/font_freedoka" />
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="70dp"
-                                android:layout_margin="0dp"
-                                android:background="@drawable/bg_spinner">
-
-                                <Spinner
-                                    android:id="@+id/spnBrandandGrads"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="70dp" />
-                            </RelativeLayout>
-                        </android.support.design.widget.TextInputLayout>
-
-                        <dev.info.basic.viswaLab.views.TextViewPlus
-                            android:layout_width="match_parent"
-                            android:layout_height="37dp"
-                            android:layout_margin="5dp"
-                            android:gravity="center"
-                            android:text="SAMPLING"
-                            android:textSize="20sp"
-                            android:visibility="gone"
-                            foo:customFont="@string/font_freedoka" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:orientation="horizontal"
-                            android:visibility="gone">
-
-                            <android.support.design.widget.TextInputLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="5dp">
-
-                                <RelativeLayout
-                                    android:id="@+id/sampling_date_from"
-                                    android:layout_width="135dp"
-                                    android:layout_height="50dp"
-                                    android:layout_marginLeft="0dp"
-                                    android:layout_marginRight="0dp"
-                                    android:background="@drawable/amount_input_border_button"
-                                    android:gravity="center">
-
-                                    <dev.info.basic.viswaLab.views.TextViewPlus
-                                        android:id="@+id/tvsampling_date_from"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignParentStart="true"
-                                        android:layout_centerVertical="true"
-                                        android:gravity="center"
-                                        android:hint="Date FROM"
-                                        android:textColor="#fff"
-                                        android:textColorHint="@color/white" />
-                                </RelativeLayout>
-                            </android.support.design.widget.TextInputLayout>
-
-                            <android.support.design.widget.TextInputLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="5dp">
-
-                                <RelativeLayout
-                                    android:id="@+id/sampling_date_to"
-                                    android:layout_width="135dp"
-                                    android:layout_height="50dp"
-                                    android:layout_marginLeft="0dp"
-                                    android:layout_marginRight="0dp"
-                                    android:background="@drawable/amount_input_border_button"
-                                    android:gravity="center">
-
-                                    <TextView
-                                        android:id="@+id/tvsampling_date_to"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:gravity="center"
-                                        android:hint="Date TO"
-                                        android:textColor="#fff"
-                                        android:textColorHint="@color/white" />
-                                </RelativeLayout>
-                            </android.support.design.widget.TextInputLayout>
-                        </LinearLayout>
-
-                        <dev.info.basic.viswaLab.views.TextViewPlus
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:gravity="center"
-                            android:text="TEST"
-                            android:textSize="20sp"
-                            android:visibility="gone"
-                            app:customFont="@string/font_sans" />
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="10dp"
-                            android:orientation="horizontal"
-                            android:visibility="gone">
-
-                            <android.support.design.widget.TextInputLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="5dp">
-
-                                <RelativeLayout
-                                    android:id="@+id/test_date_from"
-                                    android:layout_width="135dp"
-                                    android:layout_height="50dp"
-                                    android:layout_marginLeft="00dp"
-                                    android:layout_marginRight="00dp"
-                                    android:background="@drawable/amount_input_border_button"
-                                    android:gravity="center">
-
-                                    <TextView
-                                        android:id="@+id/tvtest_date_from"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:gravity="center"
-                                        android:hint="Test Date FROM"
-                                        android:textColor="#fff"
-                                        android:textColorHint="@color/white" />
-                                </RelativeLayout>
-                            </android.support.design.widget.TextInputLayout>
-
-                            <android.support.design.widget.TextInputLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="5dp">
-
-                                <RelativeLayout
-                                    android:id="@+id/test_date_to"
-                                    android:layout_width="135dp"
-                                    android:layout_height="50dp"
-                                    android:layout_marginLeft="0dp"
-                                    android:layout_marginRight="00dp"
-                                    android:background="@drawable/amount_input_border_button"
-                                    android:gravity="center">
-
-                                    <TextView
-                                        android:id="@+id/tvtest_date_to"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:gravity="center"
-                                        android:hint="Test Date TO"
-                                        android:textColor="#fff"
-                                        android:textColorHint="@color/white" />
-                                </RelativeLayout>
-                            </android.support.design.widget.TextInputLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:gravity="center"
-                            android:orientation="horizontal"
-                            android:visibility="gone">
-
-                            <dev.info.basic.viswaLab.utils.ButtonPlus
-                                android:id="@+id/btnSubmitx"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="SUBMIT" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-                            android:background="@color/white"
-                            android:orientation="vertical">
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginRight="10dp"
-                                    android:orientation="vertical">
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="45dp"
-                                        android:gravity="center"
-                                        android:orientation="horizontal"
-                                        android:weightSum="3">
-
-                                        <dev.info.basic.viswaLab.views.TextViewPlus
-                                            android:layout_width="130dp"
-                                            android:layout_height="match_parent"
-                                            android:layout_weight="1"
-                                            android:gravity="center"
-                                            android:lines="2"
-                                            android:text="Ship Name"
-                                            android:textAllCaps="true"
-                                            android:textColor="@color/black"
-                                            app:customFont="@string/pt_sans_bold" />
-
-                                        <dev.info.basic.viswaLab.views.TextViewPlus
-                                            android:id="@+id/textViewPlus4"
-                                            android:layout_width="150dp"
-                                            android:layout_height="wrap_content"
-                                            android:layout_weight="1"
-                                            android:gravity="right|center"
-                                            android:lines="2"
-                                            android:text="Equipment"
-                                            android:textAllCaps="true"
-                                            android:textColor="@color/black"
-                                            app:customFont="@string/pt_sans_bold" />
-
-                                        <dev.info.basic.viswaLab.views.TextViewPlus
-                                            android:id="@+id/textViewPlus"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:gravity="center"
-                                            android:layout_marginLeft="20dp"
-                                            android:text="@string/reportDate"
-                                            android:textAllCaps="true"
-                                            android:textColor="@color/black"
-                                            app:customFont="@string/pt_sans_bold" />
-
-                                        <dev.info.basic.viswaLab.views.TextViewPlus
-                                            android:layout_width="110dp"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginStart="10dp"
-                                            android:layout_weight="1"
-                                            android:gravity="center|right"
-                                            android:text="Report"
-                                            android:textAllCaps="true"
-                                            android:textColor="@color/black"
-                                            app:customFont="@string/pt_sans_bold" />
-                                    </LinearLayout>
-                                </LinearLayout>
-                            </RelativeLayout>
-
-                        </LinearLayout>
-
-
-                        <android.support.v7.widget.RecyclerView
-                            android:id="@+id/mRecyclerView"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="2dp"
-                            android:background="@color/new_default_color"></android.support.v7.widget.RecyclerView>
-                    </LinearLayout>
+                </LinearLayout>
 
             </LinearLayout>
-        </ScrollView>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/backgroundcolor"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <dev.info.basic.viswaLab.views.TextViewPlus
+                        android:layout_width="130dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:lines="2"
+                        android:text="Ship Name"
+                        android:textAllCaps="true"
+                        android:textColor="@color/black"
+                        app:customFont="@string/pt_sans_bold" />
+
+                    <dev.info.basic.viswaLab.views.TextViewPlus
+                        android:id="@+id/textViewPlus4"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right|center"
+                        android:lines="2"
+                        android:text="Equipment"
+                        android:textAllCaps="true"
+                        android:textColor="@color/black"
+                        app:customFont="@string/pt_sans_bold" />
+
+                    <dev.info.basic.viswaLab.views.TextViewPlus
+                        android:id="@+id/textViewPlus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:gravity="center"
+                        android:text="@string/reportDate"
+                        android:textAllCaps="true"
+                        android:textColor="@color/black"
+                        app:customFont="@string/pt_sans_bold" />
+
+                    <dev.info.basic.viswaLab.views.TextViewPlus
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="1"
+                        android:gravity="center|right"
+                        android:text="Report"
+                        android:textAllCaps="true"
+                        android:textColor="@color/black"
+                        app:customFont="@string/pt_sans_bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/mRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="2dp"
+                android:background="@color/new_default_color"></android.support.v7.widget.RecyclerView>
+
+        </LinearLayout>
+    </ScrollView>
+
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:ProgressWheel="http://schemas.android.com/apk/res-auto"
         android:id="@+id/initial_loader"

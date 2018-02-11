@@ -30,10 +30,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
-import retrofit.Callback;
-import retrofit.RestAdapter;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
 import dev.info.basic.viswaLab.Activitys.LoginFragmentActivity;
 import dev.info.basic.viswaLab.Adapters.ReporterAdapter;
 import dev.info.basic.viswaLab.ApiInterfaces.ApiInterface;
@@ -43,6 +39,10 @@ import dev.info.basic.viswaLab.models.LoBrandGradesModel;
 import dev.info.basic.viswaLab.models.ReportDataModel;
 import dev.info.basic.viswaLab.models.ShipdetailsModel;
 import dev.info.basic.viswaLab.utils.Common;
+import retrofit.Callback;
+import retrofit.RestAdapter;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 /**
  * Created by RSR on 07-09-2017.
@@ -52,7 +52,7 @@ public class LubeOilReportsFragment extends BaseFragment implements View.OnClick
     private LoginFragmentActivity fragmentActivity;
     private View rootView;
     private Common common;
-    Spinner spnVesselShips, spnBrandandGrades, spnEquipment;
+    Spinner spnVesselShips;
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
     private RelativeLayout main_loader;
@@ -67,8 +67,6 @@ public class LubeOilReportsFragment extends BaseFragment implements View.OnClick
     RecyclerView mRecyclerView;
     ReporterAdapter mReporterAdapter;
     EditText imo_number;
-
-
 
 
     @Nullable
@@ -92,14 +90,10 @@ public class LubeOilReportsFragment extends BaseFragment implements View.OnClick
         EquipmentsMOdelList = new ArrayList<>();
 
 
-
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.mRecyclerView);
 
 
-
         spnVesselShips = (Spinner) rootView.findViewById(R.id.spnVesselShips);
-        spnBrandandGrades = (Spinner) rootView.findViewById(R.id.spnBrandandGrads);
-        spnEquipment = (Spinner) rootView.findViewById(R.id.spnEquipment);
 
         btnSubmit = (ImageView) rootView.findViewById(R.id.btnSubmit);
         btnSubmit.setOnClickListener(this);
@@ -177,7 +171,7 @@ public class LubeOilReportsFragment extends BaseFragment implements View.OnClick
 
         spnVesselShips.setAdapter(shipdetailsListAdapter);
 //        spnBrandandGrades.setAdapter(loBrandGradesModelListAdapter);
-        spnEquipment.setAdapter(equipmentModelListAdapter);
+//        spnEquipment.setAdapter(equipmentModelListAdapter);
 //        if (imo_number.getText().toString().isEmpty() && imo_number.getText().toString().equals("")) {
         spnVesselShips.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -224,7 +218,7 @@ public class LubeOilReportsFragment extends BaseFragment implements View.OnClick
                         equipmentLisst[m] = EquipmentsMOdelList.get(i).getLOEquipmentDescription();
                         m++;
                     }
-                    final ArrayAdapter<String> equipmentModelListAdapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_item, equipmentLisst);
+                   /* final ArrayAdapter<String> equipmentModelListAdapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_item, equipmentLisst);
                     equipmentModelListAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spnEquipment.setAdapter(equipmentModelListAdapter);
                     spnEquipment.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -241,7 +235,7 @@ public class LubeOilReportsFragment extends BaseFragment implements View.OnClick
                         public void onNothingSelected(AdapterView<?> adapterView) {
                         }
                     });
-
+*/
                 } else {
                     main_loader.setVisibility(View.GONE);
                     common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Something went wrong!");
@@ -280,7 +274,7 @@ public class LubeOilReportsFragment extends BaseFragment implements View.OnClick
                         loBrandGradlist[k] = LoBrandGradesModelList.get(i).getLOSupplierBrand();
                         k++;
                     }
-                    final ArrayAdapter<String> loBrandGradesModelListAdapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_item, loBrandGradlist);
+                 /*   final ArrayAdapter<String> loBrandGradesModelListAdapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_item, loBrandGradlist);
                     spnBrandandGrades.setAdapter(loBrandGradesModelListAdapter);
                     spnBrandandGrades.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
@@ -296,7 +290,7 @@ public class LubeOilReportsFragment extends BaseFragment implements View.OnClick
                         @Override
                         public void onNothingSelected(AdapterView<?> adapterView) {
                         }
-                    });
+                    });*/
 
                 } else {
                     main_loader.setVisibility(View.GONE);
@@ -333,7 +327,7 @@ public class LubeOilReportsFragment extends BaseFragment implements View.OnClick
                 if (shipId == 0 && imo_number.getText().toString().isEmpty()) {
                     common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Please enter the value!");
                 } else {
-                    shipId=0;
+                    shipId = 0;
                     submitReport();
                 }
                 break;
@@ -402,7 +396,7 @@ public class LubeOilReportsFragment extends BaseFragment implements View.OnClick
 
         mRecyclerView.setLayoutManager(layoutManager);
         if (mReportDataModelList != null) {
-            mReporterAdapter = new ReporterAdapter(getActivity(), false, mReportDataModelList,prefs.getString("userid", ""));
+            mReporterAdapter = new ReporterAdapter(getActivity(), false, mReportDataModelList, prefs.getString("userid", ""));
             mRecyclerView.setAdapter(mReporterAdapter);
         } else {
             mRecyclerView.removeAllViews();

@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:text="VISWA LAB"
-                android:textColor="#000"
+                android:textColor="#021eec"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 app:customFont="@string/pt_sans_bold">
