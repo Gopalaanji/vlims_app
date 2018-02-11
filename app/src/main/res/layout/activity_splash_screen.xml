@@ -5,7 +5,7 @@
     android:id="@+id/activity_splash_screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/world_map_background"
+    android:background="@drawable/splash"
     tools:context="dev.info.basic.viswaLab.Activitys.SplashScreen">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -13,7 +13,8 @@
         android:id="@+id/initial_loader"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center">
+        android:gravity="center"
+        android:visibility="gone">
 
         <dev.info.basic.viswaLab.utils.ProgressWheel
             android:id="@+id/initial_loader_progress"
@@ -38,7 +39,8 @@
         android:layout_height="match_parent"
         android:layout_marginTop="200dp"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <dev.info.basic.viswaLab.views.TextViewPlus
             android:id="@+id/splash"

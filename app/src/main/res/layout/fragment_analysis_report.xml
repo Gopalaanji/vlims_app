@@ -11,7 +11,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/toolbar">
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -25,87 +26,87 @@
                 android:layout_margin="10dp"
                 android:orientation="vertical">
 
-                <Button
+                <dev.info.basic.viswaLab.utils.ButtonPlus
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_margin="5dp"
                     android:background="@color/colorPrimary"
                     android:text="Fuel Oil Reports"
-                    android:textColor="#fff"></Button>
+                    android:textColor="#fff"></dev.info.basic.viswaLab.utils.ButtonPlus>
 
-                <Button
+                <dev.info.basic.viswaLab.utils.ButtonPlus
                     android:id="@+id/luboilReportsBtn"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_margin="5dp"
                     android:background="@color/colorPrimary"
                     android:text="Lube Oil Reports"
-                    android:textColor="#fff"></Button>
+                    android:textColor="#fff"></dev.info.basic.viswaLab.utils.ButtonPlus>
 
-                <Button
+                <dev.info.basic.viswaLab.utils.ButtonPlus
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_margin="5dp"
                     android:background="@color/colorPrimary"
                     android:text="Cylinder Drain Oil Reports"
-                    android:textColor="#fff"></Button>
+                    android:textColor="#fff"></dev.info.basic.viswaLab.utils.ButtonPlus>
 
-                <Button
+                <dev.info.basic.viswaLab.utils.ButtonPlus
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_margin="5dp"
                     android:background="@color/colorPrimary"
                     android:text="Sweep Test Reports"
-                    android:textColor="#fff"></Button>
+                    android:textColor="#fff"></dev.info.basic.viswaLab.utils.ButtonPlus>
 
-                <Button
+                <dev.info.basic.viswaLab.utils.ButtonPlus
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_margin="5dp"
                     android:background="@color/colorPrimary"
                     android:text="Additional Test Reports"
-                    android:textColor="#fff"></Button>
+                    android:textColor="#fff"></dev.info.basic.viswaLab.utils.ButtonPlus>
 
 
-                <Button
+                <dev.info.basic.viswaLab.utils.ButtonPlus
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_margin="5dp"
                     android:background="@color/colorPrimary"
                     android:text="Pomp Reports"
-                    android:textColor="#fff"></Button>
+                    android:textColor="#fff"></dev.info.basic.viswaLab.utils.ButtonPlus>
 
-                <Button
+                <dev.info.basic.viswaLab.utils.ButtonPlus
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_margin="5dp"
                     android:background="@color/colorPrimary"
                     android:text="Purifier Efficiency Reports"
-                    android:textColor="#fff"></Button>
+                    android:textColor="#fff"></dev.info.basic.viswaLab.utils.ButtonPlus>
 
-                <Button
+                <dev.info.basic.viswaLab.utils.ButtonPlus
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_margin="5dp"
                     android:background="@color/colorPrimary"
                     android:text="BUNKER QUALITY SURVEY"
-                    android:textColor="#fff"></Button>
+                    android:textColor="#fff"></dev.info.basic.viswaLab.utils.ButtonPlus>
 
-                <Button
+                <dev.info.basic.viswaLab.utils.ButtonPlus
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_margin="5dp"
                     android:background="@color/colorPrimary"
                     android:text="DENSITY DIFFERENTIAL DATA"
-                    android:textColor="#fff"></Button>
+                    android:textColor="#fff"></dev.info.basic.viswaLab.utils.ButtonPlus>
 
-                <Button
+                <dev.info.basic.viswaLab.utils.ButtonPlus
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_margin="5dp"
                     android:background="@color/colorPrimary"
                     android:text="PORT GRADE SUPPLIER QUERY"
-                    android:textColor="#fff"></Button>
+                    android:textColor="#fff"></dev.info.basic.viswaLab.utils.ButtonPlus>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

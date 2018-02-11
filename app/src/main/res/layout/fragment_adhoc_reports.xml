@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/new_default_color"
     tools:context="dev.info.basic.viswaLab.Fragments.TechnicalUpdatesFragment">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -26,14 +27,13 @@
             android:layout_width="@dimen/custom_progressbar_image_width_height"
             android:layout_height="@dimen/custom_progressbar_image_width_height"
             android:layout_centerInParent="true"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@drawable/logo" />
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/adhocReportsRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </android.support.v7.widget.RecyclerView>
+        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
 
 
 </RelativeLayout>

@@ -7,8 +7,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.LinearLayout;
 
 import dev.info.basic.viswaLab.Activitys.LoginFragmentActivity;
 import dev.info.basic.viswaLab.R;
@@ -27,21 +26,20 @@ public class ViswaLabDashboard extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.viswalab_dashboard, container, false);
+        rootView = inflater.inflate(R.layout.shit, container, false);
         setHasOptionsMenu(false);
         fragmentActivity = (LoginFragmentActivity) getActivity();
         common = new Common();
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         editor = prefs.edit();
-        ImageView luboil = (ImageView) rootView.findViewById(R.id.luboil);
-        ImageView imgStats = (ImageView) rootView.findViewById(R.id.imgStats);
-        ImageView btncautionAlerts = (ImageView) rootView.findViewById(R.id.btncautionAlerts);
-        ImageView btnSampleStatus = (ImageView) rootView.findViewById(R.id.btnSampleStatus);
-        ImageView btnShceduleAlerts = (ImageView) rootView.findViewById(R.id.btnShceduleAlerts);
-        ImageView btnTechnicalUpdates = (ImageView) rootView.findViewById(R.id.btnTechnicalUpdates);
-        ImageView btnAdhocreports = (ImageView) rootView.findViewById(R.id.btnAdhocreports);
-        TextView tvuserName = (TextView) rootView.findViewById(R.id.tvuserName);
-        tvuserName.setText(prefs.getString("Username", ""));
+        LinearLayout luboil = (LinearLayout) rootView.findViewById(R.id.luboil);
+        LinearLayout imgStats = (LinearLayout) rootView.findViewById(R.id.imgStats);
+        LinearLayout btncautionAlerts = (LinearLayout) rootView.findViewById(R.id.btncautionAlerts);
+        LinearLayout btnShceduleAlerts = (LinearLayout) rootView.findViewById(R.id.btnShceduleAlerts);
+        LinearLayout btnTechnicalUpdates = (LinearLayout) rootView.findViewById(R.id.btnTechnicalUpdates);
+        LinearLayout btnAdhocreports = (LinearLayout) rootView.findViewById(R.id.btnAdhocreports);
+//        TextView tvuserName = (TextView) rootView.findViewById(R.id.tvuserName);
+//        tvuserName.setText(prefs.getString("Username", ""));
         luboil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,12 +58,12 @@ public class ViswaLabDashboard extends BaseFragment {
                 fragmentActivity.replaceFragment(new CautionAlertAnalysisReport(), "agent_signup", null);
             }
         });
-        btnSampleStatus.setOnClickListener(new View.OnClickListener() {
+        /*btnSampleStatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 //                fragmentActivity.replaceFragment(new SampleStatusFragment(), "agent_signup", null);
             }
-        });
+        });*/
 //        fragmentActivity.displayActionBar();
         btnShceduleAlerts.setOnClickListener(new View.OnClickListener() {
             @Override

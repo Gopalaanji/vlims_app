@@ -188,9 +188,6 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btnRegister:
-                signUp();
-                break;
             case R.id.btn_login:
                 checkLogin();
 //                fragmentActivity.screenNavigation(HomeActivity.class, true);

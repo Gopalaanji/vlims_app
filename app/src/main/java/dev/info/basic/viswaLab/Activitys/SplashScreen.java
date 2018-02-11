@@ -9,7 +9,7 @@ import dev.info.basic.viswaLab.R;
 
 public class SplashScreen extends AppCompatActivity {
     // Splash screen timer
-    private static int SPLASH_TIME_OUT = 1000;
+    private static int SPLASH_TIME_OUT = 1500;
 
 
     @Override

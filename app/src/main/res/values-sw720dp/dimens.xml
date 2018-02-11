@@ -102,6 +102,9 @@
     <!-- PROFILE FRAGMENT-->
     <dimen name="profile_height_width">200dp</dimen>
     <dimen name="profile_from_top_margin">20dp</dimen>
-
+<!--MARGIN-->
+    <dimen name="dimen_5dp">5dp</dimen>
+    <dimen name="dimen_10dp">10dp</dimen>
+    <dimen name="dimen_15dp">15dp</dimen>
 
 </resources>

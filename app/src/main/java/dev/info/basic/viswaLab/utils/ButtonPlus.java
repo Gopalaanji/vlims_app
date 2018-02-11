@@ -26,7 +26,7 @@ public class ButtonPlus extends Button {
     }
 
     private void applyCustomFont(Context context) {
-        Typeface customFont = FontCache.getTypeface("fonts/OpenSans-Regular.ttf", context);
+        Typeface customFont = FontCache.getTypeface("fonts/PT_Sans_Bold.ttf", context);
         setTypeface(customFont);
     }
 }

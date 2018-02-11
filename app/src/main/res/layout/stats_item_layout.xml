@@ -6,53 +6,51 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:layout_marginTop="2dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
         android:layout_width="match_parent"
         android:layout_height="35dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/white"
         android:orientation="horizontal">
 
         <dev.info.basic.viswaLab.views.TextViewPlus
             android:id="@+id/name"
             android:layout_width="138dp"
             android:layout_height="match_parent"
-            android:background="@drawable/cell_shape"
             android:gravity="center"
             android:textColor="#000"
-            foo:customFont="@string/font_sans" />
+            foo:customFont="@string/pt_sans_bold" />
 
         <dev.info.basic.viswaLab.views.TextViewPlus
             android:id="@+id/curmnt"
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/cell_shape"
             android:gravity="center"
             android:text="Curmnt"
-            android:textColor="#000"
-            foo:customFont="@string/font_sans" />
+            android:textColor="@color/bar_color"
+            foo:customFont="@string/pt_sans_regular" />
 
         <dev.info.basic.viswaLab.views.TextViewPlus
             android:id="@+id/premnt"
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/cell_shape"
             android:gravity="center"
             android:text="Premnt"
-            android:textColor="#000"
-            foo:customFont="@string/font_sans" />
+            android:textColor="@color/bar_color"
+            foo:customFont="@string/pt_sans_regular" />
 
         <dev.info.basic.viswaLab.views.TextViewPlus
             android:id="@+id/curyear"
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/cell_shape"
             android:gravity="center"
             android:text="CurYear"
-            android:textColor="#000"
-            foo:customFont="@string/font_sans" />
-
+            android:textColor="@color/bar_color"
+            foo:customFont="@string/pt_sans_regular" />
     </LinearLayout>
 
 </LinearLayout>

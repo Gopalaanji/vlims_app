@@ -131,10 +131,12 @@ public class CautionAlertsFragment extends BaseFragment implements View.OnClickL
                 if (shipPosition > 0) {
                     shipId = ShipdetailsList.get(shipPosition - 1).getShipId();
                     imo_number.setText("");
-                    imo_number.setEnabled(false);
+//                    imo_number.setEnabled(false);
+                    submitReport();
                 } else if (shipPosition == 0) {
                     shipId = 0;
-                    imo_number.setEnabled(true);
+                    submitReport();
+//                    imo_number.setEnabled(true);
                 }
             }
 
@@ -219,6 +221,7 @@ public class CautionAlertsFragment extends BaseFragment implements View.OnClickL
                 if (shipId == 0 && imo_number.getText().toString().isEmpty()) {
                     common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Please enter the value!");
                 } else {
+                    shipId=0;
                     submitReport();
                 }
                 break;

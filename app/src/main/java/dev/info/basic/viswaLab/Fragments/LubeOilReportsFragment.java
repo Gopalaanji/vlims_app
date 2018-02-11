@@ -52,8 +52,6 @@ public class LubeOilReportsFragment extends BaseFragment implements View.OnClick
     private LoginFragmentActivity fragmentActivity;
     private View rootView;
     private Common common;
-    RelativeLayout sampling_date_from, sampling_date_to, test_date_from, test_date_to;
-    TextView tvsampling_date_from, tvsampling_date_to, tvtest_date_from, tvtest_date_to;
     Spinner spnVesselShips, spnBrandandGrades, spnEquipment;
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
@@ -94,20 +92,9 @@ public class LubeOilReportsFragment extends BaseFragment implements View.OnClick
         EquipmentsMOdelList = new ArrayList<>();
 
 
-        sampling_date_from = (RelativeLayout) rootView.findViewById(R.id.sampling_date_from);
-        tvsampling_date_from = (TextView) rootView.findViewById(R.id.tvsampling_date_from);
-
-        sampling_date_to = (RelativeLayout) rootView.findViewById(R.id.sampling_date_to);
-        tvsampling_date_to = (TextView) rootView.findViewById(R.id.tvsampling_date_to);
-
-        test_date_from = (RelativeLayout) rootView.findViewById(R.id.test_date_from);
-        tvtest_date_from = (TextView) rootView.findViewById(R.id.tvtest_date_from);
 
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.mRecyclerView);
 
-
-        test_date_to = (RelativeLayout) rootView.findViewById(R.id.test_date_to);
-        tvtest_date_to = (TextView) rootView.findViewById(R.id.tvtest_date_to);
 
 
         spnVesselShips = (Spinner) rootView.findViewById(R.id.spnVesselShips);
@@ -117,10 +104,6 @@ public class LubeOilReportsFragment extends BaseFragment implements View.OnClick
         btnSubmit = (ImageView) rootView.findViewById(R.id.btnSubmit);
         btnSubmit.setOnClickListener(this);
 
-        sampling_date_from.setOnClickListener(this);
-        sampling_date_to.setOnClickListener(this);
-        test_date_from.setOnClickListener(this);
-        test_date_to.setOnClickListener(this);
         imo_number.setEnabled(true);
         fetchLubeOilReports(prefs.getString("userid", ""));
         return rootView;
@@ -204,10 +187,11 @@ public class LubeOilReportsFragment extends BaseFragment implements View.OnClick
                     shipId = ShipdetailsList.get(shipPosition - 1).getShipId();
 //                        getEquipmentDataByShipId(shipId);
                     imo_number.setText("");
-                    imo_number.setEnabled(false);
+                    submitReport();
+//                    imo_number.setEnabled(false);
                 } else if (shipPosition == 0) {
-                    shipId = 0;
-                    imo_number.setEnabled(true);
+//                    shipId = 0;
+//                    imo_number.setEnabled(true);
                 }
             }
 
@@ -344,22 +328,12 @@ public class LubeOilReportsFragment extends BaseFragment implements View.OnClick
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.sampling_date_from:
-                selectDate(tvsampling_date_from);
-                break;
-            case R.id.sampling_date_to:
-                selectDate(tvsampling_date_to);
-                break;
-            case R.id.test_date_from:
-                selectDate(tvtest_date_from);
-                break;
-            case R.id.test_date_to:
-                selectDate(tvtest_date_to);
-                break;
+
             case R.id.btnSubmit:
                 if (shipId == 0 && imo_number.getText().toString().isEmpty()) {
                     common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Please enter the value!");
                 } else {
+                    shipId=0;
                     submitReport();
                 }
                 break;

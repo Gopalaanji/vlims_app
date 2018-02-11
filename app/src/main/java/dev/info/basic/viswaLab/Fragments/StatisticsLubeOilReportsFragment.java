@@ -146,9 +146,9 @@ public class StatisticsLubeOilReportsFragment extends BaseFragment {
         } else if (month.equals("11")) {
             prevMonth = "Dec";
         }
-        curmnt.setText(getString(R.string.crtMonth) + "(" + dateFormat.format(date) + "'" + xx.substring(xx.length() - 2) + ")");
-        premnt.setText(getString(R.string.preMonth) + "(" + prevMonth + "'" + xx.substring(xx.length() - 2) + ")");
-        curyear.setText(getString(R.string.crtYear) + "(" + Calendar.getInstance().get(Calendar.YEAR) + ")");
+//        curmnt.setText(getString(R.string.crtMonth) + "(" + dateFormat.format(date) + "'" + xx.substring(xx.length() - 2) + ")");
+//        premnt.setText(getString(R.string.preMonth) + "(" + prevMonth + "'" + xx.substring(xx.length() - 2) + ")");
+//        curyear.setText(getString(R.string.crtYear) + "(" + Calendar.getInstance().get(Calendar.YEAR) + ")");
     }
 
     private void fillUpThePieChart(int pos) {

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:foo="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,7 +10,9 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="105dp"
-        android:layout_margin="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="7dp"
         android:background="@drawable/lol">
 
         <LinearLayout
@@ -26,7 +29,8 @@
                 android:textColor="@color/namecolor"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                foo:customFont="@string/font_freedoka" />
+
+                app:customFont="@string/pt_sans_bold" />
 
             <dev.info.basic.viswaLab.views.TextViewPlus
                 android:id="@+id/tvTestName"
@@ -37,7 +41,7 @@
                 android:layout_marginTop="2dp"
                 android:textColor="@color/colorPrimary"
                 android:textSize="15sp"
-                foo:customFont="@string/font_freedoka" />
+                app:customFont="@string/pt_sans_regular" />
 
             <dev.info.basic.viswaLab.views.TextViewPlus
                 android:id="@+id/tvSerialNo"
@@ -48,7 +52,8 @@
                 android:layout_marginTop="2dp"
                 android:textColor="@color/colorPrimary"
                 android:textSize="15sp"
-                foo:customFont="@string/font_freedoka" />
+                app:customFont="@string/pt_sans_regular"
+                foo:customFont="@string/pt_sans_regularn" />
 
             <dev.info.basic.viswaLab.views.TextViewPlus
                 android:id="@+id/tvDate"
@@ -58,7 +63,7 @@
                 android:layout_marginRight="5dp"
                 android:textColor="@color/colorPrimary"
                 android:textSize="15sp"
-                foo:customFont="@string/font_freedoka" />
+                foo:customFont="@string/pt_sans_regular" />
         </LinearLayout>
 
         <LinearLayout

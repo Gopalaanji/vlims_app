@@ -129,11 +129,13 @@ public class ScheduleAlertsFragment extends BaseFragment implements View.OnClick
                 int shipPosition = spnVesselShips.getSelectedItemPosition();
                 if (shipPosition > 0) {
                     shipId = ShipdetailsList.get(shipPosition - 1).getShipId();
-                    imo_number.setText("");
-                    imo_number.setEnabled(false);
+                    submitReport();
+//                    imo_number.setText("");
+//                    imo_number.setEnabled(false);
                 } else if (shipPosition == 0) {
                     shipId = 0;
-                    imo_number.setEnabled(true);
+                    submitReport();
+//                    imo_number.setEnabled(true);
                 }
             }
 
@@ -217,6 +219,7 @@ public class ScheduleAlertsFragment extends BaseFragment implements View.OnClick
                 if (shipId == 0 && imo_number.getText().toString().isEmpty()) {
                     common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Please enter the value!");
                 } else {
+                    shipId=0;
                     submitReport();
                 }
                 break;

@@ -20,6 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_margin="10dp"
+            android:rotation="90"
             android:src="@drawable/logout"
             android:tint="#fff" />
 
@@ -29,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:drawableLeft="@mipmap/ic_launcher"
+            android:drawableLeft="@drawable/logo"
             android:gravity="center"
             android:lines="1"
             android:textAppearance="?android:attr/textAppearanceMedium"
