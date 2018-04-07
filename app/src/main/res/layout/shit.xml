@@ -1,259 +1,336 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    android:gravity="center"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-
-<LinearLayout
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:padding="10dp">
+    android:gravity="center">
+
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clipToPadding="false"
+        android:layout_height="match_parent"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:padding="10dp">
 
-        <android.support.v7.widget.CardView
-            app:cardCornerRadius="10dp"
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            android:layout_margin="10dp"
-            android:gravity="center">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-            <LinearLayout
-                android:id="@+id/luboil"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/dashboard_bg"
+            <android.support.v7.widget.CardView
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_margin="10dp"
                 android:gravity="center"
-                android:orientation="vertical">
+                app:cardCornerRadius="10dp">
 
-                <ImageView
-                    android:layout_width="43dp"
-                    android:layout_height="43dp"
-                    android:src="@drawable/analysis_report"
-                    android:tint="@color/white" />
-
-                <dev.info.basic.viswaLab.views.TextViewPlus
-                    android:id="@+id/textViewPlus3"
+                <LinearLayout
+                    android:id="@+id/btnAnalysisReport"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/dashboard_bg"
                     android:gravity="center"
-                    android:padding="5dp"
-                    android:text="Analysis Reports"
-                    android:textAllCaps="true"
-                    android:textColor="@color/white"
-                    app:customFont="@string/pt_sans_bold" />
-            </LinearLayout>
+                    android:orientation="vertical">
 
-        </android.support.v7.widget.CardView>
+                    <ImageView
+                        android:layout_width="43dp"
+                        android:layout_height="43dp"
+                        android:src="@drawable/analysis_report"
+                        android:tint="@color/white" />
 
-        <android.support.v7.widget.CardView
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            android:layout_margin="10dp"
-            app:cardCornerRadius="10dp"
-            android:gravity="center">
+                    <dev.info.basic.viswaLab.views.TextViewPlus
+                        android:id="@+id/textViewPlus3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="Analysis Reports"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white"
+                        app:customFont="@string/pt_sans_bold" />
+                </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/btncautionAlerts"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/dashboard_bg"
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_margin="10dp"
                 android:gravity="center"
-                android:orientation="vertical">
+                app:cardCornerRadius="10dp">
 
-                <ImageView
-                    android:layout_width="43dp"
-                    android:layout_height="43dp"
-                    android:src="@drawable/caution_alert"
-                    android:tint="@color/white" />
-
-                <dev.info.basic.viswaLab.views.TextViewPlus
+                <LinearLayout
+                    android:id="@+id/btncautionAlerts"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/dashboard_bg"
                     android:gravity="center"
-                    android:padding="5dp"
-                    android:text="CAUTION ALERTS"
-                    android:textAllCaps="true"
-                    android:textColor="@color/white"
-                    app:customFont="@string/pt_sans_bold" />
-            </LinearLayout>
+                    android:orientation="vertical">
 
-        </android.support.v7.widget.CardView>
+                    <ImageView
+                        android:layout_width="43dp"
+                        android:layout_height="43dp"
+                        android:src="@drawable/caution_alert"
+                        android:tint="@color/white" />
+
+                    <dev.info.basic.viswaLab.views.TextViewPlus
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="CAUTION ALERTS"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white"
+                        app:customFont="@string/pt_sans_bold" />
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                app:cardCornerRadius="10dp">
+
+                <LinearLayout
+                    android:id="@+id/btnShceduleAlerts"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/dashboard_bg"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="43dp"
+                        android:layout_height="45dp"
+                        android:src="@drawable/schedule_alert"
+                        android:tint="@color/white" />
+
+                    <dev.info.basic.viswaLab.views.TextViewPlus
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="schedule Alerts"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white"
+                        app:customFont="@string/pt_sans_bold" />
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_margin="10dp"
+                android:background="@android:color/darker_gray"
+                android:gravity="center"
+                app:cardCornerRadius="10dp">
+
+                <LinearLayout
+                    android:id="@+id/btnStatisticsReports"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/dashboard_bg"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="43dp"
+                        android:layout_height="44dp"
+                        android:src="@drawable/statistics"
+                        android:tint="@color/white" />
+
+                    <dev.info.basic.viswaLab.views.TextViewPlus
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="statistics"
+                        android:textAllCaps="true"
+                        android:textColor="@android:color/white"
+                        app:customFont="@string/pt_sans_bold" />
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                app:cardCornerRadius="10dp">
+
+                <LinearLayout
+                    android:id="@+id/btnAdhocreports"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/dashboard_bg"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="43dp"
+                        android:layout_height="43dp"
+                        android:src="@drawable/adhoc_reports"
+                        android:tint="@color/white" />
+
+                    <dev.info.basic.viswaLab.views.TextViewPlus
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="ADHOC Alerts"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white"
+                        app:customFont="@string/pt_sans_bold" />
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                app:cardCornerRadius="10dp">
+
+                <LinearLayout
+                    android:id="@+id/btnTechnicalUpdates"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/dashboard_bg"
+
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="43dp"
+                        android:layout_height="43dp"
+                        android:src="@drawable/tech_announcments"
+                        android:tint="@color/white" />
+
+                    <dev.info.basic.viswaLab.views.TextViewPlus
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="TECHNICAL UPDATES"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white"
+                        app:customFont="@string/pt_sans_bold" />
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                app:cardCornerRadius="10dp">
+
+                <LinearLayout
+                    android:id="@+id/btnContactus"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/dashboard_bg"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="43dp"
+                        android:layout_height="43dp"
+                        android:src="@drawable/ic_call_black_24dp"
+                        android:tint="@color/white" />
+
+                    <dev.info.basic.viswaLab.views.TextViewPlus
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="Contact Us"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white"
+                        app:customFont="@string/pt_sans_bold" />
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                app:cardCornerRadius="10dp">
+
+                <LinearLayout
+                    android:id="@+id/btnForms"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/dashboard_bg"
+
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="43dp"
+                        android:layout_height="43dp"
+                        android:src="@drawable/analysis_report"
+                        android:tint="@color/white" />
+
+                    <dev.info.basic.viswaLab.views.TextViewPlus
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="forms"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white"
+                        app:customFont="@string/pt_sans_bold" />
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
 
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clipToPadding="false"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <android.support.v7.widget.CardView
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            app:cardCornerRadius="10dp"
-            android:layout_margin="10dp"
-            android:gravity="center">
-
-            <LinearLayout
-                android:id="@+id/btnShceduleAlerts"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/dashboard_bg"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="43dp"
-                    android:layout_height="45dp"
-                    android:src="@drawable/schedule_alert"
-                    android:tint="@color/white" />
-
-                <dev.info.basic.viswaLab.views.TextViewPlus
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center"
-                    android:padding="5dp"
-                    android:text="schedule Alerts"
-                    android:textAllCaps="true"
-                    android:textColor="@color/white"
-                    app:customFont="@string/pt_sans_bold" />
-            </LinearLayout>
-
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
-            android:layout_width="130dp"
-            app:cardCornerRadius="10dp"
-            android:layout_height="130dp"
-            android:layout_margin="10dp"
-            android:background="@android:color/darker_gray"
-            android:gravity="center">
-
-            <LinearLayout
-                android:id="@+id/imgStats"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/dashboard_bg"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="43dp"
-                    android:layout_height="44dp"
-                    android:src="@drawable/statistics"
-                    android:tint="@color/white" />
-
-                <dev.info.basic.viswaLab.views.TextViewPlus
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center"
-                    android:padding="5dp"
-                    android:text="statistics"
-                    android:textAllCaps="true"
-                    android:textColor="@android:color/white"
-                    app:customFont="@string/pt_sans_bold" />
-            </LinearLayout>
-
-        </android.support.v7.widget.CardView>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clipToPadding="false"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <android.support.v7.widget.CardView
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            android:layout_margin="10dp"
-            app:cardCornerRadius="10dp"
-            android:gravity="center">
-
-            <LinearLayout
-                android:id="@+id/btnAdhocreports"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/dashboard_bg"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="43dp"
-                    android:layout_height="43dp"
-                    android:src="@drawable/adhoc_reports"
-                    android:tint="@color/white" />
-
-                <dev.info.basic.viswaLab.views.TextViewPlus
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center"
-                    android:padding="5dp"
-                    android:text="ADHOC Alerts"
-                    android:textAllCaps="true"
-                    android:textColor="@color/white"
-                    app:customFont="@string/pt_sans_bold" />
-            </LinearLayout>
-
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            app:cardCornerRadius="10dp"
-            android:layout_margin="10dp"
-            android:gravity="center">
-
-            <LinearLayout
-                android:id="@+id/btnTechnicalUpdates"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/dashboard_bg"
-
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="43dp"
-                    android:layout_height="43dp"
-                    android:src="@drawable/tech_announcments"
-                    android:tint="@color/white" />
-
-                <dev.info.basic.viswaLab.views.TextViewPlus
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center"
-                    android:padding="5dp"
-                    android:text="TECHNICAL UPDATES"
-                    android:textAllCaps="true"
-                    android:textColor="@color/white"
-                    app:customFont="@string/pt_sans_bold" />
-            </LinearLayout>
-
-        </android.support.v7.widget.CardView>
-
-    </LinearLayout>
-
-</LinearLayout>
-</FrameLayout>
+</ScrollView>
 

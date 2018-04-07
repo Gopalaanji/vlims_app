@@ -37,10 +37,10 @@ import retrofit.client.Response;
 /**
  * Created by E5000096 on 02-10-2016.
  */
-public class ViswaLabDashboard extends BaseFragment {
+public class ViswaLabDashboard extends BaseFragment implements View.OnClickListener {
     private View rootView;
     private Common common;
-    private LoginFragmentActivity fragmentActivity;
+    public LoginFragmentActivity fragmentActivity;
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
     helper dbHelper;
@@ -56,38 +56,31 @@ public class ViswaLabDashboard extends BaseFragment {
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         editor = prefs.edit();
         fragmentActivity.startService((new Intent(getContext(), TimeService.class)));
-        LinearLayout luboil = (LinearLayout) rootView.findViewById(R.id.luboil);
-        LinearLayout imgStats = (LinearLayout) rootView.findViewById(R.id.imgStats);
+        LinearLayout btnAnalysisReport = (LinearLayout) rootView.findViewById(R.id.btnAnalysisReport);
+        btnAnalysisReport.setOnClickListener(this);
+        LinearLayout btnStatisticsReports = (LinearLayout) rootView.findViewById(R.id.btnStatisticsReports);
+        btnStatisticsReports.setOnClickListener(this);
         LinearLayout btncautionAlerts = (LinearLayout) rootView.findViewById(R.id.btncautionAlerts);
+        btncautionAlerts.setOnClickListener(this);
         LinearLayout btnShceduleAlerts = (LinearLayout) rootView.findViewById(R.id.btnShceduleAlerts);
+        btnShceduleAlerts.setOnClickListener(this);
         LinearLayout btnTechnicalUpdates = (LinearLayout) rootView.findViewById(R.id.btnTechnicalUpdates);
+        btnTechnicalUpdates.setOnClickListener(this);
         LinearLayout btnAdhocreports = (LinearLayout) rootView.findViewById(R.id.btnAdhocreports);
-//        TextView tvuserName = (TextView) rootView.findViewById(R.id.tvuserName);
-//        tvuserName.setText(prefs.getString("Username", ""));
+        btnAdhocreports.setOnClickListener(this);
+        LinearLayout btnContactus = (LinearLayout) rootView.findViewById(R.id.btnContactus);
+        btnContactus.setOnClickListener(this);
+        LinearLayout btnForms = (LinearLayout) rootView.findViewById(R.id.btnForms);
+        btnForms.setOnClickListener(this);
+
         helper.getInstance(getActivity());
         dbHelper = new helper(getActivity());
         if (prefs.getString("userid", "") != null && dbHelper.getAllShipDetails().size() == 0) {
             dbHelper.deleteAllShips();
             getUserShipDetails(prefs.getString("userid", ""));
         }
-        luboil.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                fragmentActivity.replaceFragment(new AnalysisReportFragment(), "agent_signup", null);
-            }
-        });
-        imgStats.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                fragmentActivity.replaceFragment(new StatisticsReportFragment(), "agent_signup", null);
-            }
-        });
-        btncautionAlerts.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                fragmentActivity.replaceFragment(new CautionAlertAnalysisReport(), "agent_signup", null);
-            }
-        });
+
+
         /*btnSampleStatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,24 +88,8 @@ public class ViswaLabDashboard extends BaseFragment {
             }
         });*/
 //        fragmentActivity.displayActionBar();
-        btnShceduleAlerts.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                fragmentActivity.replaceFragment(new ScheduleAlertsFragment(), "agent_signup", null);
-            }
-        });
-        btnTechnicalUpdates.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                fragmentActivity.replaceFragment(new TechnicalUpdatesFragment(), "agent_signup", null);
-            }
-        });
-        btnAdhocreports.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                fragmentActivity.replaceFragment(new AdhocReportsFragment(), "agent_signup", null);
-            }
-        });
+
+
         fragmentActivity.setActionBarTitle("Viswa Lab");
         fragmentActivity.showActionBar();
         fragmentActivity.hideBackActionBar();
@@ -163,4 +140,39 @@ public class ViswaLabDashboard extends BaseFragment {
 
     }
 
+    /**
+     * Called when a view has been clicked.
+     *
+     * @param v The view that was clicked.
+     */
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btnAnalysisReport:
+                fragmentActivity.replaceFragment(new AnalysisReportFragment(), "agent_signup", null);
+                break;
+            case R.id.btnStatisticsReports:
+                fragmentActivity.replaceFragment(new StatisticsReportFragment(), "agent_signup", null);
+                break;
+            case R.id.btncautionAlerts:
+                fragmentActivity.replaceFragment(new CautionAlertAnalysisReport(), "agent_signup", null);
+                break;
+            case R.id.btnShceduleAlerts:
+                fragmentActivity.replaceFragment(new ScheduleAlertsFragment(), "agent_signup", null);
+                break;
+            case R.id.btnTechnicalUpdates:
+                fragmentActivity.replaceFragment(new TechnicalUpdatesFragment(), "agent_signup", null);
+                break;
+            case R.id.btnAdhocreports:
+                fragmentActivity.replaceFragment(new AdhocReportsFragment(), "agent_signup", null);
+                break;
+            case R.id.btnContactus:
+                fragmentActivity.replaceFragment(new ContactUsFragment(), "agent_signup", null);
+                break;
+            case R.id.btnForms:
+                fragmentActivity.replaceFragment(new AdhocReportsFragment(), "agent_signup", null);
+                break;
+        }
+
+    }
 }

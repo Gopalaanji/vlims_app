@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/faq_answer_wrapper"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="3dp"
+    android:background="#4d000000"
+    android:orientation="horizontal"
+    android:padding="10dp">
+
+    <dev.info.basic.viswaLab.views.TextViewPlus
+        android:id="@+id/muskee_description"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:autoLink="all"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="sddsd"
+        android:textColor="#fff"
+        android:textSize="15sp"
+        app:customFont="@string/font_sans" />
+
+</LinearLayout>
+

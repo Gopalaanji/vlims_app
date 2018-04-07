@@ -54,4 +54,8 @@
     <dimen name="space_view_width">2dp</dimen>
     <dimen name="space_view_height">22dp</dimen>
     <dimen name="login_powered_by_img_height">100dp</dimen>
+    <dimen name="dimen_5dp">5dp</dimen>
+    <dimen name="dimen_10dp">10dp</dimen>
+    <dimen name="dimen_15dp">15dp</dimen>
+
 </resources>
