@@ -80,32 +80,12 @@ public class ViswaLabDashboard extends BaseFragment implements View.OnClickListe
             getUserShipDetails(prefs.getString("userid", ""));
         }
 
-
-        /*btnSampleStatus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                fragmentActivity.replaceFragment(new SampleStatusFragment(), "agent_signup", null);
-            }
-        });*/
-//        fragmentActivity.displayActionBar();
-
-
         fragmentActivity.setActionBarTitle("Viswa Lab");
         fragmentActivity.showActionBar();
         fragmentActivity.hideBackActionBar();
         return rootView;
     }
 
-    /*@Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        item.setVisible(false);
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                fragmentActivity.loadPopBackStack();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }*/
     private void getUserShipDetails(String userid) {
         final ProgressDialog progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage("Please Wait..");
@@ -140,11 +120,6 @@ public class ViswaLabDashboard extends BaseFragment implements View.OnClickListe
 
     }
 
-    /**
-     * Called when a view has been clicked.
-     *
-     * @param v The view that was clicked.
-     */
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -170,7 +145,7 @@ public class ViswaLabDashboard extends BaseFragment implements View.OnClickListe
                 fragmentActivity.replaceFragment(new ContactUsFragment(), "agent_signup", null);
                 break;
             case R.id.btnForms:
-                fragmentActivity.replaceFragment(new AdhocReportsFragment(), "agent_signup", null);
+                fragmentActivity.replaceFragment(new FormsFragment(), "agent_signup", null);
                 break;
         }
 
