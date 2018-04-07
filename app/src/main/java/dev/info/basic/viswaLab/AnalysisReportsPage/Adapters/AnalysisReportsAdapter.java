@@ -1,4 +1,4 @@
-package dev.info.basic.viswaLab.Adapters;
+package dev.info.basic.viswaLab.AnalysisReportsPage.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,70 +15,75 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import dev.info.basic.viswaLab.Adapters.CalculationsListAdapter;
+import dev.info.basic.viswaLab.AnalysisReportsPage.models.AnalysisFoModel;
 import dev.info.basic.viswaLab.R;
-import dev.info.basic.viswaLab.models.ReportDataModel;
 
 /**
- * Created by ${GIRI} on 09-01-2018.
+ * Created by Giri Thangellapally on 22-03-2018.
  */
 
-public class ReporterAdapter extends RecyclerView.Adapter<ReporterAdapter.viewHolder> {
+public class AnalysisReportsAdapter extends RecyclerView.Adapter<AnalysisReportsAdapter.viewHolder> {
 
     private Context context;
     CalculationsListAdapter.clickListener mClickListener;
-    List<ReportDataModel> mReportDataModelList = new ArrayList<>();
-    boolean from_alert = false;
+    List<AnalysisFoModel> mReportDataModelList = new ArrayList<>();
+    String from;
     String userId;
 
-
-    public ReporterAdapter(Context context, boolean from_alert, List<ReportDataModel> mReportDataModelList, String userId) {
+    public AnalysisReportsAdapter(Context context, String from, List<AnalysisFoModel> mReportDataModelList, String userId) {
         this.context = context;
-        this.from_alert = from_alert;
+        this.from = from;
         this.mReportDataModelList = mReportDataModelList;
         this.userId = userId;
     }
 
     @Override
     public viewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.reports_single_item, null);
+        View view = LayoutInflater.from(context).inflate(R.layout.al_reports_fueloil_reports_item, null);
         viewHolder viewHolder = new viewHolder(view);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(viewHolder holder, int position) {
-        final ReportDataModel reportDataModel = mReportDataModelList.get(position);
 
-        if (from_alert) {
-            holder.tvSerialNo.setText(reportDataModel.getShipName());
-            holder.tvDate.setVisibility(View.VISIBLE);
-            String ackwardDate = reportDataModel.getTestDate();
-            holder.tvDate.setText(ConvertJsonDate(reportDataModel.getTestDate()));
-
-//Dirty convertion
-          /*  Calendar calendar = Calendar.getInstance();
-            String ackwardRipOff = ackwardDate.replace("/Date(", "").replace(")/", "");
-            Long timeInMillis = Long.valueOf(ackwardRipOff);
-            calendar.setTimeInMillis(timeInMillis);*/
-//            holder.tvDate.setText(calendar.getD);
-        } else {
-            holder.tvDate.setVisibility(View.GONE);
-            holder.tvSerialNo.setText(reportDataModel.getSerial());
+    public void onBindViewHolder(AnalysisReportsAdapter.viewHolder holder, int position) {
+        final AnalysisFoModel analysisFoModel = mReportDataModelList.get(position);
+        holder.tvShipName.setText(analysisFoModel.getShipName());
+        if (analysisFoModel.getBunkerDate() != null) {
+            holder.tvBunkerDate.setText(ConvertJsonDate(analysisFoModel.getBunkerDate()) + "\n" + analysisFoModel.getGrade());
+        } else if (analysisFoModel.getReportDate() != null) {
+            holder.tvBunkerDate.setText(ConvertJsonDate(analysisFoModel.getReportDate()) + "\n" + analysisFoModel.getGrade());
         }
 
-        holder.tvEqname.setText(reportDataModel.getEquipment());
-
-        if (mReportDataModelList.get(position).getOilCondition().equals("1")) {
+        if (mReportDataModelList.get(position).getOilCondition() != null && mReportDataModelList.get(position).getOilCondition().equals("1")) {
             holder.tvReult.setImageResource(R.drawable.result_green);
-        } else if (mReportDataModelList.get(position).getOilCondition().equals("2")) {
+        } else if (mReportDataModelList.get(position).getOilCondition() != null && mReportDataModelList.get(position).getOilCondition().equals("2")) {
             holder.tvReult.setImageResource(R.drawable.result_orange);
         } else {
+            if (mReportDataModelList.get(position).getOilCondition() != null) {
+                holder.tvReult.setImageResource(R.drawable.result_red);
+            }
+        }
+
+
+        if (mReportDataModelList.get(position).getSepc() != null && mReportDataModelList.get(position).getSepc().equals("On")) {
+            holder.tvReult.setImageResource(R.drawable.result_green);
+        } /*else if (mReportDataModelList.get(position).getOilCondition().equals("2")) {
+            holder.tvReult.setImageResource(R.drawable.result_orange);*/ else if (mReportDataModelList.get(position).getSepc() != null) {
             holder.tvReult.setImageResource(R.drawable.result_red);
         }
         holder.tvReult.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://173.11.229.171/viswaweb/VLReports/LOReports/" + reportDataModel.getSerial().toString() + ".pdf"));
+                Intent browserIntent = null;
+                if (from.equals("CLO")) {
+                    browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://173.11.229.171/viswaweb/VLReports/CLOeports/" + analysisFoModel.getSerial().toString() + ".pdf"));
+                } else if (from.equals("POMP_AR")) {
+                    browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://173.11.229.171/viswaweb/VLReports/POMPReports/" + analysisFoModel.getSerial().toString() + "_POMP_REPORT(FINAL).pdf"));
+                } else {
+                    browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://173.11.229.171/viswaweb/VLReports/FOReports/" + analysisFoModel.getSerial().toString() + ".pdf"));
+                }
                 context.startActivity(browserIntent);
 
           /*      Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://173.11.229.171/viswaweb/LO_CLOPreview.aspx?strUserId=" + userId + "&&SampType=3&&strSerial=" + reportDataModel.getSerial().toString()));
@@ -105,14 +110,13 @@ public class ReporterAdapter extends RecyclerView.Adapter<ReporterAdapter.viewHo
     }
 
     public class viewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private TextView tvSerialNo, tvEqname, tvDate;
+        private TextView tvShipName, tvBunkerDate;
         private ImageView tvReult;
 
         public viewHolder(View itemView) {
             super(itemView);
-            tvSerialNo = (TextView) itemView.findViewById(R.id.tvSerialNo);
-            tvEqname = (TextView) itemView.findViewById(R.id.tvEqname);
-            tvDate = (TextView) itemView.findViewById(R.id.tvDate);
+            tvShipName = (TextView) itemView.findViewById(R.id.tvShipName);
+            tvBunkerDate = (TextView) itemView.findViewById(R.id.tvBunkerDate);
             tvReult = (ImageView) itemView.findViewById(R.id.tvReult);
         }
 
@@ -141,3 +145,4 @@ public class ReporterAdapter extends RecyclerView.Adapter<ReporterAdapter.viewHo
         void itemClicked(String calcId);
     }
 }
+

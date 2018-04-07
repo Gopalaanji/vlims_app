@@ -84,7 +84,7 @@
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:hint="ENTER SR NO."
-                        android:inputType="numberDecimal"
+                        android:inputType="text"
                         android:maxLength="100"
                         android:padding="5dp"
                         android:textAllCaps="true"

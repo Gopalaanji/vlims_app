@@ -37,6 +37,10 @@ public interface ApiInterface {
     void GetDataForReport(@Field("shipId") int shipID, @Field("ImoNumber") String ImoNumber, Callback<JsonObject> callback);
 
     @FormUrlEncoded
+    @POST("/LO_SN_Search")
+    void GetSrDataForReport(@Field("userid") String userid, @Field("serialNumber") String serialNumber, Callback<JsonObject> callback);
+
+    @FormUrlEncoded
     @POST("/GetSampleSummaryReport")
     void GetSampleSummaryReport(@Field("userid") String userid, Callback<JsonObject> callback);
 
@@ -53,6 +57,33 @@ public interface ApiInterface {
 
     @FormUrlEncoded
     @POST("/VL_AdhocReports")
-    void GetAdhocReports(@Field("userID") String userid,Callback<JsonObject> callback);
+    void GetAdhocReports(@Field("userID") String userid, Callback<JsonObject> callback);
+
+    @FormUrlEncoded
+    @POST("/ForgotPassword")
+    void GetForgot(@Field("username") String username, @Field("mailid") String mailid, @Field("mobilenumber") String mobilenumber, Callback<JsonObject> callback);
+
+    //ANALYSYS REPORTS
+    @FormUrlEncoded
+    @POST("/GetVL_FO_Reports")
+    void GetFuelOilReportsAnalysisReports(@Field("userid") String userid, @Field("shipid") int shipid, @Field("imonumber") String imonumber, Callback<JsonObject> callback);
+
+    @FormUrlEncoded
+    @POST("/GetVL_CLO_Reports")
+    void GetCylinderOilReportsAnalysisReports(@Field("userid") String userid, @Field("shipid") int shipid, @Field("imonumber") String imonumber, Callback<JsonObject> callback);
+
+
+    @FormUrlEncoded
+    @POST("/GetVL_POMP_Reports")
+    void GetPompsReportAnalysisReports(@Field("userid") String userid, @Field("shipid") int shipid, @Field("imonumber") String imonumber, Callback<JsonObject> callback);
+
+    //CAUTION ALERTS
+    @FormUrlEncoded
+    @POST("/GetVL_FO_CautionAlerts")
+    void GetFuelOilReportsCautionAlert(@Field("userid") String userid, @Field("shipid") int shipid, @Field("imonumber") String imonumber, Callback<JsonObject> callback);
+
+    @FormUrlEncoded
+    @POST("/GetVL_CLO_CautionAlerts")
+    void GetCylinderOilReportsCautionAlert(@Field("userid") String userid, @Field("shipid") int shipid, @Field("imonumber") String imonumber, Callback<JsonObject> callback);
 
 }

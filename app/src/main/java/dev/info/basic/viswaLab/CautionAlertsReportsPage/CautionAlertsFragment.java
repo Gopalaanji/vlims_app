@@ -1,4 +1,4 @@
-package dev.info.basic.viswaLab.Fragments;
+package dev.info.basic.viswaLab.CautionAlertsReportsPage;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -29,6 +29,8 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 import dev.info.basic.viswaLab.Activitys.LoginFragmentActivity;
 import dev.info.basic.viswaLab.Adapters.ReporterAdapter;
 import dev.info.basic.viswaLab.ApiInterfaces.ApiInterface;
+import dev.info.basic.viswaLab.Database.helper;
+import dev.info.basic.viswaLab.Fragments.BaseFragment;
 import dev.info.basic.viswaLab.R;
 import dev.info.basic.viswaLab.models.ReportDataModel;
 import dev.info.basic.viswaLab.models.ShipdetailsModel;
@@ -47,18 +49,19 @@ public class CautionAlertsFragment extends BaseFragment implements View.OnClickL
     private View rootView;
     private Common common;
     private RelativeLayout main_loader;
-    ArrayList<ShipdetailsModel> ShipdetailsList;
+    List<ShipdetailsModel> shipdetailsList;
     ArrayList<ReportDataModel> mReportDataModelList;
     private int shipId = 0;
     private String eqId;
-    ImageView btnSubmit;
+    ImageView btnSubmit, btnsrSubmit;
     private String bandId;
     RecyclerView mRecyclerView;
     ReporterAdapter mReporterAdapter;
     Spinner spnVesselShips;
-    EditText imo_number;
+    EditText imo_number, sr_number;
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
+    helper dbHelper;
 
     @Nullable
     @Override
@@ -77,47 +80,29 @@ public class CautionAlertsFragment extends BaseFragment implements View.OnClickL
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.mRecyclerView);
         spnVesselShips = (Spinner) rootView.findViewById(R.id.spnVesselShips);
         btnSubmit = (ImageView) rootView.findViewById(R.id.btnSubmit);
+        btnsrSubmit = (ImageView) rootView.findViewById(R.id.btnsrSubmit);
         imo_number = (EditText) rootView.findViewById(R.id.imo_number);
+        sr_number = (EditText) rootView.findViewById(R.id.sr_number);
         btnSubmit.setOnClickListener(this);
+        btnsrSubmit.setOnClickListener(this);
         imo_number.setEnabled(true);
-        fetchLubeOilReports(prefs.getString("userid", ""));
+        sr_number.setEnabled(true);
+        helper.getInstance(getContext());
+        dbHelper = new helper(getContext());
+        fetchLubeOilReports();
         return rootView;
     }
 
-    private void fetchLubeOilReports(String userid) {
-        main_loader.setVisibility(View.VISIBLE);
-        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
-        final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
-        apiInterface.GetUserShipDetails(userid, new Callback<JsonObject>() {
-            @Override
-            public void success(JsonObject response_data_obj, Response response) {
-                Log.v("RESPONSE==>", response_data_obj.toString());
-                if (response_data_obj != null) {
-                    main_loader.setVisibility(View.GONE);
-                    ShipdetailsList = new Gson().fromJson(response_data_obj.getAsJsonArray("Shipdetails"), new TypeToken<List<ShipdetailsModel>>() {
-                    }.getType());
-                    //ship
-                    final String[] shipList = new String[ShipdetailsList.size() + 1];
-                    int j = 1;
-                    shipList[0] = "All Ships*";
-                    for (int i = 0; i < ShipdetailsList.size(); i++) {
-                        shipList[j] = ShipdetailsList.get(i).getShipName();
-                        j++;
-                    }
-                    renderDetails(shipList);
-                    fetchIntialData();
-                } else {
-                    main_loader.setVisibility(View.GONE);
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Something went wrong!");
-                }
-            }
-
-            @Override
-            public void failure(RetrofitError error) {
-                main_loader.setVisibility(View.GONE);
-                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
-            }
-        });
+    private void fetchLubeOilReports() {
+        shipdetailsList = dbHelper.getAllShipDetails();
+        final String[] shipList = new String[shipdetailsList.size() + 1];
+        int j = 1;
+        shipList[0] = "All Ships*";
+        for (int i = 0; i < shipdetailsList.size(); i++) {
+            shipList[j] = shipdetailsList.get(i).getShipName();
+            j++;
+        }
+        renderDetails(shipList);
     }
 
     private void renderDetails(String[] shipList) {
@@ -129,7 +114,7 @@ public class CautionAlertsFragment extends BaseFragment implements View.OnClickL
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 int shipPosition = spnVesselShips.getSelectedItemPosition();
                 if (shipPosition > 0) {
-                    shipId = ShipdetailsList.get(shipPosition - 1).getShipId();
+                    shipId = shipdetailsList.get(shipPosition - 1).getShipId();
                     imo_number.setText("");
 //                    imo_number.setEnabled(false);
                     submitReport();
@@ -221,59 +206,119 @@ public class CautionAlertsFragment extends BaseFragment implements View.OnClickL
                 if (shipId == 0 && imo_number.getText().toString().isEmpty()) {
                     common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Please enter the value!");
                 } else {
-                    shipId=0;
+                    shipId = 0;
                     submitReport();
+                }
+                break;
+
+            case R.id.btnsrSubmit:
+                if (shipId == 0 && sr_number.getText().toString().isEmpty()) {
+                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Please enter the value!");
+                } else {
+                    shipId = 0;
+                    submitSerialDataReport();
                 }
                 break;
         }
     }
 
-    private void submitReport() {
-
-            if (!imo_number.getText().toString().isEmpty() && imo_number.getText().toString().length() > 0) {
-                shipId = 0;
-            }
-            Log.v("FUCK", "SHIPID" + shipId + "EDIT" + imo_number.getText().toString());
-            main_loader.setVisibility(View.VISIBLE);
-            RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
-            final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
-            apiInterface.GetSampleReportForUserByShipIdAndImoId(prefs.getString("userid", ""),shipId, imo_number.getText().toString(), new Callback<JsonObject>() {
-                @Override
-                public void success(JsonObject response_data_obj, Response response) {
-                    Log.v("RESPONSE==>", response_data_obj.toString());
-                    try {
-                        if (response_data_obj != null) {
-                            main_loader.setVisibility(View.GONE);
-                            mReportDataModelList = new ArrayList<ReportDataModel>();
-                            mReportDataModelList = new Gson().fromJson(response_data_obj.getAsJsonArray("UserReportdata"), new TypeToken<List<ReportDataModel>>() {
-                            }.getType());
-                            if (mReportDataModelList != null) {
-                                renderTheResponse();
-                            } else {
-                                imo_number.setText("");
-                                main_loader.setVisibility(View.GONE);
-                                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
-                            }
+    private void submitSerialDataReport() {
+        if (!imo_number.getText().toString().isEmpty() && imo_number.getText().toString().length() > 0) {
+            shipId = 0;
+        }
+        if (!sr_number.getText().toString().isEmpty() && sr_number.getText().toString().length() > 0) {
+            shipId = 0;
+        }
+        Log.v("FUCK", "SHIPID" + shipId + "EDIT" + sr_number.getText().toString());
+        main_loader.setVisibility(View.VISIBLE);
+        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
+        final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
+        apiInterface.GetSrDataForReport(prefs.getString("userid", ""), sr_number.getText().toString(), new Callback<JsonObject>() {
+            @Override
+            public void success(JsonObject response_data_obj, Response response) {
+                Log.v("RESPONSE==>", response_data_obj.toString());
+                try {
+                    if (response_data_obj != null) {
+                        main_loader.setVisibility(View.GONE);
+                        mReportDataModelList = new ArrayList<ReportDataModel>();
+                        mReportDataModelList = new Gson().fromJson(response_data_obj.getAsJsonArray("ReportData"), new TypeToken<List<ReportDataModel>>() {
+                        }.getType());
+                        if (mReportDataModelList != null) {
+                            renderTheResponse();
                         } else {
-
+                            imo_number.setText("");
                             main_loader.setVisibility(View.GONE);
                             common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                         }
-
-                    } catch (Exception e) {
+                    } else {
 
                         main_loader.setVisibility(View.GONE);
                         common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                     }
-                }
 
-                @Override
-                public void failure(RetrofitError error) {
+                } catch (Exception e) {
+
                     main_loader.setVisibility(View.GONE);
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
-                    imo_number.setText("");
+                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                 }
-            });
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                main_loader.setVisibility(View.GONE);
+                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
+                sr_number.setText("");
+            }
+        });
+    }
+
+
+    private void submitReport() {
+
+        if (!imo_number.getText().toString().isEmpty() && imo_number.getText().toString().length() > 0) {
+            shipId = 0;
+        }
+        Log.v("FUCK", "SHIPID" + shipId + "EDIT" + imo_number.getText().toString());
+        main_loader.setVisibility(View.VISIBLE);
+        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
+        final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
+        apiInterface.GetSampleReportForUserByShipIdAndImoId(prefs.getString("userid", ""), shipId, imo_number.getText().toString(), new Callback<JsonObject>() {
+            @Override
+            public void success(JsonObject response_data_obj, Response response) {
+                Log.v("RESPONSE==>", response_data_obj.toString());
+                try {
+                    if (response_data_obj != null) {
+                        main_loader.setVisibility(View.GONE);
+                        mReportDataModelList = new ArrayList<ReportDataModel>();
+                        mReportDataModelList = new Gson().fromJson(response_data_obj.getAsJsonArray("UserReportdata"), new TypeToken<List<ReportDataModel>>() {
+                        }.getType());
+                        if (mReportDataModelList != null) {
+                            renderTheResponse();
+                        } else {
+                            imo_number.setText("");
+                            main_loader.setVisibility(View.GONE);
+                            common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                        }
+                    } else {
+
+                        main_loader.setVisibility(View.GONE);
+                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                    }
+
+                } catch (Exception e) {
+
+                    main_loader.setVisibility(View.GONE);
+                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                main_loader.setVisibility(View.GONE);
+                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
+                imo_number.setText("");
+            }
+        });
 
     }
 }

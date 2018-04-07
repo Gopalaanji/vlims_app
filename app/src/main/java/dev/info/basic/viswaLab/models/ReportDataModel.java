@@ -12,7 +12,7 @@ public class ReportDataModel {
     private String LubeOilId;
 
     @SerializedName("Serial")
-    private String Serial;
+    private String Serial="";
 
     @SerializedName("ShipName")
     private String ShipName;

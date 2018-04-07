@@ -1,32 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:foo="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:foo="http://schemas.android.com/tools"
+    style="@style/Layout">
     <LinearLayout
+        android:background="@drawable/bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/splash_bg"
         android:orientation="vertical">
 
 
         <dev.info.basic.viswaLab.views.TextViewPlus
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="invisible"
             android:layout_margin="20dp"
             android:gravity="center"
+            android:textStyle="bold"
             android:text="@string/forgot_pwd_msg"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/white"
+            android:textColor="@color/splash_bg"
             foo:customFont="@string/font_sans" />
+
+        <EditText
+            android:id="@+id/userName"
+            style="@style/AppTheme.EditText"
+            android:layout_marginTop="5dp"
+            android:hint="*User Name"
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/email"
             style="@style/AppTheme.EditText"
-            android:hint="@string/phone"
+            android:layout_marginTop="5dp"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/mobile"
+            style="@style/AppTheme.EditText"
+            android:layout_marginTop="5dp"
+            android:hint="@string/mobile"
             android:inputType="numberDecimal|phone" />
 
         <Button
@@ -35,6 +49,31 @@
             android:text="@string/reset_now" />
 
     </LinearLayout>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:ProgressWheel="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/initial_loader"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <dev.info.basic.viswaLab.utils.ProgressWheel
+            android:id="@+id/initial_loader_progress"
+            android:layout_width="@dimen/custom_progressbar_width_height"
+            android:layout_height="@dimen/custom_progressbar_width_height"
+            android:layout_centerInParent="true"
+            ProgressWheel:matProg_barColor="@color/login_btn_click_color"
+            ProgressWheel:matProg_circleRadius="140dp"
+            ProgressWheel:matProg_progressIndeterminate="true"
+            ProgressWheel:matProg_rimWidth="2dp" />
+
+        <ImageView
+            android:layout_width="@dimen/custom_progressbar_image_width_height"
+            android:layout_height="@dimen/custom_progressbar_image_width_height"
+            android:layout_centerInParent="true"
+            android:src="@drawable/logo" />
+
+    </RelativeLayout>
 
 
-</LinearLayout>
+</RelativeLayout>

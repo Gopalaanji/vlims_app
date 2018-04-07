@@ -18,14 +18,14 @@ import android.widget.TextView;
 import com.google.gson.JsonObject;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
-import retrofit.Callback;
-import retrofit.RestAdapter;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
 import dev.info.basic.viswaLab.Activitys.LoginFragmentActivity;
 import dev.info.basic.viswaLab.ApiInterfaces.ApiInterface;
 import dev.info.basic.viswaLab.R;
 import dev.info.basic.viswaLab.utils.Common;
+import retrofit.Callback;
+import retrofit.RestAdapter;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 /**
  * Created by E5000096 on 02-10-2016.
@@ -44,6 +44,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
     public RelativeLayout main_loader;
     CheckBox rememberPassword;
     boolean is_checked = false;
+    TextView forgotPwd;
 
     @Nullable
     @Override
@@ -54,6 +55,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
         btnLogin = (Button) rootView.findViewById(R.id.btn_login);
         rememberPassword = (CheckBox) rootView.findViewById(R.id.rememberPassword);
         main_loader = (RelativeLayout) rootView.findViewById(R.id.initial_loader);
+        forgotPwd = (TextView) rootView.findViewById(R.id.forgotPwd);
         setHasOptionsMenu(true);
         prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         editor = prefs.edit();
@@ -64,12 +66,14 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
         userPasswordEditText.setTypeface(common.regularTypeface(getActivity()));
         fragmentActivity.displayActionBar();
         btnLogin.setOnClickListener(this);
+        forgotPwd.setOnClickListener(this);
         rememberPassword.setChecked(false);
 
-        if (prefs.getString("is_checkbox_rem", "") != null) {
+
+       /* if (prefs.getString("is_checkbox_rem", "") != null) {
             userNameEditText.setText(prefs.getString("pet", ""));
             userPasswordEditText.setText(prefs.getString("pwd", ""));
-        }
+        }*/
 
         rememberPassword.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -125,8 +129,6 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
                     editor.commit();
                     Log.v("UserId==>", "USER ID" + prefs.getString("userid", "") + "User Name" + prefs.getString("Username", ""));
                     fragmentActivity.replaceFragment(new ViswaLabDashboard(), "from_login_to_reraSignup", null);
-//                        fragmentActivity.replaceFragment(new AnalysisReportFragment(), "from_agent_login", null);
-//                        sendUserToken(userName, "android");
                 } else {
                     main_loader.setVisibility(View.GONE);
                     common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Invalid UserName/Password!!");
@@ -175,16 +177,16 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
     }
 */
 
- /*   @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                fragmentActivity.loadPopBackStack();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-*/
+    /*   @Override
+       public boolean onOptionsItemSelected(MenuItem item) {
+           switch (item.getItemId()) {
+               case android.R.id.home:
+                   fragmentActivity.loadPopBackStack();
+                   break;
+           }
+           return super.onOptionsItemSelected(item);
+       }
+   */
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -192,6 +194,11 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
                 checkLogin();
 //                fragmentActivity.screenNavigation(HomeActivity.class, true);
 //                fragmentActivity.replaceFragment(new AnalysisReportFragment(), "from_agent_login", null);
+                break;
+            case R.id.forgotPwd:
+//                fragmentActivity.screenNavigation(ForgotPasswordActivity.class, true);
+                fragmentActivity.replaceFragment(new ForgotPwdFragment(), "from_login_to_reraSignup", null);
+
                 break;
         }
 

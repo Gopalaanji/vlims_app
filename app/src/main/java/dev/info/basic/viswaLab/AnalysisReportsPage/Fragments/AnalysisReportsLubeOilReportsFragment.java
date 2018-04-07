@@ -1,4 +1,4 @@
-package dev.info.basic.viswaLab.Fragments;
+package dev.info.basic.viswaLab.AnalysisReportsPage.Fragments;
 
 import android.app.Dialog;
 import android.content.SharedPreferences;
@@ -33,6 +33,8 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 import dev.info.basic.viswaLab.Activitys.LoginFragmentActivity;
 import dev.info.basic.viswaLab.Adapters.ReporterAdapter;
 import dev.info.basic.viswaLab.ApiInterfaces.ApiInterface;
+import dev.info.basic.viswaLab.Database.helper;
+import dev.info.basic.viswaLab.Fragments.BaseFragment;
 import dev.info.basic.viswaLab.R;
 import dev.info.basic.viswaLab.models.LOEquipmentDetailsModel;
 import dev.info.basic.viswaLab.models.LoBrandGradesModel;
@@ -48,7 +50,7 @@ import retrofit.client.Response;
  * Created by RSR on 07-09-2017.
  */
 
-public class LubeOilReportsFragment extends BaseFragment implements View.OnClickListener {
+public class AnalysisReportsLubeOilReportsFragment extends BaseFragment implements View.OnClickListener {
     private LoginFragmentActivity fragmentActivity;
     private View rootView;
     private Common common;
@@ -56,23 +58,24 @@ public class LubeOilReportsFragment extends BaseFragment implements View.OnClick
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
     private RelativeLayout main_loader;
-    ArrayList<ShipdetailsModel> ShipdetailsList;
+    List<ShipdetailsModel> shipdetailsList;
     ArrayList<LoBrandGradesModel> LoBrandGradesModelList;
     ArrayList<LOEquipmentDetailsModel> EquipmentsMOdelList;
     ArrayList<ReportDataModel> mReportDataModelList;
     private int shipId = 0;
     private String eqId;
-    ImageView btnSubmit;
+    ImageView btnSubmit, btnsrSubmit;
     private String bandId;
     RecyclerView mRecyclerView;
     ReporterAdapter mReporterAdapter;
-    EditText imo_number;
+    EditText imo_number, sr_number;
+    helper dbHelper;
 
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_lube_oil_reports, container, false);
+        rootView = inflater.inflate(R.layout.fragment_analysis_reports_lube_oil_reports, container, false);
         setHasOptionsMenu(true);
         fragmentActivity = (LoginFragmentActivity) getActivity();
         common = new Common();
@@ -85,7 +88,8 @@ public class LubeOilReportsFragment extends BaseFragment implements View.OnClick
 
         main_loader = (RelativeLayout) rootView.findViewById(R.id.initial_loader);
         imo_number = (EditText) rootView.findViewById(R.id.imo_number);
-        ShipdetailsList = new ArrayList<>();
+        sr_number = (EditText) rootView.findViewById(R.id.sr_number);
+        shipdetailsList = new ArrayList<>();
         LoBrandGradesModelList = new ArrayList<>();
         EquipmentsMOdelList = new ArrayList<>();
 
@@ -98,89 +102,44 @@ public class LubeOilReportsFragment extends BaseFragment implements View.OnClick
         btnSubmit = (ImageView) rootView.findViewById(R.id.btnSubmit);
         btnSubmit.setOnClickListener(this);
 
+        btnsrSubmit = (ImageView) rootView.findViewById(R.id.btnsrSubmit);
+        btnsrSubmit.setOnClickListener(this);
+
         imo_number.setEnabled(true);
-        fetchLubeOilReports(prefs.getString("userid", ""));
+        sr_number.setEnabled(true);
+        helper.getInstance(getContext());
+        dbHelper = new helper(getContext());
+        fetchLubeOilReports();
         return rootView;
     }
 
-    private void fetchLubeOilReports(String userid) {
-        {
-            main_loader.setVisibility(View.VISIBLE);
-            RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
-            final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
-            apiInterface.GetUserShipDetails(userid, new Callback<JsonObject>() {
-                @Override
-                public void success(JsonObject response_data_obj, Response response) {
-                    Log.v("RESPONSE==>", response_data_obj.toString());
-                    if (response_data_obj != null) {
-                        main_loader.setVisibility(View.GONE);
-                        ShipdetailsList = new Gson().fromJson(response_data_obj.getAsJsonArray("Shipdetails"), new TypeToken<List<ShipdetailsModel>>() {
-                        }.getType());
-//                        LoBrandGradesModelList = new Gson().fromJson(response_data_obj.getAsJsonArray("SupplierData"), new TypeToken<List<LoBrandGradesModel>>() {
-//                        }.getType());
-                        //ship
-                        final String[] shipList = new String[ShipdetailsList.size() + 1];
-                        int j = 1;
-                        shipList[0] = "All Ships*";
-                        for (int i = 0; i < ShipdetailsList.size(); i++) {
-                            shipList[j] = ShipdetailsList.get(i).getShipName();
-                            j++;
-                        }
-                        //Equipment details
-
-                        final String[] equipmentLisst = new String[EquipmentsMOdelList.size() + 1];
-                        int l = 1;
-                        equipmentLisst[0] = "All Equipments*";
-                        for (int i = 0; i < EquipmentsMOdelList.size(); i++) {
-                            equipmentLisst[l] = EquipmentsMOdelList.get(i).getLOEquipmentDescription();
-                            l++;
-                        }
-                        //brand details
-//                        final String[] loBrandGradlist = new String[LoBrandGradesModelList.size() + 1];
-//                        int k = 1;
-//                        loBrandGradlist[0] = "All LOBrandGrades*";
-//                        for (int i = 0; i < LoBrandGradesModelList.size(); i++) {
-//                            loBrandGradlist[k] = LoBrandGradesModelList.get(i).getLOSupplierBrand();
-//                            k++;
-//                        }
-                        renderDetails(shipList, equipmentLisst);
-                    } else {
-                        main_loader.setVisibility(View.GONE);
-                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Something went wrong!");
-                    }
-                }
-
-                @Override
-                public void failure(RetrofitError error) {
-                    main_loader.setVisibility(View.GONE);
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
-                }
-            });
+    private void fetchLubeOilReports() {
+        shipdetailsList = dbHelper.getAllShipDetails();
+        final String[] shipList = new String[shipdetailsList.size() + 1];
+        int j = 1;
+        shipList[0] = "All Ships*";
+        for (int i = 0; i < shipdetailsList.size(); i++) {
+            shipList[j] = shipdetailsList.get(i).getShipName();
+            j++;
         }
+        renderDetails(shipList);
+
     }
 
-    private void renderDetails(final String[] shipdetailsList, String[] loequipmentModellist) {
+    private void renderDetails(final String[] shipList) {
 
-        final ArrayAdapter<String> shipdetailsListAdapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_item, shipdetailsList);
-//        final ArrayAdapter<String> loBrandGradesModelListAdapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_item, loBrandGradesModelList);
-        final ArrayAdapter<String> equipmentModelListAdapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_item, loequipmentModellist);
-
+        final ArrayAdapter<String> shipdetailsListAdapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_item, shipList);
         shipdetailsListAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        loBrandGradesModelListAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        equipmentModelListAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
         spnVesselShips.setAdapter(shipdetailsListAdapter);
-//        spnBrandandGrades.setAdapter(loBrandGradesModelListAdapter);
-//        spnEquipment.setAdapter(equipmentModelListAdapter);
-//        if (imo_number.getText().toString().isEmpty() && imo_number.getText().toString().equals("")) {
         spnVesselShips.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 int shipPosition = spnVesselShips.getSelectedItemPosition();
                 if (shipPosition > 0) {
-                    shipId = ShipdetailsList.get(shipPosition - 1).getShipId();
+                    shipId = shipdetailsList.get(shipPosition - 1).getShipId();
 //                        getEquipmentDataByShipId(shipId);
                     imo_number.setText("");
+                    sr_number.setText("");
                     submitReport();
 //                    imo_number.setEnabled(false);
                 } else if (shipPosition == 0) {
@@ -331,14 +290,76 @@ public class LubeOilReportsFragment extends BaseFragment implements View.OnClick
                     submitReport();
                 }
                 break;
+            case R.id.btnsrSubmit:
+                if (shipId == 0 && sr_number.getText().toString().isEmpty()) {
+                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Please enter the value!");
+                } else {
+                    shipId = 0;
+                    submitSerialDataReport();
+                }
+                break;
         }
+    }
+
+    private void submitSerialDataReport() {
+        if (!imo_number.getText().toString().isEmpty() && imo_number.getText().toString().length() > 0) {
+            shipId = 0;
+        }
+        if (!sr_number.getText().toString().isEmpty() && sr_number.getText().toString().length() > 0) {
+            shipId = 0;
+        }
+        Log.v("FUCK", "SHIPID" + shipId + "EDIT" + sr_number.getText().toString());
+        main_loader.setVisibility(View.VISIBLE);
+        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
+        final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
+        apiInterface.GetSrDataForReport(prefs.getString("userid", ""), sr_number.getText().toString(), new Callback<JsonObject>() {
+            @Override
+            public void success(JsonObject response_data_obj, Response response) {
+                Log.v("RESPONSE==>", response_data_obj.toString());
+                try {
+                    if (response_data_obj != null) {
+                        main_loader.setVisibility(View.GONE);
+                        mReportDataModelList = new ArrayList<ReportDataModel>();
+                        mReportDataModelList = new Gson().fromJson(response_data_obj.getAsJsonArray("ReportData"), new TypeToken<List<ReportDataModel>>() {
+                        }.getType());
+                        if (mReportDataModelList != null) {
+                            renderTheResponse();
+                        } else {
+                            imo_number.setText("");
+                            main_loader.setVisibility(View.GONE);
+                            common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                        }
+                    } else {
+
+                        main_loader.setVisibility(View.GONE);
+                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                    }
+
+                } catch (Exception e) {
+
+                    main_loader.setVisibility(View.GONE);
+                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+
+                }
+
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                main_loader.setVisibility(View.GONE);
+                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
+                sr_number.setText("");
+            }
+        });
     }
 
     private void submitReport() {
         if (!imo_number.getText().toString().isEmpty() && imo_number.getText().toString().length() > 0) {
             shipId = 0;
         }
-        Log.v("FUCK", "SHIPID" + shipId + "EDIT" + imo_number.getText().toString());
+        if (!sr_number.getText().toString().isEmpty() && sr_number.getText().toString().length() > 0) {
+            shipId = 0;
+        }
         main_loader.setVisibility(View.VISIBLE);
         RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
         final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);

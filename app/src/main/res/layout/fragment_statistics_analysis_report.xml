@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/Layout">
 
-<FrameLayout
+    <FrameLayout
         android:id="@+id/frag_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -25,91 +26,325 @@
                 android:layout_margin="10dp"
                 android:orientation="vertical">
 
-                <dev.info.basic.viswaLab.utils.ButtonPlus
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_margin="5dp"
-                    android:background="@color/colorPrimary"
-                    android:text="Fuel Oil Samples"
-                    android:textColor="#fff"></dev.info.basic.viswaLab.utils.ButtonPlus>
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
-                <dev.info.basic.viswaLab.utils.ButtonPlus
-                    android:id="@+id/luboilReportsBtn"
+                    <android.support.v7.widget.CardView
+                        android:layout_width="110dp"
+                        android:layout_height="110dp"
+                        android:layout_margin="10dp"
+                        android:gravity="center"
+                        app:cardCornerRadius="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/dashboard_bg"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@drawable/analysis_report"
+                                android:tint="@color/white"
+                                android:visibility="gone" />
+
+                            <dev.info.basic.viswaLab.views.TextViewPlus
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="10dp"
+                                android:gravity="center"
+                                android:padding="5dp"
+                                android:text="Fuel Oil Samples"
+                                android:textAllCaps="true"
+                                android:textColor="@color/white"
+                                app:customFont="@string/pt_sans_bold" />
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="110dp"
+                        android:layout_height="110dp"
+                        android:layout_margin="10dp"
+                        android:gravity="center"
+                        app:cardCornerRadius="10dp">
+
+                        <LinearLayout
+                            android:id="@+id/luboilReportsBtn"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/dashboard_bg"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@drawable/analysis_report"
+                                android:tint="@color/white"
+                                android:visibility="gone" />
+
+                            <dev.info.basic.viswaLab.views.TextViewPlus
+                                android:id="@+id/textViewPlus3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:gravity="center"
+                                android:padding="5dp"
+                                android:text="Lube Oil Samples"
+                                android:textAllCaps="true"
+                                android:textColor="@color/white"
+                                app:customFont="@string/pt_sans_bold" />
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_margin="5dp"
-                    android:background="@color/colorPrimary"
-                    android:text="Lube Oil Samples"
-                    android:textColor="#fff"></dev.info.basic.viswaLab.utils.ButtonPlus>
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
-                <dev.info.basic.viswaLab.utils.ButtonPlus
+                    <android.support.v7.widget.CardView
+                        android:layout_width="110dp"
+                        android:layout_height="110dp"
+                        android:layout_margin="10dp"
+                        android:gravity="center"
+                        app:cardCornerRadius="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/dashboard_bg"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@drawable/analysis_report"
+                                android:tint="@color/white"
+                                android:visibility="gone" />
+
+                            <dev.info.basic.viswaLab.views.TextViewPlus
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="10dp"
+                                android:gravity="center"
+                                android:padding="5dp"
+                                android:text="Cylinder Drain Oil Samples"
+                                android:textAllCaps="true"
+                                android:textColor="@color/white"
+                                app:customFont="@string/pt_sans_bold" />
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="110dp"
+                        android:layout_height="110dp"
+                        android:layout_margin="10dp"
+                        android:gravity="center"
+                        app:cardCornerRadius="10dp">
+
+                        <LinearLayout
+                            android:id="@+id/luboilReportsBtn"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/dashboard_bg"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@drawable/analysis_report"
+                                android:tint="@color/white"
+                                android:visibility="gone" />
+
+                            <dev.info.basic.viswaLab.views.TextViewPlus
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:gravity="center"
+                                android:padding="5dp"
+                                android:text="Sweep Test Samples"
+                                android:textAllCaps="true"
+                                android:textColor="@color/white"
+                                app:customFont="@string/pt_sans_bold" />
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_margin="5dp"
-                    android:background="@color/colorPrimary"
-                    android:text="Cylinder Drain Oil Samples"
-                    android:textColor="#fff"></dev.info.basic.viswaLab.utils.ButtonPlus>
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
-                <dev.info.basic.viswaLab.utils.ButtonPlus
-                    android:id="@+id/button2"
+                    <android.support.v7.widget.CardView
+                        android:layout_width="110dp"
+                        android:layout_height="110dp"
+                        android:layout_margin="10dp"
+                        android:gravity="center"
+                        app:cardCornerRadius="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/dashboard_bg"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@drawable/analysis_report"
+                                android:tint="@color/white"
+                                android:visibility="gone" />
+
+                            <dev.info.basic.viswaLab.views.TextViewPlus
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="10dp"
+                                android:gravity="center"
+                                android:padding="5dp"
+                                android:text="Additional Test Samples"
+                                android:textAllCaps="true"
+                                android:textColor="@color/white"
+                                app:customFont="@string/pt_sans_bold" />
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="110dp"
+                        android:layout_height="110dp"
+                        android:layout_margin="10dp"
+                        android:gravity="center"
+                        app:cardCornerRadius="10dp">
+
+                        <LinearLayout
+                            android:id="@+id/luboilReportsBtn"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/dashboard_bg"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@drawable/analysis_report"
+                                android:tint="@color/white"
+                                android:visibility="gone" />
+
+                            <dev.info.basic.viswaLab.views.TextViewPlus
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:gravity="center"
+                                android:padding="5dp"
+                                android:text="Pomp Samples"
+                                android:textAllCaps="true"
+                                android:textColor="@color/white"
+                                app:customFont="@string/pt_sans_bold" />
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_margin="5dp"
-                    android:background="@color/colorPrimary"
-                    android:text="Sweep Test Samples"
-                    android:textColor="#fff"></dev.info.basic.viswaLab.utils.ButtonPlus>
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
-                <dev.info.basic.viswaLab.utils.ButtonPlus
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_margin="5dp"
-                    android:background="@color/colorPrimary"
-                    android:text="Additional Test Samples"
-                    android:textColor="#fff"></dev.info.basic.viswaLab.utils.ButtonPlus>
+                    <android.support.v7.widget.CardView
+                        android:layout_width="110dp"
+                        android:layout_height="110dp"
+                        android:layout_margin="10dp"
+                        android:gravity="center"
+                        app:cardCornerRadius="10dp">
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/dashboard_bg"
+                            android:gravity="center"
+                            android:orientation="vertical">
 
-                <dev.info.basic.viswaLab.utils.ButtonPlus
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_margin="5dp"
-                    android:background="@color/colorPrimary"
-                    android:text="Pomp Samples"
-                    android:textColor="#fff"></dev.info.basic.viswaLab.utils.ButtonPlus>
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@drawable/analysis_report"
+                                android:tint="@color/white"
+                                android:visibility="gone" />
 
-                <dev.info.basic.viswaLab.utils.ButtonPlus
-                    android:id="@+id/button3"
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_margin="5dp"
-                    android:background="@color/colorPrimary"
-                    android:text="Purifier Efficiency Samples"
-                    android:textColor="#fff"></dev.info.basic.viswaLab.utils.ButtonPlus>
+                            <dev.info.basic.viswaLab.views.TextViewPlus
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="10dp"
+                                android:gravity="center"
+                                android:padding="5dp"
+                                android:text="Purifier Efficiency Samples"
+                                android:textAllCaps="true"
+                                android:textColor="@color/white"
+                                app:customFont="@string/pt_sans_bold" />
+                        </LinearLayout>
 
-                <dev.info.basic.viswaLab.utils.ButtonPlus
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_margin="5dp"
-                    android:background="@color/colorPrimary"
-                    android:text="BUNKER QUALITY SURVEY Samples"
-                    android:textColor="#fff"></dev.info.basic.viswaLab.utils.ButtonPlus>
+                    </android.support.v7.widget.CardView>
 
-                <dev.info.basic.viswaLab.utils.ButtonPlus
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_margin="5dp"
-                    android:background="@color/colorPrimary"
-                    android:text="DENSITY DIFFERENTIAL DATA Samples"
-                    android:textColor="#fff"
-                    android:visibility="gone"></dev.info.basic.viswaLab.utils.ButtonPlus>
+                    <android.support.v7.widget.CardView
+                        android:layout_width="110dp"
+                        android:layout_height="110dp"
+                        android:layout_margin="10dp"
+                        android:gravity="center"
+                        app:cardCornerRadius="10dp">
 
-                <dev.info.basic.viswaLab.utils.ButtonPlus
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_margin="5dp"
-                    android:background="@color/colorPrimary"
-                    android:text="PORT GRADE SUPPLIER QUERY Samples"
-                    android:textColor="#fff"
-                    android:visibility="gone"></dev.info.basic.viswaLab.utils.ButtonPlus>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/dashboard_bg"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@drawable/analysis_report"
+                                android:tint="@color/white"
+                                android:visibility="gone" />
+
+                            <dev.info.basic.viswaLab.views.TextViewPlus
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:gravity="center"
+                                android:padding="5dp"
+                                android:text="BUNKER QUALITY SURVEY Samples"
+                                android:textAllCaps="true"
+                                android:textColor="@color/white"
+                                app:customFont="@string/pt_sans_bold" />
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+                </LinearLayout>
 
             </LinearLayout>
         </LinearLayout>

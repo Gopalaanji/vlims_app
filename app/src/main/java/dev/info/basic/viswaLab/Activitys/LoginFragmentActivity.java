@@ -14,6 +14,7 @@ import android.util.Log;
 
 import dev.info.basic.viswaLab.BaseActivity;
 import dev.info.basic.viswaLab.Fragments.LoginFragment;
+import dev.info.basic.viswaLab.Fragments.ViswaLabDashboard;
 import dev.info.basic.viswaLab.R;
 import dev.info.basic.viswaLab.utils.Common;
 
@@ -37,12 +38,11 @@ public class LoginFragmentActivity extends BaseActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         editor = prefs.edit();
-//        if (prefs.getString("Username", "") != null && !prefs.getString("Username", "").isEmpty()) {
-//            fragmentTransaction.add(R.id.frag_container, new ViswaLabDashboard(), "from_login_activity").commit();
-//
-//        } else {
+        if (prefs.getString("is_checkbox_rem", "").equals("yes")) {
+            fragmentTransaction.add(R.id.frag_container, new ViswaLabDashboard(), "from_login_activity").commit();
+        } else {
             fragmentTransaction.add(R.id.frag_container, new LoginFragment(), "from_login_activity").commit();
-//        }
+        }
         setActionBarTitle(Html.fromHtml("<font color='#C79147'>Viswa </font>").toString() + "Lab");
         displayActionBar();
     }

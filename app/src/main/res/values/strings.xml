@@ -133,6 +133,9 @@
 
 
     <string name="phone">Phone</string>
+    <string name="hintuserid">Enter User Name*</string>
+    <string name="hintemailid">Enter Email Id*</string>
+    <string name="hintmobileno">Enter Mobile Number*</string>
     <string name="mobile">*Mobile Number</string>
 
     <string name="online">Online</string>
@@ -213,7 +216,7 @@
     <string name="re_type_pwd">Re-type New Password</string>
     <string name="forgot_pwd">Forgot Password</string>
     <string name="register_msg">If you don\'t have an existing account, please register for free&#33;</string>
-    <string name="forgot_pwd_msg">Please enter your Mobile Number to reset your Password. We will send you an Otp immediately.</string>
+    <string name="forgot_pwd_msg">Please enter your User Name ,Email Id &amp;  Mobile Number to reset your Password.</string>
     <string name="sort_dish">Sort by Dish</string>
     <string name="sort_time">Sort by Time</string>
     <string name="trouble_login">Trouble with Login? please Click Here to contact us</string>

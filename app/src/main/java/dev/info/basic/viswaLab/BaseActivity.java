@@ -50,6 +50,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 editor.putString("userid", "");
                                 editor.putString("Username", "");
+                                editor.putString("is_checkbox_rem", "");
                                 editor.commit();
                                 Intent intent = new Intent(BaseActivity.this, LoginFragmentActivity.class);
                                 startActivity(intent);
@@ -98,6 +99,11 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     public void setActionBarTitle(String title) {
         toolbarTitle.setText(title);
+    }
+
+
+    public void setBtnLogOutVisibility() {
+        btnLogOut.setVisibility(View.GONE);
     }
 
     public void hideActionBar() {

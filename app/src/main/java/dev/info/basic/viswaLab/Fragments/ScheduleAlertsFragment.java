@@ -27,9 +27,12 @@ import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import dev.info.basic.viswaLab.Activitys.LoginFragmentActivity;
+import dev.info.basic.viswaLab.Adapters.ReporterAdapter;
 import dev.info.basic.viswaLab.Adapters.ScheduleAlertsAdapter;
 import dev.info.basic.viswaLab.ApiInterfaces.ApiInterface;
+import dev.info.basic.viswaLab.Database.helper;
 import dev.info.basic.viswaLab.R;
+import dev.info.basic.viswaLab.models.ReportDataModel;
 import dev.info.basic.viswaLab.models.ScheduleAlertModel;
 import dev.info.basic.viswaLab.models.ShipdetailsModel;
 import dev.info.basic.viswaLab.utils.Common;
@@ -44,20 +47,27 @@ public class ScheduleAlertsFragment extends BaseFragment implements View.OnClick
     private View rootView;
     private Common common;
     private RelativeLayout main_loader;
-    ArrayList<ShipdetailsModel> ShipdetailsList;
+    List<ShipdetailsModel> shipdetailsList;
 
     ArrayList<ScheduleAlertModel> mScheduleAlertModel;
     private int shipId = 0;
     private String eqId;
-    ImageView btnSubmit;
+    ImageView btnSubmit, btnsrSubmit;
     private String bandId;
     RecyclerView mRecyclerView;
     ScheduleAlertsAdapter mReporterAdapter;
+    ReporterAdapter mxxReporterAdapter;
     Spinner spnVesselShips;
-    EditText imo_number;
+    EditText imo_number, sr_number;
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
     ArrayList<ScheduleAlertModel> scheduleAlertModelArrayList;
+    ArrayList<ReportDataModel> mReportDataModelList;
+    private boolean from_serial_numer = false;
+    helper dbHelper;
+
+    boolean aleready_db_filled = false;
+
 
     @Nullable
     @Override
@@ -76,47 +86,30 @@ public class ScheduleAlertsFragment extends BaseFragment implements View.OnClick
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.mRecyclerView);
         spnVesselShips = (Spinner) rootView.findViewById(R.id.spnVesselShips);
         btnSubmit = (ImageView) rootView.findViewById(R.id.btnSubmit);
+        btnsrSubmit = (ImageView) rootView.findViewById(R.id.btnsrSubmit);
         imo_number = (EditText) rootView.findViewById(R.id.imo_number);
+        sr_number = (EditText) rootView.findViewById(R.id.sr_number);
         btnSubmit.setOnClickListener(this);
+        btnsrSubmit.setOnClickListener(this);
         imo_number.setEnabled(true);
-        fetchIntialData();
-        fetchScheduleAlertsReports(prefs.getString("userid", ""));
+        sr_number.setEnabled(true);
+        helper.getInstance(getContext());
+        dbHelper = new helper(getContext());
+        fetchShipDetails();
         return rootView;
     }
 
-    private void fetchScheduleAlertsReports(String userid) {
-        main_loader.setVisibility(View.VISIBLE);
-        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
-        final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
-        apiInterface.GetUserShipDetails(userid, new Callback<JsonObject>() {
-            @Override
-            public void success(JsonObject response_data_obj, Response response) {
-                Log.v("RESPONSE==>", response_data_obj.toString());
-                if (response_data_obj != null) {
-                    main_loader.setVisibility(View.GONE);
-                    ShipdetailsList = new Gson().fromJson(response_data_obj.getAsJsonArray("Shipdetails"), new TypeToken<List<ShipdetailsModel>>() {
-                    }.getType());
-                    //ship
-                    final String[] shipList = new String[ShipdetailsList.size() + 1];
-                    int j = 1;
-                    shipList[0] = "All Ships*";
-                    for (int i = 0; i < ShipdetailsList.size(); i++) {
-                        shipList[j] = ShipdetailsList.get(i).getShipName();
-                        j++;
-                    }
-                    renderDetails(shipList);
-                } else {
-                    main_loader.setVisibility(View.GONE);
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Something went wrong!");
-                }
-            }
-
-            @Override
-            public void failure(RetrofitError error) {
-                main_loader.setVisibility(View.GONE);
-                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
-            }
-        });
+    private void fetchShipDetails() {
+        //ship
+        shipdetailsList = dbHelper.getAllShipDetails();
+        final String[] shipList = new String[shipdetailsList.size() + 1];
+        int j = 1;
+        shipList[0] = "All Ships*";
+        for (int i = 0; i < shipdetailsList.size(); i++) {
+            shipList[j] = shipdetailsList.get(i).getShipName();
+            j++;
+        }
+        renderDetails(shipList);
     }
 
     private void renderDetails(String[] shipList) {
@@ -128,7 +121,7 @@ public class ScheduleAlertsFragment extends BaseFragment implements View.OnClick
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 int shipPosition = spnVesselShips.getSelectedItemPosition();
                 if (shipPosition > 0) {
-                    shipId = ShipdetailsList.get(shipPosition - 1).getShipId();
+                    shipId = shipdetailsList.get(shipPosition - 1).getShipId();
                     submitReport();
 //                    imo_number.setText("");
 //                    imo_number.setEnabled(false);
@@ -197,6 +190,19 @@ public class ScheduleAlertsFragment extends BaseFragment implements View.OnClick
     }
 
     private void renderTheResponse() {
+        Log.v("SIZE_BEFORE_DELETE", dbHelper.getAllScheduleAlerts().size() + "");
+
+        Log.v("SIZE_AFTER_DELETE", dbHelper.getAllScheduleAlerts().size() + "");
+        if (dbHelper.getAllScheduleAlerts().size() > 0) {
+
+        } else {
+
+            for (int i = 0; i < scheduleAlertModelArrayList.size(); i++) {
+                long id = dbHelper.AddProjectsData(scheduleAlertModelArrayList.get(i));
+                Log.d("XXXXX===>", "==>" + id);
+            }
+        }
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity()) {
             @Override
             public RecyclerView.LayoutParams generateDefaultLayoutParams() {
@@ -206,9 +212,17 @@ public class ScheduleAlertsFragment extends BaseFragment implements View.OnClick
         };
 
         mRecyclerView.setLayoutManager(layoutManager);
-        if (scheduleAlertModelArrayList != null) {
-            mReporterAdapter = new ScheduleAlertsAdapter(getActivity(), true, scheduleAlertModelArrayList, prefs.getString("userid", ""));
-            mRecyclerView.setAdapter(mReporterAdapter);
+        if (from_serial_numer) {
+            if (mReportDataModelList != null) {
+                scheduleAlertModelArrayList = new ArrayList<>();
+                mxxReporterAdapter = new ReporterAdapter(getActivity(), true, mReportDataModelList, prefs.getString("userid", ""));
+                mRecyclerView.setAdapter(mxxReporterAdapter);
+            }
+        } else {
+            if (scheduleAlertModelArrayList != null) {
+                mReporterAdapter = new ScheduleAlertsAdapter(getActivity(), true, scheduleAlertModelArrayList, prefs.getString("userid", ""));
+                mRecyclerView.setAdapter(mReporterAdapter);
+            }
         }
     }
 
@@ -219,11 +233,70 @@ public class ScheduleAlertsFragment extends BaseFragment implements View.OnClick
                 if (shipId == 0 && imo_number.getText().toString().isEmpty()) {
                     common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Please enter the value!");
                 } else {
-                    shipId=0;
+                    shipId = 0;
                     submitReport();
                 }
                 break;
+            case R.id.btnsrSubmit:
+                if (shipId == 0 && sr_number.getText().toString().isEmpty()) {
+                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Please enter the value!");
+                } else {
+                    shipId = 0;
+                    submitSerialDataReport();
+                }
+                break;
         }
+    }
+
+    private void submitSerialDataReport() {
+        if (!imo_number.getText().toString().isEmpty() && imo_number.getText().toString().length() > 0) {
+            shipId = 0;
+        }
+        if (!sr_number.getText().toString().isEmpty() && sr_number.getText().toString().length() > 0) {
+            shipId = 0;
+        }
+        Log.v("FUCK", "SHIPID" + shipId + "EDIT" + sr_number.getText().toString());
+        main_loader.setVisibility(View.VISIBLE);
+        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
+        final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
+        apiInterface.GetSrDataForReport(prefs.getString("userid", ""), sr_number.getText().toString(), new Callback<JsonObject>() {
+            @Override
+            public void success(JsonObject response_data_obj, Response response) {
+                Log.v("RESPONSE==>", response_data_obj.toString());
+                try {
+                    if (response_data_obj != null) {
+                        main_loader.setVisibility(View.GONE);
+                        mReportDataModelList = new ArrayList<ReportDataModel>();
+                        mReportDataModelList = new Gson().fromJson(response_data_obj.getAsJsonArray("ReportData"), new TypeToken<List<ReportDataModel>>() {
+                        }.getType());
+                        if (mReportDataModelList != null) {
+                            from_serial_numer = true;
+                            renderTheResponse();
+                        } else {
+                            imo_number.setText("");
+                            main_loader.setVisibility(View.GONE);
+                            common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                        }
+                    } else {
+
+                        main_loader.setVisibility(View.GONE);
+                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                    }
+
+                } catch (Exception e) {
+
+                    main_loader.setVisibility(View.GONE);
+                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                main_loader.setVisibility(View.GONE);
+                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
+                sr_number.setText("");
+            }
+        });
     }
 
     private void submitReport() {
@@ -235,7 +308,7 @@ public class ScheduleAlertsFragment extends BaseFragment implements View.OnClick
             main_loader.setVisibility(View.VISIBLE);
             RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
             final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
-            apiInterface.GetScheduleAlertsDataByShipIdAndImoId(prefs.getString("userid", ""),shipId, imo_number.getText().toString(), new Callback<JsonObject>() {
+            apiInterface.GetScheduleAlertsDataByShipIdAndImoId(prefs.getString("userid", ""), shipId, imo_number.getText().toString(), new Callback<JsonObject>() {
                 @Override
                 public void success(JsonObject response_data_obj, Response response) {
                     Log.v("RESPONSE==>", response_data_obj.toString());
@@ -246,6 +319,7 @@ public class ScheduleAlertsFragment extends BaseFragment implements View.OnClick
                             scheduleAlertModelArrayList = new Gson().fromJson(response_data_obj.getAsJsonArray("ReportData"), new TypeToken<List<ScheduleAlertModel>>() {
                             }.getType());
                             if (scheduleAlertModelArrayList != null) {
+
                                 renderTheResponse();
                             } else {
                                 imo_number.setText("");

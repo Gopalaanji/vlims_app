@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.LinearLayout;
 
 import dev.info.basic.viswaLab.Activitys.LoginFragmentActivity;
 import dev.info.basic.viswaLab.R;
@@ -31,7 +31,7 @@ public class StatisticsReportFragment extends BaseFragment {
         fragmentActivity.showActionBar();
         fragmentActivity.setActionBarTitle("Viswa Lab");
         fragmentActivity.hideBackActionBar();
-        Button luboilReportsBtn = (Button) rootView.findViewById(R.id.luboilReportsBtn);
+        LinearLayout luboilReportsBtn = (LinearLayout) rootView.findViewById(R.id.luboilReportsBtn);
         luboilReportsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

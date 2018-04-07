@@ -44,10 +44,14 @@ public class ScheduleAlertsAdapter extends RecyclerView.Adapter<ScheduleAlertsAd
 
     @Override
     public void onBindViewHolder(viewHolder holder, int position) {
-        final ScheduleAlertModel reportDataModel = mReportDataModelList.get(position);
-        holder.tvDate.setText(ConvertJsonDate(reportDataModel.getSheduleDate()));
-        holder.tvShipName.setText(reportDataModel.getShipName());
-        holder.tvEqname.setText(reportDataModel.getEquipment());
+        try {
+            final ScheduleAlertModel reportDataModel = mReportDataModelList.get(position);
+            holder.tvDate.setText(ConvertJsonDate(reportDataModel.getSheduleDate()));
+            holder.tvShipName.setText(reportDataModel.getShipName());
+            holder.tvEqname.setText(reportDataModel.getEquipment());
+        } catch (Exception e) {
+
+        }
     }
 
     @Override
@@ -84,10 +88,15 @@ public class ScheduleAlertsAdapter extends RecyclerView.Adapter<ScheduleAlertsAd
 
     public static String ConvertJsonDate(String jsondate) {
 
-        jsondate = jsondate.replace("/Date(", "").replace(")/", "");
-        long time = Long.parseLong(jsondate);
-        Date d = new Date(time);
-        return new SimpleDateFormat("dd/MM/yyyy").format(d).toString();
+        try {
+            jsondate = jsondate.replace("/Date(", "").replace(")/", "");
+            long time = Long.parseLong(jsondate);
+            Date d = new Date(time);
+            return new SimpleDateFormat("dd/MM/yyyy").format(d).toString();
+        } catch (Exception e) {
+
+        }
+        return jsondate;
     }
 
     public interface clickListener {
