@@ -20,7 +20,7 @@ public class WebViewActivity extends AppCompatActivity {
         setContentView(R.layout.web_view);
         webView = (WebView) findViewById(R.id.webView);
         Intent intent = getIntent();
-        imgUrl = intent.getStringExtra("frame_id");
+        imgUrl = intent.getStringExtra("pdf_id");
         loadWebView();
     }
 
@@ -40,7 +40,7 @@ public class WebViewActivity extends AppCompatActivity {
             }
         });
 
-        webView.loadUrl(imgUrl);
+        webView.loadUrl("http://drive.google.com/viewerng/viewer?embedded=true&url=" + imgUrl);
     }
 
     @Override

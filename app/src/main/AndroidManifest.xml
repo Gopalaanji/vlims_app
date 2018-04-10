@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="dev.info.basic.viswaLab">
 
-    <permission
+  <!--  <permission
         android:name="dev.info.basic.viswaLab.C2D_MESSAGE"
         android:protectionLevel="signature" />
-
+-->
     <application
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"

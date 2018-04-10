@@ -47,7 +47,7 @@ public class AnalysisReportsAdapter extends RecyclerView.Adapter<AnalysisReports
 
     @Override
 
-    public void onBindViewHolder(AnalysisReportsAdapter.viewHolder holder, int position) {
+    public void onBindViewHolder(viewHolder holder, int position) {
         final AnalysisFoModel analysisFoModel = mReportDataModelList.get(position);
         holder.tvShipName.setText(analysisFoModel.getShipName());
         if (analysisFoModel.getBunkerDate() != null) {
@@ -77,12 +77,28 @@ public class AnalysisReportsAdapter extends RecyclerView.Adapter<AnalysisReports
             @Override
             public void onClick(View view) {
                 Intent browserIntent = null;
-                if (from.equals("CLO")) {
+                if (from.equals("CLO")&& analysisFoModel.getSerial().toString().equalsIgnoreCase("")) {
                     browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://173.11.229.171/viswaweb/VLReports/CLOeports/" + analysisFoModel.getSerial().toString() + ".pdf"));
                 } else if (from.equals("POMP_AR")) {
                     browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://173.11.229.171/viswaweb/VLReports/POMPReports/" + analysisFoModel.getSerial().toString() + "_POMP_REPORT(FINAL).pdf"));
                 } else {
-                    browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://173.11.229.171/viswaweb/VLReports/FOReports/" + analysisFoModel.getSerial().toString() + ".pdf"));
+                    if (from.equalsIgnoreCase("FO") && analysisFoModel.getSerial().toString().equalsIgnoreCase("")) {
+                        if (analysisFoModel.getBunkerPort().equalsIgnoreCase("FO_AR")) {
+                            browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://173.11.229.171/viswaweb/VLReports/SampleReports/FO.PDF"));
+                        } else if (analysisFoModel.getBunkerPort().equalsIgnoreCase("LO_AR")) {
+                            browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://173.11.229.171/viswaweb/VLReports/SampleReports/LO.PDF"));
+                        } else if (analysisFoModel.getBunkerPort().equalsIgnoreCase("CLO_AR")) {
+                            browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://173.11.229.171/viswaweb/VLReports/SampleReports/CLO.PDF"));
+                        } else if (analysisFoModel.getBunkerPort().equalsIgnoreCase("POMP_AR")) {
+                            browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://173.11.229.171/viswaweb/VLReports/SampleReports/POMP.PDF"));
+                        }else if(analysisFoModel.getBunkerPort().equalsIgnoreCase("FO_CA")){
+                            browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://173.11.229.171/viswaweb/VLReports/SampleReports/FO_C.PDF"));
+                        }else if(analysisFoModel.getBunkerPort().equalsIgnoreCase("CLO_CO")){
+                            browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(":  http://173.11.229.171/viswaweb/VLReports/SampleReports/CLO_C.PDF"));
+                        }
+                    } else {
+                        browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://173.11.229.171/viswaweb/VLReports/FOReports/" + analysisFoModel.getSerial().toString() + ".pdf"));
+                    }
                 }
                 context.startActivity(browserIntent);
 

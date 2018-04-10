@@ -207,7 +207,7 @@
                         android:layout_marginTop="10dp"
                         android:gravity="center"
                         android:padding="5dp"
-                        android:text="ADHOC Alerts"
+                        android:text="OTHER TESTS REPORTS"
                         android:textAllCaps="true"
                         android:textColor="@color/white"
                         app:customFont="@string/pt_sans_bold" />

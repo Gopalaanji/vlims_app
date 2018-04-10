@@ -56,7 +56,7 @@ public class CautionAlertAnalysisReport extends BaseFragment implements View.OnC
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.caution_alerts_luboilReportsBtn:
-                fragmentActivity.replaceFragment(new CautionAlertsFragment(), "agent_signup", null);
+                fragmentActivity.replaceFragment(new CautionAlertsLubeOilFragment(), "agent_signup", null);
                 break;
             case R.id.caution_alerts_fuelOilReportsaBtn:
                 fragmentActivity.replaceFragment(new CautionAlertsFuelOilReportsFragment(), "agent_signup", null);

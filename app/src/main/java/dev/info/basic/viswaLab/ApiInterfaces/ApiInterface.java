@@ -64,6 +64,27 @@ public interface ApiInterface {
     void GetForgot(@Field("username") String username, @Field("mailid") String mailid, @Field("mobilenumber") String mobilenumber, Callback<JsonObject> callback);
 
     //ANALYSYS REPORTS
+
+    //FO ships spinner
+    @FormUrlEncoded
+    @POST("/GetVL_FO_ActiveReports")
+    void GetFuelOilReportsAnalysisReportsShips(@Field("userid") String userid, Callback<JsonObject> callback);
+
+    //CLO ships spinner
+    @FormUrlEncoded
+    @POST("/GetVL_CLO_ActiveReports")
+    void GetCylinderOilReportsAnalysisReportsShips(@Field("userid") String userid, Callback<JsonObject> callback);
+
+    //POMP ships spinner
+    @FormUrlEncoded
+    @POST("/GetVL_POMP_ActiveReports")
+    void GetPOMPAnalysisReportsShips(@Field("userid") String userid, Callback<JsonObject> callback);
+
+    //LO ships spinner
+    @FormUrlEncoded
+    @POST("/GetVL_LO_ActiveReports")
+    void GetLubeOilAnalysisReportsShips(@Field("userid") String userid, Callback<JsonObject> callback);
+
     @FormUrlEncoded
     @POST("/GetVL_FO_Reports")
     void GetFuelOilReportsAnalysisReports(@Field("userid") String userid, @Field("shipid") int shipid, @Field("imonumber") String imonumber, Callback<JsonObject> callback);
@@ -78,6 +99,22 @@ public interface ApiInterface {
     void GetPompsReportAnalysisReports(@Field("userid") String userid, @Field("shipid") int shipid, @Field("imonumber") String imonumber, Callback<JsonObject> callback);
 
     //CAUTION ALERTS
+
+    //FO ships spinner
+    @FormUrlEncoded
+    @POST("/GetVL_FO_ActiveCautionAlerts")
+    void GetFuelOilCOShips(@Field("userid") String userid, Callback<JsonObject> callback);
+
+    //LO ships spinner
+    @FormUrlEncoded
+    @POST("/GetVL_LO_ActiveCautionAlerts")
+    void GetLOOilCOShips(@Field("userid") String userid, Callback<JsonObject> callback);
+
+    //CLO ships spinner
+    @FormUrlEncoded
+    @POST("/GetVL_CLO_ActiveCautionAlerts")
+    void GetCylinderOilOilCOShips(@Field("userid") String userid, Callback<JsonObject> callback);
+
     @FormUrlEncoded
     @POST("/GetVL_FO_CautionAlerts")
     void GetFuelOilReportsCautionAlert(@Field("userid") String userid, @Field("shipid") int shipid, @Field("imonumber") String imonumber, Callback<JsonObject> callback);

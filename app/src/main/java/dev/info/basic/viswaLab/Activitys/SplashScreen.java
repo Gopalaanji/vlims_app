@@ -45,7 +45,6 @@ public class SplashScreen extends AppCompatActivity {
         common = new Common();
         helper.getInstance(SplashScreen.this);
         dbHelper = new helper(SplashScreen.this);
-
         if (prefs.getString("userid", "") != null&&!prefs.getString("userid", "").isEmpty()&&!prefs.getString("userid", "").equals("")) {
             dbHelper.deleteAllShips();
             getUserShipDetails(prefs.getString("userid", ""));

@@ -34,7 +34,6 @@ import dev.info.basic.viswaLab.Fragments.BaseFragment;
 import dev.info.basic.viswaLab.R;
 import dev.info.basic.viswaLab.models.LOEquipmentDetailsModel;
 import dev.info.basic.viswaLab.models.LoBrandGradesModel;
-import dev.info.basic.viswaLab.models.ReportDataModel;
 import dev.info.basic.viswaLab.models.ShipdetailsModel;
 import dev.info.basic.viswaLab.utils.Common;
 import retrofit.Callback;
@@ -99,20 +98,49 @@ public class AnalysisReportsCylinderOilReportsFragment extends BaseFragment impl
         sr_number.setEnabled(true);
         helper.getInstance(getContext());
         dbHelper = new helper(getContext());
-        fetchShipDetils();
+        getUserShipDetailsOfCylinderOilReports(prefs.getString("userid", ""));
         return rootView;
     }
 
-    private void fetchShipDetils() {
-        shipdetailsList = dbHelper.getAllShipDetails();
-        final String[] shipList = new String[shipdetailsList.size() + 1];
-        int j = 1;
-        shipList[0] = "All Ships*";
-        for (int i = 0; i < shipdetailsList.size(); i++) {
-            shipList[j] = shipdetailsList.get(i).getShipName();
-            j++;
-        }
-        renderDetails(shipList);
+    private void getUserShipDetailsOfCylinderOilReports(String userid) {
+        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
+        final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
+        main_loader.setVisibility(View.VISIBLE);
+        apiInterface.GetCylinderOilReportsAnalysisReportsShips(userid, new Callback<JsonObject>() {
+            @Override
+            public void success(JsonObject response_data_obj, Response response) {
+                Log.v("RESPONSE==>", response_data_obj.toString());
+                main_loader.setVisibility(View.GONE);
+                if (response_data_obj != null) {
+                    try {
+                        shipdetailsList = new Gson().fromJson(response_data_obj.getAsJsonArray("ReportsData"), new TypeToken<List<ShipdetailsModel>>() {
+                        }.getType());
+                        final String[] shipList = new String[shipdetailsList.size() + 1];
+                        if (shipdetailsList != null) {
+                            int j = 1;
+                            shipList[0] = "All Ships*";
+                            for (int i = 0; i < shipdetailsList.size(); i++) {
+                                shipList[j] = shipdetailsList.get(i).getShipName();
+                                j++;
+                            }
+                        }
+                        renderDetails(shipList);
+                    }catch (Exception e) {
+                        showAlertDialog("http://173.11.229.171/viswaweb/VLReports/SampleReports/CLO.PDF");
+                    }
+                } else {
+                    main_loader.setVisibility(View.GONE);
+                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Something went wrong!");
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                main_loader.setVisibility(View.GONE);
+                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
+            }
+        });
+
     }
 
     private void renderDetails(String[] shipList) {
@@ -161,29 +189,29 @@ public class AnalysisReportsCylinderOilReportsFragment extends BaseFragment impl
             public void success(JsonObject response_data_obj, Response response) {
                 Log.v("RESPONSE==>", response_data_obj.toString());
                 try {
+                    main_loader.setVisibility(View.GONE);
                     if (response_data_obj != null) {
-                        main_loader.setVisibility(View.GONE);
                         mReportDataModelList = new ArrayList<AnalysisFoModel>();
                         mReportDataModelList = new Gson().fromJson(response_data_obj.getAsJsonArray("ReportsData"), new TypeToken<List<AnalysisFoModel>>() {
                         }.getType());
                         if (mReportDataModelList != null) {
-                            renderTheResponse();
+                            renderTheResponse(false);
                         } else {
                             imo_number.setText("");
-                            main_loader.setVisibility(View.GONE);
-                            common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                            if(shipId==0){
+                                showAlertDialog("http://173.11.229.171/viswaweb/VLReports/SampleReports/CLO.PDF");
+                            }else{
+                                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                            }
                         }
                     } else {
-
-                        main_loader.setVisibility(View.GONE);
+                        renderTheResponse(true);
                         common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                     }
 
                 } catch (Exception e) {
-
                     main_loader.setVisibility(View.GONE);
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
-
+                    showAlertDialog("http://173.11.229.171/viswaweb/VLReports/SampleReports/CLO.PDF");
                 }
 
             }
@@ -198,7 +226,7 @@ public class AnalysisReportsCylinderOilReportsFragment extends BaseFragment impl
 
     }
 
-    private void renderTheResponse() {
+    private void renderTheResponse(boolean nodata) {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity()) {
             @Override
             public RecyclerView.LayoutParams generateDefaultLayoutParams() {
@@ -207,10 +235,22 @@ public class AnalysisReportsCylinderOilReportsFragment extends BaseFragment impl
             }
         };
         mRecyclerView.setLayoutManager(layoutManager);
-        if (mReportDataModelList != null) {
-            mReporterAdapter = new AnalysisReportsAdapter(getActivity(), "CLO", mReportDataModelList, prefs.getString("userid", ""));
+        if(nodata){
+            AnalysisFoModel analysisFoModel=new AnalysisFoModel();
+            analysisFoModel.setBunkerDate("Test Date");
+            analysisFoModel.setShipName("Test Ship");
+            analysisFoModel.setOilCondition("1");
+            analysisFoModel.setBunkerPort("CLO_AR");
+            mReportDataModelList.add(analysisFoModel);
+            mReporterAdapter = new AnalysisReportsAdapter(getActivity(), "FO", mReportDataModelList, prefs.getString("userid", ""));
             mRecyclerView.setAdapter(mReporterAdapter);
+        }else{
+            if (mReportDataModelList != null) {
+                mReporterAdapter = new AnalysisReportsAdapter(getActivity(), "CLO", mReportDataModelList, prefs.getString("userid", ""));
+                mRecyclerView.setAdapter(mReporterAdapter);
+            }
         }
+
     }
 
     @Override

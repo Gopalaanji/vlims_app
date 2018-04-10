@@ -98,21 +98,51 @@ public class AnalysisReportsPOMPpage extends BaseFragment implements View.OnClic
         sr_number.setEnabled(true);
         helper.getInstance(getContext());
         dbHelper = new helper(getContext());
-        fetchShipDetils();
+        GetPOMPAnalysisReportsShips();
         return rootView;
     }
 
-    private void fetchShipDetils() {
-        shipdetailsList = dbHelper.getAllShipDetails();
-        final String[] shipList = new String[shipdetailsList.size() + 1];
-        int j = 1;
-        shipList[0] = "All Ships*";
-        for (int i = 0; i < shipdetailsList.size(); i++) {
-            shipList[j] = shipdetailsList.get(i).getShipName();
-            j++;
-        }
-        renderDetails(shipList);
+    private void GetPOMPAnalysisReportsShips() {
+        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
+        final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
+        main_loader.setVisibility(View.VISIBLE);
+        apiInterface.GetPOMPAnalysisReportsShips(prefs.getString("userid", ""), new Callback<JsonObject>() {
+            @Override
+            public void success(JsonObject response_data_obj, Response response) {
+                Log.v("RESPONSE==>", response_data_obj.toString());
+                main_loader.setVisibility(View.GONE);
+                if (response_data_obj != null) {
+                    try {
+                        shipdetailsList = new Gson().fromJson(response_data_obj.getAsJsonArray("ReportsData"), new TypeToken<List<ShipdetailsModel>>() {
+                        }.getType());
+                        final String[] shipList = new String[shipdetailsList.size() + 1];
+                        if (shipdetailsList != null) {
+                            int j = 1;
+                            shipList[0] = "All Ships*";
+                            for (int i = 0; i < shipdetailsList.size(); i++) {
+                                shipList[j] = shipdetailsList.get(i).getShipName();
+                                j++;
+                            }
+                        }
+                        renderDetails(shipList);
+                    } catch (Exception e) {
+                        showAlertDialog(":  http://173.11.229.171/viswaweb/VLReports/SampleReports/POMP.PDF");
+                    }
+                } else {
+                    main_loader.setVisibility(View.GONE);
+                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Something went wrong!");
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                main_loader.setVisibility(View.GONE);
+                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
+            }
+        });
+
     }
+
 
     private void renderDetails(String[] shipList) {
 
@@ -154,7 +184,7 @@ public class AnalysisReportsPOMPpage extends BaseFragment implements View.OnClic
         main_loader.setVisibility(View.VISIBLE);
         RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
         final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
-        apiInterface.GetPompsReportAnalysisReports(prefs.getString("userid", ""),shipId, imo_number.getText().toString(), new Callback<JsonObject>() {
+        apiInterface.GetPompsReportAnalysisReports(prefs.getString("userid", ""), shipId, imo_number.getText().toString(), new Callback<JsonObject>() {
             @Override
             public void success(JsonObject response_data_obj, Response response) {
                 Log.v("RESPONSE==>", response_data_obj.toString());
@@ -165,11 +195,15 @@ public class AnalysisReportsPOMPpage extends BaseFragment implements View.OnClic
                         mReportDataModelList = new Gson().fromJson(response_data_obj.getAsJsonArray("ReportsData"), new TypeToken<List<AnalysisFoModel>>() {
                         }.getType());
                         if (mReportDataModelList != null) {
-                            renderTheResponse();
+                            renderTheResponse(false);
                         } else {
                             imo_number.setText("");
                             main_loader.setVisibility(View.GONE);
-                            common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                            if (shipId == 0) {
+                                showAlertDialog(":  http://173.11.229.171/viswaweb/VLReports/SampleReports/POMP.PDF");
+                            } else {
+                                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                            }
                         }
                     } else {
                         main_loader.setVisibility(View.GONE);
@@ -177,10 +211,8 @@ public class AnalysisReportsPOMPpage extends BaseFragment implements View.OnClic
                     }
 
                 } catch (Exception e) {
-
                     main_loader.setVisibility(View.GONE);
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
-
+                    showAlertDialog(":  http://173.11.229.171/viswaweb/VLReports/SampleReports/POMP.PDF");
                 }
 
             }
@@ -195,19 +227,30 @@ public class AnalysisReportsPOMPpage extends BaseFragment implements View.OnClic
 
     }
 
-    private void renderTheResponse() {
+    private void renderTheResponse(boolean nodata) {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity()) {
             @Override
             public RecyclerView.LayoutParams generateDefaultLayoutParams() {
-                return new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT);
+                return new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             }
         };
         mRecyclerView.setLayoutManager(layoutManager);
-        if (mReportDataModelList != null) {
-            mReporterAdapter = new AnalysisReportsAdapter(getActivity(), "POMP_AR", mReportDataModelList, prefs.getString("userid", ""));
+        if (nodata) {
+            AnalysisFoModel analysisFoModel = new AnalysisFoModel();
+            analysisFoModel.setBunkerDate("Test Date");
+            analysisFoModel.setShipName("Test Ship");
+            analysisFoModel.setOilCondition("1");
+            analysisFoModel.setBunkerPort("POMP_AR");
+            mReportDataModelList.add(analysisFoModel);
+            mReporterAdapter = new AnalysisReportsAdapter(getActivity(), "FO", mReportDataModelList, prefs.getString("userid", ""));
             mRecyclerView.setAdapter(mReporterAdapter);
+        } else {
+            if (mReportDataModelList != null) {
+                mReporterAdapter = new AnalysisReportsAdapter(getActivity(), "POMP_AR", mReportDataModelList, prefs.getString("userid", ""));
+                mRecyclerView.setAdapter(mReporterAdapter);
+            }
         }
+
     }
 
     @Override

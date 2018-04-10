@@ -78,12 +78,15 @@ public class ReporterAdapter extends RecyclerView.Adapter<ReporterAdapter.viewHo
         holder.tvReult.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://173.11.229.171/viswaweb/VLReports/LOReports/" + reportDataModel.getSerial().toString() + ".pdf"));
+                Intent browserIntent = null;
+                if (reportDataModel.getEquipment().equalsIgnoreCase("LO_AR")) {
+                    browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://173.11.229.171/viswaweb/VLReports/SampleReports/LO.PDF"));
+                } else if (reportDataModel.getEquipment().equalsIgnoreCase("LO_CA")) {
+                    browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://173.11.229.171/viswaweb/VLReports/SampleReports/LO_C.PDF"));
+                } else {
+                    browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://173.11.229.171/viswaweb/VLReports/LOReports/" + reportDataModel.getSerial().toString() + ".pdf"));
+                }
                 context.startActivity(browserIntent);
-
-          /*      Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://173.11.229.171/viswaweb/LO_CLOPreview.aspx?strUserId=" + userId + "&&SampType=3&&strSerial=" + reportDataModel.getSerial().toString()));
-                Log.v("xxx","http://173.11.229.171/viswaweb/LO_CLOPreview.aspx?strUserId=" + userId + "&&SampType=3&&strSerial=" + reportDataModel.getSerial().toString());
-                context.startActivity(browserIntent);*/
             }
         });
     }

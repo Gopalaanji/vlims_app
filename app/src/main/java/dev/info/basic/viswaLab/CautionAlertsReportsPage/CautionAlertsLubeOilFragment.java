@@ -44,7 +44,7 @@ import retrofit.client.Response;
  * Created by ${GIRI} on 12-01-2018.
  */
 
-public class CautionAlertsFragment extends BaseFragment implements View.OnClickListener {
+public class CautionAlertsLubeOilFragment extends BaseFragment implements View.OnClickListener {
     private LoginFragmentActivity fragmentActivity;
     private View rootView;
     private Common common;
@@ -146,7 +146,7 @@ public class CautionAlertsFragment extends BaseFragment implements View.OnClickL
                         mReportDataModelList = new Gson().fromJson(response_data_obj.getAsJsonArray("UserReportdata"), new TypeToken<List<ReportDataModel>>() {
                         }.getType());
                         if (mReportDataModelList != null) {
-                            renderTheResponse();
+                            renderTheResponse(false);
                         } else {
                             imo_number.setText("");
                             main_loader.setVisibility(View.GONE);
@@ -173,7 +173,7 @@ public class CautionAlertsFragment extends BaseFragment implements View.OnClickL
 
     }
 
-    private void renderTheResponse() {
+    private void renderTheResponse(boolean nodata) {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity()) {
             @Override
             public RecyclerView.LayoutParams generateDefaultLayoutParams() {
@@ -182,10 +182,21 @@ public class CautionAlertsFragment extends BaseFragment implements View.OnClickL
             }
         };
         mRecyclerView.setLayoutManager(layoutManager);
-        if (mReportDataModelList != null) {
+        if (nodata) {
+            ReportDataModel analysisFoModel = new ReportDataModel();
+            analysisFoModel.setShipName("Test Ship");
+            analysisFoModel.setEquipment("LO_CA");
+            analysisFoModel.setOilCondition("1");
+            mReportDataModelList.add(analysisFoModel);
             mReporterAdapter = new ReporterAdapter(getActivity(), true, mReportDataModelList, prefs.getString("userid", ""));
             mRecyclerView.setAdapter(mReporterAdapter);
+        } else {
+            if (mReportDataModelList != null) {
+                mReporterAdapter = new ReporterAdapter(getActivity(), true, mReportDataModelList, prefs.getString("userid", ""));
+                mRecyclerView.setAdapter(mReporterAdapter);
+            }
         }
+
     }
 
 
@@ -244,14 +255,15 @@ public class CautionAlertsFragment extends BaseFragment implements View.OnClickL
                         mReportDataModelList = new Gson().fromJson(response_data_obj.getAsJsonArray("ReportData"), new TypeToken<List<ReportDataModel>>() {
                         }.getType());
                         if (mReportDataModelList != null) {
-                            renderTheResponse();
+                            renderTheResponse(false);
                         } else {
+                            renderTheResponse(true);
                             imo_number.setText("");
                             main_loader.setVisibility(View.GONE);
                             common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                         }
                     } else {
-
+                        renderTheResponse(true);
                         main_loader.setVisibility(View.GONE);
                         common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                     }
@@ -293,20 +305,24 @@ public class CautionAlertsFragment extends BaseFragment implements View.OnClickL
                         mReportDataModelList = new Gson().fromJson(response_data_obj.getAsJsonArray("UserReportdata"), new TypeToken<List<ReportDataModel>>() {
                         }.getType());
                         if (mReportDataModelList != null) {
-                            renderTheResponse();
+                            renderTheResponse(false);
                         } else {
                             imo_number.setText("");
                             main_loader.setVisibility(View.GONE);
-                            common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                            if(shipId==0){
+                                showAlertDialog("http://173.11.229.171/viswaweb/VLReports/SampleReports/LO_C.PDF");
+                            }else{
+                                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                            }
                         }
                     } else {
-
+                        renderTheResponse(true);
                         main_loader.setVisibility(View.GONE);
                         common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                     }
 
                 } catch (Exception e) {
-
+                    renderTheResponse(true);
                     main_loader.setVisibility(View.GONE);
                     common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                 }
