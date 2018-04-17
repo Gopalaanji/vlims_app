@@ -75,7 +75,7 @@ public class AnalysisReportsCylinderOilReportsFragment extends BaseFragment impl
         fragmentActivity = (LoginFragmentActivity) getActivity();
         common = new Common();
         fragmentActivity.displayActionBar();
-        fragmentActivity.setActionBarTitle("Cylinder Oil Analysis");
+        fragmentActivity.setActionBarTitle("Cylinder Drain Oil Reports");
         fragmentActivity.showActionBar();
         fragmentActivity.hideBackActionBar();
         prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
@@ -126,7 +126,7 @@ public class AnalysisReportsCylinderOilReportsFragment extends BaseFragment impl
                         }
                         renderDetails(shipList);
                     }catch (Exception e) {
-                        showAlertDialog("http://173.11.229.171/viswaweb/VLReports/SampleReports/CLO.PDF");
+                        showAlertDialog("Cylinder Drain Oil Reports","http://173.11.229.171/viswaweb/VLReports/SampleReports/CLO.PDF");
                     }
                 } else {
                     main_loader.setVisibility(View.GONE);
@@ -199,7 +199,7 @@ public class AnalysisReportsCylinderOilReportsFragment extends BaseFragment impl
                         } else {
                             imo_number.setText("");
                             if(shipId==0){
-                                showAlertDialog("http://173.11.229.171/viswaweb/VLReports/SampleReports/CLO.PDF");
+                                showAlertDialog("Cylinder Drain Oil Reports","http://173.11.229.171/viswaweb/VLReports/SampleReports/CLO.PDF");
                             }else{
                                 common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                             }
@@ -211,7 +211,7 @@ public class AnalysisReportsCylinderOilReportsFragment extends BaseFragment impl
 
                 } catch (Exception e) {
                     main_loader.setVisibility(View.GONE);
-                    showAlertDialog("http://173.11.229.171/viswaweb/VLReports/SampleReports/CLO.PDF");
+                    showAlertDialog("Cylinder Drain Oil Reports","http://173.11.229.171/viswaweb/VLReports/SampleReports/CLO.PDF");
                 }
 
             }

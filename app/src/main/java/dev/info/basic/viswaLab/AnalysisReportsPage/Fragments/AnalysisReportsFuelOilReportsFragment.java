@@ -75,7 +75,7 @@ public class AnalysisReportsFuelOilReportsFragment extends BaseFragment implemen
         fragmentActivity = (LoginFragmentActivity) getActivity();
         common = new Common();
         fragmentActivity.displayActionBar();
-        fragmentActivity.setActionBarTitle("Fuel Oil Analysis");
+        fragmentActivity.setActionBarTitle("Fuel Oil Reports");
         fragmentActivity.showActionBar();
         fragmentActivity.hideBackActionBar();
         prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
@@ -126,7 +126,7 @@ public class AnalysisReportsFuelOilReportsFragment extends BaseFragment implemen
                         }
                         renderDetails(shipList);
                     } catch (Exception e) {
-                        showAlertDialog("http://173.11.229.171/viswaweb/VLReports/SampleReports/FO.PDF");
+                        showAlertDialog("Fuel Oil Reports","http://173.11.229.171/viswaweb/VLReports/SampleReports/FO.PDF");
                     }
                 } else {
                     main_loader.setVisibility(View.GONE);
@@ -198,7 +198,7 @@ public class AnalysisReportsFuelOilReportsFragment extends BaseFragment implemen
                         } else {
                             imo_number.setText("");
                             if (shipId == 0) {
-                                showAlertDialog("http://173.11.229.171/viswaweb/VLReports/SampleReports/FO.PDF");
+                                showAlertDialog("Fuel Oil Reports","http://173.11.229.171/viswaweb/VLReports/SampleReports/FO.PDF");
                             } else {
                                 common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                             }
@@ -209,7 +209,7 @@ public class AnalysisReportsFuelOilReportsFragment extends BaseFragment implemen
                     }
 
                 } catch (Exception e) {
-                    showAlertDialog("http://173.11.229.171/viswaweb/VLReports/SampleReports/FO.PDF");
+                    showAlertDialog("Fuel Oil Reports","http://173.11.229.171/viswaweb/VLReports/SampleReports/FO.PDF");
                 }
 
             }

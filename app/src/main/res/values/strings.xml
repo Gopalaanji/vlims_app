@@ -356,11 +356,11 @@
         <item>@string/preMonth</item>
         <item>@string/crtYear</item>
     </string-array>
-    <string name="huston_address">12140 Almeda Rd.\nHuston, Texas 77045 USA\n\n</string>
-    <string name="singapoor_address">80 Tagore Lane\nSingapore\n\n</string>
-    <string name="uk_address">New First AvenueWilton \nInternational Site\nMiddlesbrough, Cleveland\nTS104RG\n\n</string>
-    <string name="arab_address">Viswa Lab International FZE \nWarehouse 17B\nFujairah Freezone 1\nFujairah PO Box 50234\n\n</string>
-    <string name="belgium_address">Administrative Office\nEmdenweg 23 (Kaai 217)\n\n2030 Antwerp Belgium\n\n</string>
+    <string name="huston_address">12140 Almeda Road \n Houston, Texas 77045 USA</string>
+    <string name="singapoor_address">80 Tagore Lane\nSingapore</string>
+    <string name="uk_address">New First AvenueWilton\nInternational Site\nMiddlesbrough, Cleveland\nTS104RG</string>
+    <string name="arab_address">Viswa Lab International FZE \nWarehouse 17B\nFujairah Freezone 1\nFujairah PO Box 50234</string>
+    <string name="belgium_address">Administrative Office\nEmdenweg 23 (Kaai 217) \n2030 Antwerp Belgium</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

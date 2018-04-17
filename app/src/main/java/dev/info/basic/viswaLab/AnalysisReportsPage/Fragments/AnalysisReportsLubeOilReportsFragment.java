@@ -80,7 +80,7 @@ public class AnalysisReportsLubeOilReportsFragment extends BaseFragment implemen
         fragmentActivity = (LoginFragmentActivity) getActivity();
         common = new Common();
         fragmentActivity.displayActionBar();
-        fragmentActivity.setActionBarTitle("Lube Oil Analysis");
+        fragmentActivity.setActionBarTitle("Lube Oil Reports");
         fragmentActivity.showActionBar();
         fragmentActivity.hideBackActionBar();
         prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
@@ -109,49 +109,20 @@ public class AnalysisReportsLubeOilReportsFragment extends BaseFragment implemen
         sr_number.setEnabled(true);
         helper.getInstance(getContext());
         dbHelper = new helper(getContext());
-        fetchShipDetils();
+        fetchLubeOilReports();
         return rootView;
     }
 
-    private void fetchShipDetils() {
-        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
-        final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
-        main_loader.setVisibility(View.VISIBLE);
-        apiInterface.GetFuelOilReportsAnalysisReportsShips(prefs.getString("userid", ""), new Callback<JsonObject>() {
-            @Override
-            public void success(JsonObject response_data_obj, Response response) {
-                Log.v("RESPONSE==>", response_data_obj.toString());
-                main_loader.setVisibility(View.GONE);
-                if (response_data_obj != null) {
-                    try {
-                        shipdetailsList = new Gson().fromJson(response_data_obj.getAsJsonArray("ReportsData"), new TypeToken<List<ShipdetailsModel>>() {
-                        }.getType());
-                        final String[] shipList = new String[shipdetailsList.size() + 1];
-                        if (shipdetailsList != null) {
-                            int j = 1;
-                            shipList[0] = "All Ships*";
-                            for (int i = 0; i < shipdetailsList.size(); i++) {
-                                shipList[j] = shipdetailsList.get(i).getShipName();
-                                j++;
-                            }
-                        }
-                        renderDetails(shipList);
-                    } catch (Exception e) {
-                        showAlertDialog("http://173.11.229.171/viswaweb/VLReports/SampleReports/LO.PDF");
-                    }
-                } else {
-                    main_loader.setVisibility(View.GONE);
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Something went wrong!");
-                }
-            }
-
-            @Override
-            public void failure(RetrofitError error) {
-                main_loader.setVisibility(View.GONE);
-                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
-            }
-        });
-
+    private void fetchLubeOilReports() {
+        shipdetailsList = dbHelper.getAllShipDetails();
+        final String[] shipList = new String[shipdetailsList.size() + 1];
+        int j = 1;
+        shipList[0] = "All Ships*";
+        for (int i = 0; i < shipdetailsList.size(); i++) {
+            shipList[j] = shipdetailsList.get(i).getShipName();
+            j++;
+        }
+        renderDetails(shipList);
     }
 
     private void renderDetails(final String[] shipList) {
@@ -408,7 +379,7 @@ public class AnalysisReportsLubeOilReportsFragment extends BaseFragment implemen
                         } else {
                             imo_number.setText("");
                             if (shipId == 0) {
-                                showAlertDialog("http://173.11.229.171/viswaweb/VLReports/SampleReports/LO.PDF");
+                                showAlertDialog("Lube Oil Reports","http://173.11.229.171/viswaweb/VLReports/SampleReports/LO.PDF");
                             } else {
                                 common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                             }
@@ -418,7 +389,7 @@ public class AnalysisReportsLubeOilReportsFragment extends BaseFragment implemen
                     }
 
                 } catch (Exception e) {
-                    showAlertDialog("http://173.11.229.171/viswaweb/VLReports/SampleReports/LO.PDF");
+                    showAlertDialog("Lube Oil Reports","http://173.11.229.171/viswaweb/VLReports/SampleReports/LO.PDF");
                 }
 
             }

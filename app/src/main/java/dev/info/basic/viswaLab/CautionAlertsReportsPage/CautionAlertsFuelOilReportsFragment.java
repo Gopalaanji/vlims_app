@@ -79,7 +79,7 @@ public class CautionAlertsFuelOilReportsFragment extends BaseFragment implements
         fragmentActivity = (LoginFragmentActivity) getActivity();
         common = new Common();
         fragmentActivity.displayActionBar();
-        fragmentActivity.setActionBarTitle("Fuel Oil Alerts");
+        fragmentActivity.setActionBarTitle("Fuel Oil Caution Reports");
         fragmentActivity.showActionBar();
         fragmentActivity.hideBackActionBar();
         prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
@@ -110,7 +110,7 @@ public class CautionAlertsFuelOilReportsFragment extends BaseFragment implements
         RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
         final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
         main_loader.setVisibility(View.VISIBLE);
-        apiInterface.GetFuelOilReportsAnalysisReportsShips(prefs.getString("userid", ""), new Callback<JsonObject>() {
+        apiInterface.GetFuelOilCOShips(prefs.getString("userid", ""), new Callback<JsonObject>() {
             @Override
             public void success(JsonObject response_data_obj, Response response) {
                 Log.v("RESPONSE==>", response_data_obj.toString());
@@ -130,7 +130,7 @@ public class CautionAlertsFuelOilReportsFragment extends BaseFragment implements
                         }
                         renderDetails(shipList);
                     } catch (Exception e) {
-                        showAlertDialog("http://173.11.229.171/viswaweb/VLReports/SampleReports/FO_C.PDF");
+                        showAlertDialog("Caution Alerts FuelOil","http://173.11.229.171/viswaweb/VLReports/SampleReports/FO_C.PDF");
                     }
                 } else {
                     main_loader.setVisibility(View.GONE);
@@ -202,7 +202,7 @@ public class CautionAlertsFuelOilReportsFragment extends BaseFragment implements
                             imo_number.setText("");
                             main_loader.setVisibility(View.GONE);
                             if (shipId == 0) {
-                                showAlertDialog("http://173.11.229.171/viswaweb/VLReports/SampleReports/FO_C.PDF");
+                                showAlertDialog("Caution Alerts FuelOil","http://173.11.229.171/viswaweb/VLReports/SampleReports/FO_C.PDF");
                             } else {
                                 common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                             }

@@ -75,7 +75,7 @@ public class CautionAlertsCylinderOilReportsFragment extends BaseFragment implem
         fragmentActivity = (LoginFragmentActivity) getActivity();
         common = new Common();
         fragmentActivity.displayActionBar();
-        fragmentActivity.setActionBarTitle("Cylinder Oil Alerts");
+        fragmentActivity.setActionBarTitle("Cylinder Drain Oil Caution Reports");
         fragmentActivity.showActionBar();
         fragmentActivity.hideBackActionBar();
         prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
@@ -126,7 +126,7 @@ public class CautionAlertsCylinderOilReportsFragment extends BaseFragment implem
                         }
                         renderDetails(shipList);
                     } catch (Exception e) {
-                        showAlertDialog(":  http://173.11.229.171/viswaweb/VLReports/SampleReports/CLO_C.PDF");
+                        showAlertDialog("Caution Alerts CylinderOil","http://173.11.229.171/viswaweb/VLReports/SampleReports/CLO_C.PDF");
                     }
                 } else {
                     main_loader.setVisibility(View.GONE);
@@ -199,7 +199,7 @@ public class CautionAlertsCylinderOilReportsFragment extends BaseFragment implem
                             imo_number.setText("");
                             main_loader.setVisibility(View.GONE);
                             if (shipId == 0) {
-                                showAlertDialog(":  http://173.11.229.171/viswaweb/VLReports/SampleReports/CLO_C.PDF");
+                                showAlertDialog("Caution Alerts CylinderOil","http://173.11.229.171/viswaweb/VLReports/SampleReports/CLO_C.PDF");
                             } else {
                                 common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                             }

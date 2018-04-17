@@ -3,7 +3,6 @@ package dev.info.basic.viswaLab.Fragments;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
@@ -13,6 +12,10 @@ import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -22,6 +25,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import dev.info.basic.viswaLab.Activitys.WebViewActivity;
+import dev.info.basic.viswaLab.R;
 
 /**
  * Created by E5000096 on 19-07-2016.
@@ -71,15 +75,17 @@ public class BaseFragment extends Fragment {
 
     }
 
-    public void showAlertDialog(final String url) {
+    public void showAlertDialog(final String title, final String url) {
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+        View alertLayout = inflater.inflate(R.layout.all_diaologs, null);
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("CautionAlerts FuelOil Reports");
-        builder.setMessage("Records not found!");
-        builder.setPositiveButton("Show Sample Report", new DialogInterface.OnClickListener() {
+        builder.setView(alertLayout);
+        TextView tvtitle = (TextView) alertLayout.findViewById(R.id.tvdialogtitle);
+        Button btndialog = (Button) alertLayout.findViewById(R.id.btndialog);
+        tvtitle.setText(title);
+        btndialog.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-//                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-//                getActivity().startActivity(browserIntent);
+            public void onClick(View v) {
                 Intent browse = new Intent(getActivity(), WebViewActivity.class);
                 browse.putExtra("pdf_id", url);
                 getActivity().startActivity(browse);
@@ -87,6 +93,7 @@ public class BaseFragment extends Fragment {
         });
         builder.show();
     }
+
 
     public void openBroucher(String fileName) {
 

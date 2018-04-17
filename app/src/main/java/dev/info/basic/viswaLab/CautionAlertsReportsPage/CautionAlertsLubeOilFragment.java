@@ -75,7 +75,7 @@ public class CautionAlertsLubeOilFragment extends BaseFragment implements View.O
         fragmentActivity.hideBackActionBar();
         prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         editor = prefs.edit();
-        fragmentActivity.setActionBarTitle("Caution Alerts");
+        fragmentActivity.setActionBarTitle("Lube Oil Caution Reports");
         main_loader = (RelativeLayout) rootView.findViewById(R.id.initial_loader);
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.mRecyclerView);
         spnVesselShips = (Spinner) rootView.findViewById(R.id.spnVesselShips);
@@ -310,7 +310,7 @@ public class CautionAlertsLubeOilFragment extends BaseFragment implements View.O
                             imo_number.setText("");
                             main_loader.setVisibility(View.GONE);
                             if(shipId==0){
-                                showAlertDialog("http://173.11.229.171/viswaweb/VLReports/SampleReports/LO_C.PDF");
+                                showAlertDialog("Caution Alerts LubeOil","http://173.11.229.171/viswaweb/VLReports/SampleReports/LO_C.PDF");
                             }else{
                                 common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                             }

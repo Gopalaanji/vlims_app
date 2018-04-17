@@ -75,7 +75,7 @@ public class AnalysisReportsPOMPpage extends BaseFragment implements View.OnClic
         fragmentActivity = (LoginFragmentActivity) getActivity();
         common = new Common();
         fragmentActivity.displayActionBar();
-        fragmentActivity.setActionBarTitle("Pomp Oil Analysis");
+        fragmentActivity.setActionBarTitle("POMP Reports");
         fragmentActivity.showActionBar();
         fragmentActivity.hideBackActionBar();
         prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
@@ -126,7 +126,7 @@ public class AnalysisReportsPOMPpage extends BaseFragment implements View.OnClic
                         }
                         renderDetails(shipList);
                     } catch (Exception e) {
-                        showAlertDialog(":  http://173.11.229.171/viswaweb/VLReports/SampleReports/POMP.PDF");
+                   showAlertDialog("POMP Reports","http://173.11.229.171/viswaweb/VLReports/SampleReports/POMP.PDF");
                     }
                 } else {
                     main_loader.setVisibility(View.GONE);
@@ -200,7 +200,7 @@ public class AnalysisReportsPOMPpage extends BaseFragment implements View.OnClic
                             imo_number.setText("");
                             main_loader.setVisibility(View.GONE);
                             if (shipId == 0) {
-                                showAlertDialog(":  http://173.11.229.171/viswaweb/VLReports/SampleReports/POMP.PDF");
+                                showAlertDialog("POMP Reports","http://173.11.229.171/viswaweb/VLReports/SampleReports/POMP.PDF");
                             } else {
                                 common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                             }
@@ -212,7 +212,7 @@ public class AnalysisReportsPOMPpage extends BaseFragment implements View.OnClic
 
                 } catch (Exception e) {
                     main_loader.setVisibility(View.GONE);
-                    showAlertDialog(":  http://173.11.229.171/viswaweb/VLReports/SampleReports/POMP.PDF");
+                    showAlertDialog("POMP Reports","http://173.11.229.171/viswaweb/VLReports/SampleReports/POMP.PDF");
                 }
 
             }
