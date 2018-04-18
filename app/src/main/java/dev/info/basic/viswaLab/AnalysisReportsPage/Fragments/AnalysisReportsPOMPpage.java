@@ -34,6 +34,7 @@ import dev.info.basic.viswaLab.Fragments.BaseFragment;
 import dev.info.basic.viswaLab.R;
 import dev.info.basic.viswaLab.models.LOEquipmentDetailsModel;
 import dev.info.basic.viswaLab.models.LoBrandGradesModel;
+import dev.info.basic.viswaLab.models.ReportDataModel;
 import dev.info.basic.viswaLab.models.ShipdetailsModel;
 import dev.info.basic.viswaLab.utils.Common;
 import retrofit.Callback;
@@ -270,12 +271,64 @@ public class AnalysisReportsPOMPpage extends BaseFragment implements View.OnClic
                     common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Please enter the value!");
                 } else {
                     shipId = 0;
-//                    submitSerialDataReport();
+                    submitSerialDataReport();
                 }
                 break;
         }
 
 
     }
+    private void submitSerialDataReport() {
+        if (!imo_number.getText().toString().isEmpty() && imo_number.getText().toString().length() > 0) {
+            shipId = 0;
+        }
+        if (!sr_number.getText().toString().isEmpty() && sr_number.getText().toString().length() > 0) {
+            shipId = 0;
+        }
+        Log.v("FUCK", "SHIPID" + shipId + "EDIT" + sr_number.getText().toString());
+        main_loader.setVisibility(View.VISIBLE);
+        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
+        final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
+        apiInterface.GetSrDataForPOMPSNSearch(prefs.getString("userid", ""), sr_number.getText().toString(), new Callback<JsonObject>() {
+            @Override
+            public void success(JsonObject response_data_obj, Response response) {
+                Log.v("RESPONSE==>", response_data_obj.toString());
+                try {
+                    if (response_data_obj != null) {
+                        main_loader.setVisibility(View.GONE);
+                        mReportDataModelList = new ArrayList<AnalysisFoModel>();
+                        mReportDataModelList = new Gson().fromJson(response_data_obj.getAsJsonArray("ReportData"), new TypeToken<List<ReportDataModel>>() {
+                        }.getType());
+                        if (mReportDataModelList != null) {
+                            renderTheResponse(false);
+                        } else {
+                            imo_number.setText("");
+                            main_loader.setVisibility(View.GONE);
+                            common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                        }
+                    } else {
+                        renderTheResponse(true);
+                        main_loader.setVisibility(View.GONE);
+                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                    }
+
+                } catch (Exception e) {
+                    renderTheResponse(true);
+                    main_loader.setVisibility(View.GONE);
+                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+
+                }
+
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                main_loader.setVisibility(View.GONE);
+                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
+                sr_number.setText("");
+            }
+        });
+    }
+
 }
 

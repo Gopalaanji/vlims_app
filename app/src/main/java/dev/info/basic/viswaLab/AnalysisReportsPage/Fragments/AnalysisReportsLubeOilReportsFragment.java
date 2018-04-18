@@ -114,15 +114,44 @@ public class AnalysisReportsLubeOilReportsFragment extends BaseFragment implemen
     }
 
     private void fetchLubeOilReports() {
-        shipdetailsList = dbHelper.getAllShipDetails();
-        final String[] shipList = new String[shipdetailsList.size() + 1];
-        int j = 1;
-        shipList[0] = "All Ships*";
-        for (int i = 0; i < shipdetailsList.size(); i++) {
-            shipList[j] = shipdetailsList.get(i).getShipName();
-            j++;
-        }
-        renderDetails(shipList);
+        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
+        final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
+        main_loader.setVisibility(View.VISIBLE);
+        apiInterface.GetLubeOilAnalysisReportsShips(prefs.getString("userid", ""), new Callback<JsonObject>() {
+            @Override
+            public void success(JsonObject response_data_obj, Response response) {
+                Log.v("RESPONSE==>", response_data_obj.toString());
+                main_loader.setVisibility(View.GONE);
+                if (response_data_obj != null) {
+                    try {
+                        shipdetailsList = new Gson().fromJson(response_data_obj.getAsJsonArray("ReportData"), new TypeToken<List<ShipdetailsModel>>() {
+                        }.getType());
+                        final String[] shipList = new String[shipdetailsList.size() + 1];
+                        if (shipdetailsList != null) {
+                            int j = 1;
+                            shipList[0] = "All Ships*";
+                            for (int i = 0; i < shipdetailsList.size(); i++) {
+                                shipList[j] = shipdetailsList.get(i).getShipName();
+                                j++;
+                            }
+                        }
+                        renderDetails(shipList);
+                    } catch (Exception e) {
+                        showAlertDialog("Lube Oil Reports","http://173.11.229.171/viswaweb/VLReports/SampleReports/LO.PDF");
+                    }
+                } else {
+                    main_loader.setVisibility(View.GONE);
+                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Something went wrong!");
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                main_loader.setVisibility(View.GONE);
+                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
+            }
+        });
+
     }
 
     private void renderDetails(final String[] shipList) {
@@ -312,7 +341,7 @@ public class AnalysisReportsLubeOilReportsFragment extends BaseFragment implemen
         main_loader.setVisibility(View.VISIBLE);
         RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
         final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
-        apiInterface.GetSrDataForReport(prefs.getString("userid", ""), sr_number.getText().toString(), new Callback<JsonObject>() {
+        apiInterface.GetSrDataForLOSNSearch(prefs.getString("userid", ""), sr_number.getText().toString(), new Callback<JsonObject>() {
             @Override
             public void success(JsonObject response_data_obj, Response response) {
                 Log.v("RESPONSE==>", response_data_obj.toString());
@@ -363,7 +392,7 @@ public class AnalysisReportsLubeOilReportsFragment extends BaseFragment implemen
         main_loader.setVisibility(View.VISIBLE);
         RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
         final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
-        apiInterface.GetDataForReport(shipId, imo_number.getText().toString(), new Callback<JsonObject>() {
+        apiInterface.GetLubeOilReportsAnalysisReports(prefs.getString("userid",""),shipId, imo_number.getText().toString(), new Callback<JsonObject>() {
             @Override
             public void success(JsonObject response_data_obj, Response response) {
                 Log.v("RESPONSE==>", response_data_obj.toString());

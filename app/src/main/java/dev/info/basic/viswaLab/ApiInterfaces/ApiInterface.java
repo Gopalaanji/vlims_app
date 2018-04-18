@@ -36,9 +36,6 @@ public interface ApiInterface {
     @POST("/GetDataForReport")
     void GetDataForReport(@Field("shipId") int shipID, @Field("ImoNumber") String ImoNumber, Callback<JsonObject> callback);
 
-    @FormUrlEncoded
-    @POST("/LO_SN_Search")
-    void GetSrDataForReport(@Field("userid") String userid, @Field("serialNumber") String serialNumber, Callback<JsonObject> callback);
 
     @FormUrlEncoded
     @POST("/GetSampleSummaryReport")
@@ -63,7 +60,26 @@ public interface ApiInterface {
     @POST("/ForgotPassword")
     void GetForgot(@Field("username") String username, @Field("mailid") String mailid, @Field("mobilenumber") String mobilenumber, Callback<JsonObject> callback);
 
-    //ANALYSYS REPORTS
+    /*   //ANALYSYS REPORTS*/
+
+    @FormUrlEncoded
+    @POST("/FO_SN_Search")
+    void GetSrDataForFOSNSearch(@Field("userid") String userid, @Field("serialNumber") String serialNumber, Callback<JsonObject> callback);
+
+
+    //serial no data foranlaysis lubeoil
+    @FormUrlEncoded
+    @POST("/LO_SN_Search")
+    void GetSrDataForLOSNSearch(@Field("userid") String userid, @Field("serialNumber") String serialNumber, Callback<JsonObject> callback);
+
+    @FormUrlEncoded
+    @POST("/CLO_SN_Search")
+    void GetSrDataForCLOSNSearch(@Field("userid") String userid, @Field("serialNumber") String serialNumber, Callback<JsonObject> callback);
+
+    @FormUrlEncoded
+    @POST("/POMP_SN_Search")
+    void GetSrDataForPOMPSNSearch(@Field("userid") String userid, @Field("serialNumber") String serialNumber, Callback<JsonObject> callback);
+
 
     //FO ships spinner
     @FormUrlEncoded
@@ -82,7 +98,7 @@ public interface ApiInterface {
 
     //LO ships spinner
     @FormUrlEncoded
-    @POST("/GetVL_LO_ActiveReports")
+    @POST("/GetVL_LO_ActiveReport")
     void GetLubeOilAnalysisReportsShips(@Field("userid") String userid, Callback<JsonObject> callback);
 
     @FormUrlEncoded
@@ -90,15 +106,27 @@ public interface ApiInterface {
     void GetFuelOilReportsAnalysisReports(@Field("userid") String userid, @Field("shipid") int shipid, @Field("imonumber") String imonumber, Callback<JsonObject> callback);
 
     @FormUrlEncoded
+    @POST("/GetVL_LO_Report")
+    void GetLubeOilReportsAnalysisReports(@Field("userid") String userid, @Field("shipid") int shipid, @Field("imonumber") String imonumber, Callback<JsonObject> callback);
+
+    @FormUrlEncoded
     @POST("/GetVL_CLO_Reports")
     void GetCylinderOilReportsAnalysisReports(@Field("userid") String userid, @Field("shipid") int shipid, @Field("imonumber") String imonumber, Callback<JsonObject> callback);
-
 
     @FormUrlEncoded
     @POST("/GetVL_POMP_Reports")
     void GetPompsReportAnalysisReports(@Field("userid") String userid, @Field("shipid") int shipid, @Field("imonumber") String imonumber, Callback<JsonObject> callback);
 
-    //CAUTION ALERTS
+
+
+
+    @FormUrlEncoded
+    @POST("/LO_SN_Search")
+    void GetSrDataForReport(@Field("userid") String userid, @Field("serialNumber") String serialNumber, Callback<JsonObject> callback);
+
+
+/*
+    //CAUTION ALERTS*/
 
     //FO ships spinner
     @FormUrlEncoded
@@ -107,7 +135,7 @@ public interface ApiInterface {
 
     //LO ships spinner
     @FormUrlEncoded
-    @POST("/GetVL_LO_ActiveCautionAlerts")
+    @POST("/GetVL_LO_ActiveCautionReports")
     void GetLOOilCOShips(@Field("userid") String userid, Callback<JsonObject> callback);
 
     //CLO ships spinner
