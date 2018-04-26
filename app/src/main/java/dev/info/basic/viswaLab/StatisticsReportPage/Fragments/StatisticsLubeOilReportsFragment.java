@@ -1,4 +1,4 @@
-package dev.info.basic.viswaLab.Fragments;
+package dev.info.basic.viswaLab.StatisticsReportPage.Fragments;
 
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -40,6 +40,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 import dev.info.basic.viswaLab.Activitys.LoginFragmentActivity;
 import dev.info.basic.viswaLab.Adapters.StatisticsluboilAdapter;
 import dev.info.basic.viswaLab.ApiInterfaces.ApiInterface;
+import dev.info.basic.viswaLab.Fragments.BaseFragment;
 import dev.info.basic.viswaLab.R;
 import dev.info.basic.viswaLab.models.SampleStatsModel;
 import dev.info.basic.viswaLab.utils.Common;
@@ -72,6 +73,7 @@ public class StatisticsLubeOilReportsFragment extends BaseFragment {
     /*Dates*/
 
     TextView curmnt, premnt, curyear;
+    private String type;
 
 
     @Nullable
@@ -225,7 +227,7 @@ public class StatisticsLubeOilReportsFragment extends BaseFragment {
         RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
         final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
         Log.v("xxx", prefs.getString("userid", ""));
-        apiInterface.GetSampleSummaryReport(prefs.getString("userid", ""), new Callback<JsonObject>() {
+        apiInterface.GetStatisticsLubeOilReports(prefs.getString("userid", ""), new Callback<JsonObject>() {
             @Override
             public void success(JsonObject jsonObject, Response response) {
                 if (jsonObject != null) {

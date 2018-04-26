@@ -26,6 +26,7 @@ import dev.info.basic.viswaLab.ApiInterfaces.ApiInterface;
 import dev.info.basic.viswaLab.CautionAlertsReportsPage.CautionAlertAnalysisReport;
 import dev.info.basic.viswaLab.Database.helper;
 import dev.info.basic.viswaLab.R;
+import dev.info.basic.viswaLab.StatisticsReportPage.Fragments.StatisticsReportFragment;
 import dev.info.basic.viswaLab.models.ShipdetailsModel;
 import dev.info.basic.viswaLab.services.TimeService;
 import dev.info.basic.viswaLab.utils.Common;

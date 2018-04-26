@@ -41,6 +41,7 @@
                         app:cardCornerRadius="10dp">
 
                         <LinearLayout
+                            android:id="@+id/fueloilReportsBtn"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@drawable/dashboard_bg"
@@ -122,6 +123,7 @@
                         app:cardCornerRadius="10dp">
 
                         <LinearLayout
+                            android:id="@+id/cylinerBtn"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@drawable/dashboard_bg"
@@ -158,7 +160,43 @@
                         app:cardCornerRadius="10dp">
 
                         <LinearLayout
-                            android:id="@+id/luboilReportsBtn"
+                            android:id="@+id/pompReportsBtn"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/dashboard_bg"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@drawable/analysis_report"
+                                android:tint="@color/white"
+                                android:visibility="gone" />
+
+                            <dev.info.basic.viswaLab.views.TextViewPlus
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:gravity="center"
+                                android:padding="5dp"
+                                android:text="Pomp Samples"
+                                android:textAllCaps="true"
+                                android:textColor="@color/white"
+                                app:customFont="@string/pt_sans_bold" />
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="110dp"
+                        android:layout_height="110dp"
+                        android:layout_margin="10dp"
+                        android:gravity="center"
+                        android:visibility="gone"
+                        app:cardCornerRadius="10dp">
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@drawable/dashboard_bg"
@@ -202,6 +240,7 @@
                         app:cardCornerRadius="10dp">
 
                         <LinearLayout
+                            android:id="@+id/additionalBtn"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@drawable/dashboard_bg"
@@ -238,50 +277,7 @@
                         app:cardCornerRadius="10dp">
 
                         <LinearLayout
-                            android:id="@+id/luboilReportsBtn"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/dashboard_bg"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:src="@drawable/analysis_report"
-                                android:tint="@color/white"
-                                android:visibility="gone" />
-
-                            <dev.info.basic.viswaLab.views.TextViewPlus
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:gravity="center"
-                                android:padding="5dp"
-                                android:text="Pomp Samples"
-                                android:textAllCaps="true"
-                                android:textColor="@color/white"
-                                app:customFont="@string/pt_sans_bold" />
-                        </LinearLayout>
-
-                    </android.support.v7.widget.CardView>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:clipToPadding="false"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <android.support.v7.widget.CardView
-                        android:layout_width="110dp"
-                        android:layout_height="110dp"
-                        android:layout_margin="10dp"
-                        android:gravity="center"
-                        app:cardCornerRadius="10dp">
-
-                        <LinearLayout
+                            android:id="@+id/pureffyBtn"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@drawable/dashboard_bg"
@@ -310,11 +306,22 @@
 
                     </android.support.v7.widget.CardView>
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+
                     <android.support.v7.widget.CardView
                         android:layout_width="110dp"
                         android:layout_height="110dp"
                         android:layout_margin="10dp"
                         android:gravity="center"
+                        android:visibility="gone"
                         app:cardCornerRadius="10dp">
 
                         <LinearLayout

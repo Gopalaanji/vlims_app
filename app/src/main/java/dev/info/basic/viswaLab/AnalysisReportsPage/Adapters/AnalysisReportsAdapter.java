@@ -46,7 +46,6 @@ public class AnalysisReportsAdapter extends RecyclerView.Adapter<AnalysisReports
     }
 
     @Override
-
     public void onBindViewHolder(viewHolder holder, int position) {
         final AnalysisFoModel analysisFoModel = mReportDataModelList.get(position);
         holder.tvShipName.setText(analysisFoModel.getShipName());

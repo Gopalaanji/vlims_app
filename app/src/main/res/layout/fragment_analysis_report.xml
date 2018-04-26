@@ -196,6 +196,7 @@
                     app:cardCornerRadius="10dp">
 
                     <LinearLayout
+                        android:id="@+id/additionalTestReportsBtn"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/dashboard_bg"
@@ -276,6 +277,7 @@
                     app:cardCornerRadius="10dp">
 
                     <LinearLayout
+                        android:id="@+id/purifierEfficiencyReportsBtn"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/dashboard_bg"
@@ -354,6 +356,7 @@
                     app:cardCornerRadius="10dp">
 
                     <LinearLayout
+                        android:id="@+id/densitybtn"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/dashboard_bg"

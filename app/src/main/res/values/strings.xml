@@ -22,7 +22,7 @@
     <string name="reset_now">Reset now</string>
     <string name="submit">Submit</string>
     <string name="crtMonth">Cur Mnt\n</string>
-    <string name="preMonth">Pre Mnt\n</string>
+    <string name="preMonth">Prev Mnt\n</string>
     <string name="crtYear">Cur Year\n</string>
     <string name="location">Location</string>
     <string name="something_went_wrong">Something Went Wrong!!</string>

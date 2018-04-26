@@ -33,10 +33,16 @@ public class AnalysisReportFragment extends BaseFragment implements View.OnClick
         LinearLayout fuelOilReportsaBtnAnalysisReport = (LinearLayout) rootView.findViewById(R.id.fuelOilReportsaBtnAnalysisReport);
         LinearLayout cylinderOilReportsaBtnAnalysisReport = (LinearLayout) rootView.findViewById(R.id.cylinderOilReportsaBtnAnalysisReport);
         LinearLayout pompOilReportsaBtnAnalysisReport = (LinearLayout) rootView.findViewById(R.id.pompOilReportsaBtnAnalysisReport);
+        LinearLayout purifierEfficiencyReportsBtn = (LinearLayout) rootView.findViewById(R.id.purifierEfficiencyReportsBtn);
+        LinearLayout additionalTestReportsBtn = (LinearLayout) rootView.findViewById(R.id.additionalTestReportsBtn);
+        LinearLayout densitybtn = (LinearLayout) rootView.findViewById(R.id.densitybtn);
         luboilReportsBtn.setOnClickListener(this);
         fuelOilReportsaBtnAnalysisReport.setOnClickListener(this);
         cylinderOilReportsaBtnAnalysisReport.setOnClickListener(this);
         pompOilReportsaBtnAnalysisReport.setOnClickListener(this);
+        purifierEfficiencyReportsBtn.setOnClickListener(this);
+        additionalTestReportsBtn.setOnClickListener(this);
+        densitybtn.setOnClickListener(this);
         return rootView;
     }
 
@@ -65,6 +71,15 @@ public class AnalysisReportFragment extends BaseFragment implements View.OnClick
                 break;
                 case R.id.pompOilReportsaBtnAnalysisReport:
                 fragmentActivity.replaceFragment(new AnalysisReportsPOMPpage(), "agent_signup", null);
+                break;
+                case R.id.purifierEfficiencyReportsBtn:
+                fragmentActivity.replaceFragment(new AnalysisReportsPurifierEfficiencyReportsFragment(), "agent_signup", null);
+                break;
+                case R.id.additionalTestReportsBtn:
+                fragmentActivity.replaceFragment(new AnalysisReportsAdditionalTestReportsFragment(), "agent_signup", null);
+                break;
+                case R.id.densitybtn:
+                fragmentActivity.replaceFragment(new AnalysisReportDensityDiffFragment(), "agent_signup", null);
                 break;
         }
     }
