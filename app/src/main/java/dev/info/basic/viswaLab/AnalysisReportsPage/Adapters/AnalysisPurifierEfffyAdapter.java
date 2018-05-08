@@ -35,9 +35,9 @@ public class AnalysisPurifierEfffyAdapter extends RecyclerView.Adapter<AnalysisP
     }
 
     @Override
-    public AnalysisPurifierEfffyAdapter.viewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public viewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.al_reports_fueloil_reports_item, null);
-        AnalysisPurifierEfffyAdapter.viewHolder viewHolder = new AnalysisPurifierEfffyAdapter.viewHolder(view);
+        viewHolder viewHolder = new viewHolder(view);
         return viewHolder;
     }
 

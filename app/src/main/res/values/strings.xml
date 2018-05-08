@@ -364,4 +364,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="bunker_fuel_date">Bunker Date\nFuel Grade</string>
+    <string name="bunker_port_fuel">Bunker Date\nBunker Port\nFuelGrade</string>
+    <string name="bunker_port_fuel_test">Test(Result)\nBunker Date\nnBunker Port\nPortFuelGrade</string>
 </resources>

@@ -26,7 +26,7 @@ import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import dev.info.basic.viswaLab.Activitys.LoginFragmentActivity;
-import dev.info.basic.viswaLab.AnalysisReportsPage.Adapters.AnalysisReportsAdapter;
+import dev.info.basic.viswaLab.AnalysisReportsPage.Adapters.AnalysisCylinderOilAdapter;
 import dev.info.basic.viswaLab.AnalysisReportsPage.models.AnalysisFoModel;
 import dev.info.basic.viswaLab.ApiInterfaces.ApiInterface;
 import dev.info.basic.viswaLab.Database.helper;
@@ -62,7 +62,7 @@ public class AnalysisReportsCylinderOilReportsFragment extends BaseFragment impl
     ImageView btnSubmit, btnsrSubmit;
     private String bandId;
     RecyclerView mRecyclerView;
-    AnalysisReportsAdapter mReporterAdapter;
+    AnalysisCylinderOilAdapter mReporterAdapter;
     EditText imo_number, sr_number;
     helper dbHelper;
     Spinner spnVesselShips;
@@ -71,7 +71,7 @@ public class AnalysisReportsCylinderOilReportsFragment extends BaseFragment impl
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_analysis_reports_fuel_oil_reports, container, false);
+        rootView = inflater.inflate(R.layout.fragment_analysis_reports_cylinder_oil_reports, container, false);
         setHasOptionsMenu(true);
         fragmentActivity = (LoginFragmentActivity) getActivity();
         common = new Common();
@@ -243,11 +243,11 @@ public class AnalysisReportsCylinderOilReportsFragment extends BaseFragment impl
             analysisFoModel.setOilCondition("1");
             analysisFoModel.setBunkerPort("CLO_AR");
             mReportDataModelList.add(analysisFoModel);
-            mReporterAdapter = new AnalysisReportsAdapter(getActivity(), "FO", mReportDataModelList, prefs.getString("userid", ""));
+            mReporterAdapter = new AnalysisCylinderOilAdapter(getActivity(), "FO", mReportDataModelList, prefs.getString("userid", ""));
             mRecyclerView.setAdapter(mReporterAdapter);
         }else{
             if (mReportDataModelList != null) {
-                mReporterAdapter = new AnalysisReportsAdapter(getActivity(), "CLO", mReportDataModelList, prefs.getString("userid", ""));
+                mReporterAdapter = new AnalysisCylinderOilAdapter(getActivity(), "CLO", mReportDataModelList, prefs.getString("userid", ""));
                 mRecyclerView.setAdapter(mReporterAdapter);
             }
         }

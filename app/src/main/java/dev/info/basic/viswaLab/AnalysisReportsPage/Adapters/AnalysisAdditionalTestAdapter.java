@@ -35,9 +35,9 @@ public class AnalysisAdditionalTestAdapter extends RecyclerView.Adapter<Analysis
     }
 
     @Override
-    public AnalysisAdditionalTestAdapter.viewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public viewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.al_reports_additional_test_item, null);
-        AnalysisAdditionalTestAdapter.viewHolder viewHolder = new AnalysisAdditionalTestAdapter.viewHolder(view);
+        viewHolder viewHolder = new viewHolder(view);
         return viewHolder;
     }
 
@@ -57,14 +57,13 @@ public class AnalysisAdditionalTestAdapter extends RecyclerView.Adapter<Analysis
     }
 
     public class viewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private TextView tvShipName, tvBunkerDate, tvTestResult;
+        private TextView tvShipName, tvBunkerDate;
         private ImageView tvReult;
 
         public viewHolder(View itemView) {
             super(itemView);
             tvShipName = (TextView) itemView.findViewById(R.id.tvShipName);
             tvBunkerDate = (TextView) itemView.findViewById(R.id.tvBunkerDate);
-            tvTestResult = (TextView) itemView.findViewById(R.id.tvTestResult);
             tvReult = (ImageView) itemView.findViewById(R.id.tvReult);
         }
 
@@ -91,12 +90,11 @@ public class AnalysisAdditionalTestAdapter extends RecyclerView.Adapter<Analysis
     }
 
     @Override
-    public void onBindViewHolder(AnalysisAdditionalTestAdapter.viewHolder holder, int position) {
+    public void onBindViewHolder(viewHolder holder, int position) {
         final PurifierEffyResponseModel analysisFoModel = mReportDataModelList.get(position);
         holder.tvShipName.setText(analysisFoModel.getShipName());
-        holder.tvTestResult.setText(analysisFoModel.getResult());
         if (analysisFoModel.getBunkerDate() != null) {
-            holder.tvBunkerDate.setText(ConvertJsonDate(analysisFoModel.getBunkerDate()) + "\n" + analysisFoModel.getBunkerPortName() + "\n" + analysisFoModel.getGrade() + "-" + analysisFoModel.getMatrix());
+            holder.tvBunkerDate.setText(analysisFoModel.getAdditionalTest()+"("+analysisFoModel.getResult()+")\n"+ConvertJsonDate(analysisFoModel.getBunkerDate()) + "\n" + analysisFoModel.getBunkerPortName() + "\n" + analysisFoModel.getGrade() + "-" + analysisFoModel.getMatrix());
         }
         holder.tvReult.setOnClickListener(new View.OnClickListener() {
             @Override

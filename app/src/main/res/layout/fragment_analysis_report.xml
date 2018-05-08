@@ -152,6 +152,7 @@
                     app:cardCornerRadius="10dp">
 
                     <LinearLayout
+                        android:id="@+id/btnSweepTest"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/dashboard_bg"
@@ -312,6 +313,7 @@
                     app:cardCornerRadius="10dp">
 
                     <LinearLayout
+                        android:id="@+id/btnBunkerQunty"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/dashboard_bg"
@@ -330,7 +332,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:padding="2dp"
-                            android:text="BUNKER QUALITY SURVEY"
+                            android:text="BUNKER QUANTITY SURVEY"
                             android:textAllCaps="true"
                             android:textColor="@color/white"
                             app:customFont="@string/pt_sans_bold" />

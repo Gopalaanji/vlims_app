@@ -23,6 +23,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 import dev.info.basic.viswaLab.Activitys.LoginFragmentActivity;
 import dev.info.basic.viswaLab.AnalysisReportsPage.Adapters.AnalysisDensitytAdapter;
 import dev.info.basic.viswaLab.AnalysisReportsPage.models.AnalysisDensityModel;
+import dev.info.basic.viswaLab.AnalysisReportsPage.models.AnalysisReportDensityDataModel;
 import dev.info.basic.viswaLab.ApiInterfaces.ApiInterface;
 import dev.info.basic.viswaLab.Fragments.BaseFragment;
 import dev.info.basic.viswaLab.R;
@@ -43,7 +44,7 @@ public class AnalysisReportDensityDiffFragment extends BaseFragment {
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
     private RelativeLayout main_loader;
-    ArrayList<AnalysisDensityModel> AnalysisDensityModelModelList;
+    ArrayList<AnalysisReportDensityDataModel> AnalysisDensityModelModelList;
     RecyclerView mRecyclerView;
     private AnalysisDensitytAdapter mReporterAdapter;
 
@@ -80,8 +81,8 @@ public class AnalysisReportDensityDiffFragment extends BaseFragment {
                 try {
                     if (response_data_obj != null) {
                         main_loader.setVisibility(View.GONE);
-                        AnalysisDensityModelModelList = new ArrayList<AnalysisDensityModel>();
-                        AnalysisDensityModelModelList = new Gson().fromJson(response_data_obj.getAsJsonArray("ReportData"), new TypeToken<List<ReportDataModel>>() {
+                        AnalysisDensityModelModelList = new ArrayList<AnalysisReportDensityDataModel>();
+                        AnalysisDensityModelModelList = new Gson().fromJson(response_data_obj.getAsJsonArray("ReportData"), new TypeToken<List<AnalysisReportDensityDataModel>>() {
                         }.getType());
                         if (AnalysisDensityModelModelList != null) {
                             renderTheResponse();

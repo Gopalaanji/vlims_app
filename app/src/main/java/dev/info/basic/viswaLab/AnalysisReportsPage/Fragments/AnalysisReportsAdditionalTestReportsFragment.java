@@ -75,7 +75,7 @@ public class AnalysisReportsAdditionalTestReportsFragment extends BaseFragment i
         fragmentActivity = (LoginFragmentActivity) getActivity();
         common = new Common();
         fragmentActivity.displayActionBar();
-        fragmentActivity.setActionBarTitle("Additional Test");
+        fragmentActivity.setActionBarTitle("Additional Test Reports");
         fragmentActivity.showActionBar();
         fragmentActivity.hideBackActionBar();
         prefs = PreferenceManager.getDefaultSharedPreferences(getContext());

@@ -35,6 +35,8 @@ public class AnalysisReportFragment extends BaseFragment implements View.OnClick
         LinearLayout pompOilReportsaBtnAnalysisReport = (LinearLayout) rootView.findViewById(R.id.pompOilReportsaBtnAnalysisReport);
         LinearLayout purifierEfficiencyReportsBtn = (LinearLayout) rootView.findViewById(R.id.purifierEfficiencyReportsBtn);
         LinearLayout additionalTestReportsBtn = (LinearLayout) rootView.findViewById(R.id.additionalTestReportsBtn);
+        LinearLayout btnSweepTest = (LinearLayout) rootView.findViewById(R.id.btnSweepTest);
+        LinearLayout btnBunkerQunty = (LinearLayout) rootView.findViewById(R.id.btnBunkerQunty);
         LinearLayout densitybtn = (LinearLayout) rootView.findViewById(R.id.densitybtn);
         luboilReportsBtn.setOnClickListener(this);
         fuelOilReportsaBtnAnalysisReport.setOnClickListener(this);
@@ -43,6 +45,8 @@ public class AnalysisReportFragment extends BaseFragment implements View.OnClick
         purifierEfficiencyReportsBtn.setOnClickListener(this);
         additionalTestReportsBtn.setOnClickListener(this);
         densitybtn.setOnClickListener(this);
+        btnSweepTest.setOnClickListener(this);
+        btnBunkerQunty.setOnClickListener(this);
         return rootView;
     }
 
@@ -63,24 +67,26 @@ public class AnalysisReportFragment extends BaseFragment implements View.OnClick
             case R.id.luboilReportsBtn:
                 fragmentActivity.replaceFragment(new AnalysisReportsLubeOilReportsFragment(), "agent_signup", null);
                 break;
-                case R.id.fuelOilReportsaBtnAnalysisReport:
+            case R.id.fuelOilReportsaBtnAnalysisReport:
                 fragmentActivity.replaceFragment(new AnalysisReportsFuelOilReportsFragment(), "agent_signup", null);
                 break;
-                case R.id.cylinderOilReportsaBtnAnalysisReport:
+            case R.id.cylinderOilReportsaBtnAnalysisReport:
                 fragmentActivity.replaceFragment(new AnalysisReportsCylinderOilReportsFragment(), "agent_signup", null);
                 break;
-                case R.id.pompOilReportsaBtnAnalysisReport:
+            case R.id.pompOilReportsaBtnAnalysisReport:
                 fragmentActivity.replaceFragment(new AnalysisReportsPOMPpage(), "agent_signup", null);
                 break;
-                case R.id.purifierEfficiencyReportsBtn:
+            case R.id.purifierEfficiencyReportsBtn:
                 fragmentActivity.replaceFragment(new AnalysisReportsPurifierEfficiencyReportsFragment(), "agent_signup", null);
                 break;
-                case R.id.additionalTestReportsBtn:
+            case R.id.additionalTestReportsBtn:
                 fragmentActivity.replaceFragment(new AnalysisReportsAdditionalTestReportsFragment(), "agent_signup", null);
                 break;
-                case R.id.densitybtn:
+            case R.id.densitybtn:
                 fragmentActivity.replaceFragment(new AnalysisReportDensityDiffFragment(), "agent_signup", null);
                 break;
+            case R.id.btnSweepTest:
+                showAlertDialogOption("SWEEP TEST", "Under Development", "http://173.11.229.171/viswaweb/VLReports/SampleReports/SWEEP.PDF");
         }
     }
 }

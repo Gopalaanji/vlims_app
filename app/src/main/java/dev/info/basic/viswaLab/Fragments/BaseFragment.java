@@ -93,6 +93,26 @@ public class BaseFragment extends Fragment {
         });
         builder.show();
     }
+  public void showAlertDialogOption(final String title, final String description, final String url) {
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+        View alertLayout = inflater.inflate(R.layout.all_diaologs, null);
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setView(alertLayout);
+        TextView tvtitle = (TextView) alertLayout.findViewById(R.id.tvdialogtitle);
+        TextView tvdialogbody = (TextView) alertLayout.findViewById(R.id.tvdialogbody);
+        Button btndialog = (Button) alertLayout.findViewById(R.id.btndialog);
+        tvtitle.setText(title);
+      tvdialogbody.setText(description);
+        btndialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent browse = new Intent(getActivity(), WebViewActivity.class);
+                browse.putExtra("pdf_id", url);
+                getActivity().startActivity(browse);
+            }
+        });
+        builder.show();
+    }
 
 
     public void openBroucher(String fileName) {

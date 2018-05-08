@@ -14,7 +14,8 @@ import retrofit.http.POST;
 
 public interface ApiInterface {
 
-    public static String HeadUrl = "http://173.11.229.171/VLIMSAPP/GETuser.asmx";
+//    public static String HeadUrl = "http://173.11.229.171/VLIMSAPP/GETuser.asmx";
+    public static String HeadUrl = "http://74.208.185.23/VLIMSAPP/GETuser.asmx";
 
     @FormUrlEncoded
     @POST("/CheckUserLogin")
