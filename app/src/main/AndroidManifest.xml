@@ -2,11 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="dev.info.basic.viswaLab">
-
-  <!--  <permission
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!--
+      <permission
         android:name="dev.info.basic.viswaLab.C2D_MESSAGE"
         android:protectionLevel="signature" />
--->
+    -->
     <application
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
@@ -14,6 +16,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
         <activity
             android:name=".Activitys.SplashScreen"
             android:label="@string/app_name">
@@ -29,6 +40,7 @@
         <activity android:name=".Activitys.HomeActivity" />
         <activity android:name=".Activitys.WebViewActivity" />
         <!-- GCM Receiver -->
+        <!--
         <receiver
             android:name="com.google.android.gms.gcm.GcmReceiver"
             android:exported="true"
@@ -39,7 +51,9 @@
                 <category android:name="rsr.info.basic.pricedproperty" />
             </intent-filter>
         </receiver>
+        -->
         <!-- GCM Receiver Service -->
+        <!--
         <service
             android:name=".pushNotificationServices.GCMPushReceiverService"
             android:exported="false">
@@ -47,7 +61,9 @@
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
             </intent-filter>
         </service>
+        -->
         <!-- GCM Registration Intent Service -->
+        <!--
         <service
             android:name=".pushNotificationServices.GCMRegistrationIntentService"
             android:exported="false">
@@ -55,15 +71,21 @@
                 <action android:name="com.google.android.gms.iid.InstanceID" />
             </intent-filter>
         </service>
+        -->
 
+
+        <!--
         <intent-filter>
             <action android:name="com.google.android.c2dm.intent.RECEIVE" />
         </intent-filter>
+        -->
 
         <activity android:name=".Activitys.LubeOilActivity" />
+
         <service
             android:name=".services.TimeService"
-            android:enabled="true"></service>
+            android:enabled="true" />
+
     </application>
 
 </manifest>

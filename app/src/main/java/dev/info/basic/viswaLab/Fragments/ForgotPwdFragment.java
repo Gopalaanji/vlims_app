@@ -100,7 +100,7 @@ public class ForgotPwdFragment extends BaseFragment implements View.OnClickListe
 
     private void sendForgotPassword(String userName, String email, String mobile) {
         if (Common.isNetworkAvailable(getActivity())) {
-            RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
+            RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.pdf_Head).build();
             final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
             main_loader.setVisibility(View.VISIBLE);
             apiInterface.GetForgot(userName, email, mobile, new Callback<JsonObject>() {
@@ -126,8 +126,7 @@ public class ForgotPwdFragment extends BaseFragment implements View.OnClickListe
                 @Override
                 public void failure(RetrofitError error) {
                     main_loader.setVisibility(View.GONE);
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
-                }
+    showToast();                }
             });
         } else
             common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.network_error));

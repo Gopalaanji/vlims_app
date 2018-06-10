@@ -2,6 +2,7 @@ package dev.info.basic.viswaLab.CautionAlertsReportsPage;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import dev.info.basic.viswaLab.Activitys.LoginFragmentActivity;
+import dev.info.basic.viswaLab.AnalysisReportsPage.Fragments.AnalysisReportsCylinderOilReportsFragment;
 import dev.info.basic.viswaLab.Fragments.BaseFragment;
 import dev.info.basic.viswaLab.R;
 
@@ -62,7 +64,11 @@ public class CautionAlertAnalysisReport extends BaseFragment implements View.OnC
                 fragmentActivity.replaceFragment(new CautionAlertsFuelOilReportsFragment(), "agent_signup", null);
                 break;
             case R.id.caution_alerts_cylinderoilBtn:
-                fragmentActivity.replaceFragment(new CautionAlertsCylinderOilReportsFragment(), "agent_signup", null);
+                Bundle bundle=new Bundle();
+                bundle.putBoolean("from_caution_clo",true);
+                AnalysisReportsCylinderOilReportsFragment n=new AnalysisReportsCylinderOilReportsFragment();
+                n.setArguments(bundle);
+                fragmentActivity.replaceFragment(n, "agent_signup", null);
                 break;
         }
     }

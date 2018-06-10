@@ -47,7 +47,7 @@ import retrofit.client.Response;
 public class CautionAlertsLubeOilFragment extends BaseFragment implements View.OnClickListener {
     private LoginFragmentActivity fragmentActivity;
     private View rootView;
-    private Common common;
+//    private Common common;
     private RelativeLayout main_loader;
     List<ShipdetailsModel> shipdetailsList;
     ArrayList<ReportDataModel> mReportDataModelList;
@@ -68,7 +68,7 @@ public class CautionAlertsLubeOilFragment extends BaseFragment implements View.O
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_caution_alert_report, container, false);
         setHasOptionsMenu(true);
-        common = new Common();
+//        common = new Common();
         fragmentActivity = (LoginFragmentActivity) getActivity();
         fragmentActivity.displayActionBar();
         fragmentActivity.showActionBar();
@@ -94,7 +94,7 @@ public class CautionAlertsLubeOilFragment extends BaseFragment implements View.O
     }
 
     private void fetchLubeOilReports() {
-        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
+        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.pdf_Head).build();
         final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
         main_loader.setVisibility(View.VISIBLE);
         apiInterface.GetLOOilCOShips(prefs.getString("userid", ""), new Callback<JsonObject>() {
@@ -121,15 +121,14 @@ public class CautionAlertsLubeOilFragment extends BaseFragment implements View.O
                     }
                 } else {
                     main_loader.setVisibility(View.GONE);
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Something went wrong!");
+                    showToast(getString(R.string.something_went_wrong));
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
                 main_loader.setVisibility(View.GONE);
-                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
-            }
+showToast();            }
         });
 
     }
@@ -162,7 +161,7 @@ public class CautionAlertsLubeOilFragment extends BaseFragment implements View.O
 
     private void fetchIntialData() {
         main_loader.setVisibility(View.VISIBLE);
-        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
+        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.pdf_Head).build();
         final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
         apiInterface.GetSampleReportForUserByShipIdAndImoId(prefs.getString("userid", ""), 0, "", new Callback<JsonObject>() {
             @Override
@@ -179,24 +178,26 @@ public class CautionAlertsLubeOilFragment extends BaseFragment implements View.O
                         } else {
                             imo_number.setText("");
                             main_loader.setVisibility(View.GONE);
-                            common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                            cshowToast();
+//                            common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                         }
                     } else {
                         main_loader.setVisibility(View.GONE);
-                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                        cshowToast();
+//                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                     }
 
                 } catch (Exception e) {
                     main_loader.setVisibility(View.GONE);
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                    cshowToast();
+//                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
                 main_loader.setVisibility(View.GONE);
-                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
-                imo_number.setText("");
+showToast();                imo_number.setText("");
             }
         });
 
@@ -217,11 +218,12 @@ public class CautionAlertsLubeOilFragment extends BaseFragment implements View.O
             analysisFoModel.setEquipment("LO_CA");
             analysisFoModel.setOilCondition("1");
             mReportDataModelList.add(analysisFoModel);
-            mReporterAdapter = new ReporterAdapter(getActivity(), true, mReportDataModelList, prefs.getString("userid", ""));
+            mReporterAdapter = new ReporterAdapter(getActivity(), false, mReportDataModelList, prefs.getString("userid", ""),prefs.getString("Username", ""), prefs.getString("pwd", ""));
+
             mRecyclerView.setAdapter(mReporterAdapter);
         } else {
             if (mReportDataModelList != null) {
-                mReporterAdapter = new ReporterAdapter(getActivity(), true, mReportDataModelList, prefs.getString("userid", ""));
+                mReporterAdapter = new ReporterAdapter(getActivity(), false, mReportDataModelList, prefs.getString("userid", ""),prefs.getString("Username", ""), prefs.getString("pwd", ""));
                 mRecyclerView.setAdapter(mReporterAdapter);
             }
         }
@@ -244,7 +246,8 @@ public class CautionAlertsLubeOilFragment extends BaseFragment implements View.O
         switch (v.getId()) {
             case R.id.btnSubmit:
                 if (shipId == 0 && imo_number.getText().toString().isEmpty()) {
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Please enter the value!");
+                    pshowToast();
+//                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Please enter the value!");
                 } else {
                     shipId = 0;
                     submitReport();
@@ -253,7 +256,8 @@ public class CautionAlertsLubeOilFragment extends BaseFragment implements View.O
 
             case R.id.btnsrSubmit:
                 if (shipId == 0 && sr_number.getText().toString().isEmpty()) {
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Please enter the value!");
+                    pshowToast();
+//                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Please enter the value!");
                 } else {
                     shipId = 0;
                     submitSerialDataReport();
@@ -271,7 +275,7 @@ public class CautionAlertsLubeOilFragment extends BaseFragment implements View.O
         }
         Log.v("FUCK", "SHIPID" + shipId + "EDIT" + sr_number.getText().toString());
         main_loader.setVisibility(View.VISIBLE);
-        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
+        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.pdf_Head).build();
         final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
         apiInterface.GetSrDataForReport(prefs.getString("userid", ""), sr_number.getText().toString(), new Callback<JsonObject>() {
             @Override
@@ -289,26 +293,28 @@ public class CautionAlertsLubeOilFragment extends BaseFragment implements View.O
                             renderTheResponse(true);
                             imo_number.setText("");
                             main_loader.setVisibility(View.GONE);
-                            common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                            cshowToast();
+//                            common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                         }
                     } else {
                         renderTheResponse(true);
                         main_loader.setVisibility(View.GONE);
-                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                        cshowToast();
+//                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                     }
 
                 } catch (Exception e) {
 
                     main_loader.setVisibility(View.GONE);
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                    cshowToast();
+//                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
                 main_loader.setVisibility(View.GONE);
-                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
-                sr_number.setText("");
+showToast();                sr_number.setText("");
             }
         });
     }
@@ -321,7 +327,7 @@ public class CautionAlertsLubeOilFragment extends BaseFragment implements View.O
         }
         Log.v("FUCK", "SHIPID" + shipId + "EDIT" + imo_number.getText().toString());
         main_loader.setVisibility(View.VISIBLE);
-        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
+        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.pdf_Head).build();
         final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
         apiInterface.GetSampleReportForUserByShipIdAndImoId(prefs.getString("userid", ""), shipId, imo_number.getText().toString(), new Callback<JsonObject>() {
             @Override
@@ -341,27 +347,29 @@ public class CautionAlertsLubeOilFragment extends BaseFragment implements View.O
                             if(shipId==0){
                                 showAlertDialog("Caution Alerts LubeOil","http://173.11.229.171/viswaweb/VLReports/SampleReports/LO_C.PDF");
                             }else{
-                                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                                cshowToast();
+//                                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                             }
                         }
                     } else {
                         renderTheResponse(true);
                         main_loader.setVisibility(View.GONE);
-                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                        cshowToast();
+//                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                     }
 
                 } catch (Exception e) {
                     renderTheResponse(true);
                     main_loader.setVisibility(View.GONE);
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                    cshowToast();
+//                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
                 main_loader.setVisibility(View.GONE);
-                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
-                imo_number.setText("");
+showToast();                imo_number.setText("");
             }
         });
 

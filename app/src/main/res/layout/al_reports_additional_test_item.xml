@@ -16,7 +16,7 @@
 
         <dev.info.basic.viswaLab.views.TextViewPlus
             android:id="@+id/tvShipName"
-            android:layout_width="wrap_content"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:gravity="center"

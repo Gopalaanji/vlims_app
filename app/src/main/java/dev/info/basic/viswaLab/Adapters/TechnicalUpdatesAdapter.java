@@ -23,11 +23,13 @@ public class TechnicalUpdatesAdapter extends RecyclerView.Adapter<TechnicalUpdat
 
     private Context context;
     List<TechnicalUpdatesModel> mReportDataModelList = new ArrayList<>();
+    TechnicalUpdateListener listener;
 
 
-    public TechnicalUpdatesAdapter(Context context, List<TechnicalUpdatesModel> mReportDataModelList) {
+    public TechnicalUpdatesAdapter(Context context, List<TechnicalUpdatesModel> mReportDataModelList,TechnicalUpdateListener  listener) {
         this.context = context;
         this.mReportDataModelList = mReportDataModelList;
+        this.listener=listener;
     }
 
 
@@ -43,13 +45,13 @@ public class TechnicalUpdatesAdapter extends RecyclerView.Adapter<TechnicalUpdat
         final TechnicalUpdatesModel reportDataModel = mReportDataModelList.get(position);
         holder.tvDate.setText(reportDataModel.getDate());
         holder.tvDesc.setText(reportDataModel.getHeading());
-        holder.tvDesc.setOnClickListener(new View.OnClickListener() {
+       /* holder.tvDesc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(reportDataModel.getLink()));
                 context.startActivity(browserIntent);
             }
-        });
+        });*/
     }
 
     @Override
@@ -75,16 +77,17 @@ public class TechnicalUpdatesAdapter extends RecyclerView.Adapter<TechnicalUpdat
             super(itemView);
             tvDate = (TextView) itemView.findViewById(R.id.tvDate);
             tvDesc = (TextView) itemView.findViewById(R.id.tvDesc);
+            itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-
+listener.itemClicked(mReportDataModelList.get(getAdapterPosition()).getHeading());
         }
     }
 
 
-    public interface clickListener {
-        void itemClicked(String calcId);
+    public interface TechnicalUpdateListener {
+        void itemClicked(String pdfname);
     }
 }

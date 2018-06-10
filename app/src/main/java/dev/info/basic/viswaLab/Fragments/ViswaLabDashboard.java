@@ -1,16 +1,23 @@
 package dev.info.basic.viswaLab.Fragments;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -35,10 +42,13 @@ import retrofit.RestAdapter;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
+import static dev.info.basic.viswaLab.utils.PricedPropertyApplication.TAG;
+
 /**
  * Created by E5000096 on 02-10-2016.
  */
 public class ViswaLabDashboard extends BaseFragment implements View.OnClickListener {
+    private static final int PERMISSION_REQUEST_CODE = 537;
     private View rootView;
     private Common common;
     public LoginFragmentActivity fragmentActivity;
@@ -76,22 +86,83 @@ public class ViswaLabDashboard extends BaseFragment implements View.OnClickListe
 
         helper.getInstance(getActivity());
         dbHelper = new helper(getActivity());
-        if (prefs.getString("userid", "") != null && dbHelper.getAllShipDetails().size() == 0) {
+       /* if (prefs.getString("userid", "") != null && dbHelper.getAllShipDetails().size() == 0) {
             dbHelper.deleteAllShips();
             getUserShipDetails(prefs.getString("userid", ""));
-        }
+        }*/
 
         fragmentActivity.setActionBarTitle("Viswa Lab");
         fragmentActivity.showActionBar();
         fragmentActivity.hideBackActionBar();
+
+        if (hasFilePermission()) {
+        } else {
+            requestFilePermission();
+        }
         return rootView;
+    }
+    private boolean hasFilePermission() {
+        int result = 0;
+        String[] permissions = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        for (String perm : permissions) {
+            result = getActivity().checkCallingOrSelfPermission(perm);
+            if (!(result == PackageManager.PERMISSION_GRANTED)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    private void requestFilePermission() {
+        String[] permissions = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            requestPermissions(permissions, PERMISSION_REQUEST_CODE);
+        }
+    }
+
+
+
+
+
+   /* @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case PERMISSION_REQUEST_CODE:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Log.e("value", "Permission Granted, Now you can use local drive .");
+                } else {
+                    Log.e("value", "Permission Denied, You cannot use local drive .");
+                }
+                break;
+        }
+    }*/
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        boolean video_allowed = true;
+        switch (requestCode) {
+            case PERMISSION_REQUEST_CODE:
+                for (int res : grantResults)
+                    video_allowed = video_allowed && (res == PackageManager.PERMISSION_GRANTED);
+                if (video_allowed) {
+
+                } else {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        if (shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                            Toast.makeText(getContext(), "FILE PERMISIONS IGNORED", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }
+                break;
+
+            default:
+                break;
+        }
     }
 
     private void getUserShipDetails(String userid) {
         final ProgressDialog progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage("Please Wait..");
         progressDialog.show();
-        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
+        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.pdf_Head).build();
         final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
         apiInterface.GetUserShipDetails("808", new Callback<JsonObject>() {
             @Override
@@ -109,14 +180,13 @@ public class ViswaLabDashboard extends BaseFragment implements View.OnClickListe
                     }
 
                 } else {
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Something went wrong!");
+                    showToast(getString(R.string.something_went_wrong));
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
-                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
-            }
+showToast();            }
         });
 
     }

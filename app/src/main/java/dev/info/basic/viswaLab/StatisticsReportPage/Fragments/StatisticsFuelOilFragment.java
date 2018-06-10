@@ -78,7 +78,7 @@ public class StatisticsFuelOilFragment extends BaseFragment {
 
     private void fetchDetails() {
         main_loader.setVisibility(View.VISIBLE);
-        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
+        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.pdf_Head).build();
         final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
         Log.v("xxx", prefs.getString("userid", ""));
         apiInterface.GetStatisticsFuelOilReports(prefs.getString("userid", ""), new Callback<JsonObject>() {
@@ -98,8 +98,7 @@ public class StatisticsFuelOilFragment extends BaseFragment {
             @Override
             public void failure(RetrofitError error) {
                 main_loader.setVisibility(View.GONE);
-                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
-            }
+showToast();            }
         });
 
     }

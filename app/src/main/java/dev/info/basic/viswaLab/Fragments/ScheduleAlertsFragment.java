@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -100,16 +101,46 @@ public class ScheduleAlertsFragment extends BaseFragment implements View.OnClick
     }
 
     private void fetchShipDetails() {
-        //ship
-        shipdetailsList = dbHelper.getAllShipDetails();
-        final String[] shipList = new String[shipdetailsList.size() + 1];
-        int j = 1;
-        shipList[0] = "All Ships*";
-        for (int i = 0; i < shipdetailsList.size(); i++) {
-            shipList[j] = shipdetailsList.get(i).getShipName();
-            j++;
-        }
-        renderDetails(shipList);
+            RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.pdf_Head).build();
+            final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
+            main_loader.setVisibility(View.VISIBLE);
+            apiInterface.GetFuelOilReportsAnalysisReportsShips(prefs.getString("userid", ""), new Callback<JsonObject>() {
+                @Override
+                public void success(JsonObject response_data_obj, Response response) {
+                    if(isDebug)
+                        Log.v("RESPONSE==>", response_data_obj.toString());
+                    main_loader.setVisibility(View.GONE);
+                    if (response_data_obj != null) {
+                        try {
+                            shipdetailsList = new Gson().fromJson(response_data_obj.getAsJsonArray("ReportsData"), new TypeToken<List<ShipdetailsModel>>() {
+                            }.getType());
+                            final String[] shipList = new String[shipdetailsList.size() + 1];
+                            if (shipdetailsList != null) {
+                                int j = 1;
+                                shipList[0] = "All Ships*";
+                                for (int i = 0; i < shipdetailsList.size(); i++) {
+                                    shipList[j] = shipdetailsList.get(i).getShipName();
+                                    j++;
+                                }
+                            }
+                            renderDetails(shipList);
+                        } catch (Exception e) {
+//                            showAlertDialog("Fuel Oil Reports","http://173.11.229.171/viswaweb/VLReports/SampleReports/FO.PDF");
+                        }
+                    } else {
+                        main_loader.setVisibility(View.GONE);
+                        showToast(getString(R.string.something_went_wrong));
+                    }
+                }
+
+                @Override
+                public void failure(RetrofitError error) {
+                    main_loader.setVisibility(View.GONE);
+                    showToast();
+                }
+            });
+
+
     }
 
     private void renderDetails(String[] shipList) {
@@ -122,9 +153,9 @@ public class ScheduleAlertsFragment extends BaseFragment implements View.OnClick
                 int shipPosition = spnVesselShips.getSelectedItemPosition();
                 if (shipPosition > 0) {
                     shipId = shipdetailsList.get(shipPosition - 1).getShipId();
+                    imo_number.setText("");
+                    sr_number.setText("");
                     submitReport();
-//                    imo_number.setText("");
-//                    imo_number.setEnabled(false);
                 } else if (shipPosition == 0) {
                     shipId = 0;
                     submitReport();
@@ -140,7 +171,7 @@ public class ScheduleAlertsFragment extends BaseFragment implements View.OnClick
 
     private void fetchIntialData() {
         main_loader.setVisibility(View.VISIBLE);
-        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
+        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.pdf_Head).build();
         final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
         apiInterface.GetScheduleAlertsDataByShipIdAndImoId(prefs.getString("userid", ""), 0, "", new Callback<JsonObject>() {
             @Override
@@ -157,23 +188,25 @@ public class ScheduleAlertsFragment extends BaseFragment implements View.OnClick
                         } else {
                             imo_number.setText("");
                             main_loader.setVisibility(View.GONE);
-                            common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                            showToast("Could Not Found Details!");
+//                            common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                         }
                     } else {
                         main_loader.setVisibility(View.GONE);
-                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                        showToast("Could Not Found Details!");
+//                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                     }
                 } catch (Exception e) {
                     main_loader.setVisibility(View.GONE);
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                    showToast("Could Not Found Details!");
+//                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
                 main_loader.setVisibility(View.GONE);
-                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
-                imo_number.setText("");
+showToast();                imo_number.setText("");
             }
         });
 
@@ -190,18 +223,7 @@ public class ScheduleAlertsFragment extends BaseFragment implements View.OnClick
     }
 
     private void renderTheResponse() {
-        Log.v("SIZE_BEFORE_DELETE", dbHelper.getAllScheduleAlerts().size() + "");
 
-        Log.v("SIZE_AFTER_DELETE", dbHelper.getAllScheduleAlerts().size() + "");
-        if (dbHelper.getAllScheduleAlerts().size() > 0) {
-
-        } else {
-
-            for (int i = 0; i < scheduleAlertModelArrayList.size(); i++) {
-                long id = dbHelper.AddProjectsData(scheduleAlertModelArrayList.get(i));
-                Log.d("XXXXX===>", "==>" + id);
-            }
-        }
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity()) {
             @Override
@@ -212,17 +234,11 @@ public class ScheduleAlertsFragment extends BaseFragment implements View.OnClick
         };
 
         mRecyclerView.setLayoutManager(layoutManager);
-        if (from_serial_numer) {
-            if (mReportDataModelList != null) {
-                scheduleAlertModelArrayList = new ArrayList<>();
-                mxxReporterAdapter = new ReporterAdapter(getActivity(), true, mReportDataModelList, prefs.getString("userid", ""));
-                mRecyclerView.setAdapter(mxxReporterAdapter);
-            }
-        } else {
+
             if (scheduleAlertModelArrayList != null) {
                 mReporterAdapter = new ScheduleAlertsAdapter(getActivity(), true, scheduleAlertModelArrayList, prefs.getString("userid", ""));
                 mRecyclerView.setAdapter(mReporterAdapter);
-            }
+
         }
     }
 
@@ -257,7 +273,7 @@ public class ScheduleAlertsFragment extends BaseFragment implements View.OnClick
         }
         Log.v("FUCK", "SHIPID" + shipId + "EDIT" + sr_number.getText().toString());
         main_loader.setVisibility(View.VISIBLE);
-        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
+        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.pdf_Head).build();
         final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
         apiInterface.GetSrDataForReport(prefs.getString("userid", ""), sr_number.getText().toString(), new Callback<JsonObject>() {
             @Override
@@ -275,26 +291,30 @@ public class ScheduleAlertsFragment extends BaseFragment implements View.OnClick
                         } else {
                             imo_number.setText("");
                             main_loader.setVisibility(View.GONE);
-                            common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                            showToast("Could Not Found Details");
+
+                            //  common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                         }
                     } else {
 
                         main_loader.setVisibility(View.GONE);
-                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                        showToast("Could Not Found Details");
+
+                        // common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                     }
 
                 } catch (Exception e) {
 
                     main_loader.setVisibility(View.GONE);
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                    showToast("Could Not Found Details");
+//                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
                 main_loader.setVisibility(View.GONE);
-                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
-                sr_number.setText("");
+showToast();                sr_number.setText("");
             }
         });
     }
@@ -304,9 +324,12 @@ public class ScheduleAlertsFragment extends BaseFragment implements View.OnClick
             if (!imo_number.getText().toString().isEmpty() && imo_number.getText().toString().length() > 0) {
                 shipId = 0;
             }
-            Log.v("FUCK", "SHIPID" + shipId + "EDIT" + imo_number.getText().toString());
+            if (!sr_number.getText().toString().isEmpty() && sr_number.getText().toString().length() > 0) {
+                shipId = 0;
+            }
+          //  Log.v("FUCK", "SHIPID" + shipId + "EDIT" + imo_number.getText().toString());
             main_loader.setVisibility(View.VISIBLE);
-            RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
+            RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.pdf_Head).build();
             final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
             apiInterface.GetScheduleAlertsDataByShipIdAndImoId(prefs.getString("userid", ""), shipId, imo_number.getText().toString(), new Callback<JsonObject>() {
                 @Override
@@ -324,15 +347,21 @@ public class ScheduleAlertsFragment extends BaseFragment implements View.OnClick
                             } else {
                                 imo_number.setText("");
                                 main_loader.setVisibility(View.GONE);
-                                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                                showToast("Could Not Found Details");
+
+                                //  common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                             }
                         } else {
                             main_loader.setVisibility(View.GONE);
-                            common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                            showToast("Could Not Found Details");
+
+                            // common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                         }
                     } catch (Exception e) {
                         main_loader.setVisibility(View.GONE);
-                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+//                        toast( "Could Not Found Details!");
+                        Toast.makeText(getActivity(),"Could Not Found Details!",Toast.LENGTH_SHORT).show();
+//                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                     }
 
                 }
@@ -340,8 +369,8 @@ public class ScheduleAlertsFragment extends BaseFragment implements View.OnClick
                 @Override
                 public void failure(RetrofitError error) {
                     main_loader.setVisibility(View.GONE);
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
-                    imo_number.setText("");
+    showToast();
+    imo_number.setText("");
                 }
             });
 

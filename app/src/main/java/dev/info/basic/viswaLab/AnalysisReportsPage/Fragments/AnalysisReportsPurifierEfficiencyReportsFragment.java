@@ -48,7 +48,7 @@ import retrofit.client.Response;
 public class AnalysisReportsPurifierEfficiencyReportsFragment extends BaseFragment implements View.OnClickListener {
     private LoginFragmentActivity fragmentActivity;
     private View rootView;
-    private Common common;
+//    private Common common;
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
     private RelativeLayout main_loader;
@@ -74,7 +74,7 @@ public class AnalysisReportsPurifierEfficiencyReportsFragment extends BaseFragme
         rootView = inflater.inflate(R.layout.fragment_analysis_purifierefficiency, container, false);
         setHasOptionsMenu(true);
         fragmentActivity = (LoginFragmentActivity) getActivity();
-        common = new Common();
+//        common = new Common();
         fragmentActivity.displayActionBar();
         fragmentActivity.setActionBarTitle("Purifier Efficiency");
         fragmentActivity.showActionBar();
@@ -102,7 +102,7 @@ public class AnalysisReportsPurifierEfficiencyReportsFragment extends BaseFragme
     }
 
     private void GetAnalysisReportsPurifierEffyShips() {
-        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
+        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.pdf_Head).build();
         final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
         main_loader.setVisibility(View.VISIBLE);
         apiInterface.GetPurEffyAnalysisReportsShips(prefs.getString("userid", ""), new Callback<JsonObject>() {
@@ -130,21 +130,20 @@ public class AnalysisReportsPurifierEfficiencyReportsFragment extends BaseFragme
                     }
                 } else {
                     main_loader.setVisibility(View.GONE);
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Something went wrong!");
+                    showToast(getString(R.string.something_went_wrong));
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
                 main_loader.setVisibility(View.GONE);
-                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
-            }
+showToast();            }
         });
 
     }
 
     private void GetAnalysisReportsPurifierEffyPortNames() {
-        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
+        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.pdf_Head).build();
         final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
         main_loader.setVisibility(View.VISIBLE);
 //        renderDetails(shipList);
@@ -173,15 +172,14 @@ public class AnalysisReportsPurifierEfficiencyReportsFragment extends BaseFragme
                     }
                 } else {
                     main_loader.setVisibility(View.GONE);
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Something went wrong!");
+                    showToast(getString(R.string.something_went_wrong));
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
                 main_loader.setVisibility(View.GONE);
-                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
-            }
+showToast();            }
         });
 
 
@@ -252,7 +250,7 @@ public class AnalysisReportsPurifierEfficiencyReportsFragment extends BaseFragme
             portId = 0;
         }
         main_loader.setVisibility(View.VISIBLE);
-        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
+        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.pdf_Head).build();
         final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
         apiInterface.GetPuriEffyReportAnalysisReports(prefs.getString("userid", ""), shipId, imo_number.getText().toString(),portId, new Callback<JsonObject>() {
             @Override
@@ -272,12 +270,14 @@ public class AnalysisReportsPurifierEfficiencyReportsFragment extends BaseFragme
                             if (shipId == 0) {
                                 showAlertDialog("Purifier Efficiency", "  http://173.11.229.171/viswaweb/VLReports/SampleReports/PED.PDF");
                             } else {
-                                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                                cshowToast();
+//                                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                             }
                         }
                     } else {
                         main_loader.setVisibility(View.GONE);
-                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                        cshowToast();
+//                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                     }
 
                 } catch (Exception e) {
@@ -290,8 +290,7 @@ public class AnalysisReportsPurifierEfficiencyReportsFragment extends BaseFragme
             @Override
             public void failure(RetrofitError error) {
                 main_loader.setVisibility(View.GONE);
-                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
-                imo_number.setText("");
+showToast();                imo_number.setText("");
             }
         });
 
@@ -306,7 +305,12 @@ public class AnalysisReportsPurifierEfficiencyReportsFragment extends BaseFragme
         };
         mRecyclerView.setLayoutManager(layoutManager);
             if (mReportDataModelList != null) {
-                mReporterAdapter = new AnalysisPurifierEfffyAdapter(getActivity(), mReportDataModelList, prefs.getString("userid", ""));
+                mReporterAdapter = new AnalysisPurifierEfffyAdapter(getActivity(), mReportDataModelList, new AnalysisPurifierEfffyAdapter.AnalysisPuriListenerInterface() {
+                    @Override
+                    public void itemClicked(String pdfFileName) {
+                        showPdf(pdfFileName,"PFEFFY_AR","");
+                    }
+                });
                 mRecyclerView.setAdapter(mReporterAdapter);
             }
     }
@@ -323,7 +327,8 @@ public class AnalysisReportsPurifierEfficiencyReportsFragment extends BaseFragme
         switch (v.getId()) {
             case R.id.btnSubmit:
                 if (shipId == 0 && imo_number.getText().toString().isEmpty()) {
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Please enter the value!");
+                    pshowToast();
+//                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Please enter the value!");
                 } else {
                     shipId = 0;
                     portId=0;
@@ -332,7 +337,8 @@ public class AnalysisReportsPurifierEfficiencyReportsFragment extends BaseFragme
                 break;
             case R.id.btnsrSubmit:
                 if (shipId == 0 &&portId == 0 && sr_number.getText().toString().isEmpty()) {
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Please enter the value!");
+                    pshowToast();
+//                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Please enter the value!");
                 } else {
                     shipId = 0;
                     portId=0;
@@ -352,7 +358,7 @@ public class AnalysisReportsPurifierEfficiencyReportsFragment extends BaseFragme
             portId=0;
         }
         main_loader.setVisibility(View.VISIBLE);
-        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
+        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.pdf_Head).build();
         final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
         apiInterface.GetSrDataForPuriferEffySNSearch(prefs.getString("userid", ""), sr_number.getText().toString(), new Callback<JsonObject>() {
             @Override
@@ -369,16 +375,19 @@ public class AnalysisReportsPurifierEfficiencyReportsFragment extends BaseFragme
                         } else {
                             imo_number.setText("");
                             main_loader.setVisibility(View.GONE);
-                            common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                            cshowToast();
+//                            common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                         }
                     } else {
                         main_loader.setVisibility(View.GONE);
-                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                        cshowToast();
+//                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                     }
 
                 } catch (Exception e) {
                     main_loader.setVisibility(View.GONE);
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                    cshowToast();
+//                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
 
                 }
 
@@ -387,8 +396,7 @@ public class AnalysisReportsPurifierEfficiencyReportsFragment extends BaseFragme
             @Override
             public void failure(RetrofitError error) {
                 main_loader.setVisibility(View.GONE);
-                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
-                sr_number.setText("");
+showToast();                sr_number.setText("");
             }
         });
     }

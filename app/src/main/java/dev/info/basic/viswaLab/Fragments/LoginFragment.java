@@ -1,5 +1,6 @@
 package dev.info.basic.viswaLab.Fragments;
 
+import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -14,6 +15,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.JsonObject;
 
@@ -108,7 +110,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
 
     private void UserLogin(final String userName, final String userPassword) {
         main_loader.setVisibility(View.VISIBLE);
-        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
+        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.pdf_Head).build();
         final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
         Log.v("User==>", userName + "," + userPassword);
         apiInterface.GetUser(userName, userPassword, new Callback<JsonObject>() {
@@ -127,11 +129,12 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
                         editor.putString("pwd", "");
                     }
                     editor.commit();
-                    Log.v("UserId==>", "USER ID" + prefs.getString("userid", "") + "User Name" + prefs.getString("Username", ""));
+//                    Log.v("UserId==>", "USER ID" + prefs.getString("userid", "") + "User Name" + prefs.getString("Username", ""));
                     fragmentActivity.replaceFragment(new ViswaLabDashboard(), "from_login_to_reraSignup", null);
                 } else {
                     main_loader.setVisibility(View.GONE);
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Invalid UserName/Password!!");
+                    Toast.makeText(getActivity(),"Invalid UserName/Password!",Toast.LENGTH_SHORT).show();
+//                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Invalid UserName/Password!!");
                 }
 //
             }
@@ -139,7 +142,8 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
             @Override
             public void failure(RetrofitError error) {
                 main_loader.setVisibility(View.GONE);
-                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
+                Toast.makeText(getActivity(),getString(R.string.something_went_wrong),Toast.LENGTH_SHORT).show();
+//                common.showNewAlertDesign((Activity) getContext(), SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
             }
         });
     }
@@ -147,7 +151,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
 /*
     private void sendUserToken(final String userName, String android) {
         Log.v("FCM_TOKEN==>", "TOKEN" + prefs.getString("fcm_token", ""));
-        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
+        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.pdf_Head).build();
         final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
         //WE HAVE TO ADD THE TOKEN AS POST CONNECT TO SERVER FOR KEY
         try {
@@ -169,8 +173,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
                 @Override
                 public void failure(RetrofitError error) {
                     main_loader.setVisibility(View.GONE);
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
-                }
+    showToast();                }
             });
         } catch (Exception e) {
         }

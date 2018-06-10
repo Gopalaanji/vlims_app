@@ -1,8 +1,6 @@
 package dev.info.basic.viswaLab.AnalysisReportsPage.Adapters;
 
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,14 +26,17 @@ public class AnalysisReportsAdapter extends RecyclerView.Adapter<AnalysisReports
     private Context context;
     CalculationsListAdapter.clickListener mClickListener;
     List<AnalysisFoModel> mReportDataModelList = new ArrayList<>();
+    private ListenerInterface listenerInterface;
     String from;
-    String userId;
 
-    public AnalysisReportsAdapter(Context context, String from, List<AnalysisFoModel> mReportDataModelList, String userId) {
+
+    public AnalysisReportsAdapter(Context context, String from, List<AnalysisFoModel> mReportDataModelList,ListenerInterface listenerInterface) {
         this.context = context;
         this.from = from;
         this.mReportDataModelList = mReportDataModelList;
-        this.userId = userId;
+        this.listenerInterface = listenerInterface;
+
+
     }
 
     @Override
@@ -72,14 +73,20 @@ public class AnalysisReportsAdapter extends RecyclerView.Adapter<AnalysisReports
             holder.tvReult.setImageResource(R.drawable.result_orange);*/ else if (mReportDataModelList.get(position).getSepc() != null) {
             holder.tvReult.setImageResource(R.drawable.result_red);
         }
+/*
         holder.tvReult.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent browserIntent = null;
                 if (from.equals("CLO")&& analysisFoModel.getSerial().toString().equalsIgnoreCase("")) {
-                    browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://173.11.229.171/viswaweb/VLReports/CLOeports/" + analysisFoModel.getSerial().toString() + ".pdf"));
+                    browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://173.11.229.171/viswaweb/VLReports/CLOeports/" + analysisFoModel.getSerial().toString() + "_POMP_REPORT(FINAL).pdf"));
                 } else if (from.equals("POMP_AR")) {
-                    browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://173.11.229.171/viswaweb/VLReports/POMPReports/" + analysisFoModel.getSerial().toString() + "_POMP_REPORT(FINAL).pdf"));
+                    Intent intent=new Intent(context, PdfViewActivity.class);
+                    intent.putExtra("pdf_name",analysisFoModel.getSerial().toString());
+                    intent.putExtra("module_type","POMP_AR");
+                    context.startActivity(intent);
+//                    browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://74.208.185.23/VLIMSAPP/VL_POMPReports_Download/" +username+"/"+ pwd+"/"+ analysisFoModel.getSerial().toString() + "_POMP_REPORT(FINAL).pdf"));
+//                    browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://74.208.185.23/VLIMSAPP/VL_POMPReports_Download/" +username+"/"+ pwd+"/"+ analysisFoModel.getSerial().toString() +".pdf"));
                 } else {
                     if (from.equalsIgnoreCase("FO") && analysisFoModel.getSerial().toString().equalsIgnoreCase("")) {
                         if (analysisFoModel.getBunkerPort().equalsIgnoreCase("FO_AR")) {
@@ -96,16 +103,30 @@ public class AnalysisReportsAdapter extends RecyclerView.Adapter<AnalysisReports
                             browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(":  http://173.11.229.171/viswaweb/VLReports/SampleReports/CLO_C.PDF"));
                         }
                     } else {
-                        browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://173.11.229.171/viswaweb/VLReports/FOReports/" + analysisFoModel.getSerial().toString() + ".pdf"));
+                        if(from.equalsIgnoreCase("FO") ){
+
+*/
+/*
+                            Intent intent=new Intent(context, PdfViewActivity.class);
+                            intent.putExtra("pdf_name",analysisFoModel.getSerial());
+                            intent.putExtra("module_type","FO");
+                            context.startActivity(intent);*//*
+
+
+//                            browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://74.208.185.23/VLIMSAPP/VL_FOReports_Download/" +username+"/"+ pwd+"/"+analysisFoModel.getSerial().toString() + ".pdf"));
+                        }
                     }
                 }
-                context.startActivity(browserIntent);
+//                context.startActivity(browserIntent);
 
-          /*      Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://173.11.229.171/viswaweb/LO_CLOPreview.aspx?strUserId=" + userId + "&&SampType=3&&strSerial=" + reportDataModel.getSerial().toString()));
+          */
+/*      Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://173.11.229.171/viswaweb/LO_CLOPreview.aspx?strUserId=" + userId + "&&SampType=3&&strSerial=" + reportDataModel.getSerial().toString()));
                 Log.v("xxx","http://173.11.229.171/viswaweb/LO_CLOPreview.aspx?strUserId=" + userId + "&&SampType=3&&strSerial=" + reportDataModel.getSerial().toString());
-                context.startActivity(browserIntent);*/
+                context.startActivity(browserIntent);*//*
+
             }
         });
+*/
     }
 
     @Override
@@ -133,10 +154,12 @@ public class AnalysisReportsAdapter extends RecyclerView.Adapter<AnalysisReports
             tvShipName = (TextView) itemView.findViewById(R.id.tvShipName);
             tvBunkerDate = (TextView) itemView.findViewById(R.id.tvBunkerDate);
             tvReult = (ImageView) itemView.findViewById(R.id.tvReult);
+            itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
+            listenerInterface.itemClicked(mReportDataModelList.get(getAdapterPosition()).getSerial());
             /*if (mList.get(getAdapterPosition()).getApprovedStatus())
                 Toast.makeText(context, "Already approved", Toast.LENGTH_SHORT).show();
             else*/
@@ -156,8 +179,9 @@ public class AnalysisReportsAdapter extends RecyclerView.Adapter<AnalysisReports
         return jsondate;
     }
 
-    public interface clickListener {
-        void itemClicked(String calcId);
+    public interface ListenerInterface {
+        void itemClicked(String sr);
     }
+
 }
 

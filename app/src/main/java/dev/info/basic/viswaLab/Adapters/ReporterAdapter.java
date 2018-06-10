@@ -29,13 +29,16 @@ public class ReporterAdapter extends RecyclerView.Adapter<ReporterAdapter.viewHo
     List<ReportDataModel> mReportDataModelList = new ArrayList<>();
     boolean from_alert = false;
     String userId;
+    String username;
+    String pwd;
 
-
-    public ReporterAdapter(Context context, boolean from_alert, List<ReportDataModel> mReportDataModelList, String userId) {
+    public ReporterAdapter(Context context, boolean from_alert, List<ReportDataModel> mReportDataModelList, String userId, String username, String pwd) {
         this.context = context;
         this.from_alert = from_alert;
         this.mReportDataModelList = mReportDataModelList;
         this.userId = userId;
+        this.username = username;
+        this.pwd = pwd;
     }
 
     @Override
@@ -81,12 +84,16 @@ public class ReporterAdapter extends RecyclerView.Adapter<ReporterAdapter.viewHo
                 Intent browserIntent = null;
                 if (reportDataModel.getEquipment().equalsIgnoreCase("LO_AR")) {
                     browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://173.11.229.171/viswaweb/VLReports/SampleReports/LO.PDF"));
+                    context.startActivity(browserIntent);
+
                 } else if (reportDataModel.getEquipment().equalsIgnoreCase("LO_CA")) {
                     browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://173.11.229.171/viswaweb/VLReports/SampleReports/LO_C.PDF"));
+                    context.startActivity(browserIntent);
+
                 } else {
-                    browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://173.11.229.171/viswaweb/VLReports/LOReports/" + reportDataModel.getSerial().toString() + ".pdf"));
+
+//                    browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://74.208.185.23/viswaweb/VL_LOReports_Download/" + username+"/"+pwd+"/"+reportDataModel.getSerial().toString() + ".pdf"));
                 }
-                context.startActivity(browserIntent);
             }
         });
     }

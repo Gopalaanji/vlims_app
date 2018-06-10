@@ -22,6 +22,7 @@ import java.util.List;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import dev.info.basic.viswaLab.Activitys.LoginFragmentActivity;
 import dev.info.basic.viswaLab.Adapters.AdhocReportsAdapter;
+import dev.info.basic.viswaLab.AnalysisReportsPage.Adapters.AnalysisAdditionalTestAdapter;
 import dev.info.basic.viswaLab.ApiInterfaces.ApiInterface;
 import dev.info.basic.viswaLab.R;
 import dev.info.basic.viswaLab.models.AdhocReportsModel;
@@ -65,7 +66,7 @@ public class AdhocReportsFragment extends BaseFragment {
 
     private void fetchAdHocReports() {
         main_loader.setVisibility(View.VISIBLE);
-        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
+        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.pdf_Head).build();
         final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
         apiInterface.GetAdhocReports(prefs.getString("userid", ""),new Callback<JsonObject>() {
             @Override
@@ -83,15 +84,14 @@ public class AdhocReportsFragment extends BaseFragment {
                     }
                 } else {
                     main_loader.setVisibility(View.GONE);
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Something went wrong!");
+                    showToast(getString(R.string.something_went_wrong));
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
                 main_loader.setVisibility(View.GONE);
-                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
-            }
+showToast();            }
         });
     }
 
@@ -105,7 +105,12 @@ public class AdhocReportsFragment extends BaseFragment {
         };
         adhocReportsRecyclerView.setLayoutManager(layoutManager);
         if (mAdhocReportsModelsList != null) {
-            mAdhocReportsAdapter = new AdhocReportsAdapter(getActivity(), mAdhocReportsModelsList);
+            mAdhocReportsAdapter = new AdhocReportsAdapter(getActivity(), mAdhocReportsModelsList, new AdhocReportsAdapter.AdhocReportsListener() {
+                @Override
+                public void itemClicked(String pdfname, String testname) {
+                    showPdf(pdfname,"ADD",testname);
+                }
+            });
             adhocReportsRecyclerView.setAdapter(mAdhocReportsAdapter);
         }
     }

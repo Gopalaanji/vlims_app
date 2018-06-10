@@ -32,6 +32,7 @@ import java.util.List;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import dev.info.basic.viswaLab.Activitys.LoginFragmentActivity;
 import dev.info.basic.viswaLab.Adapters.ReporterAdapter;
+import dev.info.basic.viswaLab.AnalysisReportsPage.Adapters.AnalysisReportsLubeOilAdapter;
 import dev.info.basic.viswaLab.ApiInterfaces.ApiInterface;
 import dev.info.basic.viswaLab.Database.helper;
 import dev.info.basic.viswaLab.Fragments.BaseFragment;
@@ -47,13 +48,13 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 /**
- * Created by RSR on 07-09-2017.
+ * Created by Giri Thangellapally on 07-09-2017.
  */
 
 public class AnalysisReportsLubeOilReportsFragment extends BaseFragment implements View.OnClickListener {
     private LoginFragmentActivity fragmentActivity;
     private View rootView;
-    private Common common;
+//    private Common common;
     Spinner spnVesselShips;
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
@@ -67,7 +68,7 @@ public class AnalysisReportsLubeOilReportsFragment extends BaseFragment implemen
     ImageView btnSubmit, btnsrSubmit;
     private String bandId;
     RecyclerView mRecyclerView;
-    ReporterAdapter mReporterAdapter;
+    AnalysisReportsLubeOilAdapter mReporterAdapter;
     EditText imo_number, sr_number;
     helper dbHelper;
 
@@ -78,7 +79,7 @@ public class AnalysisReportsLubeOilReportsFragment extends BaseFragment implemen
         rootView = inflater.inflate(R.layout.fragment_analysis_reports_lube_oil_reports, container, false);
         setHasOptionsMenu(true);
         fragmentActivity = (LoginFragmentActivity) getActivity();
-        common = new Common();
+//        common = new Common();
         fragmentActivity.displayActionBar();
         fragmentActivity.setActionBarTitle("Lube Oil Reports");
         fragmentActivity.showActionBar();
@@ -114,7 +115,7 @@ public class AnalysisReportsLubeOilReportsFragment extends BaseFragment implemen
     }
 
     private void fetchLubeOilReports() {
-        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
+        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.pdf_Head).build();
         final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
         main_loader.setVisibility(View.VISIBLE);
         apiInterface.GetLubeOilAnalysisReportsShips(prefs.getString("userid", ""), new Callback<JsonObject>() {
@@ -141,14 +142,14 @@ public class AnalysisReportsLubeOilReportsFragment extends BaseFragment implemen
                     }
                 } else {
                     main_loader.setVisibility(View.GONE);
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Something went wrong!");
+                    showToast(getString(R.string.something_went_wrong));
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
                 main_loader.setVisibility(View.GONE);
-                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
+                showToast();
             }
         });
 
@@ -188,7 +189,7 @@ public class AnalysisReportsLubeOilReportsFragment extends BaseFragment implemen
 
     private void getEquipmentDataByShipId(int shipId) {
         main_loader.setVisibility(View.VISIBLE);
-        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
+        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.pdf_Head).build();
         final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
         apiInterface.GetEquipementDataByShipDetails(shipId + "", new Callback<JsonObject>() {
             @Override
@@ -226,7 +227,7 @@ public class AnalysisReportsLubeOilReportsFragment extends BaseFragment implemen
 */
                 } else {
                     main_loader.setVisibility(View.GONE);
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Something went wrong!");
+                    showToast(getString(R.string.something_went_wrong));
                 }
 //
             }
@@ -234,7 +235,7 @@ public class AnalysisReportsLubeOilReportsFragment extends BaseFragment implemen
             @Override
             public void failure(RetrofitError error) {
                 main_loader.setVisibility(View.GONE);
-                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
+                showToast();
             }
         });
 
@@ -242,7 +243,7 @@ public class AnalysisReportsLubeOilReportsFragment extends BaseFragment implemen
 
     private void getBrandtDataByShipId(String equipmentId) {
         main_loader.setVisibility(View.VISIBLE);
-        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
+        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.pdf_Head).build();
         final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
         Log.v("Ship&Eqi", "" + shipId + "eq==>" + equipmentId);
         apiInterface.GetSupplierBrandDataByEquipmentDetails(shipId + "", equipmentId, new Callback<JsonObject>() {
@@ -282,7 +283,7 @@ public class AnalysisReportsLubeOilReportsFragment extends BaseFragment implemen
 
                 } else {
                     main_loader.setVisibility(View.GONE);
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Something went wrong!");
+                    showToast(getString(R.string.something_went_wrong));
                 }
 //
             }
@@ -290,7 +291,7 @@ public class AnalysisReportsLubeOilReportsFragment extends BaseFragment implemen
             @Override
             public void failure(RetrofitError error) {
                 main_loader.setVisibility(View.GONE);
-                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
+                showToast();
             }
         });
 
@@ -313,7 +314,8 @@ public class AnalysisReportsLubeOilReportsFragment extends BaseFragment implemen
 
             case R.id.btnSubmit:
                 if (shipId == 0 && imo_number.getText().toString().isEmpty()) {
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Please enter the value!");
+                    pshowToast();
+//                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Please enter the value!");
                 } else {
                     shipId = 0;
                     submitReport();
@@ -321,7 +323,8 @@ public class AnalysisReportsLubeOilReportsFragment extends BaseFragment implemen
                 break;
             case R.id.btnsrSubmit:
                 if (shipId == 0 && sr_number.getText().toString().isEmpty()) {
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Please enter the value!");
+                    pshowToast();
+//                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Please enter the value!");
                 } else {
                     shipId = 0;
                     submitSerialDataReport();
@@ -339,7 +342,7 @@ public class AnalysisReportsLubeOilReportsFragment extends BaseFragment implemen
         }
         Log.v("FUCK", "SHIPID" + shipId + "EDIT" + sr_number.getText().toString());
         main_loader.setVisibility(View.VISIBLE);
-        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
+        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.pdf_Head).build();
         final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
         apiInterface.GetSrDataForLOSNSearch(prefs.getString("userid", ""), sr_number.getText().toString(), new Callback<JsonObject>() {
             @Override
@@ -356,18 +359,21 @@ public class AnalysisReportsLubeOilReportsFragment extends BaseFragment implemen
                         } else {
                             imo_number.setText("");
                             main_loader.setVisibility(View.GONE);
-                            common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                            cshowToast();
+//                            common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                         }
                     } else {
                         renderTheResponse(true);
                         main_loader.setVisibility(View.GONE);
-                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                        cshowToast();
+//                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                     }
 
                 } catch (Exception e) {
                     renderTheResponse(true);
                     main_loader.setVisibility(View.GONE);
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                    cshowToast();
+//                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
 
                 }
 
@@ -376,7 +382,7 @@ public class AnalysisReportsLubeOilReportsFragment extends BaseFragment implemen
             @Override
             public void failure(RetrofitError error) {
                 main_loader.setVisibility(View.GONE);
-                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
+                showToast();
                 sr_number.setText("");
             }
         });
@@ -390,7 +396,7 @@ public class AnalysisReportsLubeOilReportsFragment extends BaseFragment implemen
             shipId = 0;
         }
         main_loader.setVisibility(View.VISIBLE);
-        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
+        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.pdf_Head).build();
         final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
         apiInterface.GetLubeOilReportsAnalysisReports(prefs.getString("userid",""),shipId, imo_number.getText().toString(), new Callback<JsonObject>() {
             @Override
@@ -410,11 +416,13 @@ public class AnalysisReportsLubeOilReportsFragment extends BaseFragment implemen
                             if (shipId == 0) {
                                 showAlertDialog("Lube Oil Reports","http://173.11.229.171/viswaweb/VLReports/SampleReports/LO.PDF");
                             } else {
-                                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                                cshowToast();
+//                                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                             }
                         }
                     } else {
-                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                        cshowToast();
+//                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                     }
 
                 } catch (Exception e) {
@@ -426,8 +434,9 @@ public class AnalysisReportsLubeOilReportsFragment extends BaseFragment implemen
             @Override
             public void failure(RetrofitError error) {
                 main_loader.setVisibility(View.GONE);
-                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
-                imo_number.setText("");
+
+showToast();
+imo_number.setText("");
             }
         });
 
@@ -443,23 +452,18 @@ public class AnalysisReportsLubeOilReportsFragment extends BaseFragment implemen
         };
         mRecyclerView.setLayoutManager(layoutManager);
 
-        if (nodata) {
-            ReportDataModel analysisFoModel = new ReportDataModel();
-            analysisFoModel.setShipName("Test Ship");
-            analysisFoModel.setEquipment("LO_AR");
-            analysisFoModel.setOilCondition("1");
-            mReportDataModelList.add(analysisFoModel);
-            mReporterAdapter = new ReporterAdapter(getActivity(), false, mReportDataModelList, prefs.getString("userid", ""));
-            mRecyclerView.setAdapter(mReporterAdapter);
-        } else {
+
             if (mReportDataModelList != null) {
-                mReporterAdapter = new ReporterAdapter(getActivity(), false, mReportDataModelList, prefs.getString("userid", ""));
+                mReporterAdapter = new AnalysisReportsLubeOilAdapter(getActivity(), false, mReportDataModelList, new AnalysisReportsLubeOilAdapter.ArLubeOilListener() {
+                    @Override
+                    public void itemClicked(String pdfName) {
+                        showPdf(pdfName,"LO_AR","");
+                    }
+                });
                 mRecyclerView.setAdapter(mReporterAdapter);
             } else {
                 mRecyclerView.removeAllViews();
             }
-        }
-
 
     }
 

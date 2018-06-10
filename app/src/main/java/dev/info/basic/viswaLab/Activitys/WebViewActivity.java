@@ -40,7 +40,10 @@ public class WebViewActivity extends AppCompatActivity {
             }
         });
 
-        webView.loadUrl("http://drive.google.com/viewerng/viewer?embedded=true&url=" + imgUrl);
+        webView.getSettings().setJavaScriptEnabled(true);
+//        webView.getSettings().setPluginsEnabled(true);
+        webView.loadUrl("https://docs.google.com/viewer?"+imgUrl);
+//        webView.loadUrl("http://drive.google.com/viewerng/viewer?embedded=true&url=" + imgUrl);
     }
 
     @Override

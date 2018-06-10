@@ -87,6 +87,11 @@ public class AnalysisReportFragment extends BaseFragment implements View.OnClick
                 break;
             case R.id.btnSweepTest:
                 showAlertDialogOption("SWEEP TEST", "Under Development", "http://173.11.229.171/viswaweb/VLReports/SampleReports/SWEEP.PDF");
+        break;
+            case R.id.btnBunkerQunty:
+                showAlertDialogOption("BUNKER QUANTITY", "Under Development", "http://173.11.229.171/viswaweb/VLReports/SampleReports/BQS.pdf");
+
+
         }
     }
 }

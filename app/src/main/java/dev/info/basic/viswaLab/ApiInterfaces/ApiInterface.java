@@ -2,11 +2,13 @@ package dev.info.basic.viswaLab.ApiInterfaces;
 
 import com.google.gson.JsonObject;
 
+import okhttp3.ResponseBody;
 import retrofit.Callback;
 import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
 import retrofit.http.POST;
+import retrofit2.Call;
 
 /**
  * Created by RSR on 21-07-2017.
@@ -15,7 +17,8 @@ import retrofit.http.POST;
 public interface ApiInterface {
 
 //    public static String HeadUrl = "http://173.11.229.171/VLIMSAPP/GETuser.asmx";
-    public static String HeadUrl = "http://74.208.185.23/VLIMSAPP/GETuser.asmx";
+//    public static String HeadUrl = "http://74.208.185.23/VLIMSAPP/GETuser.asmx";
+    public  static final String pdf_Head ="http://74.208.185.23/VLIMSAPP/GETuser.asmx/";
 
     @FormUrlEncoded
     @POST("/CheckUserLogin")
@@ -206,5 +209,14 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("/GetVL_CLO_CautionAlerts")
     void GetCylinderOilReportsCautionAlert(@Field("userid") String userid, @Field("shipid") int shipid, @Field("imonumber") String imonumber, Callback<JsonObject> callback);
+
+
+    @FormUrlEncoded
+    @POST("/VL_FOReports_Download")
+    void downloadFileByUrl(@Field("username") String username, @Field("password") String password, @Field("serialNo") String serialNo, Callback<ResponseBody> callback);
+
+
+
+
 
 }

@@ -31,7 +31,7 @@ import retrofit.RestAdapter;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class TechnicalUpdatesFragment extends BaseFragment implements View.OnClickListener {
+public class TechnicalUpdatesFragment extends BaseFragment{
 
 
     private LoginFragmentActivity fragmentActivity;
@@ -65,7 +65,7 @@ public class TechnicalUpdatesFragment extends BaseFragment implements View.OnCli
 
     private void fetchTechnicalUpdateReports() {
         main_loader.setVisibility(View.VISIBLE);
-        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
+        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.pdf_Head).build();
         final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
         apiInterface.GetTechnicalUpdates(new Callback<JsonObject>() {
             @Override
@@ -83,15 +83,14 @@ public class TechnicalUpdatesFragment extends BaseFragment implements View.OnCli
                     }
                 } else {
                     main_loader.setVisibility(View.GONE);
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Something went wrong!");
+                    showToast(getString(R.string.something_went_wrong));
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
                 main_loader.setVisibility(View.GONE);
-                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
-            }
+showToast();            }
         });
     }
 
@@ -105,14 +104,15 @@ public class TechnicalUpdatesFragment extends BaseFragment implements View.OnCli
         };
         technicalUpdatesRecyclerView.setLayoutManager(layoutManager);
         if (mTechnicalUpdatesList != null) {
-            mTechnicalUpdatesAdapter = new TechnicalUpdatesAdapter(getActivity(), mTechnicalUpdatesList);
+            mTechnicalUpdatesAdapter = new TechnicalUpdatesAdapter(getActivity(), mTechnicalUpdatesList, new TechnicalUpdatesAdapter.TechnicalUpdateListener() {
+                @Override
+                public void itemClicked(String pdfname) {
+                    showPdf(pdfname,"TU","");
+                }
+            });
             technicalUpdatesRecyclerView.setAdapter(mTechnicalUpdatesAdapter);
         }
     }
 
 
-    @Override
-    public void onClick(View v) {
-
-    }
 }

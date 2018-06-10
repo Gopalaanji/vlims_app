@@ -3,10 +3,12 @@ package dev.info.basic.viswaLab.Activitys;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -28,7 +30,7 @@ import retrofit.client.Response;
 
 public class SplashScreen extends AppCompatActivity {
     // Splash screen timer
-    private static int SPLASH_TIME_OUT = 1500;
+    private static int SPLASH_TIME_OUT = 2500;
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
     ArrayList<ShipdetailsModel> ShipdetailsList;
@@ -45,27 +47,56 @@ public class SplashScreen extends AppCompatActivity {
         common = new Common();
         helper.getInstance(SplashScreen.this);
         dbHelper = new helper(SplashScreen.this);
-        if (prefs.getString("userid", "") != null&&!prefs.getString("userid", "").isEmpty()&&!prefs.getString("userid", "").equals("")) {
-            dbHelper.deleteAllShips();
-            getUserShipDetails(prefs.getString("userid", ""));
-        }else{
-            Intent i = new Intent(SplashScreen.this, LoginFragmentActivity.class);
-            startActivity(i);
-            finish();
-        }
+
      /*   Intent i = new Intent(SplashScreen.this, LoginFragmentActivity.class);
         startActivity(i);
-        finish();
-*/
+        finish();*/
+
+
+
+
+        new Handler().postDelayed(new Runnable() {
+
+            /*
+             * Showing splash screen with a timer. This will be useful when you
+             * want to show case your app logo / company
+             */
+
+            @Override
+            public void run() {
+                // This method will be executed once the timer is over
+                // Start your app main activity
+                Intent i = new Intent(SplashScreen.this, LoginFragmentActivity.class);
+                startActivity(i);
+
+                // close this activity
+                finish();
+            }
+        }, SPLASH_TIME_OUT);
+
+
     }
 
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        if (prefs.getString("userid", "") != null&&!prefs.getString("userid", "").isEmpty()&&!prefs.getString("userid", "").equals("")) {
+//            dbHelper.deleteAllShips();
+//            getUserShipDetails(prefs.getString("userid", ""));
+//        }else{
+//            Intent i = new Intent(SplashScreen.this, LoginFragmentActivity.class);
+//            startActivity(i);
+//            finish();
+//        }
+//    }
+
     private void getUserShipDetails(String userid) {
-        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
+        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.pdf_Head).build();
         final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
         apiInterface.GetUserShipDetails(userid, new Callback<JsonObject>() {
             @Override
             public void success(JsonObject response_data_obj, Response response) {
-                Log.v("RESPONSE==>", response_data_obj.toString());
+               // Log.v("RESPONSE==>", response_data_obj.toString());
                 if (response_data_obj != null) {
                     ShipdetailsList = new Gson().fromJson(response_data_obj.getAsJsonArray("Shipdetails"), new TypeToken<List<ShipdetailsModel>>() {
                     }.getType());
@@ -73,20 +104,23 @@ public class SplashScreen extends AppCompatActivity {
                         for (int i = 0; i < ShipdetailsList.size(); i++) {
                             dbHelper.AddShipsData(ShipdetailsList.get(i));
                         }
-                        Log.v("SHIPS_COUNT", dbHelper.getAllShipDetails().size()+"");
+                       // Log.v("SHIPS_COUNT", dbHelper.getAllShipDetails().size()+"");
                         Intent i = new Intent(SplashScreen.this, LoginFragmentActivity.class);
                         startActivity(i);
                         finish();
+                    }else{
+                        Toast.makeText(SplashScreen.this,getString(R.string.something_went_wrong),Toast.LENGTH_LONG).show();
                     }
 
                 } else {
-                    common.showNewAlertDesign(SplashScreen.this, SweetAlertDialog.ERROR_TYPE, "Something went wrong!");
+                    Toast.makeText(SplashScreen.this,getString(R.string.something_went_wrong),Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
-                common.showNewAlertDesign(SplashScreen.this, SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
+                    Toast.makeText(SplashScreen.this,"Something Went Wrong!!",Toast.LENGTH_LONG).show();
+
             }
         });
 

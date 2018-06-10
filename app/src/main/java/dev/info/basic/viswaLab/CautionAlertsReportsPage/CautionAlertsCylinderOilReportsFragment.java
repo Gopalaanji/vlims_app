@@ -26,9 +26,11 @@ import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import dev.info.basic.viswaLab.Activitys.LoginFragmentActivity;
+import dev.info.basic.viswaLab.AnalysisReportsPage.Adapters.AnalysisCylinderOilAdapter;
 import dev.info.basic.viswaLab.AnalysisReportsPage.Adapters.AnalysisReportsAdapter;
 import dev.info.basic.viswaLab.AnalysisReportsPage.models.AnalysisFoModel;
 import dev.info.basic.viswaLab.ApiInterfaces.ApiInterface;
+import dev.info.basic.viswaLab.CautionAlertsReportsPage.Adapters.CautionAlertsCylinderOilAdapter;
 import dev.info.basic.viswaLab.Database.helper;
 import dev.info.basic.viswaLab.Fragments.BaseFragment;
 import dev.info.basic.viswaLab.R;
@@ -48,7 +50,7 @@ import retrofit.client.Response;
 public class CautionAlertsCylinderOilReportsFragment extends BaseFragment implements View.OnClickListener {
     private LoginFragmentActivity fragmentActivity;
     private View rootView;
-    private Common common;
+//    private Common common;
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
     private RelativeLayout main_loader;
@@ -61,19 +63,22 @@ public class CautionAlertsCylinderOilReportsFragment extends BaseFragment implem
     ImageView btnSubmit, btnsrSubmit;
     private String bandId;
     RecyclerView mRecyclerView;
-    AnalysisReportsAdapter mReporterAdapter;
     EditText imo_number, sr_number;
     helper dbHelper;
     Spinner spnVesselShips;
 
 
+    AnalysisCylinderOilAdapter cautionAlertsCylinderOilAdapter;
+
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_analysis_reports_fuel_oil_reports, container, false);
+        rootView = inflater.inflate(R.layout.fragment_analysis_reports_cylinder_oil_reports, container, false);
         setHasOptionsMenu(true);
         fragmentActivity = (LoginFragmentActivity) getActivity();
-        common = new Common();
+//        common = new Common();
         fragmentActivity.displayActionBar();
         fragmentActivity.setActionBarTitle("Cylinder Drain Oil Caution Reports");
         fragmentActivity.showActionBar();
@@ -103,7 +108,7 @@ public class CautionAlertsCylinderOilReportsFragment extends BaseFragment implem
     }
 
     private void fetchShipDetils() {
-        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
+        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.pdf_Head).build();
         final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
         main_loader.setVisibility(View.VISIBLE);
         apiInterface.GetCylinderOilOilCOShips(prefs.getString("userid", ""), new Callback<JsonObject>() {
@@ -130,15 +135,14 @@ public class CautionAlertsCylinderOilReportsFragment extends BaseFragment implem
                     }
                 } else {
                     main_loader.setVisibility(View.GONE);
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Something went wrong!");
+                    showToast(getString(R.string.something_went_wrong));
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
                 main_loader.setVisibility(View.GONE);
-                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
-            }
+showToast();            }
         });
 
     }
@@ -181,7 +185,7 @@ public class CautionAlertsCylinderOilReportsFragment extends BaseFragment implem
             shipId = 0;
         }
         main_loader.setVisibility(View.VISIBLE);
-        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
+        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.pdf_Head).build();
         final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
         apiInterface.GetCylinderOilReportsCautionAlert(prefs.getString("userid", ""), shipId, imo_number.getText().toString(), new Callback<JsonObject>() {
             @Override
@@ -201,20 +205,24 @@ public class CautionAlertsCylinderOilReportsFragment extends BaseFragment implem
                             if (shipId == 0) {
                                 showAlertDialog("Caution Alerts CylinderOil","http://173.11.229.171/viswaweb/VLReports/SampleReports/CLO_C.PDF");
                             } else {
-                                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                                main_loader.setVisibility(View.GONE);
+                                showToast("Could Not Found Details!");
+//                                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                             }
                         }
                     } else {
                         renderTheResponse(true);
 
                         main_loader.setVisibility(View.GONE);
-                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                        cshowToast();
+//                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                     }
 
                 } catch (Exception e) {
                     renderTheResponse(true);
                     main_loader.setVisibility(View.GONE);
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                    showToast("Could Not Found Details!");
+//                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
 
                 }
 
@@ -223,36 +231,31 @@ public class CautionAlertsCylinderOilReportsFragment extends BaseFragment implem
             @Override
             public void failure(RetrofitError error) {
                 main_loader.setVisibility(View.GONE);
-                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
-                imo_number.setText("");
+showToast();imo_number.setText("");
             }
         });
 
     }
 
     private void renderTheResponse(boolean nodata) {
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity()) {
             @Override
             public RecyclerView.LayoutParams generateDefaultLayoutParams() {
                 return new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             }
         };
+        mRecyclerView.hasFixedSize();
         mRecyclerView.setLayoutManager(layoutManager);
-        if (nodata) {
-            AnalysisFoModel analysisFoModel = new AnalysisFoModel();
-            analysisFoModel.setBunkerDate("Test Date");
-            analysisFoModel.setShipName("Test Ship");
-            analysisFoModel.setOilCondition("1");
-            analysisFoModel.setBunkerPort("CLO_CO");
-            mReportDataModelList.add(analysisFoModel);
-            mReporterAdapter = new AnalysisReportsAdapter(getActivity(), "FO", mReportDataModelList, prefs.getString("userid", ""));
-            mRecyclerView.setAdapter(mReporterAdapter);
-        } else {
             if (mReportDataModelList != null) {
-                mReporterAdapter = new AnalysisReportsAdapter(getActivity(), "CLO", mReportDataModelList, prefs.getString("userid", ""));
-                mRecyclerView.setAdapter(mReporterAdapter);
+                cautionAlertsCylinderOilAdapter = new AnalysisCylinderOilAdapter(getActivity(), "CLO", mReportDataModelList, new AnalysisCylinderOilAdapter.AnalysisCylinderOilLListener() {
+                    @Override
+                    public void itemClicked(String pdfFileName) {
+                        showPdf(pdfFileName,"CLO","");
+
+                    }
+                });
             }
-        }
 
     }
 
@@ -262,7 +265,8 @@ public class CautionAlertsCylinderOilReportsFragment extends BaseFragment implem
 
             case R.id.btnSubmit:
                 if (shipId == 0 && imo_number.getText().toString().isEmpty()) {
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Please enter the value!");
+                    pshowToast();
+//                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Please enter the value!");
                 } else {
                     shipId = 0;
                     submitReport();
@@ -270,7 +274,8 @@ public class CautionAlertsCylinderOilReportsFragment extends BaseFragment implem
                 break;
             case R.id.btnsrSubmit:
                 if (shipId == 0 && sr_number.getText().toString().isEmpty()) {
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Please enter the value!");
+                    pshowToast();
+//                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Please enter the value!");
                 } else {
                     shipId = 0;
 //                    submitSerialDataReport();

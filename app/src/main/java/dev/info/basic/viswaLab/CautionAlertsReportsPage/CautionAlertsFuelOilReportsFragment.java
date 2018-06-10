@@ -1,10 +1,6 @@
 package dev.info.basic.viswaLab.CautionAlertsReportsPage;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
@@ -52,7 +48,7 @@ import retrofit.client.Response;
 public class CautionAlertsFuelOilReportsFragment extends BaseFragment implements View.OnClickListener {
     private LoginFragmentActivity fragmentActivity;
     private View rootView;
-    private Common common;
+//    private Common common;
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
     private RelativeLayout main_loader;
@@ -77,7 +73,7 @@ public class CautionAlertsFuelOilReportsFragment extends BaseFragment implements
         rootView = inflater.inflate(R.layout.fragment_analysis_reports_fuel_oil_reports, container, false);
         setHasOptionsMenu(true);
         fragmentActivity = (LoginFragmentActivity) getActivity();
-        common = new Common();
+//        common = new Common();
         fragmentActivity.displayActionBar();
         fragmentActivity.setActionBarTitle("Fuel Oil Caution Reports");
         fragmentActivity.showActionBar();
@@ -107,7 +103,7 @@ public class CautionAlertsFuelOilReportsFragment extends BaseFragment implements
     }
 
     private void fetchShipDetils() {
-        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
+        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.pdf_Head).build();
         final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
         main_loader.setVisibility(View.VISIBLE);
         apiInterface.GetFuelOilCOShips(prefs.getString("userid", ""), new Callback<JsonObject>() {
@@ -134,15 +130,14 @@ public class CautionAlertsFuelOilReportsFragment extends BaseFragment implements
                     }
                 } else {
                     main_loader.setVisibility(View.GONE);
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Something went wrong!");
+                    showToast(getString(R.string.something_went_wrong));
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
                 main_loader.setVisibility(View.GONE);
-                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
-            }
+showToast();            }
         });
 
     }
@@ -184,7 +179,7 @@ public class CautionAlertsFuelOilReportsFragment extends BaseFragment implements
             shipId = 0;
         }
         main_loader.setVisibility(View.VISIBLE);
-        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
+        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.pdf_Head).build();
         final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
         apiInterface.GetFuelOilReportsCautionAlert(prefs.getString("userid", ""), shipId, imo_number.getText().toString(), new Callback<JsonObject>() {
             @Override
@@ -204,19 +199,22 @@ public class CautionAlertsFuelOilReportsFragment extends BaseFragment implements
                             if (shipId == 0) {
                                 showAlertDialog("Caution Alerts FuelOil","http://173.11.229.171/viswaweb/VLReports/SampleReports/FO_C.PDF");
                             } else {
-                                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                                cshowToast();
+//                                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                             }
                         }
                     } else {
                         renderTheResponse(true);
                         main_loader.setVisibility(View.GONE);
-                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                        cshowToast();
+//                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                     }
 
                 } catch (Exception e) {
                     renderTheResponse(true);
                     main_loader.setVisibility(View.GONE);
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                    showToast("Could Not Found Details!");
+//                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                 }
 
             }
@@ -224,8 +222,7 @@ public class CautionAlertsFuelOilReportsFragment extends BaseFragment implements
             @Override
             public void failure(RetrofitError error) {
                 main_loader.setVisibility(View.GONE);
-                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
-                imo_number.setText("");
+showToast();                imo_number.setText("");
             }
         });
 
@@ -239,21 +236,16 @@ public class CautionAlertsFuelOilReportsFragment extends BaseFragment implements
             }
         };
         mRecyclerView.setLayoutManager(layoutManager);
-        if (nodata) {
-            AnalysisFoModel analysisFoModel = new AnalysisFoModel();
-            analysisFoModel.setBunkerDate("Test Date");
-            analysisFoModel.setShipName("Test Ship");
-            analysisFoModel.setOilCondition("1");
-            analysisFoModel.setBunkerPort("FO_CA");
-            mReportDataModelList.add(analysisFoModel);
-            mReporterAdapter = new AnalysisReportsAdapter(getActivity(), "FO", mReportDataModelList, prefs.getString("userid", ""));
-            mRecyclerView.setAdapter(mReporterAdapter);
-        } else {
+
             if (mReportDataModelList != null) {
-                mReporterAdapter = new AnalysisReportsAdapter(getActivity(), "FO", mReportDataModelList, prefs.getString("userid", ""));
+                mReporterAdapter = new AnalysisReportsAdapter(getActivity(), "FO", mReportDataModelList, new AnalysisReportsAdapter.ListenerInterface() {
+                    @Override
+                    public void itemClicked(String pdfFileName) {
+                        showPdf(pdfFileName,"FO","");
+                    }
+                });
                 mRecyclerView.setAdapter(mReporterAdapter);
             }
-        }
 
     }
 
@@ -263,7 +255,8 @@ public class CautionAlertsFuelOilReportsFragment extends BaseFragment implements
 
             case R.id.btnSubmit:
                 if (shipId == 0 && imo_number.getText().toString().isEmpty()) {
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Please enter the value!");
+pshowToast();
+//                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Please enter the value!");
                 } else {
                     shipId = 0;
                     submitReport();
@@ -271,7 +264,8 @@ public class CautionAlertsFuelOilReportsFragment extends BaseFragment implements
                 break;
             case R.id.btnsrSubmit:
                 if (shipId == 0 && sr_number.getText().toString().isEmpty()) {
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Please enter the value!");
+                    pshowToast();
+//                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Please enter the value!");
                 } else {
                     shipId = 0;
 //                    submitSerialDataReport();

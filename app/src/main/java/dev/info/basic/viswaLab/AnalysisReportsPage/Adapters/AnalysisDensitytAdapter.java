@@ -63,6 +63,7 @@ public class AnalysisDensitytAdapter extends RecyclerView.Adapter<AnalysisDensit
             tvportDate = (TextView) itemView.findViewById(R.id.tvportDate);
             tvDiffTonnes = (TextView) itemView.findViewById(R.id.tvDiffTonnes);
             tvQtyRecieved = (TextView) itemView.findViewById(R.id.tvQtyRecieved);
+            itemView.setOnClickListener(this);
         }
 
         @Override

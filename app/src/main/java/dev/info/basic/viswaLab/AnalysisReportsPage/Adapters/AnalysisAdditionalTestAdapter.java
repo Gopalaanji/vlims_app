@@ -2,7 +2,6 @@ package dev.info.basic.viswaLab.AnalysisReportsPage.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,12 +25,13 @@ public class AnalysisAdditionalTestAdapter extends RecyclerView.Adapter<Analysis
     private Context context;
     CalculationsListAdapter.clickListener mClickListener;
     List<PurifierEffyResponseModel> mReportDataModelList = new ArrayList<>();
-    String userId;
+    AdditionalTestListner listenerInterface;
 
-    public AnalysisAdditionalTestAdapter(Context context, List<PurifierEffyResponseModel> mReportDataModelList, String userId) {
+    public AnalysisAdditionalTestAdapter(Context context, List<PurifierEffyResponseModel> mReportDataModelList,AdditionalTestListner listenerInterface) {
         this.context = context;
         this.mReportDataModelList = mReportDataModelList;
-        this.userId = userId;
+      this.listenerInterface=listenerInterface;
+
     }
 
     @Override
@@ -65,11 +65,12 @@ public class AnalysisAdditionalTestAdapter extends RecyclerView.Adapter<Analysis
             tvShipName = (TextView) itemView.findViewById(R.id.tvShipName);
             tvBunkerDate = (TextView) itemView.findViewById(R.id.tvBunkerDate);
             tvReult = (ImageView) itemView.findViewById(R.id.tvReult);
+            itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-
+            listenerInterface.itemClicked(mReportDataModelList.get(getAdapterPosition()).getSerial(),mReportDataModelList.get(getAdapterPosition()).getAdditionalTest());
         }
     }
 
@@ -85,23 +86,35 @@ public class AnalysisAdditionalTestAdapter extends RecyclerView.Adapter<Analysis
         return jsondate;
     }
 
-    public interface clickListener {
-        void itemClicked(String calcId);
-    }
+   public interface  AdditionalTestListner{
+
+       void itemClicked(String pdfFileName,String testName);
+
+   }
 
     @Override
     public void onBindViewHolder(viewHolder holder, int position) {
         final PurifierEffyResponseModel analysisFoModel = mReportDataModelList.get(position);
         holder.tvShipName.setText(analysisFoModel.getShipName());
         if (analysisFoModel.getBunkerDate() != null) {
-            holder.tvBunkerDate.setText(analysisFoModel.getAdditionalTest()+"("+analysisFoModel.getResult()+")\n"+ConvertJsonDate(analysisFoModel.getBunkerDate()) + "\n" + analysisFoModel.getBunkerPortName() + "\n" + analysisFoModel.getGrade() + "-" + analysisFoModel.getMatrix());
+            holder.tvBunkerDate.setText(analysisFoModel.getAdditionalTest()+"("+analysisFoModel.getResult()+")\n"+ConvertJsonDate(analysisFoModel.getBunkerDate()) + "\n" + analysisFoModel.getBunkerPortName() + "\n" +  analysisFoModel.getMatrix());
         }
+/*
         holder.tvReult.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://173.11.229.171/viswaweb/VLReports/ADDLReports/" + analysisFoModel.getSerial().toString()+"_"+analysisFoModel.getAdditionalTest() + ".pdf"));
-                context.startActivity(browserIntent);
+                Intent intent=new Intent(context, PdfViewActivity.class);
+                intent.putExtra("pdf_name",analysisFoModel.getSerial());
+                intent.putE xtra("module_type","ADD");
+                intent.putExtra("test_type",analysisFoModel.getAdditionalTest());
+                context.startActivity(intent);
+
+
+//                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://74.208.185.23/VLIMSAPP/VL_ADDLReports_Download/" + username+"/"+pwd+"/"+analysisFoModel.getSerial().toString()+"_"+analysisFoModel.getAdditionalTest() + ".pdf"));
+//                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://74.208.185.23/VLIMSAPP/VL_ADDLReports_Download/" + username+"/"+pwd+"/"+analysisFoModel.getSerial().toString()+".pdf"));
+//                context.startActivity(browserIntent);
             }
         });
+*/
     }
 }

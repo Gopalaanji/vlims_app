@@ -24,11 +24,13 @@ public class AdhocReportsAdapter extends RecyclerView.Adapter<AdhocReportsAdapte
 
     private Context context;
     List<AdhocReportsModel> mReportDataModelList = new ArrayList<>();
+    AdhocReportsListener listener;
 
 
-    public AdhocReportsAdapter(Context context, List<AdhocReportsModel> mReportDataModelList) {
+    public AdhocReportsAdapter(Context context, List<AdhocReportsModel> mReportDataModelList,AdhocReportsListener listener) {
         this.context = context;
         this.mReportDataModelList = mReportDataModelList;
+        this.listener=listener;
     }
 
 
@@ -56,13 +58,15 @@ public class AdhocReportsAdapter extends RecyclerView.Adapter<AdhocReportsAdapte
             holder.statusImg.setImageResource(R.drawable.result_red);
         }
 
-        holder.statusImg.setOnClickListener(new View.OnClickListener() {
+       /* holder.statusImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(reportDataModel.getLINK()));
-                context.startActivity(browserIntent);
+                showPdf(reportDataModel.getSERIAL_NO(),"ADD",reportDataModel.get);
+
+             *//*   Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(reportDataModel.getLINK()));
+                context.startActivity(browserIntent);*//*
             }
-        });
+        });*/
     }
 
     @Override
@@ -92,16 +96,17 @@ public class AdhocReportsAdapter extends RecyclerView.Adapter<AdhocReportsAdapte
             tvDate = (TextView) itemView.findViewById(R.id.tvDate);
             tvSerialNo = (TextView) itemView.findViewById(R.id.tvSerialNo);
             statusImg = (ImageView) itemView.findViewById(R.id.statusImg);
+            itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-
+            listener.itemClicked(mReportDataModelList.get(getAdapterPosition()).getSERIAL_NO(),mReportDataModelList.get(getAdapterPosition()).getTEST_NAME());
         }
     }
 
 
-    public interface clickListener {
-        void itemClicked(String calcId);
+    public interface AdhocReportsListener {
+        void itemClicked(String pdfname,String testname);
     }
 }

@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -47,7 +48,7 @@ import retrofit.client.Response;
 public class AnalysisReportsAdditionalTestReportsFragment extends BaseFragment implements View.OnClickListener {
     private LoginFragmentActivity fragmentActivity;
     private View rootView;
-    private Common common;
+//    private Common common;
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
     private RelativeLayout main_loader;
@@ -73,7 +74,7 @@ public class AnalysisReportsAdditionalTestReportsFragment extends BaseFragment i
         rootView = inflater.inflate(R.layout.fragment_analysis_additionaltest_reports, container, false);
         setHasOptionsMenu(true);
         fragmentActivity = (LoginFragmentActivity) getActivity();
-        common = new Common();
+//        common = new Common();
         fragmentActivity.displayActionBar();
         fragmentActivity.setActionBarTitle("Additional Test Reports");
         fragmentActivity.showActionBar();
@@ -101,7 +102,7 @@ public class AnalysisReportsAdditionalTestReportsFragment extends BaseFragment i
     }
 
     private void GetAnalysisReportsAdditionalShips() {
-        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
+        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.pdf_Head).build();
         final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
         main_loader.setVisibility(View.VISIBLE);
         apiInterface.GetAnalysisReportsAdditionalShips(prefs.getString("userid", ""), new Callback<JsonObject>() {
@@ -129,21 +130,20 @@ public class AnalysisReportsAdditionalTestReportsFragment extends BaseFragment i
                     }
                 } else {
                     main_loader.setVisibility(View.GONE);
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Something went wrong!");
+                    showToast(getString(R.string.something_went_wrong));
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
                 main_loader.setVisibility(View.GONE);
-                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
-            }
+showToast();            }
         });
 
     }
 
     private void GetAnalysisReportsAdditionalPortNames() {
-        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
+        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.pdf_Head).build();
         final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
         main_loader.setVisibility(View.VISIBLE);
 //        renderDetails(shipList);
@@ -172,15 +172,14 @@ public class AnalysisReportsAdditionalTestReportsFragment extends BaseFragment i
                     }
                 } else {
                     main_loader.setVisibility(View.GONE);
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Something went wrong!");
+                    showToast(getString(R.string.something_went_wrong));
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
                 main_loader.setVisibility(View.GONE);
-                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
-            }
+showToast();            }
         });
 
 
@@ -251,7 +250,7 @@ public class AnalysisReportsAdditionalTestReportsFragment extends BaseFragment i
             portId = 0;
         }
         main_loader.setVisibility(View.VISIBLE);
-        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
+        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.pdf_Head).build();
         final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
         apiInterface.GetAdditionalReportAnalysisReports(prefs.getString("userid", ""), shipId, imo_number.getText().toString(), portId, new Callback<JsonObject>() {
             @Override
@@ -271,12 +270,14 @@ public class AnalysisReportsAdditionalTestReportsFragment extends BaseFragment i
                             if (shipId == 0) {
                                 showAlertDialog("Additional Test Report", "http://173.11.229.171/viswaweb/VLReports/SampleReports/ADD.PDF");
                             } else {
-                                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                                cshowToast();
+//                                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                             }
                         }
                     } else {
                         main_loader.setVisibility(View.GONE);
-                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                        cshowToast();
+//                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                     }
 
                 } catch (Exception e) {
@@ -289,8 +290,8 @@ public class AnalysisReportsAdditionalTestReportsFragment extends BaseFragment i
             @Override
             public void failure(RetrofitError error) {
                 main_loader.setVisibility(View.GONE);
-                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
-                imo_number.setText("");
+                Toast.makeText(getActivity(),getString(R.string.something_went_wrong),Toast.LENGTH_SHORT).show();
+//showToast();                imo_number.setText("");
             }
         });
 
@@ -305,7 +306,12 @@ public class AnalysisReportsAdditionalTestReportsFragment extends BaseFragment i
         };
         mRecyclerView.setLayoutManager(layoutManager);
         if (mReportDataModelList != null) {
-            mReporterAdapter = new AnalysisAdditionalTestAdapter(getActivity(), mReportDataModelList, prefs.getString("userid", ""));
+            mReporterAdapter = new AnalysisAdditionalTestAdapter(getActivity(), mReportDataModelList, new AnalysisAdditionalTestAdapter.AdditionalTestListner() {
+                @Override
+                public void itemClicked(String pdfFileName,String testName) {
+                    showPdf(pdfFileName,"ADD",testName);
+                }
+            });
             mRecyclerView.setAdapter(mReporterAdapter);
         }
     }
@@ -315,7 +321,8 @@ public class AnalysisReportsAdditionalTestReportsFragment extends BaseFragment i
         switch (v.getId()) {
             case R.id.btnSubmit:
                 if (shipId == 0 && imo_number.getText().toString().isEmpty()) {
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Please enter the value!");
+                    pshowToast();
+//                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Please enter the value!");
                 } else {
                     shipId = 0;
                     portId = 0;
@@ -324,7 +331,8 @@ public class AnalysisReportsAdditionalTestReportsFragment extends BaseFragment i
                 break;
             case R.id.btnsrSubmit:
                 if (shipId == 0 && portId == 0 && sr_number.getText().toString().isEmpty()) {
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Please enter the value!");
+                    pshowToast();
+//                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Please enter the value!");
                 } else {
                     shipId = 0;
                     portId = 0;
@@ -345,7 +353,7 @@ public class AnalysisReportsAdditionalTestReportsFragment extends BaseFragment i
             portId=0;
         }
         main_loader.setVisibility(View.VISIBLE);
-        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
+        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.pdf_Head).build();
         final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
         apiInterface.GetSrDataForAddSNSearch(prefs.getString("userid", ""), sr_number.getText().toString(), new Callback<JsonObject>() {
             @Override
@@ -362,16 +370,19 @@ public class AnalysisReportsAdditionalTestReportsFragment extends BaseFragment i
                         } else {
                             imo_number.setText("");
                             main_loader.setVisibility(View.GONE);
-                            common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                            cshowToast();
+//                            common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                         }
                     } else {
                         main_loader.setVisibility(View.GONE);
-                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                        cshowToast();
+//                        common.showNewAlertDesignwAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                     }
 
                 } catch (Exception e) {
                     main_loader.setVisibility(View.GONE);
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                    cshowToast();
+//                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
 
                 }
 
@@ -380,8 +391,7 @@ public class AnalysisReportsAdditionalTestReportsFragment extends BaseFragment i
             @Override
             public void failure(RetrofitError error) {
                 main_loader.setVisibility(View.GONE);
-                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
-                sr_number.setText("");
+showToast();                sr_number.setText("");
             }
         });
     }

@@ -20,22 +20,22 @@ import dev.info.basic.viswaLab.AnalysisReportsPage.models.AnalysisFoModel;
 import dev.info.basic.viswaLab.R;
 
 /**
- * Created by PRAVEEN PAGINDLA on 06-May-18.
+ * Created by Giri on 06-May-18.
  */
 
 public class AnalysisCylinderOilAdapter extends RecyclerView.Adapter<AnalysisCylinderOilAdapter.viewHolder> {
 
     private Context context;
-    CalculationsListAdapter.clickListener mClickListener;
     List<AnalysisFoModel> mReportDataModelList = new ArrayList<>();
     String from;
-    String userId;
+    AnalysisCylinderOilLListener listenerInterface;
 
-    public AnalysisCylinderOilAdapter(Context context, String from, List<AnalysisFoModel> mReportDataModelList, String userId) {
+    public  AnalysisCylinderOilAdapter(Context context, String from, List<AnalysisFoModel> mReportDataModelList,AnalysisCylinderOilLListener listenerInterface) {
         this.context = context;
         this.from = from;
         this.mReportDataModelList = mReportDataModelList;
-        this.userId = userId;
+        this.listenerInterface = listenerInterface;
+
     }
 
     @Override
@@ -72,6 +72,7 @@ public class AnalysisCylinderOilAdapter extends RecyclerView.Adapter<AnalysisCyl
             holder.tvReult.setImageResource(R.drawable.result_orange);*/ else if (mReportDataModelList.get(position).getSepc() != null) {
             holder.tvReult.setImageResource(R.drawable.result_red);
         }
+/*
         holder.tvReult.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,28 +85,52 @@ public class AnalysisCylinderOilAdapter extends RecyclerView.Adapter<AnalysisCyl
                     if (from.equalsIgnoreCase("FO") && analysisFoModel.getSerial().toString().equalsIgnoreCase("")) {
                         if (analysisFoModel.getBunkerPort().equalsIgnoreCase("FO_AR")) {
                             browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://173.11.229.171/viswaweb/VLReports/SampleReports/FO.PDF"));
+                            context.startActivity(browserIntent);
+
                         } else if (analysisFoModel.getBunkerPort().equalsIgnoreCase("LO_AR")) {
                             browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://173.11.229.171/viswaweb/VLReports/SampleReports/LO.PDF"));
+                            context.startActivity(browserIntent);
+
                         } else if (analysisFoModel.getBunkerPort().equalsIgnoreCase("CLO_AR")) {
                             browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://173.11.229.171/viswaweb/VLReports/SampleReports/CLO.PDF"));
+                            context.startActivity(browserIntent);
+
                         } else if (analysisFoModel.getBunkerPort().equalsIgnoreCase("POMP_AR")) {
                             browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://173.11.229.171/viswaweb/VLReports/SampleReports/POMP.PDF"));
+                            context.startActivity(browserIntent);
+
                         }else if(analysisFoModel.getBunkerPort().equalsIgnoreCase("FO_CA")){
                             browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://173.11.229.171/viswaweb/VLReports/SampleReports/FO_C.PDF"));
+                            context.startActivity(browserIntent);
+
                         }else if(analysisFoModel.getBunkerPort().equalsIgnoreCase("CLO_CO")){
                             browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(":  http://173.11.229.171/viswaweb/VLReports/SampleReports/CLO_C.PDF"));
+                            context.startActivity(browserIntent);
+
                         }
                     } else {
-                        browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://173.11.229.171/viswaweb/VLReports/FOReports/" + analysisFoModel.getSerial().toString() + ".pdf"));
+*/
+/*
+
+                        Intent intent=new Intent(context, PdfViewActivity.class);
+                        intent.putExtra("pdf_name",analysisFoModel.getSerial());
+                        intent.putExtra("module_type","CLO");
+                        context.startActivity(intent);
+*//*
+
+
+//                        browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://74.208.185.23/VLIMSAPP/VL_CLOReports_Download/" + analysisFoModel.getSerial().toString() + ".pdf"));
                     }
                 }
-                context.startActivity(browserIntent);
 
-          /*      Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://173.11.229.171/viswaweb/LO_CLOPreview.aspx?strUserId=" + userId + "&&SampType=3&&strSerial=" + reportDataModel.getSerial().toString()));
+          */
+/*      Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://173.11.229.171/viswaweb/LO_CLOPreview.aspx?strUserId=" + userId + "&&SampType=3&&strSerial=" + reportDataModel.getSerial().toString()));
                 Log.v("xxx","http://173.11.229.171/viswaweb/LO_CLOPreview.aspx?strUserId=" + userId + "&&SampType=3&&strSerial=" + reportDataModel.getSerial().toString());
-                context.startActivity(browserIntent);*/
+                context.startActivity(browserIntent);*//*
+
             }
         });
+*/
     }
 
     @Override
@@ -133,10 +158,12 @@ public class AnalysisCylinderOilAdapter extends RecyclerView.Adapter<AnalysisCyl
             tvShipName = (TextView) itemView.findViewById(R.id.tvShipName);
             tvBunkerDate = (TextView) itemView.findViewById(R.id.tvBunkerDate);
             tvReult = (ImageView) itemView.findViewById(R.id.tvReult);
+            itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
+            listenerInterface.itemClicked(mReportDataModelList.get(getAdapterPosition()).getSerial());
             /*if (mList.get(getAdapterPosition()).getApprovedStatus())
                 Toast.makeText(context, "Already approved", Toast.LENGTH_SHORT).show();
             else*/
@@ -156,8 +183,8 @@ public class AnalysisCylinderOilAdapter extends RecyclerView.Adapter<AnalysisCyl
         return jsondate;
     }
 
-    public interface clickListener {
-        void itemClicked(String calcId);
+    public interface AnalysisCylinderOilLListener {
+        void itemClicked(String pdfFileName);
     }
 }
 

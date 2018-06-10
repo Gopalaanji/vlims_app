@@ -40,7 +40,7 @@ import retrofit.client.Response;
 public class AnalysisReportDensityDiffFragment extends BaseFragment {
     private LoginFragmentActivity fragmentActivity;
     private View rootView;
-    private Common common;
+//    private Common common;
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
     private RelativeLayout main_loader;
@@ -55,7 +55,7 @@ public class AnalysisReportDensityDiffFragment extends BaseFragment {
         rootView = inflater.inflate(R.layout.fragment_analysis_density_reports, container, false);
         setHasOptionsMenu(true);
         fragmentActivity = (LoginFragmentActivity) getActivity();
-        common = new Common();
+//        common = new Common();
         fragmentActivity.displayActionBar();
         fragmentActivity.setActionBarTitle("Density Difference Data");
         fragmentActivity.showActionBar();
@@ -72,7 +72,7 @@ public class AnalysisReportDensityDiffFragment extends BaseFragment {
 
     private void GetAnalysisDensityData() {
         main_loader.setVisibility(View.VISIBLE);
-        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.HeadUrl).build();
+        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.pdf_Head).build();
         final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
         apiInterface.GetAnalysisDensityDetails(prefs.getString("userid", ""), new Callback<JsonObject>() {
             @Override
@@ -89,13 +89,15 @@ public class AnalysisReportDensityDiffFragment extends BaseFragment {
                         }
                     } else {
                         main_loader.setVisibility(View.GONE);
-                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                        cshowToast();
+//                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                     }
 
                 } catch (Exception e) {
                     showAlertDialog("Density Difference Data", "http://173.11.229.171/viswaweb/VLReports/SampleReports/BQS.PDF");
                     main_loader.setVisibility(View.GONE);
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                    cshowToast();
+//                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                 }
 
             }
@@ -103,8 +105,7 @@ public class AnalysisReportDensityDiffFragment extends BaseFragment {
             @Override
             public void failure(RetrofitError error) {
                 main_loader.setVisibility(View.GONE);
-                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.something_went_wrong));
-            }
+showToast();            }
         });
     }
 
