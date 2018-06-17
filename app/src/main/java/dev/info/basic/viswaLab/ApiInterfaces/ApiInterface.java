@@ -212,11 +212,17 @@ public interface ApiInterface {
 
 
     @FormUrlEncoded
+    @POST("/GetVL_POMP_CautionReports")
+    void GetCautionPompReports(@Field("userid") String userid, @Field("shipid") int shipid, @Field("imonumber") String imonumber, Callback<JsonObject> callback);
+
+
+    @FormUrlEncoded
     @POST("/VL_FOReports_Download")
     void downloadFileByUrl(@Field("username") String username, @Field("password") String password, @Field("serialNo") String serialNo, Callback<ResponseBody> callback);
 
-
-
-
+    //schedule alerts ship
+    @FormUrlEncoded
+    @POST("/LO_Shedule_ActiveShips")
+    void GetScheduleAlertsReportsShips(@Field("userid") String userid, Callback<JsonObject> callback);
 
 }

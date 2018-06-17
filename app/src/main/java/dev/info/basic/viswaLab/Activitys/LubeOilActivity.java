@@ -19,7 +19,6 @@ public class LubeOilActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         common = new Common();
         fragmentManager = getSupportFragmentManager();
         if (savedInstanceState != null)

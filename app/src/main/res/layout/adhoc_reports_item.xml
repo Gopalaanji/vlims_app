@@ -76,7 +76,7 @@
                 android:id="@+id/statusImg"
                 android:layout_width="60dp"
                 android:layout_height="45dp"
-                android:src="@drawable/result_green" />
+                android:src="@drawable/pdf" />
         </LinearLayout>
     </android.support.v7.widget.CardView>
 </LinearLayout>

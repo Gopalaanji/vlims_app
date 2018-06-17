@@ -25,12 +25,10 @@ public class HomeActivity extends BaseActivity {
     List<Fragment> mFragments;
     private int prevSelectedIndex = 0;
     private FragmentManager fragmentManager;
-    private Common common;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        common = new Common();
         fragmentManager = getSupportFragmentManager();
         Button luboilReportsBtn = (Button) findViewById(R.id.luboilReportsBtn);
         luboilReportsBtn.setOnClickListener(new View.OnClickListener() {

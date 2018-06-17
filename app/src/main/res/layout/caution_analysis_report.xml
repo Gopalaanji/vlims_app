@@ -160,6 +160,7 @@
                         app:cardCornerRadius="10dp">
 
                         <LinearLayout
+                            android:id="@+id/pomp_alerts_btn"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@drawable/dashboard_bg"
@@ -179,7 +180,7 @@
                                 android:layout_marginTop="10dp"
                                 android:gravity="center"
                                 android:padding="5dp"
-                                android:text="Sweep Test Alerts"
+                                android:text="POMP Alerts"
                                 android:textAllCaps="true"
                                 android:textColor="@color/white"
                                 app:customFont="@string/pt_sans_bold" />
@@ -189,6 +190,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:clipToPadding="false"

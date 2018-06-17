@@ -37,9 +37,11 @@ public class CautionAlertAnalysisReport extends BaseFragment implements View.OnC
         LinearLayout luboilReportsBtn = (LinearLayout) rootView.findViewById(R.id.caution_alerts_luboilReportsBtn);
         LinearLayout fuelOilReportsaBtn = (LinearLayout) rootView.findViewById(R.id.caution_alerts_fuelOilReportsaBtn);
         LinearLayout cylinderoilBtn = (LinearLayout) rootView.findViewById(R.id.caution_alerts_cylinderoilBtn);
+        LinearLayout pompAlertsBtn = (LinearLayout) rootView.findViewById(R.id.pomp_alerts_btn);
         luboilReportsBtn.setOnClickListener(this);
         fuelOilReportsaBtn.setOnClickListener(this);
         cylinderoilBtn.setOnClickListener(this);
+        pompAlertsBtn.setOnClickListener(this);
         return rootView;
     }
 
@@ -69,6 +71,9 @@ public class CautionAlertAnalysisReport extends BaseFragment implements View.OnC
                 AnalysisReportsCylinderOilReportsFragment n=new AnalysisReportsCylinderOilReportsFragment();
                 n.setArguments(bundle);
                 fragmentActivity.replaceFragment(n, "agent_signup", null);
+                break;
+            case R.id.pomp_alerts_btn:
+                fragmentActivity.replaceFragment(new CautionPompAlertsFragment(), "agent_signup", null);
                 break;
         }
     }

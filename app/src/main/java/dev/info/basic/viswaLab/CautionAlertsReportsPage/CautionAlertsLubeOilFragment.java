@@ -66,7 +66,7 @@ public class CautionAlertsLubeOilFragment extends BaseFragment implements View.O
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_caution_alert_report, container, false);
+        rootView = inflater.inflate(R.layout.fragment_analysis_reports_lube_oil_reports, container, false);
         setHasOptionsMenu(true);
 //        common = new Common();
         fragmentActivity = (LoginFragmentActivity) getActivity();
@@ -104,7 +104,7 @@ public class CautionAlertsLubeOilFragment extends BaseFragment implements View.O
                 main_loader.setVisibility(View.GONE);
                 if (response_data_obj != null) {
                     try {
-                        shipdetailsList = new Gson().fromJson(response_data_obj.getAsJsonArray("ReportsData"), new TypeToken<List<ShipdetailsModel>>() {
+                        shipdetailsList = new Gson().fromJson(response_data_obj.getAsJsonArray("ReportData"), new TypeToken<List<ShipdetailsModel>>() {
                         }.getType());
                         final String[] shipList = new String[shipdetailsList.size() + 1];
                         if (shipdetailsList != null) {

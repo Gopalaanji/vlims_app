@@ -1,9 +1,10 @@
-package dev.info.basic.viswaLab.AnalysisReportsPage.Fragments;
+package dev.info.basic.viswaLab.CautionAlertsReportsPage;
+
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -24,7 +25,6 @@ import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 import dev.info.basic.viswaLab.Activitys.LoginFragmentActivity;
 import dev.info.basic.viswaLab.AnalysisReportsPage.Adapters.AnalysisReportsAdapter;
 import dev.info.basic.viswaLab.AnalysisReportsPage.models.AnalysisFoModel;
@@ -36,20 +36,18 @@ import dev.info.basic.viswaLab.models.LOEquipmentDetailsModel;
 import dev.info.basic.viswaLab.models.LoBrandGradesModel;
 import dev.info.basic.viswaLab.models.ReportDataModel;
 import dev.info.basic.viswaLab.models.ShipdetailsModel;
-import dev.info.basic.viswaLab.utils.Common;
 import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 /**
- * Created by Giri Thangellapally on 21-03-2018.
+ * A simple {@link Fragment} subclass.
  */
-
-public class AnalysisReportsFuelOilReportsFragment extends BaseFragment implements View.OnClickListener {
+public class CautionPompAlertsFragment extends BaseFragment  implements View.OnClickListener {
     private LoginFragmentActivity fragmentActivity;
     private View rootView;
-//    private Common common;
+    //    private Common common;
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
     private RelativeLayout main_loader;
@@ -68,15 +66,17 @@ public class AnalysisReportsFuelOilReportsFragment extends BaseFragment implemen
     Spinner spnVesselShips;
 
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_analysis_reports_fuel_oil_reports, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+  rootView=inflater.inflate(R.layout.fragment_caution_pomp_alerts, container, false);
+
         setHasOptionsMenu(true);
         fragmentActivity = (LoginFragmentActivity) getActivity();
 //        common = new Common();
         fragmentActivity.displayActionBar();
-        fragmentActivity.setActionBarTitle("Fuel Oil Reports");
+        fragmentActivity.setActionBarTitle("POMP Reports");
         fragmentActivity.showActionBar();
         fragmentActivity.hideBackActionBar();
         prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
@@ -99,18 +99,18 @@ public class AnalysisReportsFuelOilReportsFragment extends BaseFragment implemen
         sr_number.setEnabled(true);
         helper.getInstance(getContext());
         dbHelper = new helper(getContext());
-        getUserShipDetailsOfFuelOilReports(prefs.getString("userid", ""));
+        GetCautionPompShips();
         return rootView;
+
     }
 
-    private void getUserShipDetailsOfFuelOilReports(String userid) {
+    private void GetCautionPompShips() {
         RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.pdf_Head).build();
         final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
         main_loader.setVisibility(View.VISIBLE);
-        apiInterface.GetFuelOilReportsAnalysisReportsShips(userid, new Callback<JsonObject>() {
+        apiInterface.GetPOMPAnalysisReportsShips(prefs.getString("userid", ""), new Callback<JsonObject>() {
             @Override
             public void success(JsonObject response_data_obj, Response response) {
-                if(isDebug)
                 Log.v("RESPONSE==>", response_data_obj.toString());
                 main_loader.setVisibility(View.GONE);
                 if (response_data_obj != null) {
@@ -128,7 +128,7 @@ public class AnalysisReportsFuelOilReportsFragment extends BaseFragment implemen
                         }
                         renderDetails(shipList);
                     } catch (Exception e) {
-                        showAlertDialog("Fuel Oil Reports","http://173.11.229.171/viswaweb/VLReports/SampleReports/FO.PDF");
+                        showAlertDialog("POMP Reports","http://173.11.229.171/viswaweb/VLReports/SampleReports/POMP.PDF");
                     }
                 } else {
                     main_loader.setVisibility(View.GONE);
@@ -139,12 +139,10 @@ public class AnalysisReportsFuelOilReportsFragment extends BaseFragment implemen
             @Override
             public void failure(RetrofitError error) {
                 main_loader.setVisibility(View.GONE);
-                showToast();
-            }
+                showToast();            }
         });
 
     }
-
     private void renderDetails(String[] shipList) {
 
         final ArrayAdapter<String> shipdetailsListAdapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_item, shipList);
@@ -174,7 +172,6 @@ public class AnalysisReportsFuelOilReportsFragment extends BaseFragment implemen
         });
 
     }
-
     private void submitReport() {
         if (!imo_number.getText().toString().isEmpty() && imo_number.getText().toString().length() > 0) {
             shipId = 0;
@@ -185,38 +182,37 @@ public class AnalysisReportsFuelOilReportsFragment extends BaseFragment implemen
         main_loader.setVisibility(View.VISIBLE);
         RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.pdf_Head).build();
         final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
-        apiInterface.GetFuelOilReportsAnalysisReports(prefs.getString("userid", ""), shipId, imo_number.getText().toString(), new Callback<JsonObject>() {
+        apiInterface.GetCautionPompReports(prefs.getString("userid", ""), shipId, imo_number.getText().toString(), new Callback<JsonObject>() {
             @Override
             public void success(JsonObject response_data_obj, Response response) {
-                if (isDebug)
                 Log.v("RESPONSE==>", response_data_obj.toString());
-                main_loader.setVisibility(View.GONE);
                 try {
                     if (response_data_obj != null) {
+                        main_loader.setVisibility(View.GONE);
                         mReportDataModelList = new ArrayList<AnalysisFoModel>();
-                        mReportDataModelList = new Gson().fromJson(response_data_obj.getAsJsonArray("UserReportdata"), new TypeToken<List<AnalysisFoModel>>() {
+                        mReportDataModelList = new Gson().fromJson(response_data_obj.getAsJsonArray("ReportsData"), new TypeToken<List<AnalysisFoModel>>() {
                         }.getType());
                         if (mReportDataModelList != null) {
                             renderTheResponse(false);
                         } else {
                             imo_number.setText("");
+                            main_loader.setVisibility(View.GONE);
                             if (shipId == 0) {
-                                showAlertDialog("Fuel Oil Reports","http://173.11.229.171/viswaweb/VLReports/SampleReports/FO.PDF");
+                                showAlertDialog("POMP Reports","http://173.11.229.171/viswaweb/VLReports/SampleReports/POMP.PDF");
                             } else {
-                                showToast(getString(R.string.something_went_wrong));
-
-                                //common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                                cshowToast();
+//                                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                             }
                         }
                     } else {
-//                        renderTheResponse(true);
-                        showToast(getString(R.string.something_went_wrong));
-
+                        main_loader.setVisibility(View.GONE);
+                        cshowToast();
 //                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                     }
 
                 } catch (Exception e) {
-                    showAlertDialog("Fuel Oil Reports","http://173.11.229.171/viswaweb/VLReports/SampleReports/FO.PDF");
+                    main_loader.setVisibility(View.GONE);
+                    showAlertDialog("POMP Reports","http://173.11.229.171/viswaweb/VLReports/SampleReports/POMP.PDF");
                 }
 
             }
@@ -224,15 +220,12 @@ public class AnalysisReportsFuelOilReportsFragment extends BaseFragment implemen
             @Override
             public void failure(RetrofitError error) {
                 main_loader.setVisibility(View.GONE);
-
-showToast();
-imo_number.setText("");
+                showToast();                imo_number.setText("");
             }
         });
 
     }
-
-    private void renderTheResponse(boolean no_data) {
+    private void renderTheResponse(boolean nodata) {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity()) {
             @Override
             public RecyclerView.LayoutParams generateDefaultLayoutParams() {
@@ -241,22 +234,24 @@ imo_number.setText("");
         };
         mRecyclerView.setLayoutManager(layoutManager);
 
-            if (mReportDataModelList != null) {
-                mReporterAdapter = new AnalysisReportsAdapter(getActivity(), "FO", mReportDataModelList, new AnalysisReportsAdapter.ListenerInterface(){
+        if (mReportDataModelList != null) {
+            mReporterAdapter = new AnalysisReportsAdapter(getActivity(), "POMP_AR", mReportDataModelList, new AnalysisReportsAdapter.ListenerInterface() {
+                @Override
+                public void itemClicked(String pdfFileName) {
+                    showPdf(pdfFileName,"POMP_AR","");
+                }
+            });
+            mRecyclerView.setAdapter(mReporterAdapter);
+        }
 
-                    @Override
-                    public void itemClicked(String serialNo) {
-                        showPdf(serialNo,"FO","");
-                    }
-                });
-                mRecyclerView.setAdapter(mReporterAdapter);
-            }
 
     }
+
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+
             case R.id.btnSubmit:
                 if (shipId == 0 && imo_number.getText().toString().isEmpty()) {
                     pshowToast();
@@ -286,14 +281,13 @@ imo_number.setText("");
         if (!sr_number.getText().toString().isEmpty() && sr_number.getText().toString().length() > 0) {
             shipId = 0;
         }
-//        Log.v("FUCK", "SHIPID" + shipId + "EDIT" + sr_number.getText().toString());
+        Log.v("FUCK", "SHIPID" + shipId + "EDIT" + sr_number.getText().toString());
         main_loader.setVisibility(View.VISIBLE);
         RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.pdf_Head).build();
         final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
-        apiInterface.GetSrDataForFOSNSearch(prefs.getString("userid", ""), sr_number.getText().toString(), new Callback<JsonObject>() {
+        apiInterface.GetSrDataForPOMPSNSearch(prefs.getString("userid", ""), sr_number.getText().toString(), new Callback<JsonObject>() {
             @Override
             public void success(JsonObject response_data_obj, Response response) {
-                if (isDebug)
                 Log.v("RESPONSE==>", response_data_obj.toString());
                 try {
                     if (response_data_obj != null) {
@@ -329,7 +323,7 @@ imo_number.setText("");
             @Override
             public void failure(RetrofitError error) {
                 main_loader.setVisibility(View.GONE);
-showToast();                sr_number.setText("");
+                showToast();                sr_number.setText("");
             }
         });
     }

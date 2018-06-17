@@ -50,14 +50,14 @@ public class AdhocReportsAdapter extends RecyclerView.Adapter<AdhocReportsAdapte
         holder.tvSerialNo.setText("Serial No    : " + reportDataModel.getSERIAL_NO());
 
 
-        if (mReportDataModelList.get(position).getTEST_STATUS().equals("1")) {
+      /*  if (mReportDataModelList.get(position).getTEST_STATUS().equals("1")) {
             holder.statusImg.setImageResource(R.drawable.result_green);
         } else if (mReportDataModelList.get(position).getTEST_STATUS().equals("2")) {
             holder.statusImg.setImageResource(R.drawable.result_orange);
         } else {
             holder.statusImg.setImageResource(R.drawable.result_red);
         }
-
+*/
        /* holder.statusImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">VLIMS</string>
+    <string name="app_name">Viswa 360</string>
     <string name="app_name_xml">Open Kitchen</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -357,7 +357,7 @@
         <item>@string/crtYear</item>
     </string-array>
     <string name="huston_address">12140 Almeda Road \n Houston, Texas 77045 USA</string>
-    <string name="singapoor_address">80 Tagore Lane\nSingapore</string>
+    <string name="singapoor_address">80 Tagore Lane\nSingapore,787501</string>
     <string name="uk_address">New First AvenueWilton\nInternational Site\nMiddlesbrough, Cleveland\nTS104RG</string>
     <string name="arab_address">Viswa Lab International FZE \nWarehouse 17B\nFujairah Freezone 1\nFujairah PO Box 50234</string>
     <string name="belgium_address">Administrative Office\nEmdenweg 23 (Kaai 217) \n2030 Antwerp Belgium</string>

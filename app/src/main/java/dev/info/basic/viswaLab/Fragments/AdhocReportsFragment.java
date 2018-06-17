@@ -53,7 +53,7 @@ public class AdhocReportsFragment extends BaseFragment {
         fragmentActivity = (LoginFragmentActivity) getActivity();
         common = new Common();
         fragmentActivity.displayActionBar();
-        fragmentActivity.setActionBarTitle("Adhoc Reports");
+        fragmentActivity.setActionBarTitle("Other Test Reports");
         fragmentActivity.showActionBar();
         fragmentActivity.hideBackActionBar();
         prefs = PreferenceManager.getDefaultSharedPreferences(getContext());

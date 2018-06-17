@@ -35,6 +35,7 @@ import dev.info.basic.viswaLab.Database.helper;
 import dev.info.basic.viswaLab.R;
 import dev.info.basic.viswaLab.models.ReportDataModel;
 import dev.info.basic.viswaLab.models.ScheduleAlertModel;
+import dev.info.basic.viswaLab.models.ScheduleShipModel;
 import dev.info.basic.viswaLab.models.ShipdetailsModel;
 import dev.info.basic.viswaLab.utils.Common;
 import retrofit.Callback;
@@ -48,7 +49,7 @@ public class ScheduleAlertsFragment extends BaseFragment implements View.OnClick
     private View rootView;
     private Common common;
     private RelativeLayout main_loader;
-    List<ShipdetailsModel> shipdetailsList;
+    List<ScheduleShipModel> shipdetailsList;
 
     ArrayList<ScheduleAlertModel> mScheduleAlertModel;
     private int shipId = 0;
@@ -104,7 +105,7 @@ public class ScheduleAlertsFragment extends BaseFragment implements View.OnClick
             RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.pdf_Head).build();
             final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
             main_loader.setVisibility(View.VISIBLE);
-            apiInterface.GetFuelOilReportsAnalysisReportsShips(prefs.getString("userid", ""), new Callback<JsonObject>() {
+            apiInterface.GetScheduleAlertsReportsShips(prefs.getString("userid", ""), new Callback<JsonObject>() {
                 @Override
                 public void success(JsonObject response_data_obj, Response response) {
                     if(isDebug)
@@ -112,7 +113,7 @@ public class ScheduleAlertsFragment extends BaseFragment implements View.OnClick
                     main_loader.setVisibility(View.GONE);
                     if (response_data_obj != null) {
                         try {
-                            shipdetailsList = new Gson().fromJson(response_data_obj.getAsJsonArray("ReportsData"), new TypeToken<List<ShipdetailsModel>>() {
+                            shipdetailsList = new Gson().fromJson(response_data_obj.getAsJsonArray("ReportData"), new TypeToken<List<ScheduleShipModel>>() {
                             }.getType());
                             final String[] shipList = new String[shipdetailsList.size() + 1];
                             if (shipdetailsList != null) {
