@@ -27,6 +27,7 @@ import java.util.List;
 
 import dev.info.basic.viswaLab.Activitys.LoginFragmentActivity;
 import dev.info.basic.viswaLab.AnalysisReportsPage.Adapters.AnalysisReportsAdapter;
+import dev.info.basic.viswaLab.AnalysisReportsPage.Adapters.PompAdapter;
 import dev.info.basic.viswaLab.AnalysisReportsPage.models.AnalysisFoModel;
 import dev.info.basic.viswaLab.ApiInterfaces.ApiInterface;
 import dev.info.basic.viswaLab.Database.helper;
@@ -60,7 +61,7 @@ public class CautionPompAlertsFragment extends BaseFragment  implements View.OnC
     ImageView btnSubmit, btnsrSubmit;
     private String bandId;
     RecyclerView mRecyclerView;
-    AnalysisReportsAdapter mReporterAdapter;
+    PompAdapter mReporterAdapter;
     EditText imo_number, sr_number;
     helper dbHelper;
     Spinner spnVesselShips;
@@ -235,7 +236,7 @@ public class CautionPompAlertsFragment extends BaseFragment  implements View.OnC
         mRecyclerView.setLayoutManager(layoutManager);
 
         if (mReportDataModelList != null) {
-            mReporterAdapter = new AnalysisReportsAdapter(getActivity(), "POMP_AR", mReportDataModelList, new AnalysisReportsAdapter.ListenerInterface() {
+            mReporterAdapter = new PompAdapter(getActivity(), "POMP_AR", mReportDataModelList, new AnalysisReportsAdapter.ListenerInterface() {
                 @Override
                 public void itemClicked(String pdfFileName) {
                     showPdf(pdfFileName,"POMP_AR","");

@@ -194,7 +194,7 @@ public class AnalysisReportsFuelOilReportsFragment extends BaseFragment implemen
                 try {
                     if (response_data_obj != null) {
                         mReportDataModelList = new ArrayList<AnalysisFoModel>();
-                        mReportDataModelList = new Gson().fromJson(response_data_obj.getAsJsonArray("UserReportdata"), new TypeToken<List<AnalysisFoModel>>() {
+                        mReportDataModelList = new Gson().fromJson(response_data_obj.getAsJsonArray("ReportsData"), new TypeToken<List<AnalysisFoModel>>() {
                         }.getType());
                         if (mReportDataModelList != null) {
                             renderTheResponse(false);
