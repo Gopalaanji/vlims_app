@@ -58,7 +58,6 @@ public class ScheduleAlertsFragment extends BaseFragment implements View.OnClick
     private String bandId;
     RecyclerView mRecyclerView;
     ScheduleAlertsAdapter mReporterAdapter;
-    ReporterAdapter mxxReporterAdapter;
     Spinner spnVesselShips;
     EditText imo_number, sr_number;
     SharedPreferences prefs;

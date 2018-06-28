@@ -218,12 +218,23 @@ showToast();                imo_number.setText("");
             analysisFoModel.setEquipment("LO_CA");
             analysisFoModel.setOilCondition("1");
             mReportDataModelList.add(analysisFoModel);
-            mReporterAdapter = new ReporterAdapter(getActivity(), false, mReportDataModelList, prefs.getString("userid", ""),prefs.getString("Username", ""), prefs.getString("pwd", ""));
+            mReporterAdapter = new ReporterAdapter(getActivity(), false, mReportDataModelList, prefs.getString("userid", ""), prefs.getString("Username", ""), prefs.getString("pwd", ""), new ReporterAdapter.CA_lubeoileListner() {
+                @Override
+                public void itemClicked(String calcId) {
+                    showPdf(calcId,"LO_AR","");
+                }
+            });
 
             mRecyclerView.setAdapter(mReporterAdapter);
         } else {
             if (mReportDataModelList != null) {
-                mReporterAdapter = new ReporterAdapter(getActivity(), false, mReportDataModelList, prefs.getString("userid", ""),prefs.getString("Username", ""), prefs.getString("pwd", ""));
+                mReporterAdapter = new ReporterAdapter(getActivity(), false, mReportDataModelList, prefs.getString("userid", ""), prefs.getString("Username", ""), prefs.getString("pwd", ""), new ReporterAdapter.CA_lubeoileListner() {
+                    @Override
+                    public void itemClicked(String pdfname) {
+                        showPdf(pdfname,"LO_AR","");
+
+                    }
+                });
                 mRecyclerView.setAdapter(mReporterAdapter);
             }
         }

@@ -66,6 +66,8 @@ public class AnalysisReportsFuelOilReportsFragment extends BaseFragment implemen
     EditText imo_number, sr_number;
     helper dbHelper;
     Spinner spnVesselShips;
+    private Common common;
+
 
 
     @Nullable
@@ -81,7 +83,7 @@ public class AnalysisReportsFuelOilReportsFragment extends BaseFragment implemen
         fragmentActivity.hideBackActionBar();
         prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         editor = prefs.edit();
-
+        common = new Common();
         main_loader = (RelativeLayout) rootView.findViewById(R.id.initial_loader);
         imo_number = (EditText) rootView.findViewById(R.id.imo_number);
         sr_number = (EditText) rootView.findViewById(R.id.sr_number);
@@ -99,49 +101,54 @@ public class AnalysisReportsFuelOilReportsFragment extends BaseFragment implemen
         sr_number.setEnabled(true);
         helper.getInstance(getContext());
         dbHelper = new helper(getContext());
+
         getUserShipDetailsOfFuelOilReports(prefs.getString("userid", ""));
         return rootView;
     }
 
     private void getUserShipDetailsOfFuelOilReports(String userid) {
-        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.pdf_Head).build();
-        final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
-        main_loader.setVisibility(View.VISIBLE);
-        apiInterface.GetFuelOilReportsAnalysisReportsShips(userid, new Callback<JsonObject>() {
-            @Override
-            public void success(JsonObject response_data_obj, Response response) {
-                if(isDebug)
-                Log.v("RESPONSE==>", response_data_obj.toString());
-                main_loader.setVisibility(View.GONE);
-                if (response_data_obj != null) {
-                    try {
-                        shipdetailsList = new Gson().fromJson(response_data_obj.getAsJsonArray("ReportsData"), new TypeToken<List<ShipdetailsModel>>() {
-                        }.getType());
-                        final String[] shipList = new String[shipdetailsList.size() + 1];
-                        if (shipdetailsList != null) {
-                            int j = 1;
-                            shipList[0] = "All Ships*";
-                            for (int i = 0; i < shipdetailsList.size(); i++) {
-                                shipList[j] = shipdetailsList.get(i).getShipName();
-                                j++;
-                            }
-                        }
-                        renderDetails(shipList);
-                    } catch (Exception e) {
-                        showAlertDialog("Fuel Oil Reports","http://173.11.229.171/viswaweb/VLReports/SampleReports/FO.PDF");
-                    }
-                } else {
+        if (Common.isNetworkAvailable(this.getActivity())) {
+            RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.pdf_Head).build();
+            final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
+            main_loader.setVisibility(View.VISIBLE);
+            apiInterface.GetFuelOilReportsAnalysisReportsShips(userid, new Callback<JsonObject>() {
+                @Override
+                public void success(JsonObject response_data_obj, Response response) {
+                    if (isDebug)
+                        Log.v("RESPONSE==>", response_data_obj.toString());
                     main_loader.setVisibility(View.GONE);
-                    showToast(getString(R.string.something_went_wrong));
+                    if (response_data_obj != null) {
+                        try {
+                            shipdetailsList = new Gson().fromJson(response_data_obj.getAsJsonArray("ReportsData"), new TypeToken<List<ShipdetailsModel>>() {
+                            }.getType());
+                            final String[] shipList = new String[shipdetailsList.size() + 1];
+                            if (shipdetailsList != null) {
+                                int j = 1;
+                                shipList[0] = "All Ships*";
+                                for (int i = 0; i < shipdetailsList.size(); i++) {
+                                    shipList[j] = shipdetailsList.get(i).getShipName();
+                                    j++;
+                                }
+                            }
+                            renderDetails(shipList);
+                        } catch (Exception e) {
+                            showAlertDialog("Fuel Oil Reports", "http://173.11.229.171/viswaweb/VLReports/SampleReports/FO.PDF");
+                        }
+                    } else {
+                        main_loader.setVisibility(View.GONE);
+                        showToast(getString(R.string.something_went_wrong));
+                    }
                 }
-            }
 
-            @Override
-            public void failure(RetrofitError error) {
-                main_loader.setVisibility(View.GONE);
-                showToast();
-            }
-        });
+                @Override
+                public void failure(RetrofitError error) {
+                    main_loader.setVisibility(View.GONE);
+                    showToast();
+                }
+            });
+        }else{
+            common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.network_error));
+        }
 
     }
 
@@ -246,6 +253,7 @@ imo_number.setText("");
 
                     @Override
                     public void itemClicked(String serialNo) {
+
                         showPdf(serialNo,"FO","");
                     }
                 });

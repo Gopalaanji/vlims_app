@@ -149,7 +149,7 @@
                             android:gravity="center"
                             android:layout_weight="1"
                             android:lines="2"
-                            android:text="@string/report_fuel_date"
+                            android:text="@string/bunker_fuel_date"
                             android:textColor="@color/black"
                             android:textStyle="bold"
                             app:customFont="@string/pt_sans_bold" />

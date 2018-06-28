@@ -75,7 +75,7 @@ public class CautionAlertsCylinderOilReportsFragment extends BaseFragment implem
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_analysis_reports_cylinder_oil_reports, container, false);
+        rootView = inflater.inflate(R.layout.fragment_caution_reports_cylinder_oil_reports, container, false);
         setHasOptionsMenu(true);
         fragmentActivity = (LoginFragmentActivity) getActivity();
 //        common = new Common();

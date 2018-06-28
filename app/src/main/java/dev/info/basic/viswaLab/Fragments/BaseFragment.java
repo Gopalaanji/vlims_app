@@ -91,7 +91,7 @@ public class BaseFragment extends Fragment {
 
     }
     public void showToast(){
-        Toast.makeText(getActivity(),getString(R.string.something_went_wrong),Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(),getString(R.string.network_error),Toast.LENGTH_SHORT).show();
     }
     public void pshowToast(){
         Toast.makeText(getActivity(),"Please Enter Value!",Toast.LENGTH_SHORT).show();

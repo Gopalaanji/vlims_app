@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import dev.info.basic.viswaLab.CautionAlertsReportsPage.Adapters.CautionAlertsCylinderOilAdapter;
 import dev.info.basic.viswaLab.R;
 import dev.info.basic.viswaLab.models.ReportDataModel;
 
@@ -31,14 +32,16 @@ public class ReporterAdapter extends RecyclerView.Adapter<ReporterAdapter.viewHo
     String userId;
     String username;
     String pwd;
+    CA_lubeoileListner mCa_lubeoileListner;
 
-    public ReporterAdapter(Context context, boolean from_alert, List<ReportDataModel> mReportDataModelList, String userId, String username, String pwd) {
+    public ReporterAdapter(Context context, boolean from_alert, List<ReportDataModel> mReportDataModelList, String userId, String username, String pwd, CA_lubeoileListner cautionAlertsCloListner) {
         this.context = context;
         this.from_alert = from_alert;
         this.mReportDataModelList = mReportDataModelList;
         this.userId = userId;
         this.username = username;
         this.pwd = pwd;
+        this.mCa_lubeoileListner=cautionAlertsCloListner;
     }
 
     @Override
@@ -78,7 +81,8 @@ public class ReporterAdapter extends RecyclerView.Adapter<ReporterAdapter.viewHo
         } else {
             holder.tvReult.setImageResource(R.drawable.result_red);
         }
-        holder.tvReult.setOnClickListener(new View.OnClickListener() {
+
+       /* holder.tvReult.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent browserIntent = null;
@@ -92,10 +96,11 @@ public class ReporterAdapter extends RecyclerView.Adapter<ReporterAdapter.viewHo
 
                 } else {
 
-//                    browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://74.208.185.23/viswaweb/VL_LOReports_Download/" + username+"/"+pwd+"/"+reportDataModel.getSerial().toString() + ".pdf"));
+                    browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://74.208.185.23/VLIMSAPP/GETuser.asmx?op=VL_LOReports_Download/" + username+"/"+pwd+"/"+reportDataModel.getSerial().toString() + ".pdf"));
+                    context.startActivity(browserIntent);
                 }
             }
-        });
+        });*/
     }
 
     @Override
@@ -124,15 +129,13 @@ public class ReporterAdapter extends RecyclerView.Adapter<ReporterAdapter.viewHo
             tvEqname = (TextView) itemView.findViewById(R.id.tvEqname);
             tvDate = (TextView) itemView.findViewById(R.id.tvDate);
             tvReult = (ImageView) itemView.findViewById(R.id.tvReult);
+            itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            /*if (mList.get(getAdapterPosition()).getApprovedStatus())
-                Toast.makeText(context, "Already approved", Toast.LENGTH_SHORT).show();
-            else*/
-//            mClickListener.itemClicked(mList.get(getAdapterPosition()).getCalcId());
-        }
+            mCa_lubeoileListner.itemClicked(mReportDataModelList.get(getAdapterPosition()).getSerial());
+            }
     }
 
     public static String ConvertJsonDate(String jsondate) {
@@ -147,7 +150,7 @@ public class ReporterAdapter extends RecyclerView.Adapter<ReporterAdapter.viewHo
         return jsondate;
     }
 
-    public interface clickListener {
-        void itemClicked(String calcId);
+    public interface CA_lubeoileListner {
+        void itemClicked(String pdfname);
     }
 }
