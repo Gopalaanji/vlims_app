@@ -22,6 +22,7 @@ import com.google.gson.JsonObject;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import dev.info.basic.viswaLab.Activitys.LoginFragmentActivity;
 import dev.info.basic.viswaLab.ApiInterfaces.ApiInterface;
+import dev.info.basic.viswaLab.BuildConfig;
 import dev.info.basic.viswaLab.R;
 import dev.info.basic.viswaLab.utils.Common;
 import retrofit.Callback;
@@ -36,8 +37,8 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
     private View rootView;
     EditText userNameEditText;
     EditText userPasswordEditText;
-    TextView forgotView;
-    private Common common;
+    TextView forgotView,vesriontext;
+//    private Common common;
     private LoginFragmentActivity fragmentActivity;
     private int checksavedInstanceState = 0;
     Button btnLogin;
@@ -56,6 +57,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
         userPasswordEditText = (EditText) rootView.findViewById(R.id.login_user_pwd);
         btnLogin = (Button) rootView.findViewById(R.id.btn_login);
         rememberPassword = (CheckBox) rootView.findViewById(R.id.rememberPassword);
+        vesriontext = (TextView) rootView.findViewById(R.id.vesriontext);
         main_loader = (RelativeLayout) rootView.findViewById(R.id.initial_loader);
         forgotPwd = (TextView) rootView.findViewById(R.id.forgotPwd);
         setHasOptionsMenu(true);
@@ -63,13 +65,19 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
         editor = prefs.edit();
         fragmentActivity = (LoginFragmentActivity) getActivity();
         fragmentActivity.hideActionBar();
-        common = new Common();
-        userNameEditText.setTypeface(common.regularTypeface(getActivity()));
-        userPasswordEditText.setTypeface(common.regularTypeface(getActivity()));
+//        common = new Common();
+//        userNameEditText.setTypeface(common.regularTypeface(getActivity()));
+//        userPasswordEditText.setTypeface(common.regularTypeface(getActivity()));
         fragmentActivity.displayActionBar();
         btnLogin.setOnClickListener(this);
         forgotPwd.setOnClickListener(this);
         rememberPassword.setChecked(false);
+        try{
+            vesriontext.setText("V  "+BuildConfig.VERSION_NAME);
+
+        }catch (Exception e){
+
+        }
 
 
        /* if (prefs.getString("is_checkbox_rem", "") != null) {
@@ -96,16 +104,19 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
     }
 
     public void checkLogin() {
-        if (Common.isNetworkAvailable(getActivity())) {
+        if (Common.isNetworkAvailable(getContext())) {
             if (Common.stringValidation(userNameEditText.getText().toString()).trim().length() != 0) {
                 if (Common.stringValidation(userPasswordEditText.getText().toString()).length() != 0) {
                     UserLogin(userNameEditText.getText().toString(), userPasswordEditText.getText().toString());
                 } else
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.valid_pwd));
+                    showToast(getString(R.string.valid_pwd));
+//                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.valid_pwd));
             } else
-                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.valid_user_name));
+                showToast(getString(R.string.valid_user_name));
+//                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.valid_user_name));
         } else
-            common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.network_error));
+            showToast(getString(R.string.network_error));
+//            common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.network_error));
     }
 
     private void UserLogin(final String userName, final String userPassword) {

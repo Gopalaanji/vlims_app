@@ -27,6 +27,7 @@
         </provider>
         <activity
             android:name=".Activitys.SplashScreen"
+            android:screenOrientation="portrait"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,9 +37,12 @@
         </activity>
         <activity
             android:name=".Activitys.LoginFragmentActivity"
-            android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".Activitys.HomeActivity" />
-        <activity android:name=".Activitys.WebViewActivity" />
+            android:windowSoftInputMode="stateHidden"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activitys.HomeActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activitys.WebViewActivity"
+            android:screenOrientation="portrait"/>
         <!-- GCM Receiver -->
         <!--
         <receiver
@@ -80,7 +84,8 @@
         </intent-filter>
         -->
 
-        <activity android:name=".Activitys.LubeOilActivity" />
+        <activity android:name=".Activitys.LubeOilActivity"
+            android:screenOrientation="portrait"/>
 
         <service
             android:name=".services.TimeService"
