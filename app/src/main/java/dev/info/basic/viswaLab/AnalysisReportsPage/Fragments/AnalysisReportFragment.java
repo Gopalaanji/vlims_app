@@ -38,6 +38,7 @@ public class AnalysisReportFragment extends BaseFragment implements View.OnClick
         LinearLayout btnSweepTest = (LinearLayout) rootView.findViewById(R.id.btnSweepTest);
         LinearLayout btnBunkerQunty = (LinearLayout) rootView.findViewById(R.id.btnBunkerQunty);
         LinearLayout densitybtn = (LinearLayout) rootView.findViewById(R.id.densitybtn);
+        LinearLayout portGradeSupBtn = (LinearLayout) rootView.findViewById(R.id.portGradeSupBtn);
         luboilReportsBtn.setOnClickListener(this);
         fuelOilReportsaBtnAnalysisReport.setOnClickListener(this);
         cylinderOilReportsaBtnAnalysisReport.setOnClickListener(this);
@@ -46,6 +47,7 @@ public class AnalysisReportFragment extends BaseFragment implements View.OnClick
         additionalTestReportsBtn.setOnClickListener(this);
         densitybtn.setOnClickListener(this);
         btnSweepTest.setOnClickListener(this);
+        portGradeSupBtn.setOnClickListener(this);
         btnBunkerQunty.setOnClickListener(this);
         return rootView;
     }
@@ -87,9 +89,12 @@ public class AnalysisReportFragment extends BaseFragment implements View.OnClick
                 break;
             case R.id.btnSweepTest:
                 showAlertDialogOption("SWEEP TEST", "Under Development", "http://173.11.229.171/viswaweb/VLReports/SampleReports/SWEEP.PDF");
-        break;
+                break;
             case R.id.btnBunkerQunty:
                 showAlertDialogOption("BUNKER QUANTITY", "Under Development", "http://173.11.229.171/viswaweb/VLReports/SampleReports/BQS.pdf");
+                break;
+            case R.id.portGradeSupBtn:
+                showAlertDialogOption("PORT GRADE SUPPLIER ", "Under Development", "");
 
 
         }

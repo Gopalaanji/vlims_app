@@ -73,7 +73,8 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
         forgotPwd.setOnClickListener(this);
         rememberPassword.setChecked(false);
         try{
-            vesriontext.setText("V  "+BuildConfig.VERSION_NAME);
+//            vesriontext.setText("V  "+BuildConfig.VERSION_NAME);
+            vesriontext.setText("V 1.0.1");
 
         }catch (Exception e){
 

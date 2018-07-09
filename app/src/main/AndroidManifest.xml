@@ -37,7 +37,7 @@
         </activity>
         <activity
             android:name=".Activitys.LoginFragmentActivity"
-            android:windowSoftInputMode="stateHidden"
+            android:windowSoftInputMode="stateHidden|adjustPan"
             android:screenOrientation="portrait"/>
         <activity android:name=".Activitys.HomeActivity"
             android:screenOrientation="portrait"/>

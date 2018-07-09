@@ -152,6 +152,11 @@ public void cshowToast(){
         Button btndialog = (Button) alertLayout.findViewById(R.id.btndialog);
         tvtitle.setText(title);
       tvdialogbody.setText(description);
+      if(url.isEmpty()){
+          btndialog.setVisibility(View.INVISIBLE);
+      }else{
+          btndialog.setVisibility(View.VISIBLE);
+      }
         btndialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
