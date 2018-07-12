@@ -125,6 +125,8 @@ public class ScheduleAlertsFragment extends BaseFragment implements View.OnClick
                             }
                             renderDetails(shipList);
                         } catch (Exception e) {
+                            showAlertDialogOption("Schedule Alerts","You are not subscribed to Lube Oil Testing Services with Viswa Lab .Please contact Marketing@theviswagroup.com","");
+
 //                            showAlertDialog("Fuel Oil Reports","http://173.11.229.171/viswaweb/VLReports/SampleReports/FO.PDF");
                         }
                     } else {
@@ -247,7 +249,7 @@ showToast();                imo_number.setText("");
         switch (v.getId()) {
             case R.id.btnSubmit:
                 if (shipId == 0 && imo_number.getText().toString().isEmpty()) {
-                    showToast("Please enter the value as in File Oil or Other Modules!");
+                    showToast("Please enter the Imo number!");
                 } else {
                     shipId = 0;
                     submitReport();
