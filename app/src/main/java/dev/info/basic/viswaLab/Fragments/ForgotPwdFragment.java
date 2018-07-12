@@ -34,7 +34,7 @@ public class ForgotPwdFragment extends BaseFragment implements View.OnClickListe
     private View rootView;
     EditText emailEditText;
     Button pwdReset;
-    private Common common;
+    //    private Common common;
     private LoginFragmentActivity fragmentActivity;
     private EditText userName, mobile;
     SharedPreferences prefs;
@@ -57,10 +57,10 @@ public class ForgotPwdFragment extends BaseFragment implements View.OnClickListe
         mobile = (EditText) rootView.findViewById(R.id.mobile);
         pwdReset = (Button) rootView.findViewById(R.id.pwd_reset);
         pwdReset.setOnClickListener(this);
-        common = new Common();
+//        common = new Common();
         prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         editor = prefs.edit();
-        emailEditText.setTypeface(common.regularTypeface(getActivity()));
+//        emailEditText.setTypeface(common.regularTypeface(getActivity()));
         return rootView;
     }
 
@@ -72,21 +72,22 @@ public class ForgotPwdFragment extends BaseFragment implements View.OnClickListe
                         if (Common.stringValidation(emailEditText.getText().toString()).length() > 0 && Common.isValidEmail(emailEditText.getText().toString())) {
                             sendForgotPassword(userName.getText().toString().trim(), emailEditText.getText().toString(), mobile.getText().toString());
                         } else
-                            common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Please Enter Valid Email Address!");
+                            showToast("Please Enter Valid Email Address!");
                     } else
-                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.valid_user_name));
+                        showToast(getString(R.string.valid_user_name));
                 } else
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.network_error));
+                    showToast(getString(R.string.network_error));
 
             } else {
-                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.valid_mobile_hint));
+                showToast(getString(R.string.valid_mobile_hint));
             }
         } else {
-            common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.valid_mobile_hint));
+            showToast(getString(R.string.valid_mobile_hint));
         }
     }
+
     public boolean validateNumber() {
-        if ((mobile.getText().toString().length() == 10||mobile.getText().toString().length() == 12)
+        if ((mobile.getText().toString().length() == 10 || mobile.getText().toString().length() == 12)
                 && (mobile.getText().toString() != "0000000000")
                 && ((String.valueOf(mobile.getText().toString().charAt(0)).equals("7"))
                 || (String.valueOf(mobile.getText().toString().charAt(0)).equals("8"))
@@ -119,17 +120,18 @@ public class ForgotPwdFragment extends BaseFragment implements View.OnClickListe
                         fragmentActivity.loadPopBackStack();
                     } else {
                         main_loader.setVisibility(View.GONE);
-                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Invalid UserName");
+                        showToast("Invalid UserName");
                     }
                 }
 
                 @Override
                 public void failure(RetrofitError error) {
                     main_loader.setVisibility(View.GONE);
-    showToast();                }
+                    showToast();
+                }
             });
         } else
-            common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.network_error));
+            showToast(getString(R.string.network_error));
     }
 
     @Override
