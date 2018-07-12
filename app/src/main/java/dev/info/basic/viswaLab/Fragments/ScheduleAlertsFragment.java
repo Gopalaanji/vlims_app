@@ -47,7 +47,7 @@ public class ScheduleAlertsFragment extends BaseFragment implements View.OnClick
 
     private LoginFragmentActivity fragmentActivity;
     private View rootView;
-    private Common common;
+//    private Common common;
     private RelativeLayout main_loader;
     List<ScheduleShipModel> shipdetailsList;
 
@@ -75,7 +75,7 @@ public class ScheduleAlertsFragment extends BaseFragment implements View.OnClick
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_schedule_alerts, container, false);
         setHasOptionsMenu(true);
-        common = new Common();
+//        common = new Common();
         fragmentActivity = (LoginFragmentActivity) getActivity();
         fragmentActivity.displayActionBar();
         fragmentActivity.showActionBar();
@@ -247,7 +247,7 @@ showToast();                imo_number.setText("");
         switch (v.getId()) {
             case R.id.btnSubmit:
                 if (shipId == 0 && imo_number.getText().toString().isEmpty()) {
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Please enter the value!");
+                    showToast("Please enter the value as in File Oil or Other Modules!");
                 } else {
                     shipId = 0;
                     submitReport();
@@ -255,7 +255,7 @@ showToast();                imo_number.setText("");
                 break;
             case R.id.btnsrSubmit:
                 if (shipId == 0 && sr_number.getText().toString().isEmpty()) {
-                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Please enter the value!");
+//                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Please enter the value!");
                 } else {
                     shipId = 0;
                     submitSerialDataReport();
@@ -353,7 +353,7 @@ showToast();                sr_number.setText("");
                             }
                         } else {
                             main_loader.setVisibility(View.GONE);
-                            showToast("Could Not Found Details");
+                            showAlertDialog("You are not subscribed to Lube Oil Testing Services with Viswa Lab","Please contact Marketing@theviswagroup.com");
 
                             // common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
                         }
