@@ -206,8 +206,8 @@ showToast();            }
                                 showAlertDialog("Caution Alerts CylinderOil","http://173.11.229.171/viswaweb/VLReports/SampleReports/CLO_C.PDF");
                             } else {
                                 main_loader.setVisibility(View.GONE);
-                                showToast("Could Not Found Details!");
-//                                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                                showToast("Could Not Find Details!");
+//                                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Find Details!");
                             }
                         }
                     } else {
@@ -215,14 +215,14 @@ showToast();            }
 
                         main_loader.setVisibility(View.GONE);
                         cshowToast();
-//                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+//                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Find Details!");
                     }
 
                 } catch (Exception e) {
                     renderTheResponse(true);
                     main_loader.setVisibility(View.GONE);
-                    showToast("Could Not Found Details!");
-//                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                    showToast("Could Not Find Details!");
+//                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Find Details!");
 
                 }
 

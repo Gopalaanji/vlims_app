@@ -79,7 +79,7 @@ public class TechnicalUpdatesFragment extends BaseFragment{
                         renderTheResponse();
                     } else {
                         main_loader.setVisibility(View.GONE);
-                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Find Details!");
                     }
                 } else {
                     main_loader.setVisibility(View.GONE);

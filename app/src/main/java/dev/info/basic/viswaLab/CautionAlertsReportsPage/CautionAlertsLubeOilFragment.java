@@ -179,18 +179,18 @@ showToast();            }
                             imo_number.setText("");
                             main_loader.setVisibility(View.GONE);
                             cshowToast();
-//                            common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+//                            common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Find Details!");
                         }
                     } else {
                         main_loader.setVisibility(View.GONE);
                         cshowToast();
-//                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+//                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Find Details!");
                     }
 
                 } catch (Exception e) {
                     main_loader.setVisibility(View.GONE);
                     cshowToast();
-//                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+//                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Find Details!");
                 }
             }
 
@@ -305,20 +305,20 @@ showToast();                imo_number.setText("");
                             imo_number.setText("");
                             main_loader.setVisibility(View.GONE);
                             cshowToast();
-//                            common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+//                            common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Find Details!");
                         }
                     } else {
                         renderTheResponse(true);
                         main_loader.setVisibility(View.GONE);
                         cshowToast();
-//                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+//                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Find Details!");
                     }
 
                 } catch (Exception e) {
 
                     main_loader.setVisibility(View.GONE);
                     cshowToast();
-//                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+//                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Find Details!");
                 }
             }
 
@@ -359,21 +359,21 @@ showToast();                sr_number.setText("");
                                 showAlertDialog("Caution Alerts LubeOil","http://173.11.229.171/viswaweb/VLReports/SampleReports/LO_C.PDF");
                             }else{
                                 cshowToast();
-//                                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+//                                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Find Details!");
                             }
                         }
                     } else {
                         renderTheResponse(true);
                         main_loader.setVisibility(View.GONE);
                         cshowToast();
-//                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+//                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Find Details!");
                     }
 
                 } catch (Exception e) {
                     renderTheResponse(true);
                     main_loader.setVisibility(View.GONE);
                     cshowToast();
-//                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+//                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Find Details!");
                 }
             }
 

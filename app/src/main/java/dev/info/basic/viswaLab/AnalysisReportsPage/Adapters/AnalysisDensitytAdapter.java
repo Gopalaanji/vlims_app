@@ -1,7 +1,16 @@
 package dev.info.basic.viswaLab.AnalysisReportsPage.Adapters;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +42,7 @@ public class AnalysisDensitytAdapter extends RecyclerView.Adapter<AnalysisDensit
 
     @Override
     public viewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.al_reports_density_item, null);
+        View view = LayoutInflater.from(context).inflate(R.layout.new_anlysis_density_item, null);
         viewHolder viewHolder = new viewHolder(view);
         return viewHolder;
     }
@@ -54,13 +63,16 @@ public class AnalysisDensitytAdapter extends RecyclerView.Adapter<AnalysisDensit
     }
 
     public class viewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private TextView tvShipName, tvBunkerDate, tvportDate, tvDiffTonnes, tvQtyRecieved;
+        private TextView tvShipName, tvBunkerDetails, tvSerialNo, tvFuelGrade, tvbdnDensity, tvTestedDensity, tvDiffTonnes, tvQtyRecieved;
 
         public viewHolder(View itemView) {
             super(itemView);
             tvShipName = (TextView) itemView.findViewById(R.id.tvShipName);
-            tvBunkerDate = (TextView) itemView.findViewById(R.id.tvBunkerDate);
-            tvportDate = (TextView) itemView.findViewById(R.id.tvportDate);
+            tvSerialNo = (TextView) itemView.findViewById(R.id.tvSerialNo);
+            tvFuelGrade = (TextView) itemView.findViewById(R.id.tvFuelGrade);
+            tvBunkerDetails = (TextView) itemView.findViewById(R.id.tvBunkerDetails);
+            tvbdnDensity = (TextView) itemView.findViewById(R.id.tvbdnDensity);
+            tvTestedDensity = (TextView) itemView.findViewById(R.id.tvTestedDensity);
             tvDiffTonnes = (TextView) itemView.findViewById(R.id.tvDiffTonnes);
             tvQtyRecieved = (TextView) itemView.findViewById(R.id.tvQtyRecieved);
             itemView.setOnClickListener(this);
@@ -91,9 +103,18 @@ public class AnalysisDensitytAdapter extends RecyclerView.Adapter<AnalysisDensit
     @Override
     public void onBindViewHolder(viewHolder holder, int position) {
         final AnalysisReportDensityDataModel analysisFoModel = mReportDataModelList.get(position);
-        holder.tvShipName.setText(analysisFoModel.getShipName());
-        holder.tvportDate.setText(analysisFoModel.getGrade() + "-" + analysisFoModel.getGradeMatrix());
 
+
+
+
+
+        holder.tvbdnDensity.setText(getColorBoldString("BDN Density:",analysisFoModel.getRecDen()));
+        holder.tvTestedDensity.setText(getColorBoldString("Tested Density:",analysisFoModel.getTestedDen()));
+        holder.tvQtyRecieved.setText(getColorBoldString("Recieved Quantity:" ,analysisFoModel.getQtyReceived()));
+
+        holder.tvShipName.setText(analysisFoModel.getShipName());
+        holder.tvSerialNo.setText(getColorBoldString("SerialNo:",analysisFoModel.getSerial()));
+        holder.tvFuelGrade.setText(getColorBoldString("Fuel Grade:" ,analysisFoModel.getGrade() + "-" + analysisFoModel.getGradeMatrix()));
         try {
             if (analysisFoModel.getDifferenceTonnes().contains("-")) {
                 holder.tvDiffTonnes.setTextColor(context.getResources().getColor(R.color.red_btn_bg_color));
@@ -103,12 +124,24 @@ public class AnalysisDensitytAdapter extends RecyclerView.Adapter<AnalysisDensit
         } catch (Exception e) {
             holder.tvDiffTonnes.setTextColor(context.getResources().getColor(R.color.red_btn_bg_color));
         }
+        holder.tvDiffTonnes.setText("Diff MT :" +analysisFoModel.getDifferenceTonnes());
+        try {
+            holder.tvBunkerDetails.setText(getColorBoldString("Bunker Details:" ,analysisFoModel.getBunkerPort() + "," + ConvertJsonDate(analysisFoModel.getBunkerDate())));
+        } catch (Exception e) {
 
-        holder.tvDiffTonnes.setText(analysisFoModel.getDifferenceTonnes());
-        holder.tvQtyRecieved.setText(analysisFoModel.getQtyReceived());
-        if (analysisFoModel.getBunkerDate() != null) {
-            holder.tvBunkerDate.setText(ConvertJsonDate(analysisFoModel.getBunkerDate()) + "\n" + analysisFoModel.getBunkerPort());
         }
 
+
+    }
+
+    private SpannableStringBuilder getColorBoldString(String s, String data) {
+        String finalString=s+data;
+        SpannableStringBuilder ssBuilder = new SpannableStringBuilder(finalString);
+        ssBuilder.setSpan(new StyleSpan(Typeface.BOLD), String.valueOf(s).length(), finalString.indexOf(data)+data.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ssBuilder.setSpan(new ForegroundColorSpan(Color.BLACK),
+                String.valueOf(s).length(),
+                finalString.indexOf(data)+ data.length(),
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        return ssBuilder;
     }
 }

@@ -212,14 +212,14 @@ public class AnalysisReportsFuelOilReportsFragment extends BaseFragment implemen
                             } else {
                                 showToast(getString(R.string.something_went_wrong));
 
-                                //common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                                //common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Find Details!");
                             }
                         }
                     } else {
 //                        renderTheResponse(true);
                         showToast(getString(R.string.something_went_wrong));
 
-//                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+//                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Find Details!");
                     }
 
                 } catch (Exception e) {
@@ -315,20 +315,20 @@ imo_number.setText("");
                             imo_number.setText("");
                             main_loader.setVisibility(View.GONE);
                             cshowToast();
-//                            common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+//                            common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Find Details!");
                         }
                     } else {
                         renderTheResponse(true);
                         main_loader.setVisibility(View.GONE);
                         cshowToast();
-//                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+//                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Find Details!");
                     }
 
                 } catch (Exception e) {
                     renderTheResponse(true);
                     main_loader.setVisibility(View.GONE);
                     cshowToast();
-//                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+//                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Find Details!");
 
                 }
 

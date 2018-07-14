@@ -225,4 +225,15 @@ public interface ApiInterface {
     @POST("/LO_Shedule_ActiveShips")
     void GetScheduleAlertsReportsShips(@Field("userid") String userid, Callback<JsonObject> callback);
 
+    //Density ships analysis reports
+    @FormUrlEncoded
+    @POST("/Get_VL_DDS_ActiveShips")
+    void GetAnalysisReportsDensityShips(@Field("userid") String userid, Callback<JsonObject> callback);
+
+    @FormUrlEncoded
+    @POST("/Get_VL_DDS_Data")
+    void GetNewDensityReportsAnalysisReports(@Field("userid") String userid,  @Field("shipid") int shipid,Callback<JsonObject> callback);
+
+
+
 }

@@ -271,13 +271,13 @@ showToast();            }
                                 showAlertDialog("Purifier Efficiency", "  http://173.11.229.171/viswaweb/VLReports/SampleReports/PED.PDF");
                             } else {
                                 cshowToast();
-//                                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+//                                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Find Details!");
                             }
                         }
                     } else {
                         main_loader.setVisibility(View.GONE);
                         cshowToast();
-//                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+//                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Find Details!");
                     }
 
                 } catch (Exception e) {
@@ -376,18 +376,18 @@ showToast();                imo_number.setText("");
                             imo_number.setText("");
                             main_loader.setVisibility(View.GONE);
                             cshowToast();
-//                            common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+//                            common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Find Details!");
                         }
                     } else {
                         main_loader.setVisibility(View.GONE);
                         cshowToast();
-//                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+//                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Find Details!");
                     }
 
                 } catch (Exception e) {
                     main_loader.setVisibility(View.GONE);
                     cshowToast();
-//                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+//                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Find Details!");
 
                 }
 

@@ -190,18 +190,18 @@ public class ScheduleAlertsFragment extends BaseFragment implements View.OnClick
                         } else {
                             imo_number.setText("");
                             main_loader.setVisibility(View.GONE);
-                            showToast("Could Not Found Details!");
-//                            common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                            showToast("Could Not Find Details!");
+//                            common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Find Details!");
                         }
                     } else {
                         main_loader.setVisibility(View.GONE);
-                        showToast("Could Not Found Details!");
-//                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                        showToast("Could Not Find Details!");
+//                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Find Details!");
                     }
                 } catch (Exception e) {
                     main_loader.setVisibility(View.GONE);
-                    showToast("Could Not Found Details!");
-//                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                    showToast("Could Not Find Details!");
+//                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Find Details!");
                 }
             }
 
@@ -293,23 +293,23 @@ showToast();                imo_number.setText("");
                         } else {
                             imo_number.setText("");
                             main_loader.setVisibility(View.GONE);
-                            showToast("Could Not Found Details");
+                            showToast("Could Not Find Details");
 
-                            //  common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                            //  common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Find Details!");
                         }
                     } else {
 
                         main_loader.setVisibility(View.GONE);
-                        showToast("Could Not Found Details");
+                        showToast("Could Not Find Details");
 
-                        // common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                        // common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Find Details!");
                     }
 
                 } catch (Exception e) {
 
                     main_loader.setVisibility(View.GONE);
-                    showToast("Could Not Found Details");
-//                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                    showToast("Could Not Find Details");
+//                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Find Details!");
                 }
             }
 
@@ -349,21 +349,21 @@ showToast();                sr_number.setText("");
                             } else {
                                 imo_number.setText("");
                                 main_loader.setVisibility(View.GONE);
-                                showToast("Could Not Found Details");
+                                showToast("Could Not Find Details");
 
-                                //  common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                                //  common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Find Details!");
                             }
                         } else {
                             main_loader.setVisibility(View.GONE);
                             showAlertDialog("You are not subscribed to Lube Oil Testing Services with Viswa Lab","Please contact Marketing@theviswagroup.com");
 
-                            // common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                            // common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Find Details!");
                         }
                     } catch (Exception e) {
                         main_loader.setVisibility(View.GONE);
-//                        toast( "Could Not Found Details!");
-                        Toast.makeText(getActivity(),"Could Not Found Details!",Toast.LENGTH_SHORT).show();
-//                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+//                        toast( "Could Not Find Details!");
+                        Toast.makeText(getActivity(),"Could Not Find Details!",Toast.LENGTH_SHORT).show();
+//                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Find Details!");
                     }
 
                 }

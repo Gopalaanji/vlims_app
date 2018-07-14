@@ -15,12 +15,13 @@
         android:gravity="center">
 
         <ImageView
+            android:layout_centerVertical="true"
             android:id="@+id/btnLogOut"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_margin="10dp"
             android:rotation="180"
+            android:layout_marginRight="@dimen/dimen_5dp"
             android:src="@drawable/logout"
             android:tint="#fff" />
 

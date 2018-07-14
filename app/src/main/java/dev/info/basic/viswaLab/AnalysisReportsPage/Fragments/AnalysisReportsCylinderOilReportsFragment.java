@@ -214,21 +214,21 @@ showToast();            }
                                     showAlertDialog("Caution Alerts CylinderOil","http://173.11.229.171/viswaweb/VLReports/SampleReports/CLO_C.PDF");
                                 } else {
                                     main_loader.setVisibility(View.GONE);
-                                    showToast("Could Not Found Details!");
-//                                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                                    showToast("Could Not Find Details!");
+//                                common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Find Details!");
                                 }
                             }
                         } else {
                             renderTheResponse(true);
 
                             main_loader.setVisibility(View.GONE);
-                            showToast("Could Not Found Details!");
+                            showToast("Could Not Find Details!");
                         }
 
                     } catch (Exception e) {
                         renderTheResponse(true);
                         main_loader.setVisibility(View.GONE);
-                        showToast("Could Not Found Details!");
+                        showToast("Could Not Find Details!");
 
                     }
 
@@ -260,14 +260,14 @@ showToast();            }
                                 if(shipId==0){
                                     showAlertDialog("Cylinder Drain Oil Reports","http://173.11.229.171/viswaweb/VLReports/SampleReports/CLO.PDF");
                                 }else{
-                                    showToast("Could Not Found Details!");
-//                                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                                    showToast("Could Not Find Details!");
+//                                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Find Details!");
                                 }
                             }
                         } else {
                             renderTheResponse(true);
-                            showToast("Could Not Found Details!");
-//                            common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+                            showToast("Could Not Find Details!");
+//                            common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Find Details!");
                         }
 
                     } catch (Exception e) {
@@ -365,20 +365,20 @@ showToast();            }
                             imo_number.setText("");
                             main_loader.setVisibility(View.GONE);
 cshowToast();
-//                            common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+//                            common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Find Details!");
                         }
                     } else {
                         renderTheResponse(true);
                         main_loader.setVisibility(View.GONE);
                         cshowToast();
-//                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+//                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Find Details!");
                     }
 
                 } catch (Exception e) {
                     renderTheResponse(true);
                     main_loader.setVisibility(View.GONE);
                     cshowToast();
-//                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Found Details!");
+//                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Find Details!");
 
                 }
 

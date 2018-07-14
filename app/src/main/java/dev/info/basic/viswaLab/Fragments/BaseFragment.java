@@ -97,7 +97,7 @@ public class BaseFragment extends Fragment {
         Toast.makeText(getActivity(),"Please Enter Value!",Toast.LENGTH_SHORT).show();
     }
 public void cshowToast(){
-        Toast.makeText(getActivity(),"Could Not Found Details!",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(),"Could Not Find Details!",Toast.LENGTH_SHORT).show();
 
     }
 

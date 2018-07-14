@@ -20,6 +20,7 @@
             android:orientation="vertical">
 
             <RelativeLayout
+                android:visibility="gone"
                 android:layout_gravity="center"
                 android:background="@color/white"
                 android:layout_width="match_parent"
@@ -86,12 +87,26 @@
                                 app:customFont="@string/pt_sans_regular" />
                            </LinearLayout>
             </RelativeLayout>
+            <LinearLayout
+                android:layout_margin="@dimen/dimen_10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <Spinner
+                    android:id="@+id/spnVesselShips"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="20dp" />
+            </LinearLayout>
+
 
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/mRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/dimen_5dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp">
 
