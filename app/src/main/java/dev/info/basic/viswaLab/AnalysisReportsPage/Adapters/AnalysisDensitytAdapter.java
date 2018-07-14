@@ -108,25 +108,55 @@ public class AnalysisDensitytAdapter extends RecyclerView.Adapter<AnalysisDensit
 
 
 
-        holder.tvbdnDensity.setText(getColorBoldString("BDN Density:",analysisFoModel.getRecDen()));
-        holder.tvTestedDensity.setText(getColorBoldString("Tested Density:",analysisFoModel.getTestedDen()));
-        holder.tvQtyRecieved.setText(getColorBoldString("Recieved Quantity:" ,analysisFoModel.getQtyReceived()));
+        holder.tvbdnDensity.setText("BDN Density: "+analysisFoModel.getRecDen());
+        holder.tvTestedDensity.setText("Tested Density: "+analysisFoModel.getTestedDen());
+        holder.tvQtyRecieved.setText("Recieved Quantity: " +analysisFoModel.getQtyReceived());
 
         holder.tvShipName.setText(analysisFoModel.getShipName());
-        holder.tvSerialNo.setText(getColorBoldString("SerialNo:",analysisFoModel.getSerial()));
-        holder.tvFuelGrade.setText(getColorBoldString("Fuel Grade:" ,analysisFoModel.getGrade() + "-" + analysisFoModel.getGradeMatrix()));
+        holder.tvSerialNo.setText("SerialNo: "+analysisFoModel.getSerial());
+        holder.tvFuelGrade.setText("Fuel Grade: " +analysisFoModel.getGrade() + "-" + analysisFoModel.getGradeMatrix());
         try {
             if (analysisFoModel.getDifferenceTonnes().contains("-")) {
-                holder.tvDiffTonnes.setTextColor(context.getResources().getColor(R.color.red_btn_bg_color));
+
+//                holder.tvDiffTonnes.setTextColor(context.getResources().getColor(R.color.red_btn_bg_color));
+                String finalString="Diff MT: "+analysisFoModel.getDifferenceTonnes();
+                SpannableStringBuilder ssBuilder = new SpannableStringBuilder(finalString);
+                ssBuilder.setSpan(new StyleSpan(Typeface.BOLD), String.valueOf("Diff MT: ").length(), finalString.indexOf(analysisFoModel.getDifferenceTonnes())+analysisFoModel.getDifferenceTonnes().length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                ssBuilder.setSpan(new ForegroundColorSpan(Color.RED),
+                        String.valueOf("Diff MT: ").length(),
+                        finalString.indexOf(analysisFoModel.getDifferenceTonnes())+ analysisFoModel.getDifferenceTonnes().length(),
+                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                holder.tvDiffTonnes.setText(ssBuilder);
+
             } else {
-                holder.tvDiffTonnes.setTextColor(context.getResources().getColor(R.color.meterialgreen));
+//                holder.tvDiffTonnes.setTextColor(context.getResources().getColor(R.color.meterialgreen));
+//                holder.tvDiffTonnes.setTextColor(context.getResources().getColor(R.color.red_btn_bg_color));
+                String finalString="Diff MT: "+analysisFoModel.getDifferenceTonnes();
+                SpannableStringBuilder ssBuilder = new SpannableStringBuilder(finalString);
+                ssBuilder.setSpan(new StyleSpan(Typeface.BOLD), String.valueOf("Diff MT: ").length(), finalString.indexOf(analysisFoModel.getDifferenceTonnes())+analysisFoModel.getDifferenceTonnes().length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                ssBuilder.setSpan(new ForegroundColorSpan(Color.GREEN),
+                        String.valueOf("Diff MT: ").length(),
+                        finalString.indexOf(analysisFoModel.getDifferenceTonnes())+ analysisFoModel.getDifferenceTonnes().length(),
+                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                holder.tvDiffTonnes.setText(ssBuilder);
+
             }
         } catch (Exception e) {
-            holder.tvDiffTonnes.setTextColor(context.getResources().getColor(R.color.red_btn_bg_color));
+//            holder.tvDiffTonnes.setTextColor(context.getResources().getColor(R.color.red_btn_bg_color));
+            String finalString="Diff MT: "+analysisFoModel.getDifferenceTonnes();
+            SpannableStringBuilder ssBuilder = new SpannableStringBuilder(finalString);
+            ssBuilder.setSpan(new StyleSpan(Typeface.BOLD), String.valueOf("Diff MT: ").length(), finalString.indexOf(analysisFoModel.getDifferenceTonnes())+analysisFoModel.getDifferenceTonnes().length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            ssBuilder.setSpan(new ForegroundColorSpan(Color.RED),
+                    String.valueOf("Diff MT: ").length(),
+                    finalString.indexOf(analysisFoModel.getDifferenceTonnes())+ analysisFoModel.getDifferenceTonnes().length(),
+                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            holder.tvDiffTonnes.setText(ssBuilder);
+
+//            holder.tvDiffTonnes.setTextColor(context.getResources().getColor(R.color.red_btn_bg_color));
         }
-        holder.tvDiffTonnes.setText("Diff MT :" +analysisFoModel.getDifferenceTonnes());
+//        holder.tvDiffTonnes.setText("Diff MT: " +analysisFoModel.getDifferenceTonnes());
         try {
-            holder.tvBunkerDetails.setText(getColorBoldString("Bunker Details:" ,analysisFoModel.getBunkerPort() + "," + ConvertJsonDate(analysisFoModel.getBunkerDate())));
+            holder.tvBunkerDetails.setText("Bunker Details: " +analysisFoModel.getBunkerPort() + "," + ConvertJsonDate(analysisFoModel.getBunkerDate()));
         } catch (Exception e) {
 
         }
