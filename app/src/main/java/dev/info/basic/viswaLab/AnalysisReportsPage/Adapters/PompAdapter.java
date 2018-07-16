@@ -57,7 +57,7 @@ public class PompAdapter extends RecyclerView.Adapter<PompAdapter.viewHolder> {
             if (mReportDataModelList.get(position).getvLIMS_OVERALL_FUEL_CONDITION().equalsIgnoreCase("1")){
                 holder.tvReult.setImageResource(R.drawable.result_green);
             }
-            if(mReportDataModelList.get(position).getvLIMS_OVERALL_FUEL_CONDITION().equalsIgnoreCase("2")||mReportDataModelList.get(position).getvLIMS_OVERALL_FUEL_CONDITION().equalsIgnoreCase("3")||mReportDataModelList.get(position).getvLIMS_OVERALL_FUEL_CONDITION().equalsIgnoreCase("4")){
+            else if(mReportDataModelList.get(position).getvLIMS_OVERALL_FUEL_CONDITION().equalsIgnoreCase("2")||mReportDataModelList.get(position).getvLIMS_OVERALL_FUEL_CONDITION().equalsIgnoreCase("3")||mReportDataModelList.get(position).getvLIMS_OVERALL_FUEL_CONDITION().equalsIgnoreCase("4")){
                 holder.tvReult.setImageResource(R.drawable.result_orange);
             }else{
                 holder.tvReult.setImageResource(R.drawable.result_red);

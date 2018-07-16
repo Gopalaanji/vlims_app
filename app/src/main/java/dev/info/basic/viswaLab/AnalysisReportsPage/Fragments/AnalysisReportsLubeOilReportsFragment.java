@@ -29,9 +29,7 @@ import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 import dev.info.basic.viswaLab.Activitys.LoginFragmentActivity;
-import dev.info.basic.viswaLab.Adapters.ReporterAdapter;
 import dev.info.basic.viswaLab.AnalysisReportsPage.Adapters.AnalysisReportsLubeOilAdapter;
 import dev.info.basic.viswaLab.ApiInterfaces.ApiInterface;
 import dev.info.basic.viswaLab.Database.helper;
@@ -41,7 +39,6 @@ import dev.info.basic.viswaLab.models.LOEquipmentDetailsModel;
 import dev.info.basic.viswaLab.models.LoBrandGradesModel;
 import dev.info.basic.viswaLab.models.ReportDataModel;
 import dev.info.basic.viswaLab.models.ShipdetailsModel;
-import dev.info.basic.viswaLab.utils.Common;
 import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;

@@ -56,7 +56,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:padding="5dp"
-            android:src="@drawable/result_green" />
+            android:src="@drawable/pdf" />
 
     </LinearLayout>
 </LinearLayout>
