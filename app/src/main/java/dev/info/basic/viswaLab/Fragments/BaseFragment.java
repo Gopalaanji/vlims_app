@@ -318,6 +318,8 @@ public void cshowToast(){
 
         }
 
+
+
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, final Response<ResponseBody> response) {
@@ -432,6 +434,7 @@ public void cshowToast(){
             }
 
         } catch (Exception e) {
+            Log.v("error",e.toString());
             Toast.makeText(getActivity(), "Brochure Not Open in Your Mobile!", Toast.LENGTH_SHORT).show();
         }
 

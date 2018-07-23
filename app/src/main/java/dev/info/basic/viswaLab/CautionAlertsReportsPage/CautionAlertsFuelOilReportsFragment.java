@@ -268,11 +268,68 @@ pshowToast();
 //                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Please enter the value!");
                 } else {
                     shipId = 0;
-//                    submitSerialDataReport();
+                    submitSerialDataReport();
                 }
                 break;
         }
 
 
+    }
+    private void submitSerialDataReport() {
+        if (!imo_number.getText().toString().isEmpty() && imo_number.getText().toString().length() > 0) {
+            shipId = 0;
+        }
+        if (!sr_number.getText().toString().isEmpty() && sr_number.getText().toString().length() > 0) {
+            shipId = 0;
+        }
+        mReportDataModelList = new ArrayList<AnalysisFoModel>();
+
+//        Log.v("FUCK", "SHIPID" + shipId + "EDIT" + sr_number.getText().toString());
+        main_loader.setVisibility(View.VISIBLE);
+        RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.pdf_Head).build();
+        final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
+        apiInterface.GetSrDataForFOSNSearch(prefs.getString("userid", ""), sr_number.getText().toString(), new Callback<JsonObject>() {
+            @Override
+            public void success(JsonObject response_data_obj, Response response) {
+                if (isDebug)
+                    Log.v("RESPONSE==>", response_data_obj.toString());
+                try {
+                    if (response_data_obj != null) {
+                        main_loader.setVisibility(View.GONE);
+                        mReportDataModelList = new Gson().fromJson(response_data_obj.getAsJsonArray("ReportData"), new TypeToken<List<AnalysisFoModel>>() {
+                        }.getType());
+                        if (mReportDataModelList != null&&mReportDataModelList.size()>0) {
+                            renderTheResponse(true);
+                        }
+                        else
+                        {
+                            imo_number.setText("");
+                            main_loader.setVisibility(View.GONE);
+                            cshowToast();
+//                            common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Find Details!");
+                        }
+                    } else {
+//                        renderTheResponse(true);
+                        main_loader.setVisibility(View.GONE);
+                        cshowToast();
+//                        common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Find Details!");
+                    }
+
+                } catch (Exception e) {
+//                    renderTheResponse(true);
+                    main_loader.setVisibility(View.GONE);
+                    cshowToast();
+//                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Could Not Find Details!");
+
+                }
+
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                main_loader.setVisibility(View.GONE);
+                showToast();                sr_number.setText("");
+            }
+        });
     }
 }

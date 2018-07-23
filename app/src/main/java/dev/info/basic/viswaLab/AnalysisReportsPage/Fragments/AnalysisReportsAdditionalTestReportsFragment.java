@@ -363,7 +363,7 @@ showToast();            }
                     if (response_data_obj != null) {
                         main_loader.setVisibility(View.GONE);
                         mReportDataModelList = new ArrayList<PurifierEffyResponseModel>();
-                        mReportDataModelList = new Gson().fromJson(response_data_obj.getAsJsonArray("ReportData"), new TypeToken<List<ReportDataModel>>() {
+                        mReportDataModelList = new Gson().fromJson(response_data_obj.getAsJsonArray("ReportData"), new TypeToken<List<PurifierEffyResponseModel>>() {
                         }.getType());
                         if (mReportDataModelList != null) {
                             renderTheResponse();

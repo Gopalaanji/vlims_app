@@ -110,7 +110,7 @@ public class AnalysisDensitytAdapter extends RecyclerView.Adapter<AnalysisDensit
 
         holder.tvbdnDensity.setText("BDN Density: "+analysisFoModel.getRecDen());
         holder.tvTestedDensity.setText("Tested Density: "+analysisFoModel.getTestedDen());
-        holder.tvQtyRecieved.setText("Recieved Quantity: " +analysisFoModel.getQtyReceived());
+        holder.tvQtyRecieved.setText("Received Quantity: " +analysisFoModel.getQtyReceived()+" MT");
 
         holder.tvShipName.setText(analysisFoModel.getShipName());
         holder.tvSerialNo.setText("SerialNo: "+analysisFoModel.getSerial());

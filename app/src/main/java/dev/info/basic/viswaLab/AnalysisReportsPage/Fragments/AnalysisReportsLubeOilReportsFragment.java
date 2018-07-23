@@ -337,7 +337,6 @@ public class AnalysisReportsLubeOilReportsFragment extends BaseFragment implemen
         if (!sr_number.getText().toString().isEmpty() && sr_number.getText().toString().length() > 0) {
             shipId = 0;
         }
-        Log.v("FUCK", "SHIPID" + shipId + "EDIT" + sr_number.getText().toString());
         main_loader.setVisibility(View.VISIBLE);
         RestAdapter rest_adapter = new RestAdapter.Builder().setEndpoint(ApiInterface.pdf_Head).build();
         final ApiInterface apiInterface = rest_adapter.create(ApiInterface.class);
