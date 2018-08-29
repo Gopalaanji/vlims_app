@@ -139,6 +139,8 @@
                             app:customFont="@string/pt_sans_bold" />
 
                         <dev.info.basic.viswaLab.views.TextViewPlus
+
+                            android:layout_marginLeft="28dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"

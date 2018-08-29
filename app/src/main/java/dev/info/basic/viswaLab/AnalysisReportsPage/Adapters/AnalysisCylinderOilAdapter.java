@@ -50,9 +50,9 @@ public class AnalysisCylinderOilAdapter extends RecyclerView.Adapter<AnalysisCyl
         final AnalysisFoModel analysisFoModel = mReportDataModelList.get(position);
         holder.tvShipName.setText(analysisFoModel.getShipName());
         if (analysisFoModel.getBunkerDate() != null) {
-            holder.tvBunkerDate.setText(ConvertJsonDate(analysisFoModel.getBunkerDate()) + "\n" + analysisFoModel.getGrade());
+            holder.tvBunkerDate.setText("    "+analysisFoModel.getBunkerDate() + "\n" + analysisFoModel.getGrade());
         } else if (analysisFoModel.getReportDate() != null) {
-            holder.tvBunkerDate.setText(ConvertJsonDate(analysisFoModel.getReportDate()) + "\n" + analysisFoModel.getGrade());
+            holder.tvBunkerDate.setText("    "+analysisFoModel.getReportDate() + "\n" + analysisFoModel.getGrade());
         }
 
         if (mReportDataModelList.get(position).getOilCondition() != null && mReportDataModelList.get(position).getOilCondition().equals("1")) {

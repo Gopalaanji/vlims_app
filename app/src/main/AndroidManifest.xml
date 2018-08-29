@@ -2,8 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="dev.info.basic.viswaLab">
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <!--
       <permission
         android:name="dev.info.basic.viswaLab.C2D_MESSAGE"
@@ -18,17 +20,18 @@
         tools:replace="android:icon">
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="${applicationId}.provider"
+            android:authorities="${applicationId}"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+
         <activity
             android:name=".Activitys.SplashScreen"
-            android:screenOrientation="portrait"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -37,12 +40,14 @@
         </activity>
         <activity
             android:name=".Activitys.LoginFragmentActivity"
-            android:windowSoftInputMode="stateHidden|adjustPan"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Activitys.HomeActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Activitys.WebViewActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".Activitys.HomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activitys.WebViewActivity"
+            android:screenOrientation="portrait" />
         <!-- GCM Receiver -->
         <!--
         <receiver
@@ -84,8 +89,9 @@
         </intent-filter>
         -->
 
-        <activity android:name=".Activitys.LubeOilActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Activitys.LubeOilActivity"
+            android:screenOrientation="portrait" />
 
         <service
             android:name=".services.TimeService"

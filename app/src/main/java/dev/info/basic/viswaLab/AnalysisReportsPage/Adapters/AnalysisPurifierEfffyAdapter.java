@@ -93,7 +93,7 @@ public class AnalysisPurifierEfffyAdapter extends RecyclerView.Adapter<AnalysisP
         final PurifierEffyResponseModel analysisFoModel = mReportDataModelList.get(position);
         holder.tvShipName.setText(analysisFoModel.getShipName());
         if (analysisFoModel.getBunkerDate() != null) {
-            holder.tvBunkerDate.setText(ConvertJsonDate(analysisFoModel.getBunkerDate()) + "\n" + analysisFoModel.getGrade()+"-"+analysisFoModel.getMatrix());
+            holder.tvBunkerDate.setText("    "+analysisFoModel.getBunkerDate() + "\n" + analysisFoModel.getGrade()+"-"+analysisFoModel.getMatrix());
         }
 /*
         holder.tvReult.setOnClickListener(new View.OnClickListener() {

@@ -96,7 +96,7 @@
                 <EditText
                     android:id="@+id/login_user_name"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:fontFamily="@string/font_sans"
                     android:hint="Username"
@@ -122,7 +122,7 @@
                 <EditText
                     android:id="@+id/login_user_pwd"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:fontFamily="@string/font_sans"
                     android:hint="Password"

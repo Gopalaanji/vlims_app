@@ -2,6 +2,7 @@ package dev.info.basic.viswaLab.AnalysisReportsPage.Adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,9 +52,10 @@ public class AnalysisReportsAdapter extends RecyclerView.Adapter<AnalysisReports
         final AnalysisFoModel analysisFoModel = mReportDataModelList.get(position);
         holder.tvShipName.setText(analysisFoModel.getShipName());
         if (analysisFoModel.getBunkerDate() != null) {
-            holder.tvBunkerDate.setText(ConvertJsonDate(analysisFoModel.getBunkerDate()) + "\n" + analysisFoModel.getGrade());
+//            holder.tvBunkerDate.setText(ConvertJsonDate(analysisFoModel.getBunkerDate()) + "\n" + analysisFoModel.getGrade());
+            holder.tvBunkerDate.setText("    "+analysisFoModel.getBunkerDate() + "\n" + analysisFoModel.getGrade());
         } else if (analysisFoModel.getReportDate() != null) {
-            holder.tvBunkerDate.setText(ConvertJsonDate(analysisFoModel.getReportDate()) + "\n" + analysisFoModel.getGrade());
+            holder.tvBunkerDate.setText("    "+analysisFoModel.getBunkerDate() + "\n" + analysisFoModel.getGrade());
         }
 
         if (mReportDataModelList.get(position).getOilCondition() != null && mReportDataModelList.get(position).getOilCondition().equals("1")) {
@@ -159,6 +161,7 @@ public class AnalysisReportsAdapter extends RecyclerView.Adapter<AnalysisReports
 
         @Override
         public void onClick(View v) {
+            Log.e("163",mReportDataModelList.get(getAdapterPosition()).getSerial());
             listenerInterface.itemClicked(mReportDataModelList.get(getAdapterPosition()).getSerial());
             /*if (mList.get(getAdapterPosition()).getApprovedStatus())
                 Toast.makeText(context, "Already approved", Toast.LENGTH_SHORT).show();

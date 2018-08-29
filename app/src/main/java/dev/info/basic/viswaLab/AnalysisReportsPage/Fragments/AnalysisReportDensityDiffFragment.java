@@ -79,6 +79,7 @@ public class AnalysisReportDensityDiffFragment extends BaseFragment {
         mAnalysisDensityModelModelList = new ArrayList<>();
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.mRecyclerView);
         getUserShipDetailsOfDensitydiff(prefs.getString("userid", ""));
+
 //        GetAnalysisDensityData();
         return rootView;
     }

@@ -97,7 +97,7 @@ public class AnalysisAdditionalTestAdapter extends RecyclerView.Adapter<Analysis
         final PurifierEffyResponseModel analysisFoModel = mReportDataModelList.get(position);
         holder.tvShipName.setText(analysisFoModel.getShipName());
         if (analysisFoModel.getBunkerDate() != null) {
-            holder.tvBunkerDate.setText(analysisFoModel.getAdditionalTest()+"("+analysisFoModel.getResult()+")\n"+ConvertJsonDate(analysisFoModel.getBunkerDate()) + "\n" + analysisFoModel.getBunkerPortName() + "\n" +  analysisFoModel.getMatrix());
+            holder.tvBunkerDate.setText(analysisFoModel.getAdditionalTest()+"("+analysisFoModel.getResult()+")\n"+analysisFoModel.getBunkerDate() + "\n" + analysisFoModel.getBunkerPortName() + "\n" +  analysisFoModel.getMatrix());
         }
 /*
         holder.tvReult.setOnClickListener(new View.OnClickListener() {

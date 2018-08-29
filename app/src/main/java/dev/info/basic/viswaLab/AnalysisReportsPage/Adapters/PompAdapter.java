@@ -47,17 +47,17 @@ public class PompAdapter extends RecyclerView.Adapter<PompAdapter.viewHolder> {
         final AnalysisFoModel analysisFoModel = mReportDataModelList.get(position);
         holder.tvShipName.setText(analysisFoModel.getShipName());
         if (analysisFoModel.getBunkerDate() != null) {
-            holder.tvBunkerDate.setText(ConvertJsonDate(analysisFoModel.getBunkerDate()) + "\n" + analysisFoModel.getGrade());
+            holder.tvBunkerDate.setText("   "+analysisFoModel.getBunkerDate() + "\n" + analysisFoModel.getGrade());
         } else if (analysisFoModel.getReportDate() != null) {
-            holder.tvBunkerDate.setText(ConvertJsonDate(analysisFoModel.getReportDate()) + "\n" + analysisFoModel.getGrade());
+            holder.tvBunkerDate.setText("    "+analysisFoModel.getReportDate() + "\n" + analysisFoModel.getGrade());
         }
 
 
-        if (mReportDataModelList.get(position).getvLIMS_OVERALL_FUEL_CONDITION() != null) {
-            if (mReportDataModelList.get(position).getvLIMS_OVERALL_FUEL_CONDITION().equalsIgnoreCase("1")){
+        if (mReportDataModelList.get(position).getvlims_overall_fuel_condition() > 0) {
+            if (mReportDataModelList.get(position).getvlims_overall_fuel_condition()==1){
                 holder.tvReult.setImageResource(R.drawable.result_green);
             }
-            else if(mReportDataModelList.get(position).getvLIMS_OVERALL_FUEL_CONDITION().equalsIgnoreCase("2")||mReportDataModelList.get(position).getvLIMS_OVERALL_FUEL_CONDITION().equalsIgnoreCase("3")||mReportDataModelList.get(position).getvLIMS_OVERALL_FUEL_CONDITION().equalsIgnoreCase("4")){
+            else if(mReportDataModelList.get(position).getvlims_overall_fuel_condition()==2||mReportDataModelList.get(position).getvlims_overall_fuel_condition()==3||mReportDataModelList.get(position).getvlims_overall_fuel_condition()==4){
                 holder.tvReult.setImageResource(R.drawable.result_orange);
             }else{
                 holder.tvReult.setImageResource(R.drawable.result_red);

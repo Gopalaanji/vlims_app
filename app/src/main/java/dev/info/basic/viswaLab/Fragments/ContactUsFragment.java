@@ -32,7 +32,7 @@ public class ContactUsFragment extends BaseFragment {
         renderQuestion(muskee_features_container, "USA,HOUSTON", "+17138421985", "Customerhelp@viswalab.com", getResources().getString(R.string.huston_address).toString());
         renderQuestion(muskee_features_container, "SINGAPORE", "+6567787975", "singapore@viswalab.com", getResources().getString(R.string.singapoor_address).toString());
         renderQuestion(muskee_features_container, "UNITED KINGDOM", "+4416427331450", "uk@viswalab.com", getResources().getString(R.string.uk_address).toString());
-        renderQuestion(muskee_features_container, "UNITED ARAB EMIRATES", "", "uae@viswalab.com", getResources().getString(R.string.arab_address).toString());
+        renderQuestion(muskee_features_container, "UNITED ARAB EMIRATES", "+97192282787", "uae@viswalab.com", getResources().getString(R.string.arab_address).toString());
         renderQuestion(muskee_features_container, "BELGIUM", "+3235414441", "europe@viswalab.com", getResources().getString(R.string.belgium_address).toString());
         setHasOptionsMenu(true);
         fragmentActivity = (LoginFragmentActivity) getActivity();

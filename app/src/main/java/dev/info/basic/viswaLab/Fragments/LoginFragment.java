@@ -74,7 +74,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
         rememberPassword.setChecked(false);
         try{
 //            vesriontext.setText("V  "+BuildConfig.VERSION_NAME);
-            vesriontext.setText("V 1.0.4");
+            vesriontext.setText("V 2.0.1");
 
         }catch (Exception e){
 
@@ -137,8 +137,8 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
                     if (is_checked) {
                         editor.putString("is_checkbox_rem", "yes");
                     } else {
-                        editor.putString("pet", "");
-                        editor.putString("pwd", "");
+//                        editor.putString("pet", "");
+//                        editor.putString("pwd", "");
                     }
                     editor.commit();
 //                    Log.v("UserId==>", "USER ID" + prefs.getString("userid", "") + "User Name" + prefs.getString("Username", ""));

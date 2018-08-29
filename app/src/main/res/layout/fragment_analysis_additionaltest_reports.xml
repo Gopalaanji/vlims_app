@@ -141,13 +141,14 @@
                     android:orientation="horizontal">
 
                     <dev.info.basic.viswaLab.views.TextViewPlus
+                        android:layout_marginTop="13dp"
                         android:id="@+id/tvShipName"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_alignParentLeft="true"
                         android:gravity="center"
                         android:lines="2"
-                        android:text="Ship Name"
+                        android:text="    Ship Name"
                         android:textColor="@color/black"
                         android:textStyle="bold"
                         app:customFont="@string/pt_sans_bold" />
@@ -165,12 +166,13 @@
 
 
                     <dev.info.basic.viswaLab.views.TextViewPlus
+                        android:layout_marginTop="13dp"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_alignParentRight="true"
                         android:gravity="center"
                         android:lines="2"
-                        android:text="Pdf Report"
+                        android:text="PDF Report  "
                         android:textColor="@color/black"
                         android:textStyle="bold"
                         app:customFont="@string/pt_sans_bold" />

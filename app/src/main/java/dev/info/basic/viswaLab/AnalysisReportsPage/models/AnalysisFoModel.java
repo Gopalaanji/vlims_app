@@ -18,20 +18,20 @@ public class AnalysisFoModel {
     @SerializedName("ReportDate")
     String reportDate;
 
-    public String getvLIMS_OVERALL_FUEL_CONDITION() {
-        return vLIMS_OVERALL_FUEL_CONDITION;
+    public int getvlims_overall_fuel_condition() {
+        return vlims_overall_fuel_condition;
     }
 
-    public void setvLIMS_OVERALL_FUEL_CONDITION(String vLIMS_OVERALL_FUEL_CONDITION) {
-        this.vLIMS_OVERALL_FUEL_CONDITION = vLIMS_OVERALL_FUEL_CONDITION;
+    public void setvLIMS_OVERALL_FUEL_CONDITION(int vlims_overall_fuel_condition) {
+        this.vlims_overall_fuel_condition = vlims_overall_fuel_condition;
     }
 
     @SerializedName("Spec On / Off")
     String sepc;
     @SerializedName("TestDate")
     String testDate;
-    @SerializedName("VLIMS_OVERALL_FUEL_CONDITION")
-    String vLIMS_OVERALL_FUEL_CONDITION;
+    @SerializedName("vlims_overall_fuel_condition")
+    int vlims_overall_fuel_condition;
 
     public String getTestDate() {
         return testDate;
@@ -51,6 +51,7 @@ public class AnalysisFoModel {
 
     @SerializedName("OilCondition")
     String oilCondition;
+
     public String getSepc() {
         return sepc;
     }

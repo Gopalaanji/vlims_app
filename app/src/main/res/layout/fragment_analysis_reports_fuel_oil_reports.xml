@@ -145,11 +145,12 @@
                         <dev.info.basic.viswaLab.views.TextViewPlus
                             android:id="@+id/tvBunkerDate"
                             android:layout_width="120dp"
+                            android:layout_marginLeft="35dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
                             android:gravity="center"
                             android:lines="2"
-                            android:text="Bunker Date/Grade"
+                            android:text="Bunkered Date\n Fuel Grade"
                             android:textColor="@color/black"
                             android:textStyle="bold"
                             app:customFont="@string/pt_sans_bold" />

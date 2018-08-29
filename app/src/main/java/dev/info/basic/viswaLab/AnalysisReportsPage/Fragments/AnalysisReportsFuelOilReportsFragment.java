@@ -49,7 +49,7 @@ import retrofit.client.Response;
 public class AnalysisReportsFuelOilReportsFragment extends BaseFragment implements View.OnClickListener {
     private LoginFragmentActivity fragmentActivity;
     private View rootView;
-//    private Common common;
+    //    private Common common;
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
     private RelativeLayout main_loader;
@@ -67,7 +67,6 @@ public class AnalysisReportsFuelOilReportsFragment extends BaseFragment implemen
     helper dbHelper;
     Spinner spnVesselShips;
     private Common common;
-
 
 
     @Nullable
@@ -103,6 +102,7 @@ public class AnalysisReportsFuelOilReportsFragment extends BaseFragment implemen
         dbHelper = new helper(getContext());
 
         getUserShipDetailsOfFuelOilReports(prefs.getString("userid", ""));
+        Log.e("userId",prefs.getString("userid", ""));
         return rootView;
     }
 
@@ -127,6 +127,7 @@ public class AnalysisReportsFuelOilReportsFragment extends BaseFragment implemen
                                 shipList[0] = "All Ships*";
                                 for (int i = 0; i < shipdetailsList.size(); i++) {
                                     shipList[j] = shipdetailsList.get(i).getShipName();
+                                    Log.e("shiplist", shipList[j]+"");
                                     j++;
                                 }
                             }
@@ -146,7 +147,7 @@ public class AnalysisReportsFuelOilReportsFragment extends BaseFragment implemen
                     showToast();
                 }
             });
-        }else{
+        } else {
             common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, getString(R.string.network_error));
         }
 
@@ -196,7 +197,7 @@ public class AnalysisReportsFuelOilReportsFragment extends BaseFragment implemen
             @Override
             public void success(JsonObject response_data_obj, Response response) {
                 if (isDebug)
-                Log.v("RESPONSE==>", response_data_obj.toString());
+                    Log.v("RESPONSEpdf==>", response_data_obj.toString());
                 main_loader.setVisibility(View.GONE);
                 try {
                     if (response_data_obj != null) {
@@ -208,7 +209,7 @@ public class AnalysisReportsFuelOilReportsFragment extends BaseFragment implemen
                         } else {
                             imo_number.setText("");
                             if (shipId == 0) {
-                                showAlertDialog("Fuel Oil Reports","http://173.11.229.171/viswaweb/VLReports/SampleReports/FO.PDF");
+                                showAlertDialog("Fuel Oil Reports", "http://173.11.229.171/viswaweb/VLReports/SampleReports/FO.PDF");
                             } else {
                                 showToast(getString(R.string.something_went_wrong));
 
@@ -223,7 +224,7 @@ public class AnalysisReportsFuelOilReportsFragment extends BaseFragment implemen
                     }
 
                 } catch (Exception e) {
-                    showAlertDialog("Fuel Oil Reports","http://173.11.229.171/viswaweb/VLReports/SampleReports/FO.PDF");
+                    showAlertDialog("Fuel Oil Reports", "http://173.11.229.171/viswaweb/VLReports/SampleReports/FO.PDF");
                 }
 
             }
@@ -232,8 +233,8 @@ public class AnalysisReportsFuelOilReportsFragment extends BaseFragment implemen
             public void failure(RetrofitError error) {
                 main_loader.setVisibility(View.GONE);
 
-showToast();
-imo_number.setText("");
+                showToast();
+                imo_number.setText("");
             }
         });
 
@@ -248,17 +249,18 @@ imo_number.setText("");
         };
         mRecyclerView.setLayoutManager(layoutManager);
 
-            if (mReportDataModelList != null) {
-                mReporterAdapter = new AnalysisReportsAdapter(getActivity(), "FO", mReportDataModelList, new AnalysisReportsAdapter.ListenerInterface(){
+        if (mReportDataModelList != null) {
+            mReporterAdapter = new AnalysisReportsAdapter(getActivity(), "FO", mReportDataModelList, new AnalysisReportsAdapter.ListenerInterface() {
 
-                    @Override
-                    public void itemClicked(String serialNo) {
+                @Override
+                public void itemClicked(String serialNo) {
 
-                        showPdf(serialNo,"FO","");
-                    }
-                });
-                mRecyclerView.setAdapter(mReporterAdapter);
-            }
+                   showPdf(serialNo, "FO", "");
+                    Log.e("file,",serialNo+"..");
+                }
+            });
+            mRecyclerView.setAdapter(mReporterAdapter);
+        }
 
     }
 
@@ -280,13 +282,14 @@ imo_number.setText("");
 //                    common.showNewAlertDesign(getActivity(), SweetAlertDialog.ERROR_TYPE, "Please enter the value!");
                 } else {
                     shipId = 0;
-                    submitSerialDataReport();
+                      submitSerialDataReport();
                 }
                 break;
         }
 
 
     }
+
     private void submitSerialDataReport() {
         if (!imo_number.getText().toString().isEmpty() && imo_number.getText().toString().length() > 0) {
             shipId = 0;
@@ -304,17 +307,15 @@ imo_number.setText("");
             @Override
             public void success(JsonObject response_data_obj, Response response) {
                 if (isDebug)
-                Log.v("RESPONSE==>", response_data_obj.toString());
+                    Log.v("RESPONSESerialDatort=>", response_data_obj.toString());
                 try {
                     if (response_data_obj != null) {
                         main_loader.setVisibility(View.GONE);
                         mReportDataModelList = new Gson().fromJson(response_data_obj.getAsJsonArray("ReportData"), new TypeToken<List<AnalysisFoModel>>() {
                         }.getType());
-                        if (mReportDataModelList != null&&mReportDataModelList.size()>0) {
+                        if (mReportDataModelList != null && mReportDataModelList.size() > 0) {
                             renderTheResponse(true);
-                        }
-                            else
-                         {
+                        } else {
                             imo_number.setText("");
                             main_loader.setVisibility(View.GONE);
                             cshowToast();
@@ -340,7 +341,8 @@ imo_number.setText("");
             @Override
             public void failure(RetrofitError error) {
                 main_loader.setVisibility(View.GONE);
-showToast();                sr_number.setText("");
+                showToast();
+                sr_number.setText("");
             }
         });
     }

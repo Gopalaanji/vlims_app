@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +30,7 @@ public class AnalysisFuelReportsAdapter extends RecyclerView.Adapter<AnalysisFue
     String username;
     String pwd;
 
-    public AnalysisFuelReportsAdapter(Context context, String from, List<AnalysisFoModel> mReportDataModelList, String userId,String username,String pwd) {
+    public AnalysisFuelReportsAdapter(Context context, String from, List<AnalysisFoModel> mReportDataModelList, String userId, String username, String pwd) {
         this.context = context;
         this.from = from;
         this.mReportDataModelList = mReportDataModelList;
@@ -50,9 +51,13 @@ public class AnalysisFuelReportsAdapter extends RecyclerView.Adapter<AnalysisFue
         final AnalysisFoModel analysisFoModel = mReportDataModelList.get(position);
         holder.tvShipName.setText(analysisFoModel.getShipName());
         if (analysisFoModel.getBunkerDate() != null) {
-            holder.tvBunkerDate.setText(ConvertJsonDate(analysisFoModel.getBunkerDate()) + "\n" + analysisFoModel.getGrade());
+            holder.tvBunkerDate.setText("   "+ConvertJsonDate(analysisFoModel.getBunkerDate()) + "\n" + analysisFoModel.getGrade());
+          //  holder.tvBunkerDate.setText("   " + analysisFoModel.getBunkerDate() + "\n" + analysisFoModel.getGrade());
+            holder.tvBunkerDate.setText("");
         } else if (analysisFoModel.getReportDate() != null) {
-            holder.tvBunkerDate.setText(ConvertJsonDate(analysisFoModel.getReportDate()) + "\n" + analysisFoModel.getGrade());
+//            holder.tvBunkerDate.setText("   "+ConvertJsonDate(analysisFoModel.getReportDate()) + "\n" + analysisFoModel.getGrade());
+            holder.tvBunkerDate.setText("   " + analysisFoModel.getReportDate() + "\n" + analysisFoModel.getGrade());
+          //  holder.tvBunkerDate.setText("   " );
         }
 
         if (mReportDataModelList.get(position).getOilCondition() != null && mReportDataModelList.get(position).getOilCondition().equals("1")) {
@@ -77,10 +82,9 @@ public class AnalysisFuelReportsAdapter extends RecyclerView.Adapter<AnalysisFue
             public void onClick(View view) {
 
 
-
 //                        browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://173.11.229.171/viswaweb/VLReports/FOReports/" + analysisFoModel.getSerial().toString() + ".pdf"));
-                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://74.208.185.23//VLIMSAPP/GETuser.asmxVL_FOReports_Download/" +username+"/"+ pwd+"/"+analysisFoModel.getSerial().toString()));
-
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://74.208.185.23//VLIMSAPP/GETuser.asmxVL_FOReports_Download/" + username + "/" + pwd + "/" + analysisFoModel.getSerial().toString()));
+                // Log.e("intent","http://74.208.185.23//VLIMSAPP/GETuser.asmxVL_FOReports_Download/" +username+"/"+ pwd+"/"+analysisFoModel.getSerial().toString());
                 context.startActivity(browserIntent);
 
             }

@@ -51,7 +51,7 @@ public class AnalysisReportsLubeOilAdapter extends RecyclerView.Adapter<Analysis
             holder.tvSerialNo.setText(reportDataModel.getShipName());
             holder.tvDate.setVisibility(View.VISIBLE);
             String ackwardDate = reportDataModel.getTestDate();
-            holder.tvDate.setText(ConvertJsonDate(reportDataModel.getTestDate()));
+            holder.tvDate.setText(reportDataModel.getTestDate());
 
 //Dirty convertion
           /*  Calendar calendar = Calendar.getInstance();

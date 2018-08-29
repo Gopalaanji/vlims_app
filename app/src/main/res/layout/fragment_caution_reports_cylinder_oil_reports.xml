@@ -132,11 +132,11 @@
 
                         <dev.info.basic.viswaLab.views.TextViewPlus
                             android:id="@+id/tvShipName"
-                            android:layout_width="70dp"
+                            android:layout_width="100dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:lines="2"
+                            android:lines="1"
                             android:text="Ship Name"
                             android:textColor="@color/black"
                             android:textStyle="bold"
@@ -144,6 +144,7 @@
 
                         <dev.info.basic.viswaLab.views.TextViewPlus
                             android:id="@+id/tvBunkerDate"
+                            android:layout_marginLeft="55dp"
                             android:layout_width="120dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -155,6 +156,7 @@
                             app:customFont="@string/pt_sans_bold" />
 
                         <dev.info.basic.viswaLab.views.TextViewPlus
+                            android:layout_marginRight="3dp"
                             android:layout_width="120dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"

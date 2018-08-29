@@ -5,9 +5,13 @@
     android:id="@+id/activity_splash_screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/splash"
+    android:background="#ffff"
     tools:context="dev.info.basic.viswaLab.Activitys.SplashScreen">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/vclogo" />
 
     <LinearLayout
         android:layout_width="match_parent"

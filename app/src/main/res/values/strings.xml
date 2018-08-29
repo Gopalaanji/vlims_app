@@ -359,14 +359,14 @@
     <string name="huston_address">12140 Almeda Road \n Houston, Texas 77045 USA</string>
     <string name="singapoor_address">80 Tagore Lane\nSingapore,787501</string>
     <string name="uk_address">New First Avenue Wilton International Site\nMiddlesbrough, Cleveland\nTS104RG</string>
-    <string name="arab_address">Viswa Lab International FZE \nWarehouse 17B\nFujairah Freezone 1\nFujairah PO Box 50234</string>
+    <string name="arab_address">Viswa Lab International FZE \nWarehouse 117B\nFujairah Freezone 1\nFujairah PO Box 50234</string>
     <string name="belgium_address">Administrative Office\nEmdenweg 23 (Kaai 217) \n2030 Antwerp Belgium</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="bunker_fuel_date">Bunker Date\nFuel Grade</string>
-    <string name="report_fuel_date">Report Date\nFuel Grade</string>
-    <string name="bunker_port_fuel">Bunker Date\nBunker Port\nFuelGrade</string>
-    <string name="bunker_port_fuel_test">Test(Result)\nBunker Date\nBunker Port\nPortFuelGrade</string>
+    <string name="bunker_fuel_date">Bunkered Date \nOil Grade</string>
+    <string name="report_fuel_date">Report Date\nOil Grade</string>
+    <string name="bunker_port_fuel">Bunkered Date \nBunker Port\nFuelGrade</string>
+    <string name="bunker_port_fuel_test">Test(Result)\nBunkered Date \nBunker Port\nPortFuelGrade</string>
     <string name="analysisreports_diff">Diff. Tonne\nQty Received</string>
 </resources>
