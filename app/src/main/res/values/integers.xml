@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <integer name="email_max">50</integer>
-    <integer name="email_min">5</integer>
-    <integer name="phone_max">10</integer>
-
-    <integer name="default_circle_indicator_orientation">0</integer>
-</resources>
