@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/splash_bg">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/rera_agent_houseNo"
+                style="@style/AppTheme.EditText"
+                android:hint="* House Number"
+                android:inputType="text"
+                android:maxLength="100" />
+
+            <EditText
+                android:id="@+id/rera_agent_buildingName"
+                style="@style/AppTheme.EditText_Top"
+                android:hint="* Building Name"
+                android:inputType="text"
+                android:maxLength="@integer/email_max" />
+
+            <EditText
+                android:id="@+id/rera_agent_streetName"
+                style="@style/AppTheme.EditText_Top"
+                android:hint="* Street Name"
+                android:inputType="text"
+                android:maxLength="@integer/email_max" />
+
+            <EditText
+                android:id="@+id/rera_agent_locality"
+                style="@style/AppTheme.EditText_Top"
+                android:hint="* Locality"
+                android:inputType="text"
+                android:maxLength="@integer/email_max" />
+
+            <EditText
+                android:id="@+id/rera_agent_landmark"
+                style="@style/AppTheme.EditText_Top"
+                android:hint="* Landmark"
+                android:inputType="text"
+                android:maxLength="@integer/email_max" />
+
+            <EditText
+                android:id="@+id/rera_agent_state"
+                style="@style/AppTheme.EditText_Top"
+                android:hint="State"
+                android:inputType="text"
+                android:maxLength="@integer/email_max" />
+
+            <EditText
+                android:id="@+id/rera_agent_district"
+                style="@style/AppTheme.EditText_Top"
+                android:hint="* District"
+                android:inputType="text"
+                android:maxLength="@integer/email_max" />
+
+            <EditText
+                android:id="@+id/rera_agent_mandal"
+                style="@style/AppTheme.EditText_Top"
+                android:hint="* Mandal"
+                android:inputType="text"
+                android:maxLength="@integer/email_max" />
+
+            <EditText
+                android:id="@+id/rera_agent_village"
+                style="@style/AppTheme.EditText_Top"
+                android:hint="* Village"
+                android:inputType="text"
+                android:maxLength="@integer/email_max" />
+
+            <EditText
+                android:id="@+id/rera_agent_pincode"
+                style="@style/AppTheme.EditText_Top"
+                android:hint="* Pin Code"
+                android:inputType="numberDecimal"
+                android:maxLength="@integer/email_max" />
+
+            <Button
+                android:id="@+id/btnNextPage"
+                style="@style/btn_lg.btn_info"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:text="Next" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:ProgressWheel="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/initial_loader"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/splash_bg"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <dev.info.basic.viswaLab.utils.ProgressWheel
+            android:id="@+id/initial_loader_progress"
+            android:layout_width="@dimen/custom_progressbar_width_height"
+            android:layout_height="@dimen/custom_progressbar_width_height"
+            android:layout_centerInParent="true"
+            ProgressWheel:matProg_barColor="@color/login_btn_click_color"
+            ProgressWheel:matProg_circleRadius="140dp"
+            ProgressWheel:matProg_progressIndeterminate="true"
+            ProgressWheel:matProg_rimWidth="2dp" />
+
+        <ImageView
+            android:layout_width="@dimen/custom_progressbar_image_width_height"
+            android:layout_height="@dimen/custom_progressbar_image_width_height"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/ic_launcher" />
+    </RelativeLayout>
+
+</RelativeLayout>

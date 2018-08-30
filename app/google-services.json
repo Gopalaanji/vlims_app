@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "237853837260",
+    "firebase_url": "https://pricedproperty.firebaseio.com",
+    "project_id": "pricedproperty",
+    "storage_bucket": "pricedproperty.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:237853837260:android:dcaf2149c8e0d1cc",
+        "android_client_info": {
+          "package_name": "rsr.info.basic.pricedproperty"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "237853837260-jctnmb2d9dtf0l77jvc7rptt8knsr63f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqOmH2YRxVXPRl_2DXUe-S81Fs5MkGReE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

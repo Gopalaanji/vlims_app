@@ -1,0 +1,110 @@
+<resources>
+    <dimen name="activity_horizontal_margin">64dp</dimen>
+    <dimen name="editText_text_size">32sp</dimen>
+    <dimen name="button_text_size">32sp</dimen>
+
+    <!--notifications-->
+    <dimen name="notification_text_size">32sp</dimen>
+    <dimen name="notification_text_height">55dp</dimen>
+    <dimen name="notification_view_height">2.5dp</dimen>
+    <dimen name="notification_text_margin">15dp</dimen>
+    <dimen name="notification_text_padding">10dp</dimen>
+
+    <!--lOGIN SCREEN-->
+    <dimen name="login_screen_logo_height">250dp</dimen>
+    <dimen name="login_editText_margin">20dp</dimen>
+    <dimen name="login_editText_padding">40dp</dimen>
+    <dimen name="login_editText_text_size">32sp</dimen>
+    <dimen name="login_button_height">90dp</dimen>
+    <dimen name="login_button_margin_left_right">25dp</dimen>
+    <dimen name="login_button_margin_top">15dp</dimen>
+    <dimen name="space_view_width">5dp</dimen>
+    <dimen name="space_view_height">35dp</dimen>
+    <dimen name="login_powered_by_img_height">250dp</dimen>
+
+    <!--SIGNUP SCREEN-->
+    <dimen name="signup_editTextSize">32sp</dimen>
+    <dimen name="signup_editTextPadding">5dp</dimen>
+    <dimen name="signup_editTextMargin">22dp</dimen>
+    <dimen name="signup_screen_logo_height">200dp</dimen>
+    <dimen name="signup_button_margin">22dp</dimen>
+    <dimen name="signup_powered_by_img">238dp</dimen>
+    <dimen name="signup_frame_powered_by_img">238dp</dimen>
+    <dimen name="signup_button_height">75dp</dimen>
+
+    <!--FORGOT PASSWORD-->
+    <dimen name="forgotPassword_screen_logo_height">150dp</dimen>
+    <dimen name="forgotPassword_editText_margin">12dp</dimen>
+
+    <!--About Us-->
+    <dimen name="aboutUs_frame_powered_by_img">105dp</dimen>
+    <dimen name="aboutUs_powered_by_img">265dp</dimen>
+    <dimen name="aboutUs_powered_by_padding">10dp</dimen>
+
+    <!--Projects By Cluster Id-->
+
+    <dimen name="projects_frame_powered_by_img">95dp</dimen>
+    <dimen name="projects_powered_by_img">185dp</dimen>
+    <dimen name="projects_powered_by_padding">0dp</dimen>
+
+
+    <!--All Dialouge -->
+    <dimen name="dialouge_mini_width">300dp</dimen>
+    <dimen name="dialouge_title_padding">15dp</dimen>
+    <dimen name="dialouge_button_width">200dp</dimen>
+    <dimen name="dialouge_button_height">65dp</dimen>
+
+    <!-- FRAGMENT HOME-->
+    <dimen name="fragment_home_logo_height_width">450dp</dimen>
+    <dimen name="welcome_text_padding">30dp</dimen>
+    <dimen name="fragment_home_button_img_width">300dp</dimen>
+    <dimen name="fragment_home_frame_powered_by_img">135dp</dimen>
+    <dimen name="fragment_home_powered_by_img_height">230dp</dimen>
+    <dimen name="fragment_home_button_layout_height">205dp</dimen>
+    <dimen name="fragment_home_button_layout_margin">25dp</dimen>
+    <dimen name="fragment_home_parent_reltv_height">15dp</dimen>
+    <dimen name="fragment_home_button_text">40dp</dimen>
+
+    <!--FACEBOOK PAGE-->
+    <dimen name="social_logo_height">300dp</dimen>
+    <dimen name="social_page_single_padding">15dp</dimen>
+    <dimen name="social_page_single_marginTop">15dp</dimen>
+    <dimen name="social_page_single_margin">20dp</dimen>
+    <dimen name="social_image_logo_margin">20dp</dimen>
+    <dimen name="social_fb_img_width">35dp</dimen>
+    <dimen name="social_fb_img_height">45dp</dimen>
+    <dimen name="social_fb_img_margin_left">20dp</dimen>
+    <dimen name="social_fb_img_margin_top_bottom">15dp</dimen>
+
+    <!--NOTIFICATIONS-->
+    <dimen name="notifications_frame_height">100dp</dimen>
+    <!--Photos Fragment-->
+    <dimen name="photos_fragment_img_height">150dp</dimen>
+    <dimen name="photos_margin_top">230dp</dimen>
+    <!--DOT MENU-->
+    <dimen name="dot_width">10dp</dimen>
+    <dimen name="dot_height">10dp</dimen>
+    <!--NAV HEADER-->
+    <dimen name="nav_header_img_width">230dp</dimen>
+    <dimen name="nav_header_img_height">230dp</dimen>
+    <!--SPLASH SCREEN-->
+    <dimen name="splash_progressBar_width">100dp</dimen>
+    <!--THUMBNAIL PROJECT DETAILS-->
+    <dimen name="thumbnail_rel_height">200dp</dimen>
+    <dimen name="thumbnail_img_width_height">200dp</dimen>
+    <dimen name="thumbnail_img_width_">210dp</dimen>
+
+    <dimen name="thumbnail_rel_parent_margintop">15dp</dimen>
+    <dimen name="thumbnail_img_padding">5dp</dimen>
+    <dimen name="thumbnail_text_marginLeft">5dp</dimen>
+    <dimen name="thumbnail_plots_text_size">30sp</dimen>
+    <dimen name="thumbnail_bottom_panel">55dp</dimen>
+    <!-- PROFILE FRAGMENT-->
+    <dimen name="profile_height_width">200dp</dimen>
+    <dimen name="profile_from_top_margin">20dp</dimen>
+<!--MARGIN-->
+    <dimen name="dimen_5dp">5dp</dimen>
+    <dimen name="dimen_10dp">10dp</dimen>
+    <dimen name="dimen_15dp">15dp</dimen>
+
+</resources>

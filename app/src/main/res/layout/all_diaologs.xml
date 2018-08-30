@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:gravity="center"
+            android:minWidth="300dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/colorPrimary"
+                android:orientation="vertical">
+
+                <dev.info.basic.viswaLab.views.TextViewPlus
+                    android:id="@+id/tvdialogtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="5dp"
+                    app:customFont="@string/pt_sans_bold"
+                    android:text="hi"
+                    android:textColor="#fff"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <dev.info.basic.viswaLab.views.TextViewPlus
+                android:id="@+id/tvdialogbody"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                app:customFont="@string/font_sans"
+                android:gravity="center"
+                android:text="Records not found!"
+                android:singleLine="false"
+                android:textColor="#035a76"
+                android:textSize="18sp" />
+
+            <dev.info.basic.viswaLab.utils.ButtonPlus
+                android:layout_margin="@dimen/dimen_15dp"
+                android:padding="@dimen/dimen_10dp"
+                android:id="@+id/btndialog"
+                android:layout_width="wrap_content"
+                android:textAllCaps="false"
+                android:layout_height="45dp"
+                android:background="@color/colorPrimary"
+                android:text="See Sample report"
+                android:textColor="#fff"
+                android:textSize="@dimen/text_size" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

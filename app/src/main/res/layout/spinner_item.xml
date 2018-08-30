@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dev.info.basic.viswaLab.views.TextViewPlus xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:foo="http://schemas.android.com/apk/res-auto"
+    android:id="@android:id/text1"
+    style="?android:attr/spinnerItemStyle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:ellipsize="marquee"
+    android:padding="5dp"
+    android:singleLine="true"
+    android:textAlignment="inherit"
+    android:textSize="15sp"
+    foo:customFont="@string/font_sans" />

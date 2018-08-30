@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/new_default_color">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical">
+
+        <LinearLayout
+            android:id="@+id/userArea"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/new_default_color"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="vertical">
+
+                <Spinner
+                    android:id="@+id/spnVesselShips"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="20dp" />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@color/bar_color"></View>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/imo_number"
+                            android:layout_width="110dp"
+                            android:layout_height="55dp"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:hint="ENTER IMO NO."
+                            android:inputType="numberDecimal"
+                            android:maxLength="100"
+                            android:padding="5dp"
+                            android:textAllCaps="true"
+                            android:textSize="14sp" />
+
+                        <ImageView
+                            android:id="@+id/btnSubmit"
+                            android:layout_width="20dp"
+                            android:layout_height="45dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/search" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:gravity="right"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/sr_number"
+                            android:layout_width="110dp"
+                            android:layout_height="55dp"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:hint="ENTER SR NO."
+                            android:inputType="text"
+                            android:maxLength="100"
+                            android:padding="5dp"
+                            android:textAllCaps="true"
+                            android:textSize="14sp" />
+
+                        <ImageView
+                            android:id="@+id/btnsrSubmit"
+                            android:layout_width="20dp"
+                            android:layout_height="45dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/search" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <dev.info.basic.viswaLab.views.TextViewPlus
+                            android:layout_marginLeft="3dp"
+                            android:id="@+id/tvShipName"
+                            android:layout_width="70dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:gravity="center"
+                            android:lines="2"
+                            android:text="Ship Name"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            app:customFont="@string/pt_sans_bold" />
+
+                        <dev.info.basic.viswaLab.views.TextViewPlus
+                            android:id="@+id/tvBunkerDate"
+                            android:layout_width="120dp"
+                            android:layout_marginLeft="55dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:gravity="center"
+                            android:lines="2"
+                            android:text="Bunkered Date\n Fuel Grade"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            app:customFont="@string/pt_sans_bold" />
+
+                        <dev.info.basic.viswaLab.views.TextViewPlus
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:lines="2"
+                            android:text="Report Status"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            app:customFont="@string/pt_sans_bold" />
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/mRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"></android.support.v7.widget.RecyclerView>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:ProgressWheel="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/initial_loader"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <dev.info.basic.viswaLab.utils.ProgressWheel
+            android:id="@+id/initial_loader_progress"
+            android:layout_width="@dimen/custom_progressbar_width_height"
+            android:layout_height="@dimen/custom_progressbar_width_height"
+            android:layout_centerInParent="true"
+            ProgressWheel:matProg_barColor="@color/login_btn_click_color"
+            ProgressWheel:matProg_circleRadius="140dp"
+            ProgressWheel:matProg_progressIndeterminate="true"
+            ProgressWheel:matProg_rimWidth="2dp" />
+
+        <ImageView
+            android:layout_width="@dimen/custom_progressbar_image_width_height"
+            android:layout_height="@dimen/custom_progressbar_image_width_height"
+            android:layout_centerInParent="true"
+            android:src="@drawable/logo" />
+    </RelativeLayout>
+
+</RelativeLayout>

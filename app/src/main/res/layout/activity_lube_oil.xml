@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Layout">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+    <FrameLayout
+        android:id="@+id/frag_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/toolbar"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/amount_input_border_button"
+                    android:text="Fuel Oil Alerts"
+                    android:textColor="#fff"></Button>
+
+                <Button
+                    android:id="@+id/luboilReportsBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/amount_input_border_button"
+                    android:text="Lube Oil Alerts"
+                    android:textColor="#fff"></Button>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/amount_input_border_button"
+                    android:text="Cylinder Drain Oil Alerts"
+                    android:textColor="#fff"></Button>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/amount_input_border_button"
+                    android:text="Sweet Test Alerts"
+                    android:textColor="#fff"></Button>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/amount_input_border_button"
+                    android:text="Additional Test Alerts"
+                    android:textColor="#fff"></Button>
+
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/amount_input_border_button"
+                    android:text="Pomp Alerts"
+                    android:textColor="#fff"></Button>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/amount_input_border_button"
+                    android:text="Purifier Efficiency Alerts"
+                    android:textColor="#fff"></Button>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/amount_input_border_button"
+                    android:text="BUNKER QUALITY SURVEY"
+                    android:textColor="#fff"></Button>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/amount_input_border_button"
+                    android:text="DENSITY DIFFERENTIAL DATA"
+                    android:textColor="#fff"></Button>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/amount_input_border_button"
+                    android:text="PORT GRADE SUPPLIER QUERY"
+                    android:textColor="#fff"></Button>
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

@@ -1,0 +1,372 @@
+<resources>
+    <string name="app_name">Viswa 360</string>
+    <string name="app_name_xml">Open Kitchen</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="login">Sign In</string>
+    <string name="language">Change Language</string>
+    <string name="email">*Email Id</string>
+    <string name="panNo">*PAN Number</string>
+    <string name="adharNo">*Adhar Number</string>
+    <string name="pwd">Password</string>
+    <string name="rera_father_name">*Father Full Name</string>
+    <string name="rera_agent_occup">*Occupation</string>
+    <string name="techUpdate">Technical\nUpdates</string>
+    <string name="Adhoc">Adhoc\n Reports</string>
+    <string name="cautionAlerts">Caution\nAlerts</string>
+    <string name="scheduleAlerts">Schedule\nAlerts</string>
+    <string name="sampleStatus">Sample\nStatus</string>
+    <string name="statistics">Statistics\n</string>
+    <string name="anlysysReport">Analysis\nReports</string>
+    <string name="reset">Reset</string>
+    <string name="reset_now">Reset now</string>
+    <string name="submit">Submit</string>
+    <string name="crtMonth">Cur Mnt\n</string>
+    <string name="preMonth">Prev Mnt\n</string>
+    <string name="crtYear">Cur Year\n</string>
+    <string name="location">Location</string>
+    <string name="something_went_wrong">Something Went Wrong!!</string>
+    <string name="position">Position</string>
+    <string name="office">Office Number</string>
+    <string name="home">PROJECTS</string>
+    <string name="notification">Notifications</string>
+    <string name="pro">OUR SERVICES</string>
+    <string name="pro_menu">Services</string>
+    <string name="commute">Commute</string>
+    <string name="connect_fb">Connect with Facebook</string>
+    <string name="welcome_priced_property">Hi Boss, \n Welcome to the Priced Property</string>
+    <string name="prev_day">Previous day</string>
+    <string name="next_day">Next day</string>
+    <string name="venue">RadissonBlu Plaza Hotel,8-2-409,Road Number 6,Banjarahills,Hyderabad."</string>
+    <string name="datetime">Date &amp; Time</string>
+    <string name="all">All</string>
+    <string name="lunch">Lunch</string>
+    <string name="dinner">Dinner</string>
+    <string name="vegetarian">Vegetarian</string>
+    <string name="vegan">Vegan</string>
+    <string name="pickup_addr">Pickup Address</string>
+    <string name="cooks_phone">Cooks Phone</string>
+    <string name="start_with">Start with</string>
+
+    <string name="pic_max">Pictures Of Max.</string>
+    <string name="dish_max">Dishes of Max.</string>
+    <string name="max_servings">Maximum Servings</string>
+    <string name="grant_check">Grant 50% off for first time users</string>
+    <string name="order_before">Order Deadline(before)</string>
+    <string name="pickup_deadline">Pickup Deadline(after)</string>
+
+    <string name="text_pic">Text or Pictures</string>
+    <string name="hygiene_hint">Hygiene Certificates.</string>
+    <string name="kitchen_hint">Pictures of your kitchen or yourself</string>
+
+    <string name="show_only">Show Only : </string>
+    <string name="sort_by">Sort By :</string>
+
+    <string name="distance">Distance</string>
+    <string name="time">Time</string>
+    <string name="rating">Rating</string>
+    <string name="price">Price</string>
+    <string name="upload_pic">Upload Picture</string>
+    <string name="gst">GST &amp; RERA WORKSHOP</string>
+    <string name="invitation_msg">Hi Boss, \n Please click on mobile numbers to contact</string>
+    <string name="chef_desc">Please appreciate the chef : </string>
+    <string name="chef_desc_hint">Your dish was perfect:)</string>
+
+    <string name="allergns_count">Allergen %1$s</string>
+
+    <string name="food">Food</string>
+    <string name="hygiene">Hygiene</string>
+    <string name="size_serving">Size of Serving</string>
+    <string name="chef">Upload Picture</string>
+    <string name="pref_price">Price-Performance</string>
+    <string name="picture">Picture</string>
+    <string name="desc_info">Please describe.</string>
+    <string name="desc_hint">add description here</string>
+    <string name="report_prblm">Report Problem</string>
+    <string name="more">More</string>
+    <string name="prblm_with">I have a problem with..</string>
+
+
+    <string name="f_name">*First Name</string>
+    <string name="u_name">UserName</string>
+    <string name="l_name">LastName</string>
+    <string name="c_pwd">Confirm Password</string>
+    <string name="postal_addr">Postal Address</string>
+
+    <string name="pager_2_title">Geo-Reffered</string>
+    <string name="pager_3_title">Advance Search</string>
+    <string name="pager_4_title">Collabration</string>
+
+    <string name="pager_1_desc">Priced Property is the Online Plot Availability.According to RERA Requirement.</string>
+    <string name="pager_2_desc">Rsr Maps developed based on AutoCad Maps and Geo-reffered to Ground.</string>
+    <string name="pager_3_desc">Maps being singular entity allow search based on Availability,PlotNo,Facing.</string>
+    <string name="pager_4_desc">Rsr Maps allow you &amp; your agents to collobrate &amp; Save time &amp; per permit information without delay.</string>
+
+    <string name="without_reg_msg">Skip to try Openkitchen without beeing able to order</string>
+    <string name="order_empty_hint">You don\'t have any placed orders yet.\n your orders will be listed here.To Place an order click menu below.</string>
+    <string name="cook_empty_hint">You don\'t have any offers yet.\n Here you can create and offer your first meal. Just click below.</string>
+
+    <string name="profile">Profile</string>
+    <string name="help">Help</string>
+    <string name="invite_frnd">Invite Friends</string>
+    <string name="report_hint">Change Tip Report a Problem</string>
+    <string name="rate_hint">Upload a better picture &amp; win a prize\! </string>
+
+    <string name="view_profile">View Profile</string>
+    <string name="view_results">View Results</string>
+    <string name="balance">Balance</string>
+    <string name="msg_settings">Message Settings</string>
+    <string name="unlock_user">Unlock User</string>
+    <string name="change_pwd">Change Password</string>
+    <string name="logout">Logout</string>
+    <string name="enable_per">Enable Permission</string>
+    <string name="loc_per_msg">This app requires your location. Please allow in App Settings for Dishes</string>
+
+    <string name="faq">FAQ</string>
+    <string name="report_problem">Report a Problem</string>
+    <string name="feedback">Feedback</string>
+    <string name="about">About Us</string>
+    <string name="or">OR</string>
+    <string name="warning_hint">Warning</string>
+    <string name="error">Error</string>
+    <string name="success">Success</string>
+
+
+    <string name="phone">Phone</string>
+    <string name="hintuserid">Enter User Name*</string>
+    <string name="hintemailid">Enter Email Id*</string>
+    <string name="hintmobileno">Enter Mobile Number*</string>
+    <string name="mobile">*Mobile Number</string>
+
+    <string name="online">Online</string>
+    <string name="offline">Offline</string>
+    <string name="like_fb">Like us on Facebook</string>
+    <string name="invite_share_fb">Share us on Facebook</string>
+    <string name="terms">Terms and Conditions</string>
+
+    <string name="terms_cond">Accept <u>Terms &amp; Conditions and Data Privacy</u></string>
+
+    <string name="cook">Cook</string>
+    <string name="orders">Orders</string>
+    <string name="gps">GPS</string>
+    <string name="menu">Menu</string>
+    <string name="messages">Messages</string>
+    <string name="settings">Settings</string>
+    <string name="loading">Loading...</string>
+    <string name="dont_allow">Dont Allow</string>
+    <string name="add_photo">add Photo</string>
+    <string name="dish_name">Set dish Name</string>
+    <string name="share_fb">Share on Facebook</string>
+    <string name="save_dish_profile">Save Dish Profile for later</string>
+    <string name="desc">Description</string>
+    <string name="dob">Date of Brth</string>
+    <string name="my_orders">My Orders</string>
+    <string name="my_offers">My Offers</string>
+    <string name="my_offers_chef">My Offers as Chef</string>
+    <string name="order_info">Information needed for orders.</string>
+    <string name="media_hint">private (undisclosed) information: \n How did you hear about us?</string>
+
+    <string name="fav">Favourite</string>
+    <string name="block">Block</string>
+    <string name="report">Report</string>
+    <string name="reportDate">Report\nDate</string>
+    <string name="back">Back</string>
+    <string name="cancel_order">Cancel Order</string>
+    <string name="chef_appr">Please appreciate the chef:</string>
+
+    <string name="add_desc">Add description text</string>
+    <string name="add_cate">Add categories(i.e. vegetarian)</string>
+    <string name="add_details">Add details(i.e. allgergens)</string>
+    <string name="set_price">Set the price</string>
+    <string name="set_time">Set the timing</string>
+    <string name="ok">OK</string>
+    <string name="network_error">No Internet Connctivity.</string>
+    <string name="gps_hint">To connect you with Cooks or Fooders your GPS must be turn on</string>
+    <string name="fb_id">211554942575056</string>
+    <!--<string name="fb_id">397793213746674</string>-->
+    <string name="signup">Register</string>
+    <string name="login_email_pwd">Login With Email and Password</string>
+    <string name="login_email">REGISTER</string>
+    <string name="login_fb">Login with Facebook</string>
+    <string name="signup_fb">Sign up With Facebook</string>
+    <string name="fb_hint">We will never post anything on Facebook without your permission.</string>
+    <string name="register">Register</string>
+    <string name="agent_register">Agent Register</string>
+    <string name="company_register">Company Register</string>
+    <string name="user_profile">User Profile</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="edit_offer">Edit Offer</string>
+    <string name="re_offer">Reoffer</string>
+    <string name="cancel_offer">Cancel Offer</string>
+    <string name="read_more">READ MORE</string>
+    <string name="read_less">READ LESS</string>
+    <string name="ine_ene">Ingredients &amp; Energy</string>
+    <string name="serving_hint">per Serving incl.Tip </string>
+    <string name="change_tip">Change tip</string>
+
+    <string name="edit_order">Edit Order</string>
+    <string name="rate_dish">Rate Dish</string>
+    <string name="forgot">Forgot Password</string>
+    <string name="old_pwd">Old Password</string>
+    <string name="new_pwd">New Password</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">*Last Name</string>
+    <string name="home_addr">Home Address</string>
+    <string name="work_addr">Work Address</string>
+    <string name="re_type_pwd">Re-type New Password</string>
+    <string name="forgot_pwd">Forgot Password</string>
+    <string name="register_msg">If you don\'t have an existing account, please register for free&#33;</string>
+    <string name="forgot_pwd_msg">Please enter your User Name ,Email Id &amp;  Mobile Number to reset your Password.</string>
+    <string name="sort_dish">Sort by Dish</string>
+    <string name="sort_time">Sort by Time</string>
+    <string name="trouble_login">Trouble with Login? please Click Here to contact us</string>
+    <string name="trouble_signup">Trouble with SignUp? please Click Here to contact us</string>
+    <string name="create_offer">Create new Offer</string>
+    <string name="create_cook">Create new Offer</string>
+    <string name="dish_profile">Dish Profile</string>
+    <string name="foodie">Foodie</string>
+    <string name="general">General</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="cook_msg">I also want to cook</string>
+    <string name="order_now">Order Now</string>
+    <string name="cancel">Cancel</string>
+    <string name="order_hint">How many Servings would you \n like to order?</string>
+
+    <string name="fb">Facebook</string>
+    <string name="tel">Television</string>
+    <string name="news">Newspaper</string>
+    <string name="friends">Friends</string>
+    <string name="others">Other</string>
+    <string name="map">Map</string>
+    <string name="filter">Filter</string>
+
+    <string name="deadline">Order Deadline</string>
+    <string name="rec_tip">Recommended Tip</string>
+    <string name="save_changes">Save Changes</string>
+    <string name="enter_cost">Enter Cost</string>
+    <string name="order_dish">Order This Dish</string>
+
+    <string name="whatsapp">WhatsApp</string>
+    <string name="email_invite">E-mail</string>
+    <string name="google_plus">Google+</string>
+    <string name="twitter">Twitter</string>
+    <string name="sms">SMS</string>
+    <string name="flyer">Flyer</string>
+    <string name="leaflet">Leaflet</string>
+
+    <string name="order_1">Cook did not open the door</string>
+    <string name="order_2">Foodie did not pick up</string>
+    <string name="order_3">Hygiene was terrible</string>
+
+    <string name="pic_1">Address of User</string>
+    <string name="pic_2">Phonenumber of User</string>
+    <string name="pic_3">Picture of User</string>
+    <string name="pic_4">Text of Dish</string>
+    <string name="pic_5">Picture of Dish</string>
+    <string name="pic_6">Text on Chat</string>
+
+    <string name="copy_dish"><u>Copy Dish Profile</u></string>
+    <string name="share_fb_u"><u>Share on Facebook</u></string>
+    <string name="wink_cook"><u>Wink to Cook</u></string>
+    <string name="add_cal"><u>add to Calendar</u></string>
+    <string name="ing_ene">Ingredients &amp; Energy</string>
+
+
+    <string name="font_web">fonts/fontawesome-webfont.ttf</string>
+    <string name="font_sans">fonts/OpenSans-Regular.ttf</string>
+    <string name="font_heading">fonts/HW_Headings.ttf</string>
+    <string name="font_freedoka">fonts/fredoka-one.regular.ttf</string>
+    <string name="pt_sans">fonts/pt_sans.ttf</string>
+    <string name="pt_sans_bold">fonts/PT_Sans_Bold.ttf</string>
+    <string name="pt_sans_regular">fonts/PT_Sans_Regular.ttf</string>
+
+
+    <string name="font_arrow_right">&#xf105;</string>
+    <string name="font_user">&#xf007;</string>
+    <string name="font_user_group">&#xf0c0;</string>
+    <string name="font_help">[&#xf128;</string>
+    <string name="font_about">&#xf05a;</string>
+    <string name="font_bal">&#xf153;</string>
+    <string name="font_pwd">&#xf023;</string>
+    <string name="font_msg">&#xf0e0;</string>
+    <string name="font_logout">&#xf011;</string>
+    <string name="font_fb">&#xf082;</string>
+    <string name="font_spoon">&#xf1b1;</string>
+    <string name="font_plus">&#xf055;</string>
+    <string name="font_faq_right">&#xf061;</string>
+    <string name="font_faq_down">&#xf063;</string>
+    <string name="font_camera">&#xf030;</string>
+    <string name="font_time">&#xf017;</string>
+    <string name="font_down_arrow">&#xf0d7;</string>
+
+    <string name="font_minus">&#xf056;</string>
+
+    <string name="font_faq">&#xf059;</string>
+    <string name="font_tutorial">&#xf19d;</string>
+    <string name="font_feed">&#xf075;</string>
+    <string name="font_info">&#xf05a;</string>
+
+    <string name="font_online">&#xf0ac;</string>
+    <string name="font_offline">&#xf003;</string>
+    <string name="font_fb_like">&#xf164;</string>
+    <string name="font_mike">&#xf0a1;</string>
+    <string name="font_star">&#xf005;</string>
+    <string name="font_block">&#xf056;</string>
+    <string name="font_report">&#xf00d;</string>
+    <string name="font_left">&#xf053;</string>
+    <string name="font_right">&#xf054;</string>
+
+    <string name="permission_message">We need to write on disk to use camera.</string>
+
+
+    <!-- validation Hints-->
+    <string name="valid_email">Email cannot be empty</string>
+    <string name="valid_email_hint">Please Enter valid EmailId</string>
+
+    <string name="valid_user_name">Username cannot be empty</string>
+    <string name="valid_pwd">Password cannot be empty</string>
+    <string name="valid_con_pwd"> Confirm Password cannot be empty</string>
+    <string name="valid_last_name">Last Name cannot be empty</string>
+    <string name="valid_adhar_number">Adhar Number cannot be empty</string>
+    <string name="valid_pan_number">Pan Number cannot be empty</string>
+    <string name="valid_father_name">Agent Father Name cannot be empty</string>
+    <string name="valid_agent_occupation">Agent Occupation cannot be empty</string>
+    <string name="valid_checkBox">Please Select the Checkbox</string>
+    <string name="valid_mobile">MobileNumber cannot be empty</string>
+    <string name="terms_valid_msg">Please accept the terms and conditions to proceed.</string>
+    <string name="old_pwd_msg">Old Password not matched</string>
+    <string name="valid_mobile_hint">Please Enter valid Mobile Number</string>
+    <string name="valid_all">Please fill all fields</string>
+    <string name="pwd_msg">Password and Confirm Password not matched</string>
+    <string name="new_pwd_msg">New Password and Confirm Password not matched</string>
+    <string name="new_pwd_min_msg">New password can be more than 5 characters</string>
+    <string name="new_pwd_max_msg">New password can be less than 50 characters</string>
+    <!--<string name="maps_key">AIzaSyALtYODahvzuLuqYdCTiviGbt6B68nUJiY</string>-->
+    <string name="maps_key">AIzaSyAsb3rhYAyU0wwsKMgZDGATeJAFpQ4cibg</string>
+    <string-array name="media_array">
+        <item>@string/fb</item>
+        <item>@string/tel</item>
+        <item>@string/news</item>
+        <item>@string/friends</item>
+        <item>@string/others</item>
+    </string-array>
+    <string-array name="pie_array">
+        <item>@string/crtMonth</item>
+        <item>@string/preMonth</item>
+        <item>@string/crtYear</item>
+    </string-array>
+    <string name="huston_address">12140 Almeda Road \n Houston, Texas 77045 USA</string>
+    <string name="singapoor_address">80 Tagore Lane\nSingapore,787501</string>
+    <string name="uk_address">New First Avenue Wilton International Site\nMiddlesbrough, Cleveland\nTS104RG</string>
+    <string name="arab_address">Viswa Lab International FZE \nWarehouse 117B\nFujairah Freezone 1\nFujairah PO Box 50234</string>
+    <string name="belgium_address">Administrative Office\nEmdenweg 23 (Kaai 217) \n2030 Antwerp Belgium</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="bunker_fuel_date">Bunkered Date \nOil Grade</string>
+    <string name="report_fuel_date">Report Date\nOil Grade</string>
+    <string name="bunker_port_fuel">Bunkered Date \nBunker Port\nFuelGrade</string>
+    <string name="bunker_port_fuel_test">Test(Result)\nBunkered Date \nBunker Port\nPortFuelGrade</string>
+    <string name="analysisreports_diff">Diff. Tonne\nQty Received</string>
+</resources>

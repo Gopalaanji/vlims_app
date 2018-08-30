@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--<color name="colorPrimary">#2A5783</color>-->
+    <color name="colorPrimary">#4A4B94</color>
+    <!--<color name="colorPrimaryDark">#2A5783</color>-->
+    <color name="colorPrimaryDark">#4A4B94</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="namecolor">#F15A3F</color>
+    <color name="blue">#0000FF</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="dark_grey">#A9A9A9</color>
+    <color name="menu_ics_colrs">#615D5D</color>
+    <color name="pic_color">#E06666</color>
+    <color name="pic_click_color">#80E06666</color>
+    <color name="bar_color">#676767</color>
+
+    <color name="new_default_color">#EFEFEF</color>
+
+    <color name="login_btn_color">#D9D9D9</color>
+    <color name="login_btn_click_color">#34397F</color>
+    <color name="login_btn_click_color_alpha">#BF83A72E</color>
+
+    <color name="fb_btn_click_color">#993B5998</color>
+
+    <color name="list_start_color">#fdd19c</color>
+    <color name="list_center_color">#fbc07f</color>
+    <color name="list_end_color">#f9b062</color>
+
+    <color name="splash_bg">#99000000</color>
+    <color name="fb_btn_color">#3B5998</color>
+    <color name="dark_fb_btn_color">#999999</color>
+    <color name="dark_fb_btn_click_color">#99999999</color>
+    <color name="dish_bg">#B3FFFFFF</color>
+
+    <color name="app_bg">#FAFAFA</color>
+    <color name="segment_color">#1270A9</color>
+    <color name="transparent">#00000000</color>
+    <color name="btn_on">#68E99F</color>
+
+    <color name="dark_grey_alpha">#80a9a9a9</color>
+
+    <color name="default_circle_indicator_fill_color">#FFFF0000</color>
+    <color name="default_circle_indicator_page_color">#00000000</color>
+    <color name="default_circle_indicator_stroke_color">#FFDDDDDD</color>
+    <color name="holo_blue_dark">#ff0099cc</color>
+    <color name="hitwicket_orange">#ff7f00</color>
+
+    <!--desing-->
+    <color name="design_color_primary">#FFC107</color>
+    <color name="design_color_primaryDark">#FFA000</color>
+    <color name="backgroundcolor">#FCFCFC</color>
+    <color name="lightgraycolor">#ededed</color>
+    <color name="deeppurple">#7c4dff</color>
+    <color name="meterialyello">#ffb300</color>
+    <color name="meterialgreen">#00bfa5</color>
+    <color name="pinkaccent">#FF4081</color>
+
+
+</resources>

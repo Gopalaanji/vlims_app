@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/new_default_color">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical">
+
+        <LinearLayout
+            android:id="@+id/userArea"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/new_default_color"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical">
+
+                    <Spinner
+                        android:id="@+id/spnVesselShips"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="5dp"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/imo_number"
+                                android:layout_width="110dp"
+                                android:layout_height="55dp"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:hint="ENTER IMO NO."
+                                android:inputType="numberDecimal"
+                                android:maxLength="100"
+                                android:padding="5dp"
+                                android:textAllCaps="true"
+                                android:textSize="14sp" />
+
+                            <ImageView
+                                android:id="@+id/btnSubmit"
+                                android:layout_width="20dp"
+                                android:layout_height="45dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/search" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:gravity="right"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/sr_number"
+                                android:layout_width="110dp"
+                                android:layout_height="55dp"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:hint="ENTER SR NO."
+                                android:inputType="text"
+                                android:maxLength="100"
+                                android:padding="5dp"
+                                android:textAllCaps="true"
+                                android:textSize="14sp" />
+
+                            <ImageView
+                                android:id="@+id/btnsrSubmit"
+                                android:layout_width="20dp"
+                                android:layout_height="45dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/search" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:background="@drawable/bg_spinner">
+
+                        <Spinner
+                            android:id="@+id/spnEquipment"
+                            android:layout_width="match_parent"
+                            android:layout_height="70dp" />
+                    </RelativeLayout>
+                </android.support.design.widget.TextInputLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:background="@color/white"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:weightSum="3">
+
+                            <dev.info.basic.viswaLab.views.TextViewPlus
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="SHIP NAME"
+                                android:textColor="@color/black"
+                                app:customFont="@string/pt_sans_bold" />
+
+                            <dev.info.basic.viswaLab.views.TextViewPlus
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="right"
+                                android:text="Equipment"
+                                android:textAllCaps="true"
+                                android:textColor="@color/black"
+                                app:customFont="@string/pt_sans_bold" />
+
+                            <dev.info.basic.viswaLab.views.TextViewPlus
+                                android:id="@+id/textViewPlus2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="12dp"
+                                android:layout_weight="1"
+                                android:gravity="right|center"
+                                android:text="Schedule Date"
+                                android:textAllCaps="true"
+                                android:textColor="@color/black"
+                                app:customFont="@string/pt_sans_bold" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/mRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="2dp"></android.support.v7.widget.RecyclerView>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:ProgressWheel="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/initial_loader"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <dev.info.basic.viswaLab.utils.ProgressWheel
+            android:id="@+id/initial_loader_progress"
+            android:layout_width="@dimen/custom_progressbar_width_height"
+            android:layout_height="@dimen/custom_progressbar_width_height"
+            android:layout_centerInParent="true"
+            ProgressWheel:matProg_barColor="@color/login_btn_click_color"
+            ProgressWheel:matProg_circleRadius="140dp"
+            ProgressWheel:matProg_progressIndeterminate="true"
+            ProgressWheel:matProg_rimWidth="2dp" />
+
+        <ImageView
+            android:layout_width="@dimen/custom_progressbar_image_width_height"
+            android:layout_height="@dimen/custom_progressbar_image_width_height"
+            android:layout_centerInParent="true"
+            android:src="@drawable/logo" />
+    </RelativeLayout>
+
+</RelativeLayout>
